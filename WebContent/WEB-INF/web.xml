@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app id="WebApp_ID">
+	<display-name>TEST2016</display-name>
+
+  <servlet>
+    <servlet-name>selectUserServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectUserServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.DeleteUserServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>selectVnameServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectVnameServlet</servlet-class>
+  </servlet>
+     <servlet>
+    <servlet-name>updateOneUser</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.updateOneUser</servlet-class>
+  </servlet>
+      <servlet>
+    <servlet-name>UpdateOneUserServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.UpdateOneUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+     <servlet-name>AddUserServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddUserServlet</servlet-class>
+  </servlet>
+   <servlet>
+     <servlet-name>updatePassword</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.updatePassword</servlet-class>
+  </servlet>
+     <servlet>
+     <servlet-name>selectVersionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectVersionServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.LoginServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>AddVersionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddVersionServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>DeleteVersionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.DeleteVersionServlet</servlet-class>
+  </servlet>
+     <servlet>
+    <servlet-name>updateOneVersion</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.updateOneVersion</servlet-class>
+  </servlet>
+     <servlet>
+    <servlet-name>UpdateOneVersionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.UpdateOneVersionServlet</servlet-class>
+  </servlet>
+     <servlet>
+    <servlet-name>AddSignServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddSignServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>AddSignServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddSignServlet2</servlet-class>
+  </servlet>
+     <servlet>
+    <servlet-name>selectSignServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectSignServlet</servlet-class>
+  </servlet>
+       <servlet>
+    <servlet-name>selectSignServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectSignServlet2</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>DeleteSignServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.DeleteSignServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>AddOvertimeServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddOvertimeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>selectOvertimeServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectOvertimeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteOvertimeServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.DeleteOvertimeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddEvectionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddEvectionServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>selectEvectionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectEvectionServlet</servlet-class>
+  </servlet>
+     <servlet>
+    <servlet-name>DeleteEvectionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.DeleteEvectionServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>AddLeaveServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddLeaveServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>selectLeaveServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectLeaveServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>DeleteLeaveServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.DeleteLeaveServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>selectPersonServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectPersonServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>selectPersonServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectPersonServlet2</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>selectOvertimeServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectOvertimeServlet2</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>selectEvectionServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectEvectionServlet2</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>selectLeaveServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectLeaveServlet2</servlet-class>
+  </servlet>
+     <servlet>
+    <servlet-name>selectTestServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectTestServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>selectTestServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectTestServlet2</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>selectAllUserServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllUserServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>selectAllSignServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllSignServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>selectAllVersionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllVersionServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>selectAllTestServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllTestServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>selectAllPersonServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllPersonServlet</servlet-class>
+  </servlet>
+     <servlet>
+    <servlet-name>selectVersionServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectVersionServlet2</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>selectAllOvertimeServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllOvertimeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>selectAllEvectionServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllEvectionServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>selectAllLeaveServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllLeaveServlet</servlet-class>
+  </servlet>  
+  <servlet>
+    <servlet-name>LoginServlet2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.LoginServlet2</servlet-class>
+  </servlet>  
+  <servlet>
+    <servlet-name>updateOneUser_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.updateOneUser_Phone</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>AddVersionServlet_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddVersionServlet_Phone</servlet-class>
+  </servlet>    
+    <servlet>
+    <servlet-name>AddOvertimeServlet_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddOvertimeServlet_Phone</servlet-class>
+  </servlet>
+      <servlet>
+    <servlet-name>AddLeaveServlet_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddLeaveServlet_Phone</servlet-class>
+  </servlet>   
+  <servlet>
+    <servlet-name>UpdateOneUserServlet_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.UpdateOneUserServlet_Phone</servlet-class>
+  </servlet>   
+  <servlet>
+    <servlet-name>selectVersionServlet_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectVersionServlet_Phone</servlet-class>
+  </servlet>  
+  <servlet>
+    <servlet-name>UpdateOneVersionServlet_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.UpdateOneVersionServlet_Phone</servlet-class>
+  </servlet>   
+  <servlet>
+    <servlet-name>updateOneVersion_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.updateOneVersion_Phone</servlet-class>
+  </servlet>  
+  <servlet>
+    <servlet-name>DeleteVersionServlet_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.DeleteVersionServlet_Phone</servlet-class>
+  </servlet>  
+  <servlet>
+    <servlet-name>AddEvectionServlet_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddEvectionServlet_Phone</servlet-class>
+  </servlet>  
+  <servlet>
+    <servlet-name>updatePassword_Phone</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.updatePassword_Phone</servlet-class>
+  </servlet>  
+  <servlet>
+    <servlet-name>updatePassword_Phone2</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.updatePassword_Phone2</servlet-class>
+  </servlet>
+    <servlet>    
+    <servlet-name>selectUrlServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectUrlServlet</servlet-class>
+  </servlet>  
+    <servlet>    
+    <servlet-name>selectAllFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectAllFileServlet</servlet-class>
+  </servlet>  
+    <servlet>    
+    <servlet-name>UploadServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.UploadServlet</servlet-class>
+  </servlet>  
+    <servlet>    
+    <servlet-name>AddFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.AddFileServlet</servlet-class>
+  </servlet>  
+    <servlet>    
+    <servlet-name>YuLanServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.YuLanServlet</servlet-class>
+  </servlet> 
+    <servlet>    
+    <servlet-name>selectNewPersonFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectNewPersonFileServlet</servlet-class>
+  </servlet> 
+    <servlet>    
+    <servlet-name>selectNewShareFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectNewShareFileServlet</servlet-class>
+  </servlet> 
+    <servlet>    
+    <servlet-name>selectTestCaseFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectTestCaseFileServlet</servlet-class>
+  </servlet> 
+    <servlet>    
+    <servlet-name>selectItemFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectItemFileServlet</servlet-class>
+  </servlet> 
+    <servlet>    
+    <servlet-name>DeleteFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.DeleteFileServlet</servlet-class>
+  </servlet> 
+    <servlet>    
+    <servlet-name>selectFileUserServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectFileUserServlet</servlet-class>
+  </servlet> 
+    <servlet>    
+    <servlet-name>selectMoHuFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectMoHuFileServlet</servlet-class>
+  </servlet> 
+    <servlet>    
+    <servlet-name>UploadServlet4</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.UploadServlet4</servlet-class>
+  </servlet> 
+   <servlet>    
+    <servlet-name>selectMouFileServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <description>This is the description of my J2EE component</description>
+    <servlet-class>cn.com.shxt.servlet.selectMouFileServlet</servlet-class>
+  </servlet>
+	<servlet>    
+    	<servlet-name>selectAllFileLevelServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectAllFileLevelServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>AddFileLevelServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.AddFileLevelServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>selectTestCaseLevelServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectTestCaseLevelServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>selectItemFileLevelServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectItemFileLevelServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>selectNewPersonFileLevelServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectNewPersonFileLevelServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>selectNewShareFileLevelServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectNewShareFileLevelServlet</servlet-class>
+	</servlet>                  
+	<servlet>    
+    	<servlet-name>AddUserMyselfServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.AddUserMyselfServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>updateFileLevelServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.updateFileLevelServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>AddTestCaseCheckServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.AddTestCaseCheckServlet</servlet-class>
+	</servlet> 
+	<servlet>    
+    	<servlet-name>selectTestCaseCheckServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectTestCaseCheckServlet</servlet-class>
+	</servlet>                   
+    <servlet>    
+    	<servlet-name>selectMouTestCaseServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectMouTestCaseServlet</servlet-class>
+	</servlet>   
+    <servlet>    
+    	<servlet-name>selectTestCaseCheckLogServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectTestCaseCheckLogServlet</servlet-class>
+	</servlet>   
+	
+
+   
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+	<servlet-mapping>
+    	<servlet-name>selectTestCaseCheckLogServlet</servlet-name>
+    	<url-pattern>/selectTestCaseCheckLogServlet</url-pattern>
+	</servlet-mapping> 
+	<servlet-mapping>
+    	<servlet-name>selectMouTestCaseServlet</servlet-name>
+    	<url-pattern>/selectMouTestCaseServlet</url-pattern>
+	</servlet-mapping> 
+	<servlet-mapping>
+    	<servlet-name>selectTestCaseCheckServlet</servlet-name>
+    	<url-pattern>/selectTestCaseCheckServlet</url-pattern>
+	</servlet-mapping> 
+ 	<servlet-mapping>
+    	<servlet-name>AddTestCaseCheckServlet</servlet-name>
+    	<url-pattern>/AddTestCaseCheckServlet</url-pattern>
+	</servlet-mapping> 
+ 	<servlet-mapping>
+    	<servlet-name>updateFileLevelServlet</servlet-name>
+    	<url-pattern>/updateFileLevelServlet</url-pattern>
+	</servlet-mapping> 
+ 	<servlet-mapping>
+    	<servlet-name>AddUserMyselfServlet</servlet-name>
+    	<url-pattern>/AddUserMyselfServlet</url-pattern>
+	</servlet-mapping> 
+ 	<servlet-mapping>
+    	<servlet-name>selectNewShareFileLevelServlet</servlet-name>
+    	<url-pattern>/selectNewShareFileLevelServlet</url-pattern>
+	</servlet-mapping> 
+ 	<servlet-mapping>
+    	<servlet-name>selectNewPersonFileLevelServlet</servlet-name>
+    	<url-pattern>/selectNewPersonFileLevelServlet</url-pattern>
+	</servlet-mapping> 
+ 	<servlet-mapping>
+    	<servlet-name>selectItemFileLevelServlet</servlet-name>
+    	<url-pattern>/selectItemFileLevelServlet</url-pattern>
+	</servlet-mapping> 
+ 	<servlet-mapping>
+    	<servlet-name>selectTestCaseLevelServlet</servlet-name>
+    	<url-pattern>/selectTestCaseLevelServlet</url-pattern>
+	</servlet-mapping>      
+ 	<servlet-mapping>
+    	<servlet-name>AddFileLevelServlet</servlet-name>
+    	<url-pattern>/AddFileLevelServlet</url-pattern>
+	</servlet-mapping>     
+	<servlet-mapping>
+    	<servlet-name>selectAllFileLevelServlet</servlet-name>
+    	<url-pattern>/selectAllFileLevelServlet</url-pattern>
+	</servlet-mapping>  
+   <servlet-mapping>
+    <servlet-name>selectMouFileServlet</servlet-name>
+    <url-pattern>/selectMouFileServlet</url-pattern>
+  </servlet-mapping>  
+   <servlet-mapping>
+    <servlet-name>UploadServlet4</servlet-name>
+    <url-pattern>/UploadServlet4</url-pattern>
+  </servlet-mapping>    
+  <servlet-mapping>
+    <servlet-name>selectMoHuFileServlet</servlet-name>
+    <url-pattern>/selectMoHuFileServlet</url-pattern>
+  </servlet-mapping>    
+  <servlet-mapping>
+    <servlet-name>selectFileUserServlet</servlet-name>
+    <url-pattern>/selectFileUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteFileServlet</servlet-name>
+    <url-pattern>/DeleteFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectNewShareFileServlet</servlet-name>
+    <url-pattern>/selectNewShareFileServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>selectTestCaseFileServlet</servlet-name>
+    <url-pattern>/selectTestCaseFileServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>selectItemFileServlet</servlet-name>
+    <url-pattern>/selectItemFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectNewPersonFileServlet</servlet-name>
+    <url-pattern>/selectNewPersonFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>YuLanServlet</servlet-name>
+    <url-pattern>/YuLanServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddFileServlet</servlet-name>
+    <url-pattern>/AddFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllFileServlet</servlet-name>
+    <url-pattern>/selectAllFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectUrlServlet</servlet-name>
+    <url-pattern>/selectUrlServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updatePassword_Phone</servlet-name>
+    <url-pattern>/updatePassword_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updatePassword_Phone2</servlet-name>
+    <url-pattern>/updatePassword_Phone2</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+    <servlet-name>AddEvectionServlet_Phone</servlet-name>
+    <url-pattern>/AddEvectionServlet_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectVersionServlet_Phone</servlet-name>
+    <url-pattern>/selectVersionServlet_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateOneVersionServlet_Phone</servlet-name>
+    <url-pattern>/UpdateOneVersionServlet_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updateOneVersion_Phone</servlet-name>
+    <url-pattern>/updateOneVersion_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteVersionServlet_Phone</servlet-name>
+    <url-pattern>/DeleteVersionServlet_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateOneUserServlet_Phone</servlet-name>
+    <url-pattern>/UpdateOneUserServlet_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddLeaveServlet_Phone</servlet-name>
+    <url-pattern>/AddLeaveServlet_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddOvertimeServlet_Phone</servlet-name>
+    <url-pattern>/AddOvertimeServlet_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddVersionServlet_Phone</servlet-name>
+    <url-pattern>/AddVersionServlet_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updateOneUser_Phone</servlet-name>
+    <url-pattern>/updateOneUser_Phone</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet2</servlet-name>
+    <url-pattern>/LoginServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllLeaveServlet</servlet-name>
+    <url-pattern>/selectAllLeaveServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllEvectionServlet</servlet-name>
+    <url-pattern>/selectAllEvectionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllOvertimeServlet</servlet-name>
+    <url-pattern>/selectAllOvertimeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectVersionServlet2</servlet-name>
+    <url-pattern>/selectVersionServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllPersonServlet</servlet-name>
+    <url-pattern>/selectAllPersonServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllTestServlet</servlet-name>
+    <url-pattern>/selectAllTestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllVersionServlet</servlet-name>
+    <url-pattern>/selectAllVersionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllSignServlet</servlet-name>
+    <url-pattern>/selectAllSignServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectAllUserServlet</servlet-name>
+    <url-pattern>/selectAllUserServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>selectTestServlet2</servlet-name>
+    <url-pattern>/selectTestServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectTestServlet</servlet-name>
+    <url-pattern>/selectTestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectLeaveServlet2</servlet-name>
+    <url-pattern>/selectLeaveServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectEvectionServlet2</servlet-name>
+    <url-pattern>/selectEvectionServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectOvertimeServlet2</servlet-name>
+    <url-pattern>/selectOvertimeServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectPersonServlet2</servlet-name>
+    <url-pattern>/selectPersonServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectPersonServlet</servlet-name>
+    <url-pattern>/selectPersonServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteEvectionServlet</servlet-name>
+    <url-pattern>/DeleteEvectionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteLeaveServlet</servlet-name>
+    <url-pattern>/DeleteLeaveServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectLeaveServlet</servlet-name>
+    <url-pattern>/selectLeaveServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddLeaveServlet</servlet-name>
+    <url-pattern>/AddLeaveServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectEvectionServlet</servlet-name>
+    <url-pattern>/selectEvectionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddEvectionServlet</servlet-name>
+    <url-pattern>/AddEvectionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteOvertimeServlet</servlet-name>
+    <url-pattern>/DeleteOvertimeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectOvertimeServlet</servlet-name>
+    <url-pattern>/selectOvertimeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddOvertimeServlet</servlet-name>
+    <url-pattern>/AddOvertimeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updateOneVersion</servlet-name>
+    <url-pattern>/updateOneVersion</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>UpdateOneVersionServlet</servlet-name>
+    <url-pattern>/UpdateOneVersionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteVersionServlet</servlet-name>
+    <url-pattern>/DeleteVersionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddVersionServlet</servlet-name>
+    <url-pattern>/AddVersionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectUserServlet</servlet-name>
+    <url-pattern>/selectUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <url-pattern>/DeleteUserServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>selectVnameServlet</servlet-name>
+    <url-pattern>/selectVnameServlet</url-pattern>
+  </servlet-mapping>
+     <servlet-mapping>
+    <servlet-name>updateOneUser</servlet-name>
+    <url-pattern>/updateOneUser</url-pattern>
+  </servlet-mapping>
+     <servlet-mapping>
+    <servlet-name>UpdateOneUserServlet</servlet-name>
+    <url-pattern>/UpdateOneUserServlet</url-pattern>
+  </servlet-mapping>
+      <servlet-mapping>
+    <servlet-name>updatePassword</servlet-name>
+    <url-pattern>/updatePassword</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddUserServlet</servlet-name>
+    <url-pattern>/AddUserServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>selectVersionServlet</servlet-name>
+    <url-pattern>/selectVersionServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>AddSignServlet</servlet-name>
+    <url-pattern>/AddSignServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddSignServlet2</servlet-name>
+    <url-pattern>/AddSignServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>selectSignServlet</servlet-name>
+    <url-pattern>/selectSignServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>selectSignServlet2</servlet-name>
+    <url-pattern>/selectSignServlet2</url-pattern>
+  </servlet-mapping>
+      <servlet-mapping>
+    <servlet-name>DeleteSignServlet</servlet-name>
+    <url-pattern>/DeleteSignServlet</url-pattern>
+      </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+ 
+   
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	
+	
+
+	
+</web-app>

@@ -1,0 +1,66 @@
+.body{
+    max-width:640px;
+    margin:auto;
+    min-height:100%;
+    background-color:#f4f4f4;
+    position:relative;
+}
+
+.list_font {
+    margin:10px;
+    padding:0;
+    border:1px solid #dadada;
+    border-radius:8px;
+    overflow:hidden;
+}
+.list_font li{
+    height:43px!important;
+    line-height:43px;
+    width:100%!important;
+    padding:0;
+    border-bottom:1px solid #dadada;
+}
+.list_font li:last-child{
+    border:0;
+}
+
+.list_font li>a{
+    color:#707070;
+    overflow:hidden;
+    background:url("../../img/arr1.png") no-repeat 96% center;
+    background-size:8px auto;
+    background-color:#fff;
+}
+.list_font li div:first-child{
+    margin-top:0!important;
+    margin-bottom:0!important;
+    padding:0;
+    background:#c4403e;
+    display:inline-block;
+    min-width:60px;
+    float:left;
+}
+.list_font li div:last-child{
+    text-align:left;
+    text-indent:10px;
+}
+.list_font li div>span{
+    color:#fff;
+    line-height:43px;
+    height:43px!important;
+    font-size:25px!important;
+}
+.list_font li div>p{
+    font-size:12px;
+}
+
+/***************************************************/
+.list_font li:nth-of-type(2n+2) div:first-child{
+    background-color:#d77670;
+}
+.list_font li:nth-of-type(2n+3) div:first-child{
+    background-color:#b3cebf;
+}
+.list_font li:nth-of-type(6n) div:first-child{
+    background-color:#6f9e98;
+}

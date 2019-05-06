@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-1.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jspsmartupload.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.0.5-bin.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool-0.9.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool-cglib.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/annotations-api.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/ecj-4.2.2.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/jasper.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/jasper-el.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/tomcat-dbcp.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/tomcat-i18n-es.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/tomcat-i18n-fr.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/tomcat-i18n-ja.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/tomcat-jdbc.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/lib/tomcat-util.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/bin/bootstrap.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/bin/commons-daemon.jar"/>
+	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/bin/tomcat-juli.jar"/>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
+</classpath>

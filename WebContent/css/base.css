@@ -1,0 +1,113 @@
+/* CSS reset */
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, input, button, textarea, p { padding: 0; }
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust: none; font-weight: normal; }
+html, body { height: 100%; width: 100%;}
+header,article,footer,nav,section,aside,menu{ display:block;}
+img { border: 0; }
+a, li { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+a { text-decoration: none; color: #666; outline: none; }
+/*此处待添加默认链接颜色*/
+li { list-style: none; }
+em { font-style: normal; }
+input, button, textarea, select, optgroup, option { font-family: inherit; font-size: inherit; font-style: inherit; font-weight: inherit; }
+input, button, textarea, select { font-size: 100%; outline: none; -webkit-appearance: none; }
+html { box-sizing: border-box; font-family: "Microsoft YaHei", sans-serif; }
+*, *:before, *:after { /*box-sizing: inherit;*/}
+.clearFloat:after {height: 0px;content: ".";clear: both;visibility: hidden;display: block;}
+.clearFloat { zoom: 1; }
+.fl, .fr { display: inline; }
+.fl { float: left; }
+.fr { float: right; }
+.autoImg img { width: 100% !important; height: 100% !important; }
+
+
+.textellipsis { text-overflow: ellipsis; white-space: nowrap; /*禁止自动换行*/ overflow: hidden; }
+.wbox { display: -webkit-flex !important; display: -webkit-box; }
+.wbox_flex { -webkit-flex: 1 !important; -webkit-box-flex: 1; word-wrap: break-word; word-break: break-all; }
+
+.f20 { font-size: 0.5rem !important; }
+.f22 { font-size: 0.55rem !important; }
+.f24 { font-size: 0.6rem !important; }
+.f26 { font-size: 0.65rem !important; }
+.f28 { font-size: 0.7rem !important; }
+.f30 { font-size: 0.75rem !important; }
+.f32 { font-size: 0.8rem !important; }
+.f34 { font-size: 0.85rem !important; }
+.f36 { font-size: 0.9rem !important; }
+.f38 { font-size: 0.95rem !important; }
+.f40 { font-size: 1rem !important; }
+
+.mt01 { margin-top: 0.1rem; }
+.mt02 { margin-top: 0.2rem; }
+.mt03 { margin-top: 0.3rem; }
+.mt04 { margin-top: 0.4rem; }
+.mt05 { margin-top: 0.5rem; }
+
+.Orange { color: #d45604 !important; }
+.wathet { color: #566c95 !important; }
+.gray { color: #999 !important; }
+
+
+.transition { -webkit-transition: all 0.3s 0s linear; transition: all 0.3s 0s linear; }
+/* set html font-size by width */
+@media screen and (min-width:320px) {
+    html { font-size: 20px; }
+    body { font-size: 12px; }
+}
+@media screen and (min-width:360px) {
+    html { font-size: 22.5px; }
+    body { font-size: 12px; }
+	
+}
+
+@media screen and (min-width:375px) {
+    html { font-size: 23.4375px; }
+    body { font-size: 12px; }
+	
+}
+
+@media screen and (min-width:384px) {
+    html { font-size: 24px; }
+    body { font-size: 14px; }
+}
+
+@media screen and (min-width:400px) {
+    html { font-size: 25px; }
+    body { font-size: 14px; }
+}
+
+@media screen and (min-width:414px) {
+    html { font-size: 25.875px; }
+    body { font-size: 14px; }
+}
+
+@media screen and (min-width:424px) {
+    html { font-size: 26.5px; }
+    body { font-size: 14px; }
+}
+
+@media screen and (min-width:480px) {
+    html { font-size: 30px; }
+    body { font-size: 15.36px; }
+}
+
+@media screen and (min-width:540px) {
+    html { font-size: 33.75px; }
+    body { font-size: 17.28px; }
+}
+
+@media screen and (min-width:640px) {
+    html { font-size: 40px; }
+    body { font-size: 20.48px; }
+}
+
+@media screen and (min-width:700px) {
+    html { font-size: 45px; }
+    body { font-size: 23.04px; }
+	
+}
+
+@media screen and (min-width:750px) {
+    html { font-size: 46.875px; }
+    body { font-size: 24px; }
+}

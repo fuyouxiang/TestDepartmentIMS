@@ -1,0 +1,8 @@
+body{
+    background: #ffffff;
+}
+.weimob-list-item-title{padding-left:5px; overflow:hidden; line-height:30px;}
+.weimob-list-item{ height:90px;}
+.weimob-list-item-image{top:60%;}
+.weimob-list-item-line{ display:block; height:38px;margin-top:10px;overflow:hidden;}
+.weimob-list-item-summary{ max-height:60px; line-height:20px; font-size:0.8rem; color:#666;}

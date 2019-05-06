@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GB2312"?>
+<proxool-config>
+  <proxool>
+    <!-- 数据源的别名,在DBUtil工具类中获得连接需要使用此别名 -->
+    <alias>shxtPro</alias> 
+    <!-- url连接串 -->
+    <driver-url>jdbc:oracle:thin:@localhost:1521:ORCL</driver-url>
+    <!-- 驱动类 -->
+    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+    <!-- 配置用户名和密码 -->
+    <driver-properties>
+     <property name="user" value="weishixue"> </property>
+     <property name="password" value="root"></property>
+    </driver-properties>
+     
+    <!-- 最大的连接数(默认为5),超过了这个连接数,再有新请求时,就排在队列中等候,最大的等待请求数由maximum-new-connections决定 -->
+     <maximum-connection-count>30</maximum-connection-count>　
+    <!-- 最小的连接数(默认为2),包括活动的连接 -->
+     <minimum-connection-count>5</minimum-connection-count>
+    <!-- 保留线程处于睡眠状态的最长时间，下面配置的职责为检查各个连接的状态，并判断是否需要销毁或创建 -->
+     <house-keeping-sleep-time>60000</house-keeping-sleep-time>
+    <!-- 连接池中可用的连接数量,如果当前的连接池中的连接少于该值,新的连接将被建立(前提是没有超过最大的可用数) --> 
+     <prototype-count>5</prototype-count>
+    <!--没有空闲连接可用分配,而在队列中等候的最大请求数,超过这个请求数的用户连接将不会被接受 -->
+     <maximum-new-connections>2</maximum-new-connections>
+    <!--同时最大连接数 --> 
+      <simultaneous-build-throttle>5</simultaneous-build-throttle>
+    <!--日志统计跟踪类型,可选ERROR、INFO -->
+      <statistics-log-level>error</statistics-log-level>
+     
+    <!-- 连接池使用状况统计,参数为30s,10m,1d -->
+      <statistics>30s,10m,1d</statistics>
+  </proxool>
+ 
+</proxool-config>
+ 
