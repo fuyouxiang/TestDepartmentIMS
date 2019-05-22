@@ -30,7 +30,7 @@ List<Map<String,String>> RInfoList= (List<Map<String , String>>) request.getAttr
   </head>
 <%String name1=(String)request.getAttribute( "name1");%>
 
-<FRAMESET border=0 frameSpacing=0 rows="60, *" >
+<FRAMESET border=0 frameSpacing=0 rows="40,*" >
 <FRAME name=header src="header.jsp?name1=<%=name1%>" frameBorder=0 noResize scrolling=no>
 <FRAMESET cols="170, *">
 <FRAME src="menu_boss.jsp" name="left" scrolling=no frameBorder=0 marginwidth=1px marginheight=1px>

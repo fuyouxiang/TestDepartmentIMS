@@ -2,7 +2,6 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app id="WebApp_ID">
 	<display-name>TEST2016</display-name>
-
   <servlet>
     <servlet-name>selectUserServlet</servlet-name>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -500,23 +499,45 @@
     	<display-name>This is the display name of my J2EE component</display-name>
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.servlet.selectAllUrlServlet</servlet-class>
-	</servlet>      
-	
+	</servlet>
+    <servlet>    
+    	<servlet-name>AddUrlServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.AddUrlServlet</servlet-class>
+	</servlet>         
+    <servlet>    
+    	<servlet-name>UpdateUrlServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.UpdateUrlServlet</servlet-class>
+	</servlet> 	
 
    
 
 	
 	
 
+    
+    
+    
+    
+    
+    
 	
 	
 	
 	
 	
 	
-	
-
-
+	<servlet-mapping>
+    	<servlet-name>UpdateUrlServlet</servlet-name>
+    	<url-pattern>/UpdateUrlServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+    	<servlet-name>AddUrlServlet</servlet-name>
+    	<url-pattern>/AddUrlServlet</url-pattern>
+	</servlet-mapping> 
 	<servlet-mapping>
     	<servlet-name>selectAllUrlServlet</servlet-name>
     	<url-pattern>/selectAllUrlServlet</url-pattern>
