@@ -32,13 +32,17 @@ public class selectAllUrlServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//时间戳，直接调用DateTime.java中的方法
+		String timelog= DateTime.showtime();
+
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
 		String time=df.format(new Date());// new Date()为获取当前系统时间//时间戳，直接调用DateTime.java中的方法
+		System.out.println(timelog+"工作台加载————————");
 		
 		HttpSession session = request.getSession();
 		String username = (String)session.getAttribute("username");
+		System.out.println("当前用户是："+username);
 		
-		System.out.println(time+"查询url列表servlet");
+		System.out.println(timelog+"查询url列表servlet");
 		String sql = "select (select count(*) from SYS_URL) as URL_COUNT,URL_ID,URL_NAME,URL_ADDRESS,URL_CREATER,URL_DATE,URL_STATE from SYS_URL a order by URL_STATE,URL_DATE";
 
 		String sql2 = "select (select count(*) from SYS_GONGGAO) as GON_COUNT,GON_ID,GON_TITLE,GON_DATE from SYS_GONGGAO order by GON_DATE desc";
@@ -60,6 +64,8 @@ public class selectAllUrlServlet extends HttpServlet {
 		
 		PageBean pageBean4 = dbutil.queryByPage(nowPage, sql4);
 		request.setAttribute("pageBean4", pageBean4);
+		
+
 
 		/*ip测试
  	    boolean STATE= false;

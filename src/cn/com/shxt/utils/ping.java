@@ -24,7 +24,6 @@ public class ping {
     		 * */
     		conn.setReadTimeout(2000);
     		conn.setConnectTimeout(2000);
-
     		String str=conn.getHeaderField(0);
     		System.out.println("1"+str);
     		if (str.indexOf("200")> 0){
@@ -38,6 +37,7 @@ public class ping {
     		//网址不正常
     		return false;
     		}
+    	    
    
     }
   
