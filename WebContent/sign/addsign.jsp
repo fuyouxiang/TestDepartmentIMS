@@ -189,7 +189,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	    <input type="hidden" id="nextPageId"  name="nextPage" value="1" />
 
 <!-- jsp页面右侧滚动条 -->
-<!--<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:500px;">   -->
+<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">
      <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>      
           <td height="62" background="images/nav04.gif">           
@@ -295,7 +295,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 </table>   
 
 </table> 
-
+</div>
  </form>
   </body>
 </html>
