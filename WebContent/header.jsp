@@ -80,18 +80,20 @@ String userName = (String)session.getAttribute("userName");
   <TR height=40>
     <TD width=260><IMG  height=56 src="images/header_left2.jpg" 
     width=260></TD>
-    <TD style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 0px" 
+    <TD style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 0px;padding-bottom: 15px;" 
       align="center">
-            <A style="COLOR: #fff" href="calendar.html" target="right"><font size="4" face="隶书"><%="当前用户:"+name1%></font></A> &nbsp;&nbsp;&nbsp;&nbsp;
+      <!--  
+            <A style="COLOR: #fff" href="calendar.html" target="right"><font size="4" face="隶书"><%="当前用户:"+name1%></font></A> &nbsp;&nbsp;&nbsp;&nbsp;-->
             <!--  <label class="fr_1"  id = "showDateTimeId"></label>时间 -->
-            <A style="COLOR: #fff" href="guanliyuan/UpdatePassword.jsp" target="right" ><font size="4" face="隶书">密码修改</font></A> &nbsp;&nbsp;
-      		<A style="COLOR: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="login.jsp" target=_top><font size="4" face="隶书">退出系统</font></A> &nbsp;&nbsp;
-      		<A style="COLOR: #fff" href="calendar.html" target="right"><font size="4" face="隶书">日历查询</font></A> 
+            <A style="COLOR: #fff" href="guanliyuan/UpdatePassword.jsp" target="right" ><font size="2" >密码修改</font></A> &nbsp;&nbsp;
+            <span class="fr_1" id = "showDateTimeId" ></span>&nbsp;&nbsp;
+      		<A style="COLOR: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="login.jsp" target=_top><font size="2">退出系统</font></A> 
+
+      		<!--<A style="COLOR: #fff" href="calendar.html" target="right"><font size="4" face="隶书">日历查询</font></A> -->
     </TD>
     
-    <td style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 0px"><label class="fr_1"  id = "showDateTimeId"></label></td>
-    <TD align=right width=268><IMG height=56 
-      src="images/header_right.jpg" width=268></TD>   
+    <td style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 0px"></td>
+    <TD align=right width=268><!--<label class="fr_1"  id = "showDateTimeId"></label>--><IMG height=56 src="images/header_right.jpg" width=268></TD>   
       </TR></TABLE>
 <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
   <TR bgColor=#1c5db6 height=4>

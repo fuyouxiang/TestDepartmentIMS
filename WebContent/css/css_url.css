@@ -222,8 +222,8 @@ a:hover {
 	cursor:pointer;
 }
 .rig_link {
-	height: 73px;
-	padding: 15px 20px 15px 15px;
+	height: 40px;
+	padding: 6px 13px 15px 13px;
 	border-bottom: 1px solid #C8C7C7;
 }
 .rig_link ul li {

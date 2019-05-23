@@ -64,7 +64,7 @@ interval = setInterval(shuaxinUrl,60000*5);
 <body>
 
 <!-- 滚动条 -->
-<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">
+<div style="overflow-x:hidden;overflow-y:auto;width:100%;height:550px;">
 
 <div class="container">
   <!--
@@ -244,11 +244,11 @@ interval = setInterval(shuaxinUrl,60000*5);
                   <td bgcolor="#FFFFFF"><div align="center"><%=i+1 %></div></td>
                   <td style="font-size:15px;text-align:center;font-weight:bold;" class="<%=src %>" bgcolor="#FFFFFF"><div align="center"><%=STATE %></div></td>
                   <td style="font-size:15px;text-align:center;font-weight:bold" bgcolor="#FFFFFF"><div align="center"><a href="<%=stuMap.get("URL_ADDRESS") %>" target="_blank"><b><%=URL_ADDRESS%></b></a></div></td>
-                  <td bgcolor="#FFFFFF" class="datacol"><%=stuMap.get("URL_NAME") %></td>
+                  <td bgcolor="#FFFFFF" class="datacol"><a href="<%=stuMap.get("URL_ADDRESS") %>" target="_blank" style="color:#1D79C7;"><%=stuMap.get("URL_NAME") %></a></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_DATE") %></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_CREATER") %></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_STATE") %></td>
-                  <td  bgcolor="#FFFFFF"><a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=stop&urlid=<%=stuMap.get("URL_ID") %>">停用</a>&nbsp;&nbsp;<a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=start&urlid=<%=stuMap.get("URL_ID") %>">启用</a>&nbsp;&nbsp;<a href="<%=path %>/UpdateUrlServlet?caozuo=delete&urlid=<%=stuMap.get("URL_ID") %>" style="color:black">删除</a></td>
+                  <td  bgcolor="#FFFFFF"><a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=stop&urlid=<%=stuMap.get("URL_ID") %>">停用</a>&nbsp;&nbsp;<a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=start&urlid=<%=stuMap.get("URL_ID") %>">启用</a>&nbsp;&nbsp;<a href="<%=path %>/UpdateUrlServlet?caozuo=delete&urlid=<%=stuMap.get("URL_ID") %>" style="color:red;">删除</a></td>
                 </tr>
  
   		
@@ -386,6 +386,7 @@ interval = setInterval(shuaxinUrl,60000*5);
     </div>
  -->
   </div>
+</div>
 </div>
 <div class="footer"></div>
 </body>
