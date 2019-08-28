@@ -167,7 +167,30 @@ clipboardData.setData('text','');
 			}
 		</script>
 
-
+<script type="text/javascript">
+    function base64 (content) {
+       return window.btoa(unescape(encodeURIComponent(content)));         
+    }
+    /*
+    *@tableId: table的Id
+    *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
+    */
+    function tableToExcel(tableID,fileName){
+        var table = document.getElementById(tableID);
+      var excelContent = table.innerHTML;
+      var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+      excelFile += "<body><table>";
+      excelFile += excelContent;
+      excelFile += "</table></body>";
+      excelFile += "</html>";
+      var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
+      var a = document.createElement("a");
+      a.download = fileName+".xls";
+      a.href = link;
+      a.click();
+    }
+</script>
 
 <body onload="valiButt()">
 <!-- 右侧滚动条 -->
@@ -186,7 +209,8 @@ clipboardData.setData('text','');
 			  <td width="21"><img src="images/ico07.gif" width="18" height="15" /></td>
 			  <td width="538">
 			  <input type="button" value="显示全部" onclick="window.location.href='<%=path %>/selectAllUserServlet'">
-			  <button onclick="javascript:exportToExcel('testList','');">导出当前页</button>
+			  <!--  <button onclick="javascript:exportToExcel('testList','');">导出当前页</button>-->
+			  <button onclick="tableToExcel('tableAll','当前页用户表');">导出当前页</button>
 			  <!--  
 			  <form action="selectIdServlet">
 						查询方式：用户编号<input name="U_ID" type="text" size="12"/>
@@ -203,7 +227,7 @@ clipboardData.setData('text','');
     </table>
    
        
-          <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+          <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">

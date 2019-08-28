@@ -108,6 +108,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			    	var o_date=document.formname.o_date.value;
 			    	var o_time=document.formname.o_time.value;
 			    	var o_hold1=document.formname.o_hold1.value;
+			    	var floatCheck=/^[+-]?[1-9]?[0-9]*\.[0-9]*$/;;
 			    	
 			    	
 			    	//校验
@@ -125,6 +126,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			    	}
 			    	else if(o_time == ''){
 			    		alert('请填写加班时间!');      
+		 				return false;
+			    	}
+			    	else if(isNaN(o_time)){
+			    		alert('您输入的加班时间不是数字,请重新输入！');      
 		 				return false;
 			    	}
 			    	else if(o_hold1 == ''){

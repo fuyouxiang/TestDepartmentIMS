@@ -21,6 +21,7 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -165,17 +166,42 @@ clipboardData.setData('text','');
 					}    
 				}  
 			}
+			
 		</script>
+		<script type="text/javascript">
+    function base64 (content) {
+       return window.btoa(unescape(encodeURIComponent(content)));         
+    }
+    /*
+    *@tableId: table的Id
+    *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
+    */
+    function tableToExcel(tableID,fileName){
+        var table = document.getElementById(tableID);
+      var excelContent = table.innerHTML;
+      var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+      excelFile += "<body><table>";
+      excelFile += excelContent;
+      excelFile += "</table></body>";
+      excelFile += "</html>";
+      var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
+      var a = document.createElement("a");
+      a.download = fileName+".xls";
+      a.href = link;
+      a.click();
+    }
+</script>
 
 
 
 <body onload="valiButt()">
 <!-- 右侧滚动条 -->
-<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;"> 
+<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">
 <form action="<%=path %>/selectOvertimeServlet2"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
 	    <input type="hidden" id="nextPageId"  name="nextPage" value="1" />
-    
+    </form>
      <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td height="62" background="images/nav04.gif">
@@ -219,16 +245,16 @@ clipboardData.setData('text','');
 			  
            
             </td>
-			  <td width="144" align="left"><button style="font-size:15px;font-weight:bold;width:80px"  onclick="javascript:exportToExcel('testList','');">导出全部</button></td>	
+			  <!--<td width="144" align="left"><button style="font-size:15px;font-weight:bold;width:80px"  onclick="javascript:exportToExcel('testList','');">导出全部</button></td>  -->
+			  <td width="144" align="left"><button style="font-size:15px;font-weight:bold;width:80px"  onclick="tableToExcel('tableAll','<%=session.getAttribute("MONTH") %>月加班情况表');">导出全部</button></td>	
 			
 		    </tr>
 		
           </table></td>
         </tr>
     </table>
-   </form>
        
-          <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+          <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
@@ -272,7 +298,6 @@ clipboardData.setData('text','');
 							<td class="bor_2 bor_4" style="font-size:15px;text-align:center;font-weight:bold"> 
 							<input type="hidden" name="O_ID" value="<%=stuMap.get("O_ID") %>"/>
 							<%-- <input name="Submit" type="submit"  value="修改"  onclick = "updateStu(<%=stuMap.get("S_ID") %>"/> --%>  
-							<!-- <span><img  src="<%=path %>/images/del.gif" width="16" height="16" onclick = "if(window.confirm('您确定要删除吗？')){window.location.href='DeleteOvertimeServlet?id=<%=stuMap.get("O_ID") %>&name=<%=stuMap.get("O_NAME") %>&time=<%=stuMap.get("O_TIME") %>'}"/>删除</span> -->
 							<button onclick = "if(window.confirm('您确定要删除吗？')){window.location.href='DeleteOvertimeServlet?id=<%=stuMap.get("O_ID") %>&name=<%=stuMap.get("O_NAME") %>&time=<%=stuMap.get("O_TIME") %>'}">删除</button></td>
 	
                         </tr>

@@ -62,6 +62,16 @@ background=images/menu_bg.jpg border=0>
             href="<%=path %>/selectAllUrlServlet" target="right">首页工作台</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
+          
+     <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>      
+        <TR>
+          <TD height=10></TD></TR></TABLE>
+       <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>       
+        <TR height=22>
+          <TD style="PADDING-LEFT: 30px" background=images/menu_bt.jpg><A 
+            href="<%=path %>/guanliyuan/UpdateNotice.jsp" target="right">发布新通知</A></TD></TR>
+        <TR height=4>
+         <TD></TD></TR></TABLE>
                
       <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>      
         <TR>

@@ -219,8 +219,7 @@ clipboardData.setData('text','');
            
             </td>
 			  <td align="right"><input style="font-size:15px;font-weight:bold;width:80px" size="12" type="button" value="显示全部" onclick="window.location.href='<%=path %>/selectAllLeaveServlet'"></td>
-			  <td width="144" align="left"><button style="font-size:15px;font-weight:bold;width:100px"  onclick="javascript:exportToExcel('testList','');">导出当前页</button></td>	
-		
+
 		    </tr>
 		
           </table></td>

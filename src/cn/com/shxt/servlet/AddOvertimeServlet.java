@@ -46,26 +46,39 @@ public class AddOvertimeServlet extends HttpServlet {
 			//人员资源统计表记录数加1
 			//String sql2 = "update sys_person set p_overtime=p_overtime+"+"'" + o_time + "'"+" where p_name="+"'" + o_name + "' and p_year='2018'";
 			String sql2 = "insert into sys_person(p_name,p_overtime,p_evection,p_leave,p_year,p_month) values('" + o_name + "','" + o_time + "','0','0','" + SetYear + "','" + o_month + "')";
+			String sql3= "select * from sys_overtime where o_name='"+o_name+"' and o_date='" + o_date + "'";
 			
-			int flag = dbutil.update(sql);
-			int flag2 = dbutil.update(sql2);
-			System.out.println(time+"添加加班情况sql:"+sql);//查看sql
-			System.out.println(time+"修改个人情况统计表sql:"+sql2);//查看sql
-			String info ;
+			System.out.println(time+"查询当天加班记录是否重复:"+sql3);//查看sql
+			int flag3 = dbutil.update(sql3);
+			System.out.println(flag3);
 			
-			if(flag > 0 && flag2 > 0){
-				info ="加班情况保存成功！个人情况统计表修改成功！";
-				request.setAttribute("info", info);
-			}else if(flag > 0 && flag2 == 0){
-				info ="加班情况保存成功！个人情况统计表修改失败！";
-				request.setAttribute("info", info);
-			}else if(flag == 0 && flag2 > 0){
-				info ="加班情况保存失败！个人情况统计表修改成功！";
-				request.setAttribute("info", info);
+			if(flag3<=0){
+				System.out.println(time+"查询当天加班记录未重复！");//查看sql
+				int flag = dbutil.update(sql);
+				int flag2 = dbutil.update(sql2);
+				System.out.println(time+"添加加班情况sql:"+sql);//查看sql
+				System.out.println(time+"修改个人情况统计表sql:"+sql2);//查看sql
+				String info ;
+				
+				if(flag > 0 && flag2 > 0){
+					info ="加班情况保存成功！个人情况统计表修改成功！";
+					request.setAttribute("info", info);
+				}else if(flag > 0 && flag2 == 0){
+					info ="加班情况保存成功！个人情况统计表修改失败！";
+					request.setAttribute("info", info);
+				}else if(flag == 0 && flag2 > 0){
+					info ="加班情况保存失败！个人情况统计表修改成功！";
+					request.setAttribute("info", info);
+				}else{
+					info ="加班情况保存失败！个人情况统计表修改失败！";
+					request.setAttribute("info", info);
+				}
 			}else{
-				info ="加班情况保存失败！个人情况统计表修改失败！";
+				String info ;
+				info ="您在该日期已经添加过加班，请勿重复添加！";
 				request.setAttribute("info", info);
 			}
+
 			
 		request.getRequestDispatcher("Sys.jsp").forward(request, response);		
 }

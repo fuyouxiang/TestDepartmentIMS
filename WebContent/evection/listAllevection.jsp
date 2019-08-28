@@ -166,7 +166,30 @@ clipboardData.setData('text','');
 				}  
 			}
 		</script>
-
+		<script type="text/javascript">
+    function base64 (content) {
+       return window.btoa(unescape(encodeURIComponent(content)));         
+    }
+    /*
+    *@tableId: table的Id
+    *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
+    */
+    function tableToExcel(tableID,fileName){
+        var table = document.getElementById(tableID);
+      var excelContent = table.innerHTML;
+      var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+      excelFile += "<body><table>";
+      excelFile += excelContent;
+      excelFile += "</table></body>";
+      excelFile += "</html>";
+      var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
+      var a = document.createElement("a");
+      a.download = fileName+".xls";
+      a.href = link;
+      a.click();
+    }
+</script>
 
 
 <body onload="valiButt()">
@@ -220,7 +243,8 @@ clipboardData.setData('text','');
            
             </td>
 			    <td align="right"><input style="font-size:15px;font-weight:bold;width:80px" size="12" type="button" value="分页显示" onclick="window.location.href='<%=path %>/selectEvectionServlet'"></td>
-			  <td width="144" align="left"><button style="font-size:15px;font-weight:bold;width:100px"  onclick="javascript:exportToExcel('testList','');">导出全部</button></td>	
+			  <!-- <td width="144" align="left"><button style="font-size:15px;font-weight:bold;width:100px"  onclick="javascript:exportToExcel('testList','');">导出全部</button></td>	 -->
+			  <td width="144" align="left"><button style="font-size:15px;font-weight:bold;width:100px"  onclick="tableToExcel('tableAll','全部出差情况表');">导出全部</button></td>
 		    </tr>
 		
           </table></td>
@@ -228,7 +252,7 @@ clipboardData.setData('text','');
     </table>
    
        
-          <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+          <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
               <tr>
                 <td height="40" class="font42">
 				<table id = "testList" width="100%" border="2" cellpadding="4" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
