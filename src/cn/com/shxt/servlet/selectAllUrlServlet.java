@@ -47,7 +47,7 @@ public class selectAllUrlServlet extends HttpServlet {
 
 		String sql2 = "select (select count(*) from SYS_GONGGAO) as GON_COUNT,GON_ID,GON_TITLE,GON_DATE from SYS_GONGGAO order by GON_DATE desc";
 		
-		String sql3 = "select JI_TITLE,J1,J2,J3,J4 from (select * from SYS_JITANG  ORDER BY to_number(JI_ID) desc) WHERE ROWNUM=1";
+		String sql3 = "select JI_TITLE,J1,J2,J3 from (select * from SYS_JITANG  ORDER BY to_number(JI_ID) desc) WHERE ROWNUM=1";
 		
 		String sql4 = "SELECT (CASE WHEN EXISTS(SELECT 1 FROM SYS_VERSION C WHERE C.V_NAME = '"+username+"' AND V_DATE LIKE '%"+time+"%') THEN 1 ELSE 0 END)AS DAIBAN FROM DUAL";
 		

@@ -126,8 +126,7 @@ interval = setInterval(shuaxinUrl,60000*5);
                 <p><b><span>&nbsp;&nbsp;<%=stuMap.get("JI_TITLE") %></span></b></p></br>
                 <p><b><span>&nbsp;&nbsp;&nbsp;¡ñ&nbsp;<%=stuMap.get("J1") %></span></b></p></br>
                 <p><b><span>&nbsp;&nbsp;&nbsp;¡ñ&nbsp;<%=stuMap.get("J2") %></span></b></p></br>
-                <p><b><span>&nbsp;&nbsp;&nbsp;¡ñ&nbsp;<%=stuMap.get("J3") %></span></b></p></br>
-                <p><b><span>&nbsp;&nbsp;&nbsp;¡ñ&nbsp;<%=stuMap.get("J4") %></span></b></p>
+                <p><b><span>&nbsp;&nbsp;&nbsp;¡ñ&nbsp;<%=stuMap.get("J3") %></span></b></p>
                                           <%     
    
                                }

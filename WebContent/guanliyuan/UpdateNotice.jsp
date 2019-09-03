@@ -127,7 +127,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					  <tr>
 
 					    <td align="right">通知标题:</td>
-					    <td><input  name="JI_TITLE" id="JI_TITLE" class="text" style="width:360px"/>
+					    <td><input  name="JI_TITLE" id="JI_TITLE" class="text" type="text" style="width:360px"/>
 				        <span class="red">勿超过30字</span></td></tr>
 					  	<tr >
 					    <td align="right">通知第一行:</td>
@@ -140,10 +140,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					    <tr > 
 					    <td align="right">通知第三行:</td>
 					    <td><input  id="J3" name="J3" class="text" type="text" style="width:360px"/><span class="red">勿超过30字</span></td>
-					    </tr>
-					    <tr > 
-					    <td align="right">通知第四行:</td>
-					    <td><input  id="J4" name="J4" class="text" type="text" style="width:360px"/><span class="red">勿超过30字</span></td>
 					    </tr>
 					  </table>
 			 <br />
