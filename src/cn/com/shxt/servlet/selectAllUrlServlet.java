@@ -43,7 +43,7 @@ public class selectAllUrlServlet extends HttpServlet {
 		System.out.println("当前用户是："+username);
 		
 		System.out.println(timelog+"查询url列表servlet");
-		String sql = "select (select count(*) from SYS_URL) as URL_COUNT,URL_ID,URL_NAME,URL_ADDRESS,URL_CREATER,URL_DATE,URL_STATE from SYS_URL a order by URL_STATE,URL_DATE desc";
+		String sql = "select (select count(*) from SYS_URL) as URL_COUNT,URL_ID,URL_NAME,URL_ADDRESS,URL_CREATER,URL_DATE,URL_STATE from SYS_URL WHERE URL_STATE ='启用' order by URL_NAME,replace(URL_DATE,'-','') desc";
 
 		String sql2 = "select (select count(*) from SYS_GONGGAO) as GON_COUNT,GON_ID,GON_TITLE,GON_DATE from SYS_GONGGAO order by GON_DATE desc";
 		

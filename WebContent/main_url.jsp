@@ -207,7 +207,7 @@ interval = setInterval(shuaxinUrl,60000*5);
                   <th width="15%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">服务名称</span><span class="xila">&or;</span></th>
                   <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">创建时间</span><span class="xila">&or;</span></th>
                   <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">创建人</span><span class="xila">&or;</span></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">服务状态</span><span class="xila">&or;</span></th>
+                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">相关附件</span><span class="xila">&or;</span></th>
                   <th width="15%" bgcolor="#f8f8f8" scope="col" style="font-size:15px;text-align:left;font-weight:bold">操作</th>
                 </tr>
       
@@ -252,7 +252,7 @@ interval = setInterval(shuaxinUrl,60000*5);
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_DATE") %></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_CREATER") %></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_STATE") %></td>
-                  <td  bgcolor="#FFFFFF"><a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=stop&urlid=<%=stuMap.get("URL_ID") %>">停用</a>&nbsp;&nbsp;<a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=start&urlid=<%=stuMap.get("URL_ID") %>">启用</a>&nbsp;&nbsp;<a href="<%=path %>/UpdateUrlServlet?caozuo=delete&urlid=<%=stuMap.get("URL_ID") %>" style="color:red;">删除</a></td>
+                  <td  bgcolor="#FFFFFF"><!--<a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=stop&urlid=<%=stuMap.get("URL_ID") %>">停用</a>&nbsp;&nbsp;<a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=start&urlid=<%=stuMap.get("URL_ID") %>">启用</a>  --><a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=start&urlid=<%=stuMap.get("URL_ID") %>">附件上传</a>&nbsp;&nbsp;<a href="<%=path %>/UpdateUrlServlet?caozuo=stop&urlid=<%=stuMap.get("URL_ID") %>" style="color:red;">删除</a></td>
                 </tr>
  
   		
