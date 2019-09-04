@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 import cn.com.shxt.model.PageBean;
 import cn.com.shxt.utils.DBUtils;
 
@@ -38,6 +39,10 @@ public class AddUrlServlet extends HttpServlet {
 		   
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+			//时间戳，直接调用DateTime.java中的方法
+			String timelog= DateTime.showtime();
+			System.out.println(timelog);
 		
 	       System.out.println("进入新增URLservlet，开始在数据库插入URL数据——————————————");
 

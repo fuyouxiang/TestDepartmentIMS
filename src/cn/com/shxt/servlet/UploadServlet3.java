@@ -64,11 +64,11 @@ public class UploadServlet3 extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		   
+
 		
 	       String time= DateTime.showtime(); //时间戳，直接调用DateTime.java中的方法
 	       
-	       System.out.println("进入servlet，开始上传文件——————————————");
+	       System.out.println(time+"进入servlet，开始上传文件——————————————");
 	       
 	       request.setCharacterEncoding("UTF-8");  //设置编码 
 	       String ATTACH_NAME = smartupload .getRequest().getParameter("ATTACH_NAME");	//文件名称       

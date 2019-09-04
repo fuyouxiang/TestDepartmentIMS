@@ -49,7 +49,9 @@ public class UploadUrlFileServlet extends HttpServlet {
 		   
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+			//时间戳，直接调用DateTime.java中的方法
+			String timelog= DateTime.showtime();
+			System.out.println(timelog);
 
 			String weblogic_path = this.getClass().getClassLoader().getResource("/").getPath();
 			System.out.println("——————测试———————查询当前服务路径:"+weblogic_path);

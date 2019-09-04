@@ -50,12 +50,13 @@ public class UploadServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
+		//时间戳，直接调用DateTime.java中的方法
+		String timelog= DateTime.showtime();
  
 			SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
 			String time=df.format(new Date());// new Date()为获取当前系统时间
 		
-	       System.out.println("===============进入上传servlet，开始上传文件===============");
+	       System.out.println(timelog+"===============进入上传servlet，开始上传文件===============");
 	       
 	       
 	       request.setCharacterEncoding("utf-8");

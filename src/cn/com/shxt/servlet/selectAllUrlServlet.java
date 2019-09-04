@@ -36,6 +36,7 @@ public class selectAllUrlServlet extends HttpServlet {
 
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
 		String time=df.format(new Date());// new Date()为获取当前系统时间//时间戳，直接调用DateTime.java中的方法
+		System.out.println("**************************************");
 		System.out.println(timelog+"工作台加载————————");
 		
 		HttpSession session = request.getSession();

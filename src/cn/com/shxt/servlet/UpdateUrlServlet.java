@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 import cn.com.shxt.model.PageBean;
 import cn.com.shxt.utils.DBUtils;
 
@@ -49,7 +50,10 @@ public class UpdateUrlServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-	       System.out.println("进入修改URLservlet，开始在数据库修改URL数据——————————————");
+		
+			//时间戳，直接调用DateTime.java中的方法
+			String timelog= DateTime.showtime();
+	       System.out.println(timelog+"进入修改URLservlet，开始在数据库修改URL数据——————————————");
 
 	       	//读取上传地址配置文件
 			ResourceBundle resource = uploadAddress();
