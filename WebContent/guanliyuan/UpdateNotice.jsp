@@ -127,8 +127,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					  <tr>
 
 					    <td align="right">通知标题:</td>
-					    <td><input  name="JI_TITLE" id="JI_TITLE" class="text" type="text" style="width:360px"/>
-				        <span class="red">勿超过30字</span></td></tr>
+					    <td><input  name="JI_TITLE" id="JI_TITLE" class="text" type="text" style="width:360px"/><span class="red">勿超过30字</span></td></tr>
 					  	<tr >
 					    <td align="right">通知第一行:</td>
 					    <td><input  name="J1" id="J1" class="text" type="text" style="width:360px"/><span class="red">勿超过30字</span></td>
