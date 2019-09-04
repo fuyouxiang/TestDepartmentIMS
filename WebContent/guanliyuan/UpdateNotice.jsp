@@ -51,8 +51,8 @@ body {
 }
 .button {
 	font-family: "宋体";
-	font-size: 14px;
-	height: 37px;
+	font-size: 13px;
+	height: 24px;
 }
 html { overflow-x: auto; overflow-y: auto; border:0;} 
 
