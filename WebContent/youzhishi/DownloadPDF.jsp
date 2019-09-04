@@ -21,8 +21,14 @@ String filedisplay = new String(request.getParameter("ATTACH_NAME").getBytes("is
 System.out.println("转码后ATTACH_NAME"+filedisplay+"====================");
  
 
-String filedisplay2 = URLEncoder.encode(filedisplay,"utf-8");  
-response.addHeader("Content-Disposition","attachment;filename=" + filedisplay2);  
+String filedisplay2 = URLEncoder.encode(filedisplay,"utf-8");
+response.addHeader("Content-Disposition","attachment;filename=" + filedisplay2); 
+
+FileInputStream input = new FileInputStream(filedownload);
+//修正 Excel在“xxx.xlsx”中发现不可读取的内容。是否恢复此工作薄的内容？如果信任此工作簿的来源，请点击"是"
+response.setHeader("Content-Length", String.valueOf(input.getChannel().size()));
+System.out.println("hahaha");
+
   
   java.io.OutputStream outp = null;  
   java.io.FileInputStream in = null;  
@@ -33,11 +39,14 @@ response.addHeader("Content-Disposition","attachment;filename=" + filedisplay2);
   
   byte[] b = new byte[1024];  
   int i = 0;  
-  
+   
   while((i = in.read(b)) > 0)  
   {  
   outp.write(b, 0, i);  
   }  
+  
+
+
 //    
 outp.flush();  
 //要加以下两句话，否则会报错  
