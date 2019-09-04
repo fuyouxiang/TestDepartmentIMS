@@ -52,11 +52,11 @@ public class UploadUrlFileServlet extends HttpServlet {
 		
 
 			String weblogic_path = this.getClass().getClassLoader().getResource("/").getPath();
-			System.out.println("weblogic路径:"+weblogic_path);
+			System.out.println("——————测试———————查询当前服务路径:"+weblogic_path);
 			String fileDirPath = request.getSession().getServletContext().getRealPath("/");
-			System.out.println("weblogic路径2:"+fileDirPath);
+			System.out.println("——————测试———————查询当前服务路径2:"+fileDirPath);
 			String fileDirPath2 =request.getSession().getServletContext().getResource("/").getFile();
-			System.out.println("weblogic路径3:"+fileDirPath2);
+			System.out.println("——————测试———————查询当前服务路径3:"+fileDirPath2);
 			SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
 			String time=df.format(new Date());// new Date()为获取当前系统时间
 		

@@ -41,7 +41,7 @@ public class AddUrlServlet extends HttpServlet {
 		
 	       System.out.println("进入新增URLservlet，开始在数据库插入URL数据——————————————");
 
-			       request.setCharacterEncoding("gb2312");  //设置编码 
+			       request.setCharacterEncoding("UTF-8");  //设置编码 
 			       String URL_NAME = request.getParameter("URL_NAME");	//服务名称  
 			       System.out.println("服务名称   "+URL_NAME);
 			       String URL_ADDRESS =request.getParameter("URL_ADDRESS");//服务地址

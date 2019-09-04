@@ -25,7 +25,7 @@ public class ping {
     		conn.setReadTimeout(2000);
     		conn.setConnectTimeout(2000);
     		String str=conn.getHeaderField(0);
-    		System.out.println("1"+str);
+    		System.out.println("返回状态："+str);
     		if (str.indexOf("200")> 0){
     		//网址正常
     		return true;

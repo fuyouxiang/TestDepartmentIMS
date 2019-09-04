@@ -225,22 +225,38 @@ interval = setInterval(shuaxinUrl,60000*5);
                           		
                                for(int i=0;i<resList.size();i++){
                             	   Map<String, String>  stuMap= resList.get(i);
+                            	   
                             	   String URL_ADDRESS=stuMap.get("URL_ADDRESS");
                             	   String src = null;
                                    try {
+                                	System.out.println("——————————————————————");
+                                	System.out.println("ping路径："+URL_ADDRESS);
                                    	STATE=pi.ping(URL_ADDRESS);
-                           			System.out.println(STATE);
+                           			System.out.println("是否能连通："+STATE);
                                 	} catch (Exception e) {
                            			// TODO Auto-generated catch block
                            			e.printStackTrace();
                            		   }
-                                   
+
                                    if(STATE==true){
                                 	   src = "greencol";
                                    }else{
                                 	   src = "yccol";
                                    }
 
+                                	String shortName1=stuMap.get("ATTACH_NAME");
+                                   	System.out.println("未缩写文件名："+shortName1);
+                                   	String shortName;
+                                   	if(shortName1==null||shortName1.length() <= 0){
+                                   		shortName="无";
+                                   		System.out.println("缩写后的文件名："+shortName); 
+                                   	}else{
+                                       	int gang=shortName1.lastIndexOf("_");
+                                       	shortName=shortName1.substring(0,gang);
+                                       	String houzhui=shortName1.substring(shortName1.lastIndexOf(".")+1,shortName1.length());
+                                       	shortName=shortName+"."+houzhui;
+                                       	System.out.println("缩写后的文件名："+shortName);  
+                                    }
 
                         	
                           %>
@@ -251,7 +267,7 @@ interval = setInterval(shuaxinUrl,60000*5);
                   <td bgcolor="#FFFFFF" class="datacol"><a href="<%=stuMap.get("URL_ADDRESS") %>" target="_blank" style="color:#1D79C7;"><%=stuMap.get("URL_NAME") %></a></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_DATE") %></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_CREATER") %></td>
-                  <td bgcolor="#FFFFFF"><a href="youzhishi/DownloadPDF.jsp?ATTACH_PATH=<%=stuMap.get("ATTACH_PATH") %>&ATTACH_NAME=<%=stuMap.get("ATTACH_NAME") %>" target="_blank" style="color:#1D79C7;"><%=stuMap.get("ATTACH_NAME") %></a></td>
+                  <td bgcolor="#FFFFFF"><a href="youzhishi/DownloadPDF.jsp?ATTACH_PATH=<%=stuMap.get("ATTACH_PATH") %>&ATTACH_NAME=<%=stuMap.get("ATTACH_NAME") %>" target="_blank" style="color:#1D79C7;"><%=shortName %></a></td>
                   <td  bgcolor="#FFFFFF"><a class="datacol" href="<%=path %>/guanliyuan/uploadUrlFile.jsp?URL_ID=<%=stuMap.get("URL_ID") %>">附件上传</a>&nbsp;&nbsp;<a onclick = "if(window.confirm('您确定要删除吗？误删可联系管理员恢复。')){window.location.href='<%=path %>/UpdateUrlServlet?caozuo=stop&URL_ID=<%=stuMap.get("URL_ID") %>'}" style="color:red;">删除</a></td>
                 </tr>
  

@@ -119,7 +119,9 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 				        <tr>
 				        <td align="left">文件选择:<input name="file" id="file" class="text" style="width:400px;height:40px"  type="file" size="40"/></td>
 						</tr>
-
+				        <tr>
+				        <td align="left"><span class="red">注：一个URL服务只能上传一个附件，再上传会替换之前的附件。</span></td>
+						</tr>
 					  </table>
 			 <br />
 				</fieldset>			</TD>
