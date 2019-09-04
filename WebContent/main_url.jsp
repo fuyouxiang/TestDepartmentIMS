@@ -1,8 +1,8 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.io.*,cn.com.shxt.utils.ping" pageEncoding="gb2312"  %>
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.io.*,cn.com.shxt.utils.ping" pageEncoding="UTF-8"  %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-//»ñÈ¡Ö®Ç°µÃµ½µÄ·ÖÒ³¶ÔÏó
+//è·å–ä¹‹å‰å¾—åˆ°çš„åˆ†é¡µå¯¹è±¡
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
@@ -13,8 +13,8 @@ PageBean pageBean4=(PageBean)request.getAttribute("pageBean4");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="¹¤×÷Ì¨" />
-<title>ÈËÁ¦×ÊÔ´¹ÜÀíÆ½Ì¨</title>
+<meta name="description" content="å·¥ä½œå°" />
+<title>äººåŠ›èµ„æºç®¡ç†å¹³å°</title>
 <link type="text/css" rel="stylesheet" href="css/css_url.css" />
 </head>
 <% String username = (String)session.getAttribute("username"); %>
@@ -32,16 +32,16 @@ function shuaxinUrl(){
 
 
 /*
- * ÔÚÊ¹ÓÃsetInterval·½·¨Ê±£¬Ã¿Ò»´ÎÆô¶¯¶¼ĞèÒª¶ÔsetInterval·½·¨·µ»ØµÄÖµ×öÒ»¸öÅĞ¶Ï£¬ÅĞ¶ÏÊÇ·ñÊÇ¿ÕÖµ£¬Èô²»ÊÇ¿ÕÖµ£¬ÔòÒªÍ£Ö¹¶¨Ê±Æ÷²¢½«ÖµÉèÎª¿Õ£¬ÔÙÖØĞÂÆô¶¯£¬
- * Èç¹û²»½øĞĞÅĞ¶Ï²¢¸³Öµ£¬ÓĞ¿ÉÄÜ»áÔì³É¼ÆÊ±Æ÷Ñ­»·µ÷ÓÃ£¬ÔÚÍ¬µÈµÄÊ±¼äÄÚÍ¬Ê±Ö´ĞĞµ÷ÓÃµÄ´úÂë£¬²¢»áËæ×Å´úÂëµÄÔËĞĞÊ±¼äÔö¼Ó¶øÔö¼Ó£¬µ¼ÖÂ¹¦ÄÜÎŞ·¨ÊµÏÖ£¬
- * ÉõÖÁÕ¼ÓÃ¹ı¶à×ÊÔ´¶ø¿¨ËÀ±¼À£¡£Òò´ËÔÚÃ¿Ò»´ÎÊ¹ÓÃsetInterval·½·¨Ê±£¬¶¼ĞèÒª½øĞĞÒ»´ÎÅĞ¶Ï¡£
+ * åœ¨ä½¿ç”¨setIntervalæ–¹æ³•æ—¶ï¼Œæ¯ä¸€æ¬¡å¯åŠ¨éƒ½éœ€è¦å¯¹setIntervalæ–¹æ³•è¿”å›çš„å€¼åšä¸€ä¸ªåˆ¤æ–­ï¼Œåˆ¤æ–­æ˜¯å¦æ˜¯ç©ºå€¼ï¼Œè‹¥ä¸æ˜¯ç©ºå€¼ï¼Œåˆ™è¦åœæ­¢å®šæ—¶å™¨å¹¶å°†å€¼è®¾ä¸ºç©ºï¼Œå†é‡æ–°å¯åŠ¨ï¼Œ
+ * å¦‚æœä¸è¿›è¡Œåˆ¤æ–­å¹¶èµ‹å€¼ï¼Œæœ‰å¯èƒ½ä¼šé€ æˆè®¡æ—¶å™¨å¾ªç¯è°ƒç”¨ï¼Œåœ¨åŒç­‰çš„æ—¶é—´å†…åŒæ—¶æ‰§è¡Œè°ƒç”¨çš„ä»£ç ï¼Œå¹¶ä¼šéšç€ä»£ç çš„è¿è¡Œæ—¶é—´å¢åŠ è€Œå¢åŠ ï¼Œå¯¼è‡´åŠŸèƒ½æ— æ³•å®ç°ï¼Œ
+ * ç”šè‡³å ç”¨è¿‡å¤šèµ„æºè€Œå¡æ­»å¥”æºƒã€‚å› æ­¤åœ¨æ¯ä¸€æ¬¡ä½¿ç”¨setIntervalæ–¹æ³•æ—¶ï¼Œéƒ½éœ€è¦è¿›è¡Œä¸€æ¬¡åˆ¤æ–­ã€‚
  */
-var interval = null;//¼ÆÊ±Æ÷
-if(interval!=null){//ÅĞ¶Ï¼ÆÊ±Æ÷ÊÇ·ñÎª¿Õ
+var interval = null;//è®¡æ—¶å™¨
+if(interval!=null){//åˆ¤æ–­è®¡æ—¶å™¨æ˜¯å¦ä¸ºç©º
 	clearInterval(interval);
 interval=null;
 }
-//ÖØ¸´Ö´ĞĞÄ³¸ö·½·¨ 60Ãë*5
+//é‡å¤æ‰§è¡ŒæŸä¸ªæ–¹æ³• 60ç§’*5
 interval = setInterval(shuaxinUrl,60000*5);
 
 		
@@ -63,7 +63,7 @@ interval = setInterval(shuaxinUrl,60000*5);
 
 <body>
 
-<!-- ¹ö¶¯Ìõ -->
+<!-- æ»šåŠ¨æ¡ -->
 <div style="overflow-x:hidden;overflow-y:auto;width:100%;height:550px;">
 
 <div class="container">
@@ -71,10 +71,10 @@ interval = setInterval(shuaxinUrl,60000*5);
   
     <div class="currmenu">
       <ul class="rig_nav">
-        <li class="rig_seleli"><a href="#">µ±Ç°</a><span> x </span></li>
-        <li><a href="#">¸öÈËÖĞĞÄ</a></li>
-        <li><a href="#">¼¨Ğ§¹ÜÀí</a></li>
-        <li><a href="#">¼¨Ğ§¼Æ»®ÖÆ¶¨</a></li>
+        <li class="rig_seleli"><a href="#">å½“å‰</a><span> x </span></li>
+        <li><a href="#">ä¸ªäººä¸­å¿ƒ</a></li>
+        <li><a href="#">ç»©æ•ˆç®¡ç†</a></li>
+        <li><a href="#">ç»©æ•ˆè®¡åˆ’åˆ¶å®š</a></li>
       </ul>
     </div>
     
@@ -83,7 +83,7 @@ interval = setInterval(shuaxinUrl,60000*5);
       <div class="tip">
                            <%
                           if(pageBean!=null){
-                        	  //±¾Ò³µÄ½á¹û¼¯
+                        	  //æœ¬é¡µçš„ç»“æœé›†
                         	 List<Map<String, String>>  resList=  pageBean4.getResList();
                         	 //System.out.print(resList);
                           if(resList!=null && resList.size()>0){
@@ -91,13 +91,13 @@ interval = setInterval(shuaxinUrl,60000*5);
                             	   Map<String, String>  stuMap= resList.get(i);
                             	   String DAIBAN=stuMap.get("DAIBAN");
                             	   if(DAIBAN.equals("1")){
-                            		   DAIBAN="½ñÌìÃ»ÓĞ´ú°ìÊÂÏî(^.^) £¡";
+                            		   DAIBAN="ä»Šå¤©æ²¡æœ‰ä»£åŠäº‹é¡¹(^.^) ï¼";
                             	   } else if(DAIBAN.equals("0")){
-                            		  DAIBAN="ÄúÓĞ 1 Ìõ´ú°ìÊÂÏî£¬½ñÌìµÄ¹¤×÷ÈÕ±¨»¹Î´Íê³É£¡";
+                            		  DAIBAN="æ‚¨æœ‰ 1 æ¡ä»£åŠäº‹é¡¹ï¼Œä»Šå¤©çš„å·¥ä½œæ—¥æŠ¥è¿˜æœªå®Œæˆï¼";
                             	   }
 
                           %>
-        <p class="goom"><%=username%>£¬&nbsp;&nbsp;<b><%=DAIBAN%></b></p>
+        <p class="goom"><%=username%>ï¼Œ&nbsp;&nbsp;<b><%=DAIBAN%></b></p>
 
                           <%     
                                }
@@ -107,7 +107,7 @@ interval = setInterval(shuaxinUrl,60000*5);
                         %>
         
         <!-- 
-        <p>ÄúÄ¿Ç°ÓĞ<span>0</span>Ìõ´ı°ì£¬<span>0</span>Ìõ¿¼ÇÚÒì³££¬<span>0</span>ÌõÍ¨Öª£¡</p>
+        <p>æ‚¨ç›®å‰æœ‰<span>0</span>æ¡å¾…åŠï¼Œ<span>0</span>æ¡è€ƒå‹¤å¼‚å¸¸ï¼Œ<span>0</span>æ¡é€šçŸ¥ï¼</p>
          -->
       </div>
 
@@ -115,18 +115,18 @@ interval = setInterval(shuaxinUrl,60000*5);
                      <%
                         	
                           if(pageBean!=null){
-                        	  //±¾Ò³µÄ½á¹û¼¯
+                        	  //æœ¬é¡µçš„ç»“æœé›†
                         	 List<Map<String, String>>  resList=  pageBean3.getResList();
                         	  int m=0;
 							 Map<String, String>  stuMap= resList.get(m);                           	   
 
                         	
                           %>
-                <!-- <p><b><span>&nbsp;¡ñ&nbsp;<%=stuMap.get("JI_TITLE") %></span></b></p> -->
+                <!-- <p><b><span>&nbsp;â—&nbsp;<%=stuMap.get("JI_TITLE") %></span></b></p> -->
                 <p><b><span>&nbsp;&nbsp;<%=stuMap.get("JI_TITLE") %></span></b></p></br>
-                <p><b><span>&nbsp;&nbsp;&nbsp;¡ñ&nbsp;<%=stuMap.get("J1") %></span></b></p></br>
-                <p><b><span>&nbsp;&nbsp;&nbsp;¡ñ&nbsp;<%=stuMap.get("J2") %></span></b></p></br>
-                <p><b><span>&nbsp;&nbsp;&nbsp;¡ñ&nbsp;<%=stuMap.get("J3") %></span></b></p>
+                <p><b><span>&nbsp;&nbsp;&nbsp;â—&nbsp;<%=stuMap.get("J1") %></span></b></p></br>
+                <p><b><span>&nbsp;&nbsp;&nbsp;â—&nbsp;<%=stuMap.get("J2") %></span></b></p></br>
+                <p><b><span>&nbsp;&nbsp;&nbsp;â—&nbsp;<%=stuMap.get("J3") %></span></b></p>
                                           <%     
    
                                }
@@ -140,17 +140,17 @@ interval = setInterval(shuaxinUrl,60000*5);
     </div>
     <div class="rig_link">
       <ul>
-        <li><a href="<%=path %>/selectVersionServlet"><img src="images/img_01.jpg" alt="" title="¹¤×÷Çé¿ö"></a></li>
-        <li><a href="<%=path %>/selectOvertimeServlet"><img src="images/img_04.jpg" alt="" title="¼Ó°àÇé¿ö"></a></li>
-        <li><a href="<%=path %>/selectEvectionServlet"><img src="images/img_02.jpg" alt="" title="³ö²îÇé¿ö"></a></li>
-        <li><a href="<%=path %>/selectLeaveServlet"><img src="images/img_03.jpg" alt="" title="Çë¼ÙÇé¿ö"></a></li>
+        <li><a href="<%=path %>/selectVersionServlet"><img src="images/img_01.jpg" alt="" title="å·¥ä½œæƒ…å†µ"></a></li>
+        <li><a href="<%=path %>/selectOvertimeServlet"><img src="images/img_04.jpg" alt="" title="åŠ ç­æƒ…å†µ"></a></li>
+        <li><a href="<%=path %>/selectEvectionServlet"><img src="images/img_02.jpg" alt="" title="å‡ºå·®æƒ…å†µ"></a></li>
+        <li><a href="<%=path %>/selectLeaveServlet"><img src="images/img_03.jpg" alt="" title="è¯·å‡æƒ…å†µ"></a></li>
       </ul>
     </div>
         <div class="rig_lm03">
     
    		
       <div class="title"><img src="images/listicon.jpg" class="icon" style="padding-top:13px;">
-        <h2>·şÎñÁĞ±í</h2>
+        <h2>æœåŠ¡åˆ—è¡¨</h2>
       </div>
 <%
 
@@ -164,14 +164,14 @@ interval = setInterval(shuaxinUrl,60000*5);
                      <%
                         	
                           if(pageBean!=null){
-                        	  //±¾Ò³µÄ½á¹û¼¯
+                        	  //æœ¬é¡µçš„ç»“æœé›†
                         	 List<Map<String, String>>  resList=  pageBean.getResList();
                         	  int m=0;
 							 Map<String, String>  stuMap= resList.get(m);                           	   
 
                         	
                           %>
-                <li class="currentBtn"><a href="javascript:start();" title="·şÎñÁĞ±í" rel="1">·şÎñÁĞ±í</a><span class="red_numb"><%=stuMap.get("URL_COUNT") %></span></li>
+                <li class="currentBtn"><a href="javascript:start();" title="æœåŠ¡åˆ—è¡¨" rel="1">æœåŠ¡åˆ—è¡¨</a><span class="red_numb"><%=stuMap.get("URL_COUNT") %></span></li>
                                           <%     
    
                                }
@@ -179,17 +179,17 @@ interval = setInterval(shuaxinUrl,60000*5);
                         %>
 
                 <!-- 
-                <li ><a href="<%=path %>/selectAllUrlServlet" title="6ÏµÁĞ·şÎñÁĞ±í" rel="2">6ÏµÁĞ·şÎñÁĞ±í</a><span class="grey_numb"></span></li>
-                <li ><a href="javascript:void(0)" title="µÚÈı·½·şÎñÁĞ±í" rel="3">µÚÈı·½·şÎñÁĞ±í</a><span class="red_numb"></span></li>
+                <li ><a href="<%=path %>/selectAllUrlServlet" title="6ç³»åˆ—æœåŠ¡åˆ—è¡¨" rel="2">6ç³»åˆ—æœåŠ¡åˆ—è¡¨</a><span class="grey_numb"></span></li>
+                <li ><a href="javascript:void(0)" title="ç¬¬ä¸‰æ–¹æœåŠ¡åˆ—è¡¨" rel="3">ç¬¬ä¸‰æ–¹æœåŠ¡åˆ—è¡¨</a><span class="red_numb"></span></li>
                  -->
               </ul>
 
               <p class="shent">     
      <form action="<%=path%>/AddUrlServlet" method="post" id=formId name="formname">&nbsp;&nbsp;
-              ·şÎñÃû³Æ£º<input name="URL_NAME" id="URL_NAME" class="text" style="width:150px" type="text" />
-              ·şÎñµØÖ·£º<input name="URL_ADDRESS" id="URL_ADDRESS" class="text" style="width:250px" type="text" />
-              ´´½¨ÈË£º<input name="URL_CREATER" id="URL_CREATER" class="text" style="width:100px" type="text"/>
-     <input type="submit"  value="ĞÂÔö" />¡¡
+              æœåŠ¡åç§°ï¼š<input name="URL_NAME" id="URL_NAME" class="text" style="width:150px" type="text" />
+              æœåŠ¡åœ°å€ï¼š<input name="URL_ADDRESS" id="URL_ADDRESS" class="text" style="width:250px" type="text" />
+              åˆ›å»ºäººï¼š<input name="URL_CREATER" id="URL_CREATER" class="text" style="width:100px" type="text"/>
+     <input type="submit"  value="æ–°å¢" />ã€€
     </form>
     <!-- 
                 <input style="width:30px;" type="text" value="10">
@@ -201,20 +201,20 @@ interval = setInterval(shuaxinUrl,60000*5);
               <table class="tabindex" width="100%" border="0" cellpadding="0" cellspacing="0">
               
                 <tr>
-                  <th width="5%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">±àºÅ</div></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">ÔËĞĞ×´Ì¬</div></th>
-                  <th width="25%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">URLµØÖ·</div></th>
-                  <th width="15%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">·şÎñÃû³Æ</span><span class="xila">&or;</span></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">´´½¨Ê±¼ä</span><span class="xila">&or;</span></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">´´½¨ÈË</span><span class="xila">&or;</span></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">Ïà¹Ø¸½¼ş</span><span class="xila">&or;</span></th>
-                  <th width="15%" bgcolor="#f8f8f8" scope="col" style="font-size:15px;text-align:left;font-weight:bold">²Ù×÷</th>
+                  <th width="5%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">ç¼–å·</div></th>
+                  <th width="10%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">è¿è¡ŒçŠ¶æ€</div></th>
+                  <th width="25%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">URLåœ°å€</div></th>
+                  <th width="15%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">æœåŠ¡åç§°</span><span class="xila">&or;</span></th>
+                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">åˆ›å»ºæ—¶é—´</span><span class="xila">&or;</span></th>
+                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">åˆ›å»ºäºº</span><span class="xila">&or;</span></th>
+                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">é™„ä»¶</span>&nbsp;(ç‚¹å‡»ä¸‹è½½)<span class="xila">&or;</span></th>
+                  <th width="15%" bgcolor="#f8f8f8" scope="col" style="font-size:15px;text-align:left;font-weight:bold">æ“ä½œ</th>
                 </tr>
       
                      <%
                         	
                           if(pageBean!=null){
-                        	  //±¾Ò³µÄ½á¹û¼¯
+                        	  //æœ¬é¡µçš„ç»“æœé›†
                         	 List<Map<String, String>>  resList=  pageBean.getResList();
                         	 
                         	 //System.out.print(resList);
@@ -251,8 +251,8 @@ interval = setInterval(shuaxinUrl,60000*5);
                   <td bgcolor="#FFFFFF" class="datacol"><a href="<%=stuMap.get("URL_ADDRESS") %>" target="_blank" style="color:#1D79C7;"><%=stuMap.get("URL_NAME") %></a></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_DATE") %></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_CREATER") %></td>
-                  <td bgcolor="#FFFFFF"><%=stuMap.get("URL_STATE") %></td>
-                  <td  bgcolor="#FFFFFF"><!--<a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=stop&urlid=<%=stuMap.get("URL_ID") %>">Í£ÓÃ</a>&nbsp;&nbsp;<a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=start&urlid=<%=stuMap.get("URL_ID") %>">ÆôÓÃ</a>  --><a class="datacol" href="<%=path %>/UpdateUrlServlet?caozuo=start&urlid=<%=stuMap.get("URL_ID") %>">¸½¼şÉÏ´«</a>&nbsp;&nbsp;<a href="<%=path %>/UpdateUrlServlet?caozuo=stop&urlid=<%=stuMap.get("URL_ID") %>" style="color:red;">É¾³ı</a></td>
+                  <td bgcolor="#FFFFFF"><a href="youzhishi/DownloadPDF.jsp?ATTACH_PATH=<%=stuMap.get("ATTACH_PATH") %>&ATTACH_NAME=<%=stuMap.get("ATTACH_NAME") %>" target="_blank" style="color:#1D79C7;"><%=stuMap.get("ATTACH_NAME") %></a></td>
+                  <td  bgcolor="#FFFFFF"><a class="datacol" href="<%=path %>/guanliyuan/uploadUrlFile.jsp?URL_ID=<%=stuMap.get("URL_ID") %>">é™„ä»¶ä¸Šä¼ </a>&nbsp;&nbsp;<a onclick = "if(window.confirm('æ‚¨ç¡®å®šè¦åˆ é™¤å—ï¼Ÿè¯¯åˆ å¯è”ç³»ç®¡ç†å‘˜æ¢å¤ã€‚')){window.location.href='<%=path %>/UpdateUrlServlet?caozuo=stop&URL_ID=<%=stuMap.get("URL_ID") %>'}" style="color:red;">åˆ é™¤</a></td>
                 </tr>
  
   		
@@ -298,11 +298,11 @@ interval = setInterval(shuaxinUrl,60000*5);
     
     <div class="rig_lm01">
       <div class="title"><img src="images/listicon.jpg" class="icon" style="padding-top:13px;">
-        <h2>Í¨Öª</h2>
+        <h2>é€šçŸ¥</h2>
                           <%
                         	
                           if(pageBean2!=null){
-                        	  //±¾Ò³µÄ½á¹û¼¯
+                        	  //æœ¬é¡µçš„ç»“æœé›†
                         	 List<Map<String, String>>  resList=  pageBean2.getResList();
                         	  int n=1;
 							 Map<String, String>  stuMap= resList.get(n);                           	   
@@ -319,7 +319,7 @@ interval = setInterval(shuaxinUrl,60000*5);
                            <%
                         	
                           if(pageBean2!=null){
-                        	  //±¾Ò³µÄ½á¹û¼¯
+                        	  //æœ¬é¡µçš„ç»“æœé›†
                         	 List<Map<String, String>>  resList=  pageBean2.getResList();
                         	 
                         	 //System.out.print(resList);
@@ -333,8 +333,8 @@ interval = setInterval(shuaxinUrl,60000*5);
                             	   
                           %>
         <div class="dat01"> <span class="datti"><span><%=DAY %></span> <br />
-          <span class="jan"><%=Month %>ÔÂ</span></span> <span class="sqdeta"><img src="images/bs_04.jpg"><%=stuMap.get("GON_TITLE") %></span>
-          <p class="linkbut"><a href="#">²é¿´</a></p>
+          <span class="jan"><%=Month %>æœˆ</span></span> <span class="sqdeta"><img src="images/bs_04.jpg"><%=stuMap.get("GON_TITLE") %></span>
+          <p class="linkbut"><a href="#">æŸ¥çœ‹</a></p>
         </div>
                                   <%     
    
@@ -351,8 +351,8 @@ interval = setInterval(shuaxinUrl,60000*5);
                         %>
            <!--       
         <div class="dat02"> <span class="datti"><span>20</span> <br />
-          <span class="jan">jan</span></span> <span class="sqdeta"><img src="images/bs_04.jpg"> ÄúÌá½»µÄÇë¼ÙÉêÇëÎ´ÉóÅúÍ¨¹ı</span>
-          <p class="linkbut"><a href="#">²é¿´</a><a href="#">ÖªµÀÁË</a></p>
+          <span class="jan">jan</span></span> <span class="sqdeta"><img src="images/bs_04.jpg"> æ‚¨æäº¤çš„è¯·å‡ç”³è¯·æœªå®¡æ‰¹é€šè¿‡</span>
+          <p class="linkbut"><a href="#">æŸ¥çœ‹</a><a href="#">çŸ¥é“äº†</a></p>
         </div>  -->      
       </div>
     </div>
@@ -360,28 +360,28 @@ interval = setInterval(shuaxinUrl,60000*5);
     <!-- 
     <div class="rig_lm02">
       <div class="title"><img src="images/listicon.jpg" class="icon" style="padding-top:13px;">
-        <h2>·şÎñÔËĞĞÇé¿ö</h2>
+        <h2>æœåŠ¡è¿è¡Œæƒ…å†µ</h2>
       </div>
       <div class="detail">
         <div class="det_inner">
           <div class="jd"><img src="images/jd.jpg" alt="" title=""></div>
           <div class="bs">
-            <p><img src="images/bs_01.jpg" alt="" title=""> ÔËĞĞÕı³£</p>
-            <p><img src="images/bs_02.jpg" alt="" title=""> ÔËĞĞÒì³£</p>
+            <p><img src="images/bs_01.jpg" alt="" title=""> è¿è¡Œæ­£å¸¸</p>
+            <p><img src="images/bs_02.jpg" alt="" title=""> è¿è¡Œå¼‚å¸¸</p>
           </div>
           <div class="scordeti">
             <ul>
               <li>
                 <p class="ywc">12</p>
-                <h3>·şÎñÔËĞĞÖĞ</h3>
+                <h3>æœåŠ¡è¿è¡Œä¸­</h3>
               </li>
               <li>
                 <p class="wwc">1</p>
-                <h3>·şÎñÔËĞĞ¾¯¸æ</h3>
+                <h3>æœåŠ¡è¿è¡Œè­¦å‘Š</h3>
               </li>
               <li>
                 <p class="ycd">2</p>
-                <h3>·şÎñÔËĞĞÒì³£</h3>
+                <h3>æœåŠ¡è¿è¡Œå¼‚å¸¸</h3>
               </li>
             </ul>
           </div>

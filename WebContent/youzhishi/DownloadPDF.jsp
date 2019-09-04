@@ -9,16 +9,16 @@
 //application.getRealPath("/main/mvplayer/CapSetup.msi");获取的物理路径  
   
 String filedownload1 = request.getParameter("ATTACH_PATH"); 
-System.out.print("ATTACH_PATH："+filedownload1+"====================");
+System.out.println("ATTACH_PATH："+filedownload1+"====================");
 
 String filedownload = new String(request.getParameter("ATTACH_PATH").getBytes("iso-8859-1"), "utf-8");
-System.out.print("转码后ATTACH_PATH："+filedownload+"====================");
+System.out.println("转码后ATTACH_PATH："+filedownload+"====================");
 
 String test = request.getParameter("ATTACH_NAME");
-System.out.print("ATTACH_NAME"+test+"====================");
+System.out.println("ATTACH_NAME"+test+"====================");
 
 String filedisplay = new String(request.getParameter("ATTACH_NAME").getBytes("iso-8859-1"), "utf-8");
-System.out.print("转码后ATTACH_NAME"+filedisplay+"====================");
+System.out.println("转码后ATTACH_NAME"+filedisplay+"====================");
  
 
 String filedisplay2 = URLEncoder.encode(filedisplay,"utf-8");  

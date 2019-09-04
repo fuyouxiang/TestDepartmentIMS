@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
+
 import cn.com.shxt.model.PageBean;
 import cn.com.shxt.utils.DBUtils;
 
@@ -33,7 +36,14 @@ public class UpdateUrlServlet extends HttpServlet {
 		     this.doPost(request, response);
 	}
 	
-
+	//读取上传地址配置文件
+	public ResourceBundle uploadAddress(){
+		
+		Properties prop = new Properties();
+		//装载Properties配置文件
+		ResourceBundle resource = ResourceBundle.getBundle("uploadAddress");
+		return resource;
+	}
 		   
 		   
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -41,30 +51,59 @@ public class UpdateUrlServlet extends HttpServlet {
 		
 	       System.out.println("进入修改URLservlet，开始在数据库修改URL数据——————————————");
 
-			       request.setCharacterEncoding("UTF-8");  //设置编码 
-			       String Caozuo = request.getParameter("caozuo");	//操作名称
-			       System.out.println("操作名称："+Caozuo);
-			       String URL_ID = request.getParameter("urlid");	//操作名称
-			       System.out.println("URL_ID："+URL_ID);
+	       	//读取上传地址配置文件
+			ResourceBundle resource = uploadAddress();
+
+			 String path =resource.getString("uploadAddress");
+		     //String path = "D:/uploadfile/";
+		     System.out.println("上传路径："+path);
+		     
+		     request.setCharacterEncoding("UTF-8");  //设置编码 
+		     String Caozuo = request.getParameter("caozuo");
+		     System.out.println("操作名称：" + Caozuo);
+		     String URL_ID = request.getParameter("URL_ID");	//操作名称
+		     System.out.println("URL_ID："+URL_ID);
+		     
 			       
+
+
+
+				   DBUtils dbutil = new DBUtils();
+				    String sql = null;
+				    if (Caozuo.equals("stop")) {
+				      System.out.println("停用操作——————");
+				      sql = "update sys_url set URL_STATE ='停用' where URL_ID='" + URL_ID + "'";
+				      System.out.println(sql);
+				    }
+				    else if (Caozuo.equals("start")) {
+				      System.out.println("启用操作——————");
+				      sql = "update sys_url set URL_STATE ='启用' where URL_ID='" + URL_ID + "'";
+				      System.out.println(sql);
+				    }
+				    else if (Caozuo.equals("delete")) {
+				      System.out.println("删除操作——————");
+				      sql = "delete from sys_url where URL_ID='" + URL_ID + "'";
+				      System.out.println(sql);
+				    } 
+				    else if (Caozuo.equals("file")) {
+					      System.out.println("修改url附件操作——————");
+					      
+					       String ATTACH_NAME_TEST = request.getParameter("ATTACH_NAME");	//文件名称     
+					       System.out.println("未转码文件名称："+ATTACH_NAME_TEST);
+					       String ATTACH_NAME= new String(ATTACH_NAME_TEST.getBytes("ISO-8859-1"),"UTF8");
+					       System.out.println("文件名称 ："+ATTACH_NAME);
+					       String ATTACH_PATH=path+ATTACH_NAME;//文件路径
+						   System.out.println("文件路径："+ATTACH_PATH);
+						   
+					      sql = "update sys_url set ATTACH_NAME ='"+ATTACH_NAME+"',ATTACH_PATH='"+ATTACH_PATH+"' where URL_ID='" + URL_ID + "'";
+					      System.out.println(sql);
+					    } 
+				    else {
+				      response.setContentType("text/html; charset=UTF-8");
+				      response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectAllUrlServlet';</script>");
+				    }
+
 			       
-				   DBUtils dbutil =new DBUtils();
-				   String sql = null;
-			       if(Caozuo.equals("stop")){
-			    	   System.out.println("停用操作——————");
-			    	   sql = "update sys_url set URL_STATE ='停用' where URL_ID=" +"'" + URL_ID + "'";
-			       }
-			       else if(Caozuo.equals("start")){
-			    	   System.out.println("启用操作——————");
-			    	   sql = "update sys_url set URL_STATE ='启用' where URL_ID=" +"'" + URL_ID + "'";
-			       }
-			       else if(Caozuo.equals("delete")){
-			    	   System.out.println("删除操作——————");
-			    	   sql = "delete from sys_url where URL_ID=" +"'" + URL_ID + "'";
-			       }else{
-				       response.setContentType("text/html; charset=UTF-8");
-			    	   response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectAllUrlServlet';</script>");
-			       }
 
 			   int flag = dbutil.update(sql);
 			   System.out.println(flag);
