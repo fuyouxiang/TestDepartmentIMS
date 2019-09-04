@@ -94,11 +94,20 @@ public class UpdateUrlServlet extends HttpServlet {
 					      
 					       String ATTACH_NAME_TEST = request.getParameter("ATTACH_NAME");	//文件名称     
 					       System.out.println("未转码文件名称："+ATTACH_NAME_TEST);
-					       String ATTACH_NAME= new String(ATTACH_NAME_TEST.getBytes("ISO-8859-1"),"UTF8");
-					       System.out.println("文件名称 ："+ATTACH_NAME);
+					       String ATTACH_NAME;
+					       if (!(java.nio.charset.Charset.forName("GBK").newEncoder().canEncode(ATTACH_NAME_TEST))) {
+					    	   System.out.println("判断文件名称为乱码！开始转码————————");
+					    	   ATTACH_NAME= new String(ATTACH_NAME_TEST.getBytes("iso8859-1"),"UTF-8");
+					       }else{
+					    	   System.out.println("判断文件名称不是乱码："+ATTACH_NAME_TEST);
+					    	   ATTACH_NAME=ATTACH_NAME_TEST;
+					       }
+					       System.out.println("最后的文件名称 ："+ATTACH_NAME);
+
 					       String ATTACH_PATH=path+ATTACH_NAME;//文件路径
 						   System.out.println("文件路径："+ATTACH_PATH);
 						   
+						   //tomcat和weblogic好像不一样
 					      sql = "update sys_url set ATTACH_NAME ='"+ATTACH_NAME+"',ATTACH_PATH='"+ATTACH_PATH+"' where URL_ID='" + URL_ID + "'";
 					      System.out.println(sql);
 					    } 
