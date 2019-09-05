@@ -53,6 +53,8 @@ public class AddUrlServlet extends HttpServlet {
 			       System.out.println("服务地址 "+URL_ADDRESS);
 			       String URL_CREATER = request.getParameter("URL_CREATER");//创建人
 			       System.out.println("创建人"+URL_CREATER);
+			       String IS_OPEN = request.getParameter("IS_OPEN");//是否对外开放
+			       System.out.println("是否对外开放"+IS_OPEN);
 				   SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
 				   String time=df.format(new Date());// new Date()为获取当前系统时间//时间戳，直接调用DateTime.java中的方法
 			       String URL_DATE = time;//创建时间
@@ -62,8 +64,8 @@ public class AddUrlServlet extends HttpServlet {
 
 		        
 		        DBUtils dbutil =new DBUtils();
-				String sql = "insert into sys_url (URL_NAME,URL_ADDRESS,URL_CREATER,URL_DATE,URL_STATE) values " +
-						"('" + URL_NAME + "','" + URL_ADDRESS + "','" + URL_CREATER + "','" + URL_DATE + "','" + URL_STATE + "')";
+				String sql = "insert into sys_url (URL_NAME,URL_ADDRESS,URL_CREATER,URL_DATE,URL_STATE,IS_OPEN) values " +
+						"('" + URL_NAME + "','" + URL_ADDRESS + "','" + URL_CREATER + "','" + URL_DATE + "','" + URL_STATE + "','" + IS_OPEN + "')";
 				int flag = dbutil.update(sql);
 				
 		        //request.getRequestDispatcher("Sys.jsp").forward(request, response); 

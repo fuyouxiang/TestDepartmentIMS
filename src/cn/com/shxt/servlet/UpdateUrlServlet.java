@@ -67,6 +67,8 @@ public class UpdateUrlServlet extends HttpServlet {
 		     System.out.println("操作名称：" + Caozuo);
 		     String URL_ID = request.getParameter("URL_ID");	//操作名称
 		     System.out.println("URL_ID："+URL_ID);
+		     String IS_OPEN = request.getParameter("IS_OPEN");	//对外显示
+		     System.out.println("对外显示："+IS_OPEN);
 		     
 			       
 
@@ -79,6 +81,17 @@ public class UpdateUrlServlet extends HttpServlet {
 				      sql = "update sys_url set URL_STATE ='停用' where URL_ID='" + URL_ID + "'";
 				      System.out.println(sql);
 				    }
+				    else if (Caozuo.equals("open")) {
+					      System.out.println("对外显示操作——————");
+					      if(IS_OPEN.equals("0")){
+					    	  sql = "update sys_url set IS_OPEN ='1' where URL_ID='" + URL_ID + "'";  
+					      }else if(IS_OPEN.equals("1")){
+					    	  sql = "update sys_url set IS_OPEN ='0' where URL_ID='" + URL_ID + "'";  
+					      }else{
+					    	  response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectAllUrlServlet';</script>");
+					      }
+					      System.out.println(sql);
+					    }
 				    else if (Caozuo.equals("start")) {
 				      System.out.println("启用操作——————");
 				      sql = "update sys_url set URL_STATE ='启用' where URL_ID='" + URL_ID + "'";

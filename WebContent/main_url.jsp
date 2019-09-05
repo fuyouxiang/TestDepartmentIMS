@@ -48,19 +48,6 @@ interval = setInterval(shuaxinUrl,60000*5);
 </script>  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <body>
 
 <!-- 滚动条 -->
@@ -150,7 +137,7 @@ interval = setInterval(shuaxinUrl,60000*5);
     
    		
       <div class="title"><img src="images/listicon.jpg" class="icon" style="padding-top:13px;">
-        <h2>服务列表</h2>
+        <h2>测试部服务列表</h2>
       </div>
 <%
 
@@ -186,9 +173,13 @@ interval = setInterval(shuaxinUrl,60000*5);
 
               <p class="shent">     
      <form action="<%=path%>/AddUrlServlet" method="post" id=formId name="formname">&nbsp;&nbsp;
-              服务名称：<input name="URL_NAME" id="URL_NAME" class="text" style="width:150px" type="text" />
-              服务地址：<input name="URL_ADDRESS" id="URL_ADDRESS" class="text" style="width:250px" type="text" />
-              创建人：<input name="URL_CREATER" id="URL_CREATER" class="text" style="width:100px" type="text"/>
+              服务名称：<input name="URL_NAME" id="URL_NAME" class="text" style="width:150px" type="text" />&nbsp;
+              服务地址：<input name="URL_ADDRESS" id="URL_ADDRESS" class="text" style="width:250px" type="text" />&nbsp;
+              创建人：<input name="URL_CREATER" id="URL_CREATER" class="text" style="width:100px" type="text"/>&nbsp;
+              对外显示：<select name="IS_OPEN" >
+<option value="0" >否</option>
+<option value="1" >是</option>
+</select>&nbsp;&nbsp;&nbsp;
      <input type="submit"  value="新增" />　
     </form>
     <!-- 
@@ -201,14 +192,15 @@ interval = setInterval(shuaxinUrl,60000*5);
               <table class="tabindex" width="100%" border="0" cellpadding="0" cellspacing="0">
               
                 <tr>
-                  <th width="5%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">编号</div></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">运行状态</div></th>
-                  <th width="25%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">URL地址</div></th>
-                  <th width="15%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">服务名称</span><span class="xila">&or;</span></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">创建时间</span><span class="xila">&or;</span></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">创建人</span><span class="xila">&or;</span></th>
-                  <th width="10%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:15px;text-align:center;font-weight:bold">附件</span>&nbsp;(点击下载)<span class="xila">&or;</span></th>
-                  <th width="15%" bgcolor="#f8f8f8" scope="col" style="font-size:15px;text-align:left;font-weight:bold">操作</th>
+                  <th width="4%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:12px;text-align:center;font-weight:bold">编号</div></th>
+                  <th width="10%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:13px;text-align:center;font-weight:bold">运行状态</div></th>
+                  <th width="29%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:13px;text-align:center;font-weight:bold">URL地址</div></th>
+                  <th width="15%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:13px;text-align:center;font-weight:bold">服务名称</span></th>
+                  <th width="7%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:13px;text-align:center;font-weight:bold">创建时间</span></th>
+                  <th width="6%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:13px;text-align:center;font-weight:bold">对外显示</span></th>
+                  <th width="6%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:13px;text-align:center;font-weight:bold">创建人</span></th>
+                  <th width="11%" bgcolor="#f8f8f8" scope="col"><span class="titlab" style="font-size:13px;text-align:center;font-weight:bold">附件</span>&nbsp;(点击下载)</th>
+                  <th width="12%" bgcolor="#f8f8f8" scope="col" style="font-size:13px;text-align:left;font-weight:bold">操作</th>
                 </tr>
       
                      <%
@@ -257,18 +249,32 @@ interval = setInterval(shuaxinUrl,60000*5);
                                        	shortName=shortName+"."+houzhui;
                                        	System.out.println("缩写后的文件名："+shortName);  
                                     }
+                                   	
+                                   	String is_open=stuMap.get("IS_OPEN");
+                                   	if(is_open.equals("1")){
+                                   		is_open="是";
+                                   	}else if(is_open.equals("0")){
+                                   		is_open="否";
+                                   	}else{
+                                   		is_open="显示异常";
+                                   	}
 
                         	
                           %>
                 <tr>
                   <td bgcolor="#FFFFFF"><div align="center"><%=i+1 %></div></td>
-                  <td style="font-size:15px;text-align:center;font-weight:bold;" class="<%=src %>" bgcolor="#FFFFFF"><div align="center"><%=STATE %></div></td>
-                  <td style="font-size:15px;text-align:center;font-weight:bold" bgcolor="#FFFFFF"><div align="center"><a href="<%=stuMap.get("URL_ADDRESS") %>" target="_blank"><b><%=URL_ADDRESS%></b></a></div></td>
+                  <td style="font-size:13px;text-align:center;font-weight:bold;" class="<%=src %>" bgcolor="#FFFFFF"><div align="center"><%=STATE %></div></td>
+                  <td style="font-size:13px;text-align:center;font-weight:bold" bgcolor="#FFFFFF"><div align="center"><a href="<%=stuMap.get("URL_ADDRESS") %>" target="_blank"><b><%=URL_ADDRESS%></b></a></div></td>
                   <td bgcolor="#FFFFFF" class="datacol"><a href="<%=stuMap.get("URL_ADDRESS") %>" target="_blank" style="color:#1D79C7;"><%=stuMap.get("URL_NAME") %></a></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_DATE") %></td>
+                  <td bgcolor="#FFFFFF"><%=is_open %></td>
                   <td bgcolor="#FFFFFF"><%=stuMap.get("URL_CREATER") %></td>
                   <td bgcolor="#FFFFFF"><a href="youzhishi/DownloadPDF.jsp?ATTACH_PATH=<%=stuMap.get("ATTACH_PATH") %>&ATTACH_NAME=<%=stuMap.get("ATTACH_NAME") %>" target="_blank" style="color:#1D79C7;"><%=shortName %></a></td>
-                  <td  bgcolor="#FFFFFF"><a class="datacol" href="<%=path %>/guanliyuan/uploadUrlFile.jsp?URL_ID=<%=stuMap.get("URL_ID") %>">附件上传</a>&nbsp;&nbsp;<a onclick = "if(window.confirm('您确定要删除吗？误删可联系管理员恢复。')){window.location.href='<%=path %>/UpdateUrlServlet?caozuo=stop&URL_ID=<%=stuMap.get("URL_ID") %>'}" style="color:red;">删除</a></td>
+                  <td  bgcolor="#FFFFFF">
+                  <a class="datacol" href="<%=path %>/guanliyuan/uploadUrlFile.jsp?URL_ID=<%=stuMap.get("URL_ID") %>">附件上传</a>&nbsp;
+                  <a onclick = "if(window.confirm('您确定要删除吗？误删可联系管理员恢复。')){window.location.href='<%=path %>/UpdateUrlServlet?caozuo=stop&URL_ID=<%=stuMap.get("URL_ID") %>'}" style="color:red;">删除</a>&nbsp;
+                  <a onclick = "if(window.confirm('您确定修改对外显示权限吗？')){window.location.href='<%=path %>/UpdateUrlServlet?caozuo=open&URL_ID=<%=stuMap.get("URL_ID") %>&IS_OPEN=<%=stuMap.get("IS_OPEN") %>'}" style="color:#1D79C7;">对外</a>
+                  </td>
                 </tr>
  
   		
