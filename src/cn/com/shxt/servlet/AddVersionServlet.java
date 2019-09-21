@@ -71,30 +71,22 @@ public class AddVersionServlet extends HttpServlet {
 				"('" + V_MONTH + "','" + V_DATE + "','" + V_WEEK + "','" + V_NAME + "','" + V_BASICS + "','" + V_WORK + "','" + V_TIME + "','" + V_TYPE + "','" + V_BUG + "','" + V_DOCUMENT + "','" + V_CASE + "')";
 		
 		//测试情况统计表记录数
-		String sql2 = "update sys_test set t_case=t_case+"+"'" + V_CASE + "'"+",t_document=t_document+"+"'" + V_DOCUMENT + "'"+",t_bug=t_bug+"+"'" + V_BUG + "'"+" where t_name="+"'" + V_NAME + "' and t_year='" + SetYear + "'";	
+		//String sql2 = "update sys_test set t_case=t_case+"+"'" + V_CASE + "'"+",t_document=t_document+"+"'" + V_DOCUMENT + "'"+",t_bug=t_bug+"+"'" + V_BUG + "'"+" where t_name="+"'" + V_NAME + "' and t_year='" + SetYear + "'";	
 
 		
 		
 		int flag = dbutil.update(sql);
-		int flag2 = dbutil.update(sql2);
+		//int flag2 = dbutil.update(sql2);
 
 		System.out.println(time+"添加日报："+sql);
-		System.out.println(time+"修改测试情况统计表sql:"+sql2);//查看sql
+		//System.out.println(time+"修改测试情况统计表sql:"+sql2);//查看sql
 
 		String info ;
 		
-		if(flag > 0 && flag2 > 0){
+		if(flag > 0 ){
 			info ="工作日报保存成功！";
 			request.setAttribute("info", info);
 			request.getRequestDispatcher("User/addversion.jsp?answer=yes").forward(request, response);
-		}else if(flag > 0 && flag2 == 0){
-			info ="工作日报保存成功！";
-			request.setAttribute("info", info);
-			request.getRequestDispatcher("User/addversion.jsp?answer=yes").forward(request, response);
-		}else if(flag == 0 && flag2 > 0){
-			info ="工作日报保存失败！";
-			request.setAttribute("info", info);
-			request.getRequestDispatcher("User/addversion.jsp?answer=no").forward(request, response);
 		}else{
 			info ="工作日报保存失败！";
 			request.setAttribute("info", info);

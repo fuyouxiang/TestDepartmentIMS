@@ -79,18 +79,22 @@ public class UpdateOneVersionServlet_Phone extends HttpServlet {
 
 		
 		
-		//先干掉之前的三种统计数量
+		/*
 		System.out.println(time+"先干掉之前的三种统计数量......");
 		String sql2 = "update sys_test set t_case=t_case-"+"'" + old_case + "'"+",t_document=t_document-"+"'" + old_document + "'"+",t_bug=t_bug-"+"'" + old_bug + "'"+" where t_name="+"'" + V_NAME + "' and t_year='" + SetYear + "'";	
+		System.out.println(sql2);
 		int flag2 = db.update(sql2);
+
 		
 		System.out.println(time+"在测试情况表增加新的三种统计数量......");
 		String sql3 = "update sys_test set t_case=t_case+"+"'" + V_CASE + "'"+",t_document=t_document+"+"'" + V_DOCUMENT + "'"+",t_bug=t_bug+"+"'" + V_BUG + "'"+" where t_name="+"'" + V_NAME + "' and t_year='" + SetYear + "'";	
+		System.out.println(sql3);
 		int flag3 = db.update(sql3);
-		
+		*/
 		System.out.println(time+"更新工作情况表......");
 		String sql4 = "update sys_version set v_type="+"'" + V_TYPE + "'"+",V_BUG="+"'" + V_BUG + "'"+",V_CASE="+"'" + V_CASE + "'"+",V_TIME="+"'" + V_TIME + "'"+",V_MONTH="+"'" + V_MONTH + "'"+",V_DATE="+"'" + V_DATE + "'"+",V_WEEK="+"'" + V_WEEK + "'"+",V_BASICS="+"'" + V_BASICS + "'"+",V_WORK="+"'" + V_WORK + "'"+",V_DOCUMENT="+"'" + V_DOCUMENT + "'"+" where V_ID="+"'" + V_ID + "'";	
 		//String sql = "select V_ID,V_MONTH,substr(V_DATE,9,2),V_WEEK,V_NAME,V_BASICS,V_WORK,V_TIME,V_TYPE,V_BUG,V_DOCUMENT,V_CASE from SYS_VERSION order by V_ID desc";
+		System.out.println(sql4);
 		int flag4 = db.update(sql4);
 		
 		
@@ -99,7 +103,7 @@ public class UpdateOneVersionServlet_Phone extends HttpServlet {
 		//int flag2 = dbutil.update(sql2);
 		
 		String info ;
-		if(flag2 > 0 && flag3 > 0 && flag4 > 0){
+		if(flag4 > 0){
 			info ="恭喜你!!修改工作情况成功";
 			request.setAttribute("info", info);
 		}else{
