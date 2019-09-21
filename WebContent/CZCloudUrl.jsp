@@ -45,7 +45,30 @@ interval = setInterval(shuaxinUrl,60000*5);
 
 		
 </script>  
-
+<script type="text/javascript">
+    function base64 (content) {
+       return window.btoa(unescape(encodeURIComponent(content)));         
+    }
+    /*
+    *@tableId: table的Id
+    *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
+    */
+    function tableToExcel(tableID,fileName){
+        var table = document.getElementById(tableID);
+      var excelContent = table.innerHTML;
+      var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+      excelFile += "<body><table>";
+      excelFile += excelContent;
+      excelFile += "</table></body>";
+      excelFile += "</html>";
+      var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
+      var a = document.createElement("a");
+      a.download = fileName+".xls";
+      a.href = link;
+      a.click();
+    }
+</script>
 
 <body>
 
@@ -105,6 +128,7 @@ interval = setInterval(shuaxinUrl,60000*5);
               </ul>
 
               <p class="shent">
+              <button style="font-size:15px;font-weight:bold;width:100px"  onclick="tableToExcel('tableAll','财政云服务列表');">导出Excel</button>
               <!--    
      <form action="<%=path%>/AddUrlServlet" method="post" id=formId name="formname">&nbsp;&nbsp;
               服务名称：<input name="URL_NAME" id="URL_NAME" class="text" style="width:150px" type="text" />
@@ -120,7 +144,7 @@ interval = setInterval(shuaxinUrl,60000*5);
               
             </div>
             <div id="tabCot_product_1" class="tabCot" >
-              <table class="tabindex" width="100%" height="100%"border="0" cellpadding="0" cellspacing="0">
+              <table class="tabindex" width="100%" height="100%"border="0" cellpadding="0" cellspacing="0" id="tableAll">
               
                 <tr>
                   <th width="5%" bgcolor="#f8f8f8" scope="col"><div align="center" style="font-size:15px;text-align:center;font-weight:bold">编号</div></th>
