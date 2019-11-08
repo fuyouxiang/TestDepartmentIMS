@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.math.BigDecimal" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -266,6 +266,7 @@ clipboardData.setData('text','');
                     <td style="font-size:15px;font-weight:bold">年总加班天数</td>
                     <td style="font-size:15px;font-weight:bold">年总出差天数</td>
                     <td style="font-size:15px;font-weight:bold">年总请假天数</td>
+                    <td style="font-size:15px;font-weight:bold">年可调休天数</td>
                   </tr>
                    <tbody>
                     	
@@ -280,6 +281,10 @@ clipboardData.setData('text','');
                           		
                                for(int i=0;i<resList.size();i++){
                             	   Map<String, String>  stuMap= resList.get(i);
+                            	   
+                            	   BigDecimal P_OVERTIME = new BigDecimal(stuMap.get("SUM(P_OVERTIME)"));
+                            	   BigDecimal P_LEAVE = new BigDecimal(stuMap.get("SUM(P_LEAVE)"));
+                            	   float tiaoxiu = P_OVERTIME.subtract(P_LEAVE).floatValue();
                             	  
                           %>
                           <tr align="center">
@@ -290,6 +295,7 @@ clipboardData.setData('text','');
                             <td class="bor_2" style="font-size:15px;text-align:center;font-weight:bold"><%=stuMap.get("SUM(P_OVERTIME)") %></td>
                             <td class="bor_2" style="font-size:15px;text-align:center;font-weight:bold"><%=stuMap.get("SUM(P_EVECTION)") %></td>
                             <td class="bor_2" style="font-size:15px;text-align:center;font-weight:bold"><%=stuMap.get("SUM(P_LEAVE)") %></td>
+                            <td class="bor_2" style="font-size:15px;text-align:center;font-weight:bold"><%=tiaoxiu %></td>
                         </tr>
                         		
                           <%     
