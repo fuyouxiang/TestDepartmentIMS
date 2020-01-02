@@ -44,7 +44,7 @@ public class AddOvertimeServlet_Phone extends HttpServlet {
 	
 			//人员资源统计表记录数加1
 			//String sql2 = "update sys_person set p_overtime=p_overtime+"+"'" + o_time + "'"+" where p_name="+"'" + o_name + "' and p_year='2018'";
-			String sql2 = "insert into sys_person(p_name,p_overtime,p_evection,p_leave,p_year,p_month) values('" + o_name + "','" + o_time + "','0','0','" + SetYear + "','" + o_month + "')";
+			String sql2 = "insert into sys_person(p_name,p_overtime,p_evection,p_leave,p_month) values('" + o_name + "','" + o_time + "','0','0','" + o_month + "')";
 			
 			int flag = dbutil.update(sql);
 			int flag2 = dbutil.update(sql2);

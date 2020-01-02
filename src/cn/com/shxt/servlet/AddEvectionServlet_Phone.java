@@ -49,7 +49,7 @@ public class AddEvectionServlet_Phone extends HttpServlet {
 			
 			//人员资源统计表记录数加1
 			//String sql2 = "update sys_person set p_evection=p_evection+"+"(to_date('" + E_ENDDATE + "','yyyy-mm-dd')-to_date('" + E_STARTDATE + "','yyyy-mm-dd')+1)"+" where p_name="+"'" + E_NAME + "' and p_year='2018'";
-			String sql2 = "insert into sys_person(p_name,p_overtime,p_evection,p_leave,p_year,p_month) values('" + E_NAME + "','0',to_date('" + E_ENDDATE + "','yyyy-mm-dd')-to_date('" + E_STARTDATE + "','yyyy-mm-dd')+1,'0','" + SetYear + "','" + E_MONTH + "')";
+			String sql2 = "insert into sys_person(p_name,p_overtime,p_evection,p_leave,p_month) values('" + E_NAME + "','0',to_date('" + E_ENDDATE + "','yyyy-mm-dd')-to_date('" + E_STARTDATE + "','yyyy-mm-dd')+1,'0','" + E_MONTH + "')";
 			
 			int flag = dbutil.update(sql);
 			int flag2 = dbutil.update(sql2);

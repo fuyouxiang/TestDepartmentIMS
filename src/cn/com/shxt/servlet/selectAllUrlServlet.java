@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import cn.com.shxt.model.PageBean;
 import cn.com.shxt.utils.DBUtils;
-import cn.com.shxt.utils.ping;
 
 
 

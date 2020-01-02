@@ -210,15 +210,16 @@ clipboardData.setData('text','');
 		    <tr>
 		      
 			  <td width="538" align="left" style="font-size:15px">
-			    
-			  <form action="<%=path %>/selectOvertimeServlet2" name="MyPageForm" method="post"  id =formId id ="pageForm" onsubmit="return submitMyForm()">
-						<img src="images/ico07.gif" width="18" height="15" />
-						<!-- 
-						年度：
 <% 
     Calendar calendar=Calendar.getInstance(); 
     int year=calendar.get(Calendar.YEAR); 
- %> 
+ %> 			    
+			  <form action="<%=path %>/selectOvertimeServlet2" name="MyPageForm" method="post"  id =formId id ="pageForm" onsubmit="return submitMyForm()">
+						<img src="images/ico07.gif" width="18" height="15" />
+						员工姓名：<input style="width:100px" name="NAME" type="text" size="12" value="<%=session.getAttribute("NAME") %>"/>
+						<!-- 
+						年度：
+
 						<select style="high:150;font-weight:bold;" name="YEAR"  id="YEAR">
 						<option style="font-size:13px;" value="<%=session.getAttribute("YEAR") %>"> &nbsp;&nbsp;<%=session.getAttribute("YEAR") %>&nbsp;&nbsp;</option>                            
 					     <option style="font-size:13px;" value="<%=year %>"> &nbsp;&nbsp;<%=year %>&nbsp;&nbsp;</option>

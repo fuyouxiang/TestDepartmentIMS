@@ -210,6 +210,7 @@ clipboardData.setData('text','');
 			    
 			  <form action="<%=path %>/selectOvertimeServlet2" name="MyPageForm" method="post"  id =formId id ="pageForm" onsubmit="return submitMyForm()">
 						<img src="images/ico07.gif" width="18" height="15" />
+						员工姓名：<input style="width:100px" name="NAME" type="text" size="12"/>
 						<!-- 
 						年度：
 <% 

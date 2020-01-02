@@ -46,7 +46,7 @@ public class AddLeaveServlet_Phone extends HttpServlet {
 	
 			//人员资源统计表记录数加1
 			//String sql2 = "update sys_person set p_leave=p_leave+"+"'" + l_time + "'"+" where p_name="+"'" + l_name + "' and p_year='2018'";
-			String sql2 = "insert into sys_person(p_name,p_overtime,p_evection,p_leave,p_year,p_month) values('" + l_name + "','0','0','" + l_time + "','" + SetYear + "','" + l_month + "')";
+			String sql2 = "insert into sys_person(p_name,p_overtime,p_evection,p_leave,p_month) values('" + l_name + "','0','0','" + l_time + "','" + l_month + "')";
 			
 			int flag = dbutil.update(sql);
 			int flag2 = dbutil.update(sql2);
