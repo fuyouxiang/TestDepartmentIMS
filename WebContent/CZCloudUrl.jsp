@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.io.*,cn.com.shxt.utils.ping" pageEncoding="UTF-8"  %>
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.io.*,cn.com.shxt.utils.Ping" pageEncoding="UTF-8"  %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -167,7 +167,7 @@ interval = setInterval(shuaxinUrl,60000*5);
                           if(resList!=null && resList.size()>0){
                           		//
                           		boolean STATE= false;
-                          		ping pi= new ping();
+                          		Ping pi= new Ping();
                           		
                                for(int i=0;i<resList.size();i++){
                             	   Map<String, String>  stuMap= resList.get(i);
