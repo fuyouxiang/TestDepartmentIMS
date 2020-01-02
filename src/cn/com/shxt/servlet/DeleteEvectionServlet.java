@@ -39,7 +39,7 @@ public class DeleteEvectionServlet extends HttpServlet {
 		//人员资源统计表记录数减1
 		System.out.println(time+"正在修改人员资源统计表信息...出差NAME为："+E_NAME);
 		//String sql2 = "update sys_person set p_evection=p_evection-"+"'" + E_WORKTIME + "'"+" where p_name="+"'" + E_NAME + "' and p_year='2018'";
-		String sql2 = "delete from sys_person where p_id=(select max(p_id) from sys_person where p_evection='" + E_WORKTIME + "' and p_name='" + E_NAME + "'and p_year='" + SetYear + "')";
+		String sql2 = "delete from sys_person where p_id=(select max(p_id) from sys_person where p_evection='" + E_WORKTIME + "' and p_name='" + E_NAME + "')";
 		System.out.println(sql2);
 		System.out.println(time+"修改成功！");
 		
