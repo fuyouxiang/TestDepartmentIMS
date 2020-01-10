@@ -4,7 +4,7 @@ package cn.com.shxt.utils;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class CopyOfping {
+public class pingBeifen {
 	
    
     

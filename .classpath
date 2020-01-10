@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/bin/bootstrap.jar"/>
 	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/bin/commons-daemon.jar"/>
 	<classpathentry kind="lib" path="D:/selenium2/apache-tomcat-7.0.42/bin/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/qcloudsms-1.0.6.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

@@ -13,7 +13,7 @@ Sys_user user = (Sys_user)request.getAttribute("user");
     <base target="_self"/>
     
     
-    <title>用户修改</title>
+    <title>发布新通知</title>
     <style type="text/css">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
