@@ -74,7 +74,6 @@ public class SendSms  extends HttpServlet {
 			  e.printStackTrace();
 			}
 		
-		
 		/*
 		//时间戳，直接调用DateTime.java中的方法
 		String time= DateTime.showtime();

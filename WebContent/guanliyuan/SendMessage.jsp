@@ -104,7 +104,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     });
   });
   
-  function send(){
+  function sendSms(){
 	    var id = document.getElementsByName('checkboxBtn');
 	    var value = new Array();
 	    for(var i = 0; i < id.length; i++){
@@ -116,7 +116,25 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 	    
 	    var Msg=document.getElementById("Msg").value;
 	    
-	    location.href ='SendSms?tele='+teleNumber+'&Msg='+Msg;
+	    alert("短信接口需要有关部门备案，暂不可用。");
+	    
+	    //location.href ='SendSms?tele='+teleNumber+'&Msg='+Msg;
+	}
+  function sendEmail(){
+	    var id = document.getElementsByName('checkboxBtn');
+	    var value = new Array();
+	    for(var i = 0; i < id.length; i++){
+	     if(id[i].checked)
+	     value.push(id[i].value);
+	    } 
+	    var EmailAddress1 =value.toString();
+	    var EmailAddress=EmailAddress1.replace(/,/g,'');//去掉逗号
+	  
+	    var Msgtitle="【测试部通知】"+document.getElementById("Msgtitle").value;
+
+	    var Msg=document.getElementById("Msg").value+"    （系统群发，请勿回复！）";
+	    
+	    location.href ='SendEmail?Msgtitle='+Msgtitle+'&Msg='+Msg+'&EmailAddress='+EmailAddress;
 	}
 
 </script>
@@ -132,7 +150,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 <div class="MainDiv">
 <table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
   <tr>
-      <th class="tablestyle_title" >发布新通知</th>
+      <th class="tablestyle_title" >信息通知</th>
   </tr>
   <tr>
     <td class="CPanel">
@@ -145,12 +163,16 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		<TR>
 			<TD width="100%">
 				<fieldset style="height:100%;">
-				<legend>短信发送</legend>
+				<legend>信息发送</legend>
 	
 					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
-					 
+
 					  <tr>
-					    <td align="right">短信内容:</td>
+					    <td align="right">信息标题:（邮件专用）</td>
+					    <td><textarea name="Msgtitle" id="Msgtitle" class="text" style="width:500px;height:40px"/></textarea></td>
+					  </tr>					 
+					  <tr>
+					    <td align="right">信息内容:</td>
 					    <td><textarea name="Msg" id="Msg" class="text" style="width:500px;height:80px"/></textarea></td>
 					  </tr>
 					  
@@ -175,7 +197,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             	   Map<String, String>  stuMap= resList.get(i);
                             	  
                           %>
-                            <input type="checkbox" value="N86<%=stuMap.get("PHONE") %>" name="checkboxBtn"/><%=stuMap.get("U_NAME") %><%=stuMap.get("PHONE") %><br />
+                            <input type="checkbox" value=";<%=stuMap.get("EMAIL") %>" name="checkboxBtn"/><%=stuMap.get("U_NAME") %>&nbsp;&nbsp;<%=stuMap.get("PHONE") %>&nbsp;&nbsp;<%=stuMap.get("EMAIL") %><br />
         				<%     
               
                                }
@@ -204,8 +226,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 				<TR>
 			<TD colspan="2" align="center" height="50px">
 			<!-- <input type="submit" name="Submit" value="发送"/>　 -->
-			<input type="button" value="提交" onclick="send()" />
-			
+			<input type="button" value="发送短信" onclick="sendSms()" />
+			<input type="button" value="发送邮件" onclick="sendEmail()" />
 			<input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/></TD>
 		</TR>
 		</TABLE>
