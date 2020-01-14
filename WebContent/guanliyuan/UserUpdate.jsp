@@ -235,6 +235,13 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					    </select>
 						</td>
 				        </tr>
+				        
+				        <tr>
+					    <td align="right">工作邮箱:</td>
+					    <td><input name="email" id="email" type="text" class="text" style="width:154px" value="<%=user.getEmail() %>"/><span class="red">（必填）</span></td>					    
+					    <td align="right">电话:</td>
+					    <td><input id="phone" name="phone" class="text" type="text" style="width:154px" value="<%=user.getPhone() %>"/><span class="red"></span></td>	
+					    </tr>
 					  </table>
 			 <br />
 				</fieldset>			</TD>

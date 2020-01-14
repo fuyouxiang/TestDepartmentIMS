@@ -52,6 +52,8 @@ public class UserServiceBean {
 		user.setXiangmu(map.get("XIANGMU").toString());
 		user.setYongli(map.get("YONGLI").toString());
 		user.setFenxiang(map.get("FENXIANG").toString());
+		user.setEmail(map.get("EMAIL").toString());
+		user.setPhone(map.get("PHONE").toString());
 		return user;
 		
 	}

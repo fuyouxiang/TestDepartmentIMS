@@ -103,6 +103,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			    	var u_password=document.formname.u_password.value;
 			    	var u_password2=document.formname.u_password2.value;
 			    	var u_role=document.formname.u_role.value;
+			    	var email=document.formname.email.value;
 			    	
 			    	//校验
 			    	if(u_name == ''){
@@ -119,6 +120,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			    	}
 			    	else if(u_password == ''){
 			    		alert('请填写密码！');      
+		 				return false;
+			    	}
+			    	else if(email == ''){
+			    		alert('请填写工作邮箱！');      
 		 				return false;
 			    	}
 			    	else if(u_password != u_password2){
@@ -236,6 +241,13 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					    <td><input name="u_password" id="u_password" type="password" class="text" style="width:154px" /><span class="red">（不超过32字节）</span></td>					    
 					    <td align="right">确认密码:</td>
 					    <td><input id="u_password2" name="u_password2" class="text" type="password" style="width:154px" /><span class="red"></span></td>	
+					  </tr>
+					  
+					  <tr>
+					    <td align="right">工作邮箱:</td>
+					    <td><input name="email" id="email" type="text" class="text" style="width:154px" /><span class="red">（必填）</span></td>					    
+					    <td align="right">电话:</td>
+					    <td><input id="phone" name="phone" class="text" type="text" style="width:154px" /><span class="red"></span></td>	
 					  </tr>
 				        
 

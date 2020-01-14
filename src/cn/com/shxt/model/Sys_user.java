@@ -12,6 +12,8 @@ public class Sys_user {
 	private String xiangmu;
 	private String yongli;
 	private String fenxiang;
+	private String email;
+	private String phone;
 	
 	public void setU_id(int u_id) {
 		this.u_id = u_id;
@@ -66,6 +68,18 @@ public class Sys_user {
 	}
 	public void setFenxiang(String fenxiang) {
 		this.fenxiang = fenxiang;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 }

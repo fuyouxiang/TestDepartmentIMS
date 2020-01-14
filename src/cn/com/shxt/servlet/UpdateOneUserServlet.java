@@ -39,6 +39,8 @@ public class UpdateOneUserServlet extends HttpServlet {
 		String xiangmu = request.getParameter("xiangmu");
 		String yongli = request.getParameter("yongli");
 		String fenxiang = request.getParameter("fenxiang");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
 		//String password = request.getParameter("u_password");
 		//String password2 =MD5Helper.MD5(request.getParameter("u_password"));
 		System.out.println(time+id  + name  + state );
@@ -49,7 +51,7 @@ public class UpdateOneUserServlet extends HttpServlet {
 //		u.setU_state(state);
 
 		DBUtils dbutil =new DBUtils();
-		String sql = "update sys_user set u_name='"+name+"',u_state='"+state+"',u_role='"+role+"',xinren='"+xinren+"',xiangmu='"+xiangmu+"',yongli='"+yongli+"',fenxiang='"+fenxiang+"' where u_id ='"+id+"'";
+		String sql = "update sys_user set u_name='"+name+"',u_state='"+state+"',u_role='"+role+"',xinren='"+xinren+"',xiangmu='"+xiangmu+"',yongli='"+yongli+"',fenxiang='"+fenxiang+"',email='"+email+"',phone='"+phone+"' where u_id ='"+id+"'";
 		
 		int flag = dbutil.update(sql);
 

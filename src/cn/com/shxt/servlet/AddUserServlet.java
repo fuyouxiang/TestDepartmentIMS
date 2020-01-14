@@ -34,6 +34,8 @@ public class AddUserServlet extends HttpServlet {
 		String STATE = request.getParameter("u_state");
 		String ROLE = request.getParameter("u_role");
 		String PASSWORD2 =MD5Helper.MD5(request.getParameter("u_password"));
+		String EMAIL =request.getParameter("email");
+		String PHONE =request.getParameter("phone");
 		
 		String XINREN = request.getParameter("xinren");
 		String XIANGMU = request.getParameter("xiangmu");
@@ -47,8 +49,8 @@ public class AddUserServlet extends HttpServlet {
 	     if(ROLE.equals("普通")||ROLE.equals("管理员")){
 	    	 System.out.println("新增用户为普通或管理员");
 	 		DBUtils dbutil =new DBUtils();
-			String sql = "insert into sys_user (u_name,u_password,u_state,u_role,xinren,xiangmu,yongli,fenxiang) values " +
-					"('" + USERNAME + "','" + PASSWORD2 + "','" + STATE + "','" + ROLE + "','" + XINREN + "','" + XIANGMU + "','" + YONGLI + "','" + FENXIANG + "')";
+			String sql = "insert into sys_user (u_name,u_password,u_state,u_role,xinren,xiangmu,yongli,fenxiang,email,phone) values " +
+					"('" + USERNAME + "','" + PASSWORD2 + "','" + STATE + "','" + ROLE + "','" + XINREN + "','" + XIANGMU + "','" + YONGLI + "','" + FENXIANG + "','" + EMAIL + "','" + PHONE + "')";
 			
 			//人员资源统计表
 			String sql2 ="insert into sys_person(p_name,p_overtime,p_evection,p_leave,p_year) values"+"('" + USERNAME + "','0','0','0','" + SetYear + "')";
