@@ -2,12 +2,15 @@ package cn.com.shxt.utils;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
@@ -35,7 +38,7 @@ public class SendEmail  extends HttpServlet {
 		
 		//时间戳，直接调用DateTime.java中的方法
 		String time= DateTime.showtime();
-		request.setCharacterEncoding("UTF-8");
+		//request.setCharacterEncoding("UTF-8");
 		System.out.println("开始发送邮件：——————————————————————");	
 		
 		String Msgtitle= request.getParameter("Msgtitle");//信息标题
@@ -50,12 +53,18 @@ public class SendEmail  extends HttpServlet {
 		EmailAddressStirng = new String(EmailAddressStirng.getBytes("ISO8859-1"),"UTF-8");
 		System.out.println("邮件地址："+EmailAddressStirng);
 		
-		String [] EmailAddress=EmailAddressStirng.split(";");
+		SendEmail s = new SendEmail();
+   	   s.SendEmailFromQQ(EmailAddressStirng, Msgtitle, Msg);
 		
+   	   
+		/*
+		 * 逐条发送，但是会有每天20条邮件的限制，超过20封会要求验证码
+		String [] EmailAddress=EmailAddressStirng.split(";");
+
          for(int i=1;i<EmailAddress.length;i++){
         	 SendEmail s = new SendEmail();
         	 s.SendEmailFromQQ(EmailAddress[i], Msgtitle, Msg);
-         }
+         }*/
          
  		String info ="邮件发送完成！";
  		request.setAttribute("info", info);
@@ -66,50 +75,74 @@ public class SendEmail  extends HttpServlet {
 	
 	public void SendEmailFromQQ( String EmailAddress,String Msgtitle,String Msg){
 		
-		System.out.println("调用QQ邮箱发送接口：————————————————");
-        Properties properties = new Properties();
-        properties.put("mail.transport.protocol", "smtp");// 连接协议
-        properties.put("mail.smtp.host", "smtp.qq.com");// 主机名
-        properties.put("mail.smtp.port", 465);// 端口号
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.ssl.enable", "true");// 设置是否使用ssl安全连接 ---一般都使用
-        properties.put("mail.debug", "true");// 设置是否显示debug信息 true 会在控制台显示相关信息
-        
-        //装载Properties配置文件
-      	ResourceBundle resource = ResourceBundle.getBundle("email");
-      	System.out.println("读取电子邮件配置文件：email.properties");
-      	String SendEmailAddress =resource.getString("SendEmailAddress");
-      	System.out.println("电子邮件服务端："+SendEmailAddress);
-      	String ShouQuanMa =resource.getString("ShouQuanMa");
-      	System.out.println("授权码："+ShouQuanMa);
-        
-		// 得到回话对象
-        Session session = Session.getInstance(properties);
-        // 获取邮件对象
-        Message message = new MimeMessage(session);
-        try {
-        // 设置发件人邮箱地址
-        message.setFrom(new InternetAddress(SendEmailAddress));
-        // 设置邮件标题
-        message.setSubject(Msgtitle);
-        // 设置邮件内容
-        message.setText(Msg);
-        // 得到邮差对象
-        Transport transport = session.getTransport();
-        // 连接自己的邮箱账户
-        transport.connect(SendEmailAddress, ShouQuanMa);// 密码为QQ邮箱开通的stmp服务后得到的客户端授权码
-        // 设置收件人邮箱地址 
-        //message.setRecipients(Message.RecipientType.TO, new InternetAddress[]{new InternetAddress("415912873@qq.com"),new InternetAddress("xxx@qq.com"),new InternetAddress("xxx@qq.com")});
-       message.setRecipient(Message.RecipientType.TO, new InternetAddress(EmailAddress));//一个收件人
-		System.out.println("开始发送邮件："+EmailAddress);
-        // 发送邮件
-        transport.sendMessage(message, message.getAllRecipients());
-		System.out.println("发送完成！");
-        transport.close();
-        } catch (Exception e) {
-        	e.printStackTrace();
-        }
+		   System.out.println("调用QQ邮箱发送接口：————————————————");
+		   
+		    Properties properties = new Properties();
+		    properties.setProperty("mail.transport.protocol", "smtp");
+
+		    properties.put("mail.smtp.host", "smtp.qq.com");
+		    properties.put("mail.smtp.port", Integer.valueOf(465));
+		    properties.put("mail.smtp.auth", "true");
+		    properties.put("mail.smtp.ssl.enable", "true");
+
+		    ResourceBundle resource = ResourceBundle.getBundle("email");
+		    System.out.println("读取电子邮件配置文件：email.properties");
+		    String SendEmailAddress = resource.getString("SendEmailAddress");
+		    System.out.println("电子邮件服务端：" + SendEmailAddress);
+		    String ShouQuanMa = resource.getString("ShouQuanMa");
+		    System.out.println("授权码：" + ShouQuanMa );
+
+		    Session session = Session.getDefaultInstance(properties);
+		    session.setDebug(true);
+
+		    Message message = new MimeMessage(session);
+
+		    try {
+		      message.setFrom(new InternetAddress(SendEmailAddress));
+
+		      message.setSubject(Msgtitle);
+
+		      
+				message.setText(Msg);
+			
+
+		      Transport transport = session.getTransport();
+
+		      transport.connect(SendEmailAddress, ShouQuanMa);
+
+		      //把收件人字符串中的；换成，   .substring(1)是为了去掉最前面的，
+		      String to = EmailAddress.replace(";", ",").substring(1);
+		      System.out.println("收件人确认："+to);
+		      
+		      //必须把收件人地址封装成数组
+		      InternetAddress[] addressesTo = null;
+				if (to != null && to.trim().length() > 0) {
+					String[] receiveList = to.split(",");
+					int receiveCount = receiveList.length;
+					if (receiveCount > 0) {
+						addressesTo = new InternetAddress[receiveCount];
+						for (int i = 0; i < receiveCount; i++) {
+							addressesTo[i] = new InternetAddress(receiveList[i]);
+						}
+
+		      //message.setRecipient(Message.RecipientType.TO, new InternetAddress(addressesCc));
+			  //封装邮件
+		      message.setRecipients(Message.RecipientType.TO,addressesTo);
+
+		      System.out.println("开始发送邮件：" + addressesTo);
+		      //邮件群发
+		      //transport.sendMessage(message, message.getAllRecipients());
+		      System.out.println("发送完成！");
+		      transport.close();
+		    
+		  }
+		}
+		      } catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}		
 	}
+	
+
 }
-
-
+		    
