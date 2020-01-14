@@ -291,15 +291,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 </script>
 	<script type="text/javascript">
 		
-				//判断表单是否可以提交
-			  	function  checkForm(){
-			    	if( checkName()&&checkpassword()&& checkEmile()&&checkScar() ){
-					return true;
-					}
-			    	return  false;
-			  	}
-
-
 
 			  //通过js提交表单
 			  	function  submitMyForm(){
@@ -390,11 +381,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			    		alert('工时、产出必须为数字类型!');      
 		 				return false;
 			    	}
-					else if(checkForm()){
+					else{
 				  		return true;				  		
-					}else{
-						alert("无法提交 请核对信息");
-						return false;
 					}
 			  	}
 

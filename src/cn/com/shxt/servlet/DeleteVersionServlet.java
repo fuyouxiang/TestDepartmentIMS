@@ -47,16 +47,16 @@ public class DeleteVersionServlet extends HttpServlet {
 
 		String info ;
 		if(flag > 0 && flag2 > 0){
-			info ="工作日报删除成功！测试情况统计表修改成功！";
+			info ="工作日报删除成功！";
 			request.setAttribute("info", info);
 		}else if(flag > 0 && flag2 == 0){
-			info ="工作日报删除成功！测试情况统计表修改成功！";
+			info ="工作日报删除成功！！";
 			request.setAttribute("info", info);
 		}else if(flag == 0 && flag2 > 0){
-			info ="工作日报删除失败！测试情况统计表修改成功！";
+			info ="工作日报删除失败！！";
 			request.setAttribute("info", info);
 		}else{
-			info ="工作日报删除失败！测试情况统计表修改失败！";
+			info ="工作日报删除失败！";
 			request.setAttribute("info", info);
 		}
 		request.getRequestDispatcher("Sys.jsp").forward(request, response);

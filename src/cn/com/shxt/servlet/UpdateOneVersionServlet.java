@@ -98,10 +98,10 @@ public class UpdateOneVersionServlet extends HttpServlet {
 		
 		String info ;
 		if(flag4 > 0){
-			info ="恭喜你!!修改成功";
+			info ="修改成功!";
 			request.setAttribute("info", info);
 		}else{
-			info ="不好意思,修改失败";
+			info ="修改失败，请联系管理员！";
 			request.setAttribute("info", info);
 		}
 		request.getRequestDispatcher("Sys.jsp").forward(request, response);
