@@ -115,7 +115,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 	    var teleNumber1 =value.toString();
 	    var teleNumber=teleNumber1.replace(/,/g,'');//去掉逗号
 	    
-	    var Msg=document.getElementById("Msg").value + "(系统发送，请勿回复！)";
+	    var Msg=document.getElementById("Msg").value;
 	    
 	    //等待提示
         showWaiting();
@@ -137,7 +137,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 	    var teleNumber1 =value.toString();
 	    var teleNumber=teleNumber1.replace(/,/g,'');//去掉逗号
 	    
-	    var Msg=document.getElementById("Msg").value + "(系统发送，请勿回复！)";
+	    var Msg=document.getElementById("Msg").value;
 	    
 	    alert("腾讯短信接口需要在有关部门备案，正在备案中，敬请期待。");
 	    
