@@ -103,24 +103,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
       }
     });
   });
-  
-  //发送短信接口
-  function sendSms(){
-	    var id = document.getElementsByName('checkboxBtn');
-	    var value = new Array();
-	    for(var i = 0; i < id.length; i++){
-	     if(id[i].checked)
-	     value.push(id[i].value);
-	    } 
-	    var teleNumber1 =value.toString();
-	    var teleNumber=teleNumber1.replace(/,/g,'');//去掉逗号
-	    
-	    var Msg=document.getElementById("Msg").value;
-	    
-	    alert("短信接口需要有关部门备案，暂不可用。");
-	    
-	    //location.href ='SendSms?tele='+teleNumber+'&Msg='+Msg;
-	}
+
   
   //发送电子邮件
   function sendEmail(){
@@ -239,7 +222,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 <div class="MainDiv">
 <table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
   <tr>
-      <th class="tablestyle_title" >信息通知</th>
+      <th class="tablestyle_title" >邮件通知</th>
   </tr>
   <tr>
     <td class="CPanel">
@@ -257,17 +240,17 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
 
 					  <tr>
-					    <td align="right">信息标题:（邮件专用）</td>
+					    <td align="right">邮件标题:</td>
 					    <td><textarea name="Msgtitle" id="Msgtitle" class="text" style="width:500px;height:40px"/></textarea></td>
 					  </tr>					 
 					  <tr>
-					    <td align="right">信息内容:</td>
+					    <td align="right">邮件内容:</td>
 					    <td><textarea name="Msg" id="Msg" class="text" style="width:500px;height:80px"/></textarea></td>
 					  </tr>
 					  
 
 					  <tr>
-					    <td align="right">接收人选择:</td>
+					    <td align="right">收件人选择:</td>
 
 					    <td>
 					    	<fieldset>
@@ -286,7 +269,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             	   Map<String, String>  stuMap= resList.get(i);
                             	  
                           %>
-                            <input type="checkbox" value=";<%=stuMap.get("EMAIL") %>" name="checkboxBtn"/><%=stuMap.get("U_NAME") %>&nbsp;&nbsp;<%=stuMap.get("PHONE") %>&nbsp;&nbsp;<%=stuMap.get("EMAIL") %><br />
+                            <input type="checkbox" value=";<%=stuMap.get("EMAIL") %>" name="checkboxBtn"/><%=stuMap.get("U_NAME") %>&nbsp;&nbsp;<%=stuMap.get("EMAIL") %><br />
         				<%     
               
                                }
@@ -315,7 +298,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 				<TR>
 			<TD colspan="2" align="center" height="50px">
 			<!-- <input type="submit" name="Submit" value="发送"/>　 -->
-			<input type="button" value="发送短信" onclick="sendSms()" />
 			<input type="button" value="发送邮件" onclick="sendEmail()" />
 			<input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/></TD>
 		</TR>

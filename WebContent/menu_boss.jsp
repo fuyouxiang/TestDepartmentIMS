@@ -97,7 +97,16 @@ background=images/menu_bg.jpg border=0>
           <TD align=center width=30><IMG height=9 
             src="images/menu_icon.gif" width=9></TD>
           <TD><A 
-            href="<%=path %>/selectUserPhoneNumberServlet" target="right">消息通知</A></TD></TR>  
+            href="<%=path %>/selectUserEmailServlet" target="right">邮件通知</A>
+            </TD>
+        </TR>
+        <TR height=20>
+          <TD align=center width=30><IMG height=9 
+            src="images/menu_icon.gif" width=9></TD>
+          <TD><A 
+            href="<%=path %>/selectUserPhoneNumberServlet" target="right">短信通知</A>
+            </TD>
+        </TR>    
         <TR height=4>
           <TD colSpan=2></TD></TR></TABLE>    
          

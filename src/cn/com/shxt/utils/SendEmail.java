@@ -131,7 +131,7 @@ public class SendEmail  extends HttpServlet {
 
 		      System.out.println("开始发送邮件：" + addressesTo);
 		      //邮件群发
-		      //transport.sendMessage(message, message.getAllRecipients());
+		      transport.sendMessage(message, message.getAllRecipients());
 		      System.out.println("发送完成！");
 		      transport.close();
 		    

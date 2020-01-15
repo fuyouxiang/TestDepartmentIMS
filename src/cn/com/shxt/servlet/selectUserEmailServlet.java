@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import cn.com.shxt.model.PageBean;
 import cn.com.shxt.utils.DBUtils;
 
-public class selectUserPhoneNumberServlet extends HttpServlet {
+public class selectUserEmailServlet extends HttpServlet {
 	
 
 	private static final long serialVersionUID = 7892767001231292612L;
@@ -30,7 +30,7 @@ public class selectUserPhoneNumberServlet extends HttpServlet {
 		
 		
 		System.out.println(time+"查询用户列表servlet");
-		String sql = "select U_NAME，PHONE from sys_user  where u_role != '文档'and u_state in ('在职','外地')";
+		String sql = "select U_NAME，EMAIL from sys_user  where u_role != '文档'and u_state in ('在职','外地')";
 		/*int iRows = 5;
 		int nowPage = 1;
 		String nextPage = (String)request.getParameter("nextPage");
@@ -45,7 +45,7 @@ public class selectUserPhoneNumberServlet extends HttpServlet {
 		DBUtils dbutil = new DBUtils();
 		PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
 		request.setAttribute("pageBean", pageBean);
-		request.getRequestDispatcher("guanliyuan/SendPhoneSMS.jsp").forward(request, response);
+		request.getRequestDispatcher("guanliyuan/SendEmail.jsp").forward(request, response);
 	}
 
 

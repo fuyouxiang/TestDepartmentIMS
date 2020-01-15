@@ -554,16 +554,39 @@
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.utils.SendEmail</servlet-class>
 	</servlet> 	  	 	
-	
-
+	<servlet>    
+    	<servlet-name>selectUserEmailServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.selectUserEmailServlet</servlet-class>
+	</servlet> 	
+	<servlet>    
+    	<servlet-name>SendQQSms</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.utils.SendQQSms</servlet-class>
+	</servlet> 	  
     
       
     
     
 
 	
+
+
 	
 	
+	
+	
+	
+	<servlet-mapping>
+    	<servlet-name>SendQQSms</servlet-name>
+    	<url-pattern>/SendQQSms</url-pattern>
+	</servlet-mapping>			
+	<servlet-mapping>
+    	<servlet-name>selectUserEmailServlet</servlet-name>
+    	<url-pattern>/selectUserEmailServlet</url-pattern>
+	</servlet-mapping>		
 	<servlet-mapping>
     	<servlet-name>SendEmail</servlet-name>
     	<url-pattern>/SendEmail</url-pattern>
