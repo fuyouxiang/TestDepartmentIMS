@@ -140,16 +140,16 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 	    var Msg=document.getElementById("Msg").value;
 	    
 	    alert("腾讯短信接口需要在有关部门备案，正在备案中，敬请期待。");
-	    
 	    /*
+	    
 	    //等待提示
         showWaiting();   
 	    
 	    location.href ='SendQQSms?tele='+teleNumber+'&Msg='+Msg;
 	    
 	    //关闭提示
-	    $(document).ready(parent.closeWaiting());*/
-
+	    $(document).ready(parent.closeWaiting());
+	    */
 	}
 
   

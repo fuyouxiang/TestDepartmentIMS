@@ -6,17 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONException;
-
 import com.github.qcloudsms.SmsMultiSender;
 import com.github.qcloudsms.SmsMultiSenderResult;
-import com.github.qcloudsms.SmsSingleSender;
-import com.github.qcloudsms.SmsSingleSenderResult;
 import com.github.qcloudsms.httpclient.HTTPException;
 
 import cn.com.shxt.servlet.DateTime;
@@ -53,7 +45,7 @@ public class SendQQSms  extends HttpServlet {
 
 		
 		// 需要发送短信的手机号码
-		String[] phoneNumbers = {"21212313123", "12345678902", "12345678903"};
+		String[] phoneNumbers = {"15097007498"};
 		
 		/**
 	     * 腾讯云短信,100条一个月
@@ -91,8 +83,8 @@ public class SendQQSms  extends HttpServlet {
         try {
         	  String[] params = {"5678"};
         	  SmsMultiSender msender = new SmsMultiSender(appId, appKey);
-        	  SmsMultiSenderResult result =  msender.sendWithParam("86", phoneNumbers,
-        	      templateId, params, smsSign, "", "");
+        	  //SmsMultiSenderResult result =  msender.sendWithParam("86", phoneNumbers,templateId, params, smsSign, "", ""); 
+        	  SmsMultiSenderResult result =  msender.send(0, "86", phoneNumbers, Msg, "", "");
         	  System.out.println(result);
               if (result.result != 0) {
           		String info ="短信发送失败！请联系管理员查看后台日志。";
