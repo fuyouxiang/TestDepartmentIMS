@@ -239,7 +239,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 </style>
   </head>
   <body>
-    
+<!-- 右侧滚动条 -->
+<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">    
 <div class="MainDiv">
 <table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
   <tr>
@@ -322,7 +323,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		</TABLE>
 	
 	</form>
-
+</td>
+</tr>
+</table>
+</div>
 </div>
   </body>
 </html>
