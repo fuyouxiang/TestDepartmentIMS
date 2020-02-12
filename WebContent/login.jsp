@@ -56,7 +56,7 @@ String message = (String) request.getAttribute("message");
  								<h2 class="sub-agileits-w3layouts"></h2>
                                 <select style="high:400;font-weight:bold;width:80px;height: 30px;font-size:16px;background-color: transparent;color:white;" name="set_year"  id="set_year">                              
 					     <option value="<%=year %>" style="color:blue;background-color: transparent;"> &nbsp;&nbsp;<%=year %> &nbsp;&nbsp;</option>
-					     <option value="<%=year-1 %>" style="color:blue;background-color: transparent;"> &nbsp;&nbsp;<%=year-1 %> &nbsp;&nbsp;</option>
+					     <!--<option value="<%=year-1 %>" style="color:blue;background-color: transparent;"> &nbsp;&nbsp;<%=year-1 %> &nbsp;&nbsp;</option>  -->
 					     </select>
 					     <h2 class="sub-agileits-w3layouts"></h2>
 				<div class="submit-w3l">
@@ -70,7 +70,7 @@ String message = (String) request.getAttribute("message");
 <!--//form-ends-here-->
 <!-- copyright -->
 	<div class="copyright w3-agile">
-		<p> @ 2018年   V2.1.0版    测试部研发  <br /><a  href="tel:15210643559"  target="_blank">联系我们</a></p>
+		<p>网站备案号：京ICP备20002763号-1<br /><a  href="tel:15210643559"  target="_blank">联系我们</a></p>
 	</div>
 	<!-- //copyright --> 
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
