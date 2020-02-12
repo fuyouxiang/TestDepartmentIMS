@@ -3,8 +3,11 @@ package cn.com.shxt.utils;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -44,7 +47,7 @@ public class DBUtils {
 	private PreparedStatement statement;
 	private Statement stmt;
 	private ResultSet rs = null;
-
+	
 	public ResourceBundle yearChoose(){
 		
 		//获取服务器当前年度
@@ -60,10 +63,7 @@ public class DBUtils {
 			}catch (Exception e){
 			year=SetYear;
 		}
-		
-		
 
-		
 	    //通过登录页面选择的年度来判断数据源
 		if(SetYear.equals(year)){
 			Properties prop = new Properties();
@@ -766,6 +766,24 @@ public class DBUtils {
 		
 		return pageBean;
 	}
+	
+	//配置开关
+	public  String  queryString(String sql,String ZiDuanName) throws SQLException{
+		
+		String zhi= null;
+		try {
+			conn = getConn();
+			stmt = conn.createStatement();
+			ResultSet res = stmt.executeQuery(sql);		
+			if (res.next()) {        
+				zhi= res.getString(ZiDuanName); //这里可以根据字段名称得到该记录的角色的值
+			     } 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return zhi;
+	}	
+	
 	
 	
 	public int getCount(String sql){
