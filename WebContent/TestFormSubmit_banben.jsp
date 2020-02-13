@@ -74,7 +74,19 @@ if(errori=='yes'){
 					<div class="clear"></div>
 				</li>
 				<li class="first">
+					<a href="#" class=" icon email"></a><input name="k_email" type="text"  class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required">
+					<div class="clear"></div>
+				</li>
+				<li class="first">
 					<a href="#" class=" icon email"></a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
+					<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg"></a><input name="weiServer" type="text" class="text" placeholder="微服务名称" required="required">
+					<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg"></a><input name="banbenNo" type="text" class="text" placeholder="版本号" required="required">
 					<div class="clear"></div>
 				</li>
 				<!-- 
@@ -83,7 +95,7 @@ if(errori=='yes'){
 					<div class="clear"></div>
 				</li> -->
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="content" placeholder="测试内容" required="required"></textarea>
+				<a href="#" class=" icon msg"></a><textarea name="content" placeholder="版本构造内容" required="required"></textarea>
 				<div class="clear"></div>
 				<li class="second">
 				<a href="#" class=" icon msg"></a><textarea name="biaozhun" placeholder="测试通过标准" required="required"></textarea>

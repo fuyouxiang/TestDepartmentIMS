@@ -74,6 +74,10 @@ if(errori=='yes'){
 					<div class="clear"></div>
 				</li>
 				<li class="first">
+					<a href="#" class=" icon email"></a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required">
+					<div class="clear"></div>
+				</li>
+				<li class="first">
 					<a href="#" class=" icon email"></a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
 					<div class="clear"></div>
 				</li>

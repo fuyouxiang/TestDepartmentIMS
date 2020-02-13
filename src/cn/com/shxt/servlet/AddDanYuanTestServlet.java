@@ -41,6 +41,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		System.out.println("开发总监邮箱："+BossEmail);
 		String kaifa = request.getParameter("kaifa");
 		System.out.println("开发："+kaifa);
+		String k_email = request.getParameter("k_email");
+		System.out.println("开发邮箱："+k_email);
 		String date = request.getParameter("date");
 		System.out.println("日期："+date);
 		String content = request.getParameter("content");
@@ -49,8 +51,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		System.out.println("标准："+biaozhun);
 
 		DBUtils dbutil =new DBUtils();
-		String sql = "insert into SYS_DANYUANTEST (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN) values " +
-				"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "')";		
+		String sql = "insert into SYS_DANYUANTEST (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL) values " +
+				"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "')";		
 		
 		int flag = dbutil.update(sql);
 
@@ -59,7 +61,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		
 		try {
 			SendEmail sendEmail = new SendEmail();
-			String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail;
+			String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail+";"+k_email;
 			String Msgtitle = kaifa+"申请单元测试！";
 			String Msg = "【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
