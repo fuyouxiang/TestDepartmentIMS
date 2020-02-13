@@ -70,7 +70,10 @@ String message = (String) request.getAttribute("message");
 <!--//form-ends-here-->
 <!-- copyright -->
 	<div class="copyright w3-agile">
-		<p>网站备案号：京ICP备20002763号-1<br /><a  href="tel:15210643559"  target="_blank">联系我们</a></p>
+		<p>网站备案号：京ICP备20002763号-1<a  href="tel:15210643559"  target="_blank">&nbsp;联系我们</a></p>
+	</div>
+	<div style="width:300px;margin:0 auto; padding:20px 0;">
+		 <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802030909" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="img/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">京公网安备 11010802030909号</p></a>
 	</div>
 	<!-- //copyright --> 
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
