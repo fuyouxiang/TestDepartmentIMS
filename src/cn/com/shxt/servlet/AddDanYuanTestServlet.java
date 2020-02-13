@@ -56,16 +56,16 @@ public class AddDanYuanTestServlet extends HttpServlet {
 
 		System.out.println(time+"添加单元测试申请："+sql);	
 
-		/*
+		
 		try {
 			SendEmail sendEmail = new SendEmail();
-			String EmailAddress =";liglh@yonyou.com;wangwtk@yonyou.com;"+BossEmail;
+			String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail;
 			String Msgtitle = kaifa+"申请单元测试！";
 			String Msg = "【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
 			request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=no").forward(request, response);
-		}*/
+		}
 	
 		if(flag > 0 ){
 			request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=yes").forward(request, response);
