@@ -578,14 +578,22 @@
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.servlet.AddDanYuanTestServlet</servlet-class>
 	</servlet>       
-    
+	<servlet>    
+    	<servlet-name>DYTestApplicationServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.DYTestApplicationServlet</servlet-class>
+	</servlet>       
     
 
 	
 
 	
 	
-	
+	<servlet-mapping>
+    	<servlet-name>DYTestApplicationServlet</servlet-name>
+    	<url-pattern>/DYTestApplicationServlet</url-pattern>
+	</servlet-mapping>	
 	<servlet-mapping>
     	<servlet-name>AddDanYuanTestServlet</servlet-name>
     	<url-pattern>/AddDanYuanTestServlet</url-pattern>

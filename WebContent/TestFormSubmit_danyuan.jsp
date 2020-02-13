@@ -25,11 +25,11 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 //取出传回来的参数error并与yes比较
 var errori ='<%=request.getParameter("answer")%>';
 if(errori=='yes'){
- alert("单元测试提价单提交成功！已邮件通知测试经理。");
- window.location.href="<%=path%>/TestApplicationServlet";
+ alert("单元测试申请单提交成功！已邮件通知测试经理。");
+ window.location.href="<%=path%>/DYTestApplicationServlet";
 }else if(errori=='no'){
- alert("单元测试提价单提交失败，请联系管理员！");
- window.location.href="<%=path%>/TestApplicationServlet";
+ alert("单元测试申请单提交失败，请联系管理员！");
+ window.location.href="<%=path%>/DYTestApplicationServlet";
 }
 </script>
 <body>
@@ -37,6 +37,9 @@ if(errori=='yes'){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String date= format.format(new Date());
 		%>
+	<div class="top-buttons-agileinfo">
+		<a  href="<%=path%>/TestApplicationServlet">版本测试申请</a><a class="active" href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a>
+	</div>
 	<h1>单元测试申请单</h1>
 	<form action="<%=path%>/AddDanYuanTestServlet" name="formname" method="post" id =formId>
 	<div class="login-01">

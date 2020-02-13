@@ -27,6 +27,7 @@ body{
   font-family: 'Lora', serif;
 
 }
+
 body a,form li,.submit input[type="submit"]{
 	transition: 0.1s all;
 	-webkit-transition: 0.1s all;
@@ -36,13 +37,39 @@ body a,form li,.submit input[type="submit"]{
 body h1 {
   color: #fff;
   text-align: center;
-  padding-top:1em;
+  padding-top:0em;
   font-size:2.9em;
  font-family: 'Raleway', sans-serif;
 }
 .login-01{
   width:38%;
   margin:2% auto 3%;
+}
+.top-buttons-agileinfo {
+    /* float: right; */
+    text-align: center;
+    padding: 1em 3em;
+}
+.top-buttons-agileinfo a.active {
+    border-color: #df5799;
+    background: #F79D29;
+}
+.top-buttons-agileinfo a {
+    background: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 9px 26px;
+    border: 1px solid #756d6d;
+    margin: 15px 15px 0px 0px;
+    -webkit-transition: 0.3s all;
+    -moz-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    -ms-transition: 0.3s all;
+    transition: 0.3s all;
+    border: 1px solid #fff;
 }
 form {
    padding: 0% 1%;

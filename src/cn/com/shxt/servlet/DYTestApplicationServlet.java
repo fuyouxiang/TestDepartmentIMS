@@ -16,7 +16,7 @@ import cn.com.shxt.utils.DBUtils;
 
 
 
-public class TestApplicationServlet extends HttpServlet {
+public class DYTestApplicationServlet extends HttpServlet {
 	
 
 	private static final long serialVersionUID = 7892767001231292613L;
@@ -33,11 +33,10 @@ public class TestApplicationServlet extends HttpServlet {
 		//时间戳，直接调用DateTime.java中的方法
 		String timelog= DateTime.showtime();
 
-		System.out.println(timelog+"版本测试申请单接口——————————");
+		System.out.println(timelog+"单元测试申请单接口——————————");
 		
 		String sql = "select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN";
 		System.out.println(timelog+"查询所有部门："+sql);
-	
 	
 		String nowPage = request.getParameter("currentPage");
 		DBUtils dbutil =new DBUtils();
@@ -63,7 +62,7 @@ public class TestApplicationServlet extends HttpServlet {
      */
      
      
-		request.getRequestDispatcher("TestFormSubmit_banben.jsp").forward(request, response);
+		request.getRequestDispatcher("TestFormSubmit_danyuan.jsp").forward(request, response);
 	}
 
 	
