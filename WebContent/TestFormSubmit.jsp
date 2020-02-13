@@ -22,7 +22,15 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 <!--//webfonts-->
 </head>
 <script language="javascript">
-
+//取出传回来的参数error并与yes比较
+var errori ='<%=request.getParameter("answer")%>';
+if(errori=='yes'){
+ alert("单元测试提价单提交成功！已邮件通知测试经理。");
+ window.location.href="<%=path%>/TestApplicationServlet";
+}else if(errori=='no'){
+ alert("单元测试提价单提交失败，请联系管理员！");
+ window.location.href="<%=path%>/TestApplicationServlet";
+}
 </script>
 <body>
 		<%
@@ -30,6 +38,7 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 		String date= format.format(new Date());
 		%>
 	<h1>单元测试申请单</h1>
+	<form action="<%=path%>/AddDanYuanTestServlet" name="formname" method="post" id =formId>
 	<div class="login-01">
 			<form>
 				<ul>
@@ -37,7 +46,7 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 
 				<li class="first">
 					<a href="#" class=" icon user"></a>
-					<select>
+					<select name="bumen">
 					<%
                       if(pageBean!=null){
                        //本页的结果集
@@ -47,7 +56,7 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
                           for(int i=0;i<resList.size();i++){
                           Map<String, String>  stuMap= resList.get(i);	  
                           %>    
-					<option  value="<%=stuMap.get("B_NAME") %>"><%=stuMap.get("B_NAME") %></option>
+					<option  value="<%=stuMap.get("B_NAME") %>;<%=stuMap.get("B_USER") %>;<%=stuMap.get("EMAIL") %>"><%=stuMap.get("B_NAME") %></option>
 					<%     
                           }                        	  
                        }
@@ -58,11 +67,11 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 				</li>
 				
 				<li class="first">
-					<a href="#" class=" icon user"></a><input type="text" class="text" placeholder="开发人员" >
+					<a href="#" class=" icon user"></a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input type="text"  readonly="readonly" class="text" value="<%=date%>"  >
+					<a href="#" class=" icon email"></a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
 					<div class="clear"></div>
 				</li>
 				<!-- 
@@ -71,17 +80,18 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 					<div class="clear"></div>
 				</li> -->
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea placeholder="测试内容" ></textarea>
+				<a href="#" class=" icon msg"></a><textarea name="content" placeholder="测试内容" required="required"></textarea>
 				<div class="clear"></div>
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea placeholder="测试通过标准" ></textarea>
+				<a href="#" class=" icon msg"></a><textarea name="biaozhun" placeholder="测试通过标准" required="required"></textarea>
 				<div class="clear"></div>
 				</li>
 			</ul>
-			<input type="submit" onClick="myFunction()" value="提交" >
+			<input type="submit" value="提交" >
 			<div class="clear"></div>
 		</form>
 </div>
+</form>
 	<!--start-copyright-->
    		<div class="copy-right">
    			<div class="wrap">

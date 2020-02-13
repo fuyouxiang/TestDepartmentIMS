@@ -49,7 +49,7 @@ public class SendEmail  extends HttpServlet {
 		Msg = new String(Msg.getBytes("ISO8859-1"),"UTF-8");
 		System.out.println("邮件内容："+Msg);
 		
-		String EmailAddressStirng= request.getParameter("EmailAddress");//信息内容
+		String EmailAddressStirng= request.getParameter("EmailAddress");//收件人
 		EmailAddressStirng = new String(EmailAddressStirng.getBytes("ISO8859-1"),"UTF-8");
 		System.out.println("邮件地址："+EmailAddressStirng);
 		
