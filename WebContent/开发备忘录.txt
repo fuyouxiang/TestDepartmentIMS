@@ -1,0 +1,64 @@
+————————表说明————————
+测试用例评审表：SYS_ATTACH_FILE
+测试用例评审日志表：SYS_ATTACH_FILE_LOG
+产品中心部门表：SYS_BUMEN
+系统配置表：SYS_CONFIG
+单元测试申请统计表：SYS_DANYUANTEST
+出差统计表：SYS_EVECTION
+首页公告文档表：SYS_GONGGAO
+首页顶部通知表：SYS_JITANG
+请假统计表：SYS_LEAVE
+加班统计表：SYS_OVERTIME
+全年个人情况统计表：SYS_PERSON
+站立会签到表：SYS_SIGN
+全年资源情况统计表：SYS_TEST
+URL服务表：SYS_URL
+用户表：SYS_USER
+工作日报表：SYS_VERSION
+
+————————建表并设置字段自增长：————————
+
+-- Create table
+create table SYS_DANYUANTEST
+(
+  d_id     number,
+  D_BUMEN     VARCHAR2(200),
+  D_KBOSS      VARCHAR2(200),
+  D_KBOSSEMAIL      VARCHAR2(200),
+  D_KAIFA      VARCHAR2(200),
+  D_DATE      VARCHAR2(200),
+  D_CONTENT      VARCHAR2(2000), 
+  D_BIAOZHUN      VARCHAR2(2000)
+)
+tablespace MOF
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  )
+nologging;
+
+create sequence danyuantest_id
+minvalue 1
+maxvalue 9999999999999999999999999999
+start with 1
+increment by 1
+nocache;
+
+create or replace trigger insert_danyuantest_id
+before insert on SYS_DANYUANTEST
+for each row
+begin
+select danyuantest_id.nextval into :new.d_id from dual;
+end insert_danyuantest_id;
+
+insert into SYS_DANYUANTEST (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN) values ('1','2','3','4','5','6','7');
+commit;
+
+
+

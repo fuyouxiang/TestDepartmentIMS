@@ -13,7 +13,7 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
     <base target="_self"/>
     
     
-    <title>短信发送</title>
+    <title>邮件发送</title>
     <style type="text/css">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
