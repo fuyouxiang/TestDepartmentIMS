@@ -49,16 +49,18 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		System.out.println("内容："+content);
 		String biaozhun = request.getParameter("biaozhun");
 		System.out.println("标准："+biaozhun);
+		String D_TYPE = "单元测试";
+		System.out.println("测试类型："+D_TYPE);
 
 		DBUtils dbutil =new DBUtils();
-		String sql = "insert into SYS_DANYUANTEST (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL) values " +
-				"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "')";		
+		String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE) values " +
+				"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "')";		
 		
 		int flag = dbutil.update(sql);
 
 		System.out.println(time+"添加单元测试申请："+sql);	
 
-		
+		/*
 		try {
 			SendEmail sendEmail = new SendEmail();
 			String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail+";"+k_email;
@@ -67,7 +69,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
 			request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=no").forward(request, response);
-		}
+		}*/
 	
 		if(flag > 0 ){
 			request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=yes").forward(request, response);
@@ -76,12 +78,6 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		}
 
 		
-	}
-		
-
-	
-	public void init() throws ServletException {
-		// Put your code here
 	}
 
 }
