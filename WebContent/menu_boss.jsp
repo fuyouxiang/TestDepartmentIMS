@@ -127,7 +127,7 @@ background=images/menu_bg.jpg border=0>
         <TR height=22>
           <TD style="PADDING-LEFT: 30px" background=images/menu_bt.jpg><A 
             class=menuParent onclick=expand(6) 
-            href="javascript:void(0);">出勤情况管理</A></TD></TR>
+            href="javascript:void(0);">每日早会</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
       <TABLE id=child6 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
@@ -136,7 +136,7 @@ background=images/menu_bg.jpg border=0>
           <TD align=center width=30><IMG height=9 
             src="images/menu_icon.gif" width=9></TD>
           <TD>
-         	 <A href="<%=path %>/AddSignServlet"  target="right">每日签到</A>
+         	 <A href="<%=path %>/AddSignServlet"  target="right">早会签到</A>
          </TD>
         </TR>
         <TR height=20>
@@ -155,7 +155,7 @@ background=images/menu_bg.jpg border=0>
         <TR height=22>
           <TD style="PADDING-LEFT: 30px" background=images/menu_bt.jpg><A 
             class=menuParent onclick=expand(1) 
-            href="javascript:void(0);">工作情况汇总</A></TD></TR>
+            href="javascript:void(0);">工作日报</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
       <TABLE id=child1 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
@@ -164,14 +164,14 @@ background=images/menu_bg.jpg border=0>
           <TD align=center width=30><IMG height=9 
             src="images/menu_icon.gif" width=9></TD>
           <TD>
-         	 <A href="<%=path %>/User/addversion.jsp"  target="right">工作情况添加</A>
+         	 <A href="<%=path %>/User/addversion.jsp"  target="right">工作日报添加</A>
          </TD>
         </TR>
         <TR height=20>
           <TD align=center width=30><IMG height=9 
             src="images/menu_icon.gif" width=9></TD>
           <TD><A 
-            href="<%=path %>/selectVersionServlet" target="right">工作情况查询</A></TD></TR>  
+            href="<%=path %>/selectVersionServlet" target="right">工作日报查询</A></TD></TR>  
         <TR height=4>
           <TD colSpan=2></TD></TR></TABLE>
           
@@ -184,7 +184,7 @@ background=images/menu_bg.jpg border=0>
         <TR height=22>
           <TD style="PADDING-LEFT: 30px" background=images/menu_bt.jpg><A 
             class=menuParent onclick=expand(2) 
-            href="javascript:void(0);">加班情况汇总</A></TD></TR>
+            href="javascript:void(0);">加班+出差</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
       <TABLE id=child2 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
@@ -201,25 +201,8 @@ background=images/menu_bg.jpg border=0>
             src="images/menu_icon.gif" width=9></TD>
           <TD><A 
             href="<%=path %>/selectOvertimeServlet" 
-            target="right">加班情况查询</A></TD></TR>  
-        <TR height=4>
-          <TD colSpan=2></TD></TR></TABLE>
-                 
-          
-                  
-               
-          <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>      
-        <TR>
-          <TD height=10></TD></TR></TABLE>
-      <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>       
-        <TR height=22>
-          <TD style="PADDING-LEFT: 30px" background=images/menu_bt.jpg><A 
-            class=menuParent onclick=expand(3) 
-            href="javascript:void(0);">出差情况汇总</A></TD></TR>
-        <TR height=4>
-          <TD></TD></TR></TABLE>
-      <TABLE id=child3 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
-      width=150 border=0>
+            target="right">加班情况查询</A></TD></TR>
+            
         <TR height=20>
           <TD align=center width=30><IMG height=9 
             src="images/menu_icon.gif" width=9></TD>
@@ -232,9 +215,12 @@ background=images/menu_bg.jpg border=0>
             src="images/menu_icon.gif" width=9></TD>
           <TD><A 
             href="<%=path %>/selectEvectionServlet" 
-            target="right">出差情况查询</A></TD></TR>  
+            target="right">出差情况查询</A></TD></TR>
+               
         <TR height=4>
           <TD colSpan=2></TD></TR></TABLE>
+                 
+          
           
           
            
@@ -245,7 +231,7 @@ background=images/menu_bg.jpg border=0>
         <TR height=22>
           <TD style="PADDING-LEFT: 30px" background=images/menu_bt.jpg><A 
             class=menuParent onclick=expand(4) 
-            href="javascript:void(0);">请假情况汇总</A></TD></TR>
+            href="javascript:void(0);">请假管理</A></TD></TR>
         <TR height=4>
           <TD></TD></TR></TABLE>
       <TABLE id=child4 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
@@ -297,9 +283,46 @@ background=images/menu_bg.jpg border=0>
             target="right">个人情况统计</A></TD></TR>  
         <TR height=4>
           <TD colSpan=2></TD></TR></TABLE>
+ 
+ 
+ 
                  
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>      
+        <TR>
+          <TD height=10></TD></TR></TABLE>
+      <TABLE cellSpacing=0 cellPadding=0 width=150 border=0>       
+        <TR height=22>
+          <TD style="PADDING-LEFT: 30px" background=images/menu_bt.jpg><A 
+            class=menuParent onclick=expand(10) 
+            href="javascript:void(0);">测试申请汇总</A></TD></TR>
+        <TR height=4>
+          <TD></TD></TR></TABLE>
+      <TABLE id=child10 style="DISPLAY: none" cellSpacing=0 cellPadding=0 
+      width=150 border=0>
+        <TR height=20>
+          <TD align=center width=30><IMG height=9 
+            src="images/menu_icon.gif" width=9></TD>
+          <TD>
+         	 <A href="<%=path %>/TestApplicationServlet"  target="_blank">提交测试申请</A>
+         </TD>
+        </TR>
+        <TR height=20>
+          <TD align=center width=30><IMG height=9 
+            src="images/menu_icon.gif" width=9></TD>
+          <TD><A 
+            href="<%=path %>/selectBanBenServlet" 
+            target="right">版本测试汇总</A></TD></TR>
+        <TR height=20>
+          <TD align=center width=30><IMG height=9 
+            src="images/menu_icon.gif" width=9></TD>
+          <TD><A 
+            href="<%=path %>/" 
+            target="right">单元测试汇总</A></TD></TR>  
+        <TR height=4>
+          <TD colSpan=2></TD></TR></TABLE>                 
                  
-                 
+  
+  
                  
                  
          <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>       
