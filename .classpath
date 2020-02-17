@@ -13,7 +13,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool-0.9.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool-cglib.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool.xml"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/qcloudsms-1.0.6.jar"/>
 	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/annotations-api.jar"/>
 	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/catalina.jar"/>

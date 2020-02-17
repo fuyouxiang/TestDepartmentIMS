@@ -236,11 +236,22 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
       a.href = link;
       a.click();
     }
+
+  //开始测试的返回结果
+  var errori ='<%=request.getParameter("StartAnswer")%>';
+  if(errori=='yes'){
+   alert("测试任务已开始！");
+   window.location.href="<%=path%>/selectBanBenServlet";
+  }else if(errori=='no'){
+   alert("测试任务启动失败，请联系管理员！");
+   window.location.href="<%=path%>/selectBanBenServlet";
+  }
+
     
-    
-    //详情
-    function XiangQing(){
+    //开始测试
+    function StartTest(){
         var checkbox = document.getElementsByName('checkboxBtn');
+        var form= document.getElementById("StartBBTestForm");
         var value = new Array();
         for(var i = 0; i < checkbox.length; i++){
         	if(checkbox[i].checked)
@@ -250,12 +261,12 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
          if(ID == "" || ID == null || ID == undefined){
         	 alert("请勾选一条数据！"); 
          }else{
-        	 alert("该条数据的ID为"+ID); 
+        	 //alert("该条数据的ID为"+ID); 
+        	 form.action="<%=path %>/StartBBTestServlet?D_ID="+ID;
+        	 //alert(form.action);
+        	 form.submit();
          }
-        	 
-           
-
-}
+     }
 </script>
 
 <body onload="valiButt()">
@@ -281,19 +292,26 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 %>
 			   <td width="1000" align="left" >
 			    <button onclick="XiangQing()">操作日志</button>
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block';document.getElementById('fade').style.display='block'">开始测试</button>
-
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block';document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
-			    		<form action="Error.jsp" method="post"  id="loginForm">
+			    		<form  method="post"  id="StartBBTestForm">
         					【测试人】：<input  type="text" name="D_TUSER"><br/><br/>
-        					【开始测试时间】：<input type="text" name="pwd" value="<%=time %>" readonly="readonly"><br/><br/>
-        					<button id="submitbut" style="display: block;" >提交</button>
+        					【开始测试时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
+        					<button style="display: block;" onclick='StartTest()'>提交</button>
         				</form>
-						<button onclick = "document.getElementById('startTest').style.display='none';document.getElementById('fade').style.display='none'">关闭</button>
+						<button onclick = "document.getElementById('startTest').style.display='none';document.getElementById('startTest').style.display='none'">关闭</button>
 					</div>
-				
-			    <button onclick="XiangQing()">重新提交</button>
-			    <button onclick="XiangQing()">驳回</button>
+
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block';document.getElementById('fade').style.display='block'">驳回</button>
+			    	<div style="font-size:18px;font-weight:bold;" id="returnTest" class="white_content">
+			    		<form  method="post"  id="StartBBTestForm">
+        					【测试人】：<input  type="text" name="D_TUSER"><br/><br/>
+        					【开始测试时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
+        					<button style="display: block;" onclick='StartTest()'>提交</button>
+        				</form>
+						<button onclick = "document.getElementById('returnTest').style.display='none';document.getElementById('fade').style.display='none'">关闭</button>
+					</div>
+					
 			    <button onclick="XiangQing()">通过</button>
 
 			  
@@ -380,8 +398,9 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         					【微服务】：<%=stuMap.get("D_WEINAME") %><br/>
         					【版本号】：<%=stuMap.get("D_VERSION") %><br/>
         					【版本内容】：<%=stuMap.get("D_CONTENT") %><br/>
-        				           【测试通过标准】：<%=stuMap.get("D_BIAOZHUN") %><br/>
-        				           【状态】：<%=state %><br/>
+        				          【测试通过标准】：<%=stuMap.get("D_BIAOZHUN") %><br/>
+        				          【状态】：<%=state %><br/>
+        					【重新提交路径】：<%=stuMap.get("D_SUBURL") %><br/>
         					<br/>
 							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button></div>
 							</td>                            

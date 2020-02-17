@@ -596,7 +596,12 @@
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.servlet.selectBanBenServlet</servlet-class>
 	</servlet>
-	
+	<servlet>    
+    	<servlet-name>StartBBTestServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.StartBBTestServlet</servlet-class>
+	</servlet>	
 
 	
 
@@ -608,6 +613,12 @@
 
 
 
+
+
+	<servlet-mapping>
+    	<servlet-name>StartBBTestServlet</servlet-name>
+    	<url-pattern>/StartBBTestServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>selectBanBenServlet</servlet-name>
     	<url-pattern>/selectBanBenServlet</url-pattern>
