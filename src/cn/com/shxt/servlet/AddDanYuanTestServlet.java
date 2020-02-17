@@ -57,13 +57,9 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "')";		
 		
 		int flag = dbutil.update(sql);
-
 		System.out.println(time+"添加单元测试申请："+sql);	
-
 		
 		String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '无')";
-
-		
 		int flag2 = dbutil.update(sql2);
 		System.out.println(time+"添加日志："+sql2);
 		
