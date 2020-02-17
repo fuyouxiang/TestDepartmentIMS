@@ -13,23 +13,24 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool-0.9.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool-cglib.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool.xml"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/qcloudsms-1.0.6.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/annotations-api.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/ecj-4.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/jasper.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/jasper-el.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/tomcat-dbcp.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/tomcat-i18n-es.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/tomcat-i18n-fr.jar"/>
+	<classpathentry kind="lib" path="D:/个人/测试部工作管理系统/eclipsemazb/apache-tomcat-6.0.48/lib/tomcat-i18n-ja.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/annotations-api.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/catalina.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/catalina-ant.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/catalina-ha.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/catalina-tribes.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/ecj-4.3.1.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/el-api.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/jasper.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/jasper-el.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/tomcat-coyote.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/tomcat-dbcp.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/tomcat-i18n-es.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/tomcat-i18n-fr.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse/apache-tomcat-6.0.48/lib/tomcat-i18n-ja.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
