@@ -34,7 +34,7 @@ if(errori=='yes'){
 </script>
 <body>
 		<%
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date= format.format(new Date());
 		%>
 	<div class="top-buttons-agileinfo">
