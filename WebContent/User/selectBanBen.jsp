@@ -267,6 +267,23 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         	 form.submit();
          }
      }
+    
+    
+    //操作记录
+    function BBLog(){
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+        	 window.location.href="<%=path %>/selectBBLogServlet?D_ID="+ID;
+         }
+     }
 </script>
 
 <body onload="valiButt()">
@@ -291,7 +308,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 String time=df.format(new Date());// new Date()为获取当前系统时间
 			 %>
 			   <td width="1000" align="left" >
-			    <button onclick="XiangQing()">操作日志</button>
+			    <button onclick="BBLog()">操作日志</button>
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block';document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
 			    		<form  method="post"  id="StartBBTestForm">
