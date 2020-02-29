@@ -236,18 +236,24 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
       a.href = link;
       a.click();
     }
-
-  //开始测试的返回结果
-  var errori ='<%=request.getParameter("StartAnswer")%>';
-  if(errori=='yes'){
-   alert("测试任务已开始！");
-   window.location.href="<%=path%>/selectBanBenServlet";
-  }else if(errori=='no'){
-   alert("测试任务启动失败，请联系管理员！");
-   window.location.href="<%=path%>/selectBanBenServlet";
-  }
-
     
+    
+    //操作记录
+    function BBLog(){
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+        	 window.location.href="<%=path %>/selectBBLogServlet?D_ID="+ID;
+         }
+     }    
+
     //开始测试
     function StartTest(){
         var checkbox = document.getElementsByName('checkboxBtn');
@@ -267,11 +273,21 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         	 form.submit();
          }
      }
+
+    //开始测试的返回结果
+    var errori ='<%=request.getParameter("StartAnswer")%>';
+    if(errori=='yes'){
+     alert("测试任务已开始！");
+     window.location.href="<%=path%>/selectBanBenServlet";
+    }else if(errori=='no'){
+     alert("测试任务启动失败，请联系管理员！");
+     window.location.href="<%=path%>/selectBanBenServlet";
+    }
     
-    
-    //操作记录
-    function BBLog(){
+    //驳回操作
+    function ReturnTest(){
         var checkbox = document.getElementsByName('checkboxBtn');
+        var form= document.getElementById("returnBBTestForm");
         var value = new Array();
         for(var i = 0; i < checkbox.length; i++){
         	if(checkbox[i].checked)
@@ -281,11 +297,25 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
          if(ID == "" || ID == null || ID == undefined){
         	 alert("请勾选一条数据！"); 
          }else{
-        	 window.location.href="<%=path %>/selectBBLogServlet?D_ID="+ID;
+        	 form.action="<%=path %>/ReturnBBTestServlet?D_ID="+ID;
+        	 form.submit();
          }
      }
+    
+    //驳回操作的返回结果
+    var errori ='<%=request.getParameter("ReturnAnswer")%>';
+    if(errori=='yes'){
+     alert("驳回操作完成，已邮件通知开发人员！为保证沟通的及时性，建议同时通过其他方式通知开发。");
+     window.location.href="<%=path%>/selectBanBenServlet";
+    }else if(errori=='no'){
+     alert("驳回操作失败，请联系管理员！");
+     window.location.href="<%=path%>/selectBanBenServlet";
+    }    
+    
 </script>
 
+		
+		
 <body onload="valiButt()">
 <!-- 右侧滚动条 -->
 <div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">
@@ -309,24 +339,25 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 %>
 			   <td width="1000" align="left" >
 			    <button onclick="BBLog()">操作日志</button>
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block';document.getElementById('startTest').style.display='block'">开始测试</button>
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
 			    		<form  method="post"  id="StartBBTestForm">
-        					【测试人】：<input  type="text" name="D_TUSER"><br/><br/>
+        					【测试人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
         					【开始测试时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
         					<button style="display: block;" onclick='StartTest()'>提交</button>
         				</form>
-						<button onclick = "document.getElementById('startTest').style.display='none';document.getElementById('startTest').style.display='none'">关闭</button>
+						<button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
 					</div>
 
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block';document.getElementById('fade').style.display='block'">驳回</button>
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'">驳回</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="returnTest" class="white_content">
-			    		<form  method="post"  id="StartBBTestForm">
-        					【测试人】：<input  type="text" name="D_TUSER"><br/><br/>
-        					【开始测试时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
-        					<button style="display: block;" onclick='StartTest()'>提交</button>
+			    		<form  method="post"  id="returnBBTestForm">
+        					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
+        					【驳回时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
+        					【驳回原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
+        					<button style="display: block;" onclick='ReturnTest()'>提交</button>
         				</form>
-						<button onclick = "document.getElementById('returnTest').style.display='none';document.getElementById('fade').style.display='none'">关闭</button>
+						<button onclick = "document.getElementById('returnTest').style.display='none'">关闭</button>
 					</div>
 					
 			    <button onclick="XiangQing()">通过</button>
@@ -347,21 +378,21 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                 <td height="40" class="font42">
 				<table id = "testList" width="100%" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="11" align="center" style="font-size:14px">版本测试汇总</td>
+                    	<td id="div_title" height="28" colspan="11" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
-                    <td  style="font-size:13px;font-weight:bold"></td>
-                    <td  style="font-size:13px;font-weight:bold">编号</td>
-                    <td  style="font-size:13px;font-weight:bold">部门</td>
-                    <td  style="font-size:13px;font-weight:bold">开发</td>
-                    <td  style="font-size:13px;font-weight:bold">提交日期</td>
-                    <td  style="font-size:13px;font-weight:bold">微服务</td>
-                    <td  style="font-size:13px;font-weight:bold">版本号 </td>
-                    <td  style="font-size:13px;font-weight:bold">测试人</td>
-                    <td  style="font-size:13px;font-weight:bold">NG次数</td>
-                    <td  style="font-size:13px;font-weight:bold">状态</td>
-                    <td  style="font-size:13px;font-weight:bold">操作</td>
+                    <td  style="font-size:15px;font-weight:bold"></td>
+                    <td  style="font-size:15px;font-weight:bold">编号</td>
+                    <td  style="font-size:15px;font-weight:bold">部门</td>
+                    <td  style="font-size:15px;font-weight:bold">开发</td>
+                    <td  style="font-size:15px;font-weight:bold">提交日期</td>
+                    <td  style="font-size:15px;font-weight:bold">微服务</td>
+                    <td  style="font-size:15px;font-weight:bold">版本号 </td>
+                    <td  style="font-size:15px;font-weight:bold">测试人</td>
+                    <td  style="font-size:15px;font-weight:bold">NG次数</td>
+                    <td  style="font-size:15px;font-weight:bold">状态</td>
+                    <td  style="font-size:15px;font-weight:bold">操作</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
                    <tbody>
@@ -385,7 +416,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             	  }else if(state.equals("1")){
                             		  state ="正在测试";
                             	  }else if(state.equals("2")){
-                            		  state ="被退回";
+                            		  state ="已驳回";
                             	  }else if(state.equals("3")){
                             		  state ="测试通过";
                             	  }else{
