@@ -1,11 +1,6 @@
 package cn.com.shxt.servlet;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -63,22 +58,21 @@ public class AddBanBenTestServlet extends HttpServlet {
 		int flag = dbutil.update(sql);
 		System.out.println(time+"添加版本测试申请："+sql);	
 		
-		String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '无')";
-
-		
+		String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"')";
 		int flag2 = dbutil.update(sql2);
 		System.out.println(time+"添加日志："+sql2);	
 
-		/*
+		
 		try {
-			SendEmail sendEmail = new SendEmail();
+			
 			String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail+";"+k_email;
 			String Msgtitle = kaifa+"申请版本测试！";
 			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
-			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+			//SendEmail sendEmail = new SendEmail();
+			//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
 			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
-		}*/
+		}
 	
 		if(flag > 0 ){
 			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=yes").forward(request, response);
