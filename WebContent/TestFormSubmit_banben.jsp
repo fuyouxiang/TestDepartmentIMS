@@ -41,7 +41,7 @@ if(errori=='yes'){
 		<a class="active" href="<%=path%>/TestApplicationServlet">版本测试申请</a><a href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a>
 	</div>
 	<h1>版本测试申请单</h1>
-	<form action="<%=path%>/AddBanBenTestServlet" name="formname" method="post" id =formId>
+	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId>
 	<div class="login-01">
 			<form>
 				<ul>
