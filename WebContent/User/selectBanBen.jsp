@@ -448,7 +448,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         					【版本内容】：<%=stuMap.get("D_CONTENT") %><br/>
         				          【测试通过标准】：<%=stuMap.get("D_BIAOZHUN") %><br/>
         				          【状态】：<%=state %><br/>
-        					【重新提交路径】：<%=stuMap.get("D_SUBURL") %><br/>
+        					【重新提交路径】：<a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a><br/>
         					<br/>
 							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button></div>
 							</td>                            

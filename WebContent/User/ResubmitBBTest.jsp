@@ -23,12 +23,12 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 </head>
 <script language="javascript">
 //取出传回来的参数error并与yes比较
-var errori ='<%=request.getParameter("answer")%>';
+var errori ='<%=request.getParameter("StartAnswer")%>';
 if(errori=='yes'){
- alert("版本测试申请单提交成功！已邮件通知测试经理。");
+ alert("版本测试申请单重新提交成功！已邮件通知测试经理。");
  window.location.href="<%=path%>/TestApplicationServlet";
 }else if(errori=='no'){
- alert("单元测试申请单提交失败，请联系管理员！");
+ alert("单元测试申请单重新提交失败，请联系管理员！");
  window.location.href="<%=path%>/TestApplicationServlet";
 }
 </script>
@@ -47,7 +47,7 @@ if(errori=='yes'){
         int NG=Integer.parseInt(stuMap.get("D_NG"))+1; 
 	%>
 	<h1>版本测试第<%=NG %>次提交</h1>
-	<form action="<%=path%>/AddBanBenTestServlet" name="formname" method="post" id =formId>
+	<form action="<%=path%>/AddBanBenTestServlet?type=2" name="formname" method="post" id =formId>
 	<div class="login-01">
 			<form>
 			
@@ -55,12 +55,14 @@ if(errori=='yes'){
 				<ul>
 				<li class="first">
 				<a href="#" class=" icon user"></a>
+					<input type="hidden" name="BossEmail"  value="<%=stuMap.get("D_KBOSSEMAIL") %>">
 					<input name="kaifa" type="text" class="text" readonly="readonly" required="required" value="<%=stuMap.get("D_BUMEN") %>">
 					<div class="clear"></div>
 				</li>
 				
 				<li class="first">
 					<input type="hidden" name="d_id"  value="<%=stuMap.get("D_ID") %>">
+					<input type="hidden" name="NGnumber"  value="<%=NG %>">
 					<a href="#" class=" icon user"></a><input name="kaifa" type="text" class="text" readonly="readonly" placeholder="开发人员" required="required" value="<%=stuMap.get("D_KAIFA") %>">
 					<div class="clear"></div>
 				</li>
