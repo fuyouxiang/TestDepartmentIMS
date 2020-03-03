@@ -114,16 +114,15 @@ function Return(){
 						<p>时间：<%=stuMap.get("T_TIME") %></p>
 					</div>
 				</div>
-				<!--中-->
+				<!--
 				<div class="NodeDetail-content">
 					<span class="badge"><%=stuMap.get("T_CAOZUO") %></span>
 				</div>
-				<br/>
+				<br/>-->
 				<!--中-->
 				<div class="NodeDetail-content">
-					<span class="badge">备注:</span>
+					<span class="badge">备注:</span>&nbsp;&nbsp;<%=stuMap.get("T_BEIZHU") %>
 
-					<p><%=stuMap.get("T_BEIZHU") %></p>
 				</div>
 			</div>
 		</div>		
