@@ -56,7 +56,7 @@ if(errori=='yes'){
 				<li class="first">
 				<a href="#" class=" icon user"></a>
 					<input type="hidden" name="BossEmail"  value="<%=stuMap.get("D_KBOSSEMAIL") %>">
-					<input name="kaifa" type="text" class="text" readonly="readonly" required="required" value="<%=stuMap.get("D_BUMEN") %>">
+					<input name="bumen" type="text" class="text" readonly="readonly" required="required" value="<%=stuMap.get("D_BUMEN") %>">
 					<div class="clear"></div>
 				</li>
 				

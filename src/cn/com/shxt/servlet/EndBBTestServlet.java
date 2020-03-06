@@ -72,7 +72,7 @@ public class EndBBTestServlet extends HttpServlet {
 			
 			String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 			System.out.println(time+"邮件地址："+EmailAddress);
-			String Msgtitle = banbenNo+"版本测试测试结束，测试通过！";
+			String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试结束，测试通过！";
 			System.out.println(time+"邮件标题："+Msgtitle);
 			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；";
 			System.out.println(time+"邮件内容："+Msg);
