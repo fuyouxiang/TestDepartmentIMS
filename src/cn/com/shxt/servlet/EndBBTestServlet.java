@@ -66,14 +66,18 @@ public class EndBBTestServlet extends HttpServlet {
 			String weiServer = dbutil.queryString(emailSql,"D_WEINAME");
 			String banbenNo = dbutil.queryString(emailSql,"D_VERSION");
 			String D_KAIFA = dbutil.queryString(emailSql,"D_KAIFA");
-			String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail+";"+k_email;
+			
+			String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
+			String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
+			
+			String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 			System.out.println(time+"邮件地址："+EmailAddress);
 			String Msgtitle = banbenNo+"版本测试测试结束，测试通过！";
 			System.out.println(time+"邮件标题："+Msgtitle);
 			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；";
 			System.out.println(time+"邮件内容："+Msg);
-			//SendEmail sendEmail = new SendEmail();
-			//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+			SendEmail sendEmail = new SendEmail();
+			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
 			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 		}

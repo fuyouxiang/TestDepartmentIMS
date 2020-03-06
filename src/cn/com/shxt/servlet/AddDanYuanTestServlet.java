@@ -61,8 +61,9 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		
 		
 		try {
-			
-			String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail+";"+k_email;
+			String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
+			String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
+			String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 			String Msgtitle = kaifa+"申请单元测试！";
 			String Msg = "【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
 			//SendEmail sendEmail = new SendEmail();

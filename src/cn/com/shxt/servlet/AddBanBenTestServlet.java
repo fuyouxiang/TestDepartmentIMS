@@ -69,12 +69,13 @@ public class AddBanBenTestServlet extends HttpServlet {
 			System.out.println(time+"添加日志："+sql2);	
 
 			try {
-				
-				String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail+";"+k_email;
+				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
+				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
+				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 				String Msgtitle = kaifa+"申请版本测试！";
 				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
-				//SendEmail sendEmail = new SendEmail();
-				//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
 				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 			}
@@ -127,12 +128,13 @@ public class AddBanBenTestServlet extends HttpServlet {
 			
 			
 			try {
-				
-				String EmailAddress =";zhanglhd@yonyou.com;yuanff@yonyou.com;xiaofen1@yonyou.com;"+BossEmail+";"+k_email;
+				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
+				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
+				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 				String Msgtitle = kaifa+"第"+NGnumber+"轮版本测试申请！";
 				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
-				//SendEmail sendEmail = new SendEmail();
-				//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
 				request.getRequestDispatcher("User/ResubmitBBTest.jsp?StartAnswer=no").forward(request, response);
 			}
