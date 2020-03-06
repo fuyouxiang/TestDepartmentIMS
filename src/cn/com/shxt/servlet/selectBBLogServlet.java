@@ -37,7 +37,7 @@ public class selectBBLogServlet extends HttpServlet {
 
 		DBUtils dbutil =new DBUtils();
 		
-		String sql = "select D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU from SYS_TESTSQ_LOG where D_ID='"+ D_ID +"' order by T_TIME desc";		
+		String sql = "select D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU from SYS_TESTSQ_LOG where D_ID='"+ D_ID +"' order by T_ID desc";		
 		System.out.println(time+"查询申请单ID："+sql);	
 		
 		String nowPage = request.getParameter("currentPage");
