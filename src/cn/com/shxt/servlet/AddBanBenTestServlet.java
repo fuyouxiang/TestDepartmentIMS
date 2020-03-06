@@ -112,7 +112,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			
 			DBUtils dbutil =new DBUtils();
 			
-			String sql = "update SYS_TEST_SQ set D_CONTENT ='"+ content +"',D_BIAOZHUN ='"+ biaozhun +"',D_DATE ='"+ date +"',D_STATE='0' where D_ID='"+ d_id +"'";		
+			String sql = "update SYS_TEST_SQ set D_CONTENT ='"+ content +"',D_BIAOZHUN ='"+ biaozhun +"',D_STATE='0' where D_ID='"+ d_id +"'";		
 			int flag = dbutil.update(sql);
 			System.out.println(time+"修改完成后重新提交申请单："+sql);	
 			

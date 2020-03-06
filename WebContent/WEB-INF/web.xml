@@ -548,6 +548,12 @@
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.servlet.ResubmitBBTestServlet</servlet-class>
 	</servlet>
+	<servlet>    
+    	<servlet-name>EndBBTestServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.EndBBTestServlet</servlet-class>
+	</servlet>
 
 
 
@@ -563,9 +569,10 @@
 
 
 
-
-
-
+	<servlet-mapping>
+    	<servlet-name>EndBBTestServlet</servlet-name>
+    	<url-pattern>/EndBBTestServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>ResubmitBBTestServlet</servlet-name>
     	<url-pattern>/ResubmitBBTestServlet</url-pattern>

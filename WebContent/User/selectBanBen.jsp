@@ -311,7 +311,34 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
      alert("驳回操作失败，请联系管理员！");
      window.location.href="<%=path%>/selectBanBenServlet";
     }    
+
+    //测试通过
+    function EndTest(){
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var form= document.getElementById("endBBTestForm");
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+        	 form.action="<%=path %>/EndBBTestServlet?D_ID="+ID;
+        	 form.submit();
+         }
+     }
     
+    //测试通过的返回结果
+    var errori ='<%=request.getParameter("EndAnswer")%>';
+    if(errori=='yes'){
+     alert("此版本已测试通过！测试结束。");
+     window.location.href="<%=path%>/selectBanBenServlet";
+    }else if(errori=='no'){
+     alert("操作失败，请联系管理员！");
+     window.location.href="<%=path%>/selectBanBenServlet";
+    }  
 </script>
 
 		
@@ -320,7 +347,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 <!-- 右侧滚动条 -->
 <div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">
 
-<form action="<%=path %>/selectVersionServlet"  name="MyPageForm" method="post"  id="pageForm" >
+<form action="<%=path %>/selectBanBenServlet"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
 	    <input type="hidden" id="nextPageId"  name="nextPage" value="1" />
     </form>
@@ -360,12 +387,21 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 						<button onclick = "document.getElementById('returnTest').style.display='none'">关闭</button>
 					</div>
 					
-			    <button onclick="XiangQing()">通过</button>
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'">测试通过</button>
+			    	<div style="font-size:18px;font-weight:bold;" id="endTest" class="white_content">
+			    		<form  method="post"  id="endBBTestForm">
+        					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
+        					【通过时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
+        					【备注/遗留】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
+        					<button style="display: block;" onclick='EndTest()'>提交</button>
+        				</form>
+						<button onclick = "document.getElementById('endTest').style.display='none'">关闭</button>
+					</div>
 
 			  
            
             </td>
-			  <td align="right"><input style="font-size:15px;font-weight:bold;width:80px" size="12" type="button" value="显示全部" onclick="window.location.href='<%=path %>/'"></td>
+			  <!-- <td align="right"><input style="font-size:15px;font-weight:bold;width:80px" size="12" type="button" value="显示全部" onclick="window.location.href='<%=path %>/'"></td>  -->
 		    </tr>
 		
           </table></td>
@@ -410,15 +446,21 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             	   Map<String, String>  stuMap= resList.get(i);
                             	   
                             	   String state = stuMap.get("D_STATE");
+                            	   int lunci = Integer.parseInt(stuMap.get("D_NG"))+1;
+                            	   String Color= null;
                             	   
                             	  if(state.equals("0")){
                             		  state ="待测试";
+                            		  Color ="red";
                             	  }else if(state.equals("1")){
                             		  state ="正在测试";
+                            		  Color ="blue";
                             	  }else if(state.equals("2")){
                             		  state ="已驳回";
+                            		  Color ="black";
                             	  }else if(state.equals("3")){
                             		  state ="测试通过";
+                            		  Color ="green";
                             	  }else{
                             		  state ="未知";
                             	  }  
@@ -437,7 +479,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=150 class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
                             <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_TUSER") %></td>
                             <td  width=80 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=state %></td>
+                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">第<%=lunci %>轮&nbsp;<font color="<%=Color %>"><%=state %></font></td>
                             <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
         					<div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
         					【部门】：<%=stuMap.get("D_BUMEN") %><br/>
