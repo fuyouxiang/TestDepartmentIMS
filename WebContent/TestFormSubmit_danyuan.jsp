@@ -41,7 +41,7 @@ if(errori=='yes'){
 		<a  href="<%=path%>/TestApplicationServlet">版本测试申请</a><a class="active" href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a>
 	</div>
 	<h1>单元测试申请单</h1>
-	<form action="<%=path%>/AddDanYuanTestServlet" name="formname" method="post" id =formId>
+	<form action="<%=path%>/AddDanYuanTestServlet?type=1" name="formname" method="post" id =formId>
 	<div class="login-01">
 			<form>
 				<ul>
@@ -79,6 +79,10 @@ if(errori=='yes'){
 				</li>
 				<li class="first">
 					<a href="#" class=" icon email"></a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
+					<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg"></a><input name="dyName" type="text" class="text" placeholder="单元测试名称" required="required">
 					<div class="clear"></div>
 				</li>
 				<!-- 

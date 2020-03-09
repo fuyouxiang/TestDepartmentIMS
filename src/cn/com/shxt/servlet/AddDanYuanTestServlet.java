@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.com.shxt.model.PageBean;
 import cn.com.shxt.utils.DBUtils;
 import cn.com.shxt.utils.SendEmail;
 
@@ -24,7 +25,12 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//时间戳，直接调用DateTime.java中的方法
 		String time= DateTime.showtime();
+		String type = request.getParameter("type");//调用方法类型
+		System.out.println("调用方法类型："+type);
 		
+		
+		//单位测试新增方法
+		if(type.equals("1")) {
 		System.out.println(time+"单元测试提交单申请————————");
 		request.setCharacterEncoding("UTF-8");
 		String BumenAndBoss = request.getParameter("bumen");
@@ -41,6 +47,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		System.out.println("开发邮箱："+k_email);
 		String date = request.getParameter("date");
 		System.out.println("日期："+date);
+		String dyName = request.getParameter("dyName");
+		System.out.println("单元测试名称："+dyName);
 		String content = request.getParameter("content");
 		System.out.println("内容："+content);
 		String biaozhun = request.getParameter("biaozhun");
@@ -49,8 +57,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		System.out.println("测试类型："+D_TYPE);
 
 		DBUtils dbutil =new DBUtils();
-		String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE) values " +
-				"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "')";		
+		String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_VERSION) values " +
+				"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + dyName + "')";		
 		
 		int flag = dbutil.update(sql);
 		System.out.println(time+"添加单元测试申请："+sql);	
@@ -71,14 +79,33 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		}catch(Exception e){
 			request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=no").forward(request, response);
 		}
-	
 		if(flag > 0 ){
 			request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=yes").forward(request, response);
 		}else{
 			request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=no").forward(request, response);
 		}
-
 		
+		}
+		
+		//单元测试查询
+		else if(type.equals("2")){
+			System.out.println(time+"单元测试菜单查询————————");
+			String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_VERSION,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_STATE,D_SUBURL from SYS_TEST_SQ where D_TYPE='单元测试' order by D_DATE desc";
+			
+			String nowPage = request.getParameter("currentPage");
+			DBUtils dbutil = new DBUtils();
+			
+			PageBean pageBean = dbutil.queryByPage(nowPage, sql);
+			request.setAttribute("pageBean", pageBean);
+			
+			request.getRequestDispatcher("User/selectBanBen.jsp").forward(request, response);
+		
+		}
+		else {
+			String info ="系统出现异常，请联系管理员！";
+			request.setAttribute("info", info);
+			request.getRequestDispatcher("Sys.jsp").forward(request, response);		
+		}
 	}
 
 }
