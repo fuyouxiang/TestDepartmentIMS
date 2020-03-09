@@ -25,6 +25,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//时间戳，直接调用DateTime.java中的方法
 		String time= DateTime.showtime();
+		request.setCharacterEncoding("UTF-8");
 		String type = request.getParameter("type");//调用方法类型
 		System.out.println("调用方法类型："+type);
 		
@@ -32,7 +33,6 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		//单位测试新增方法
 		if(type.equals("1")) {
 		System.out.println(time+"单元测试提交单申请————————");
-		request.setCharacterEncoding("UTF-8");
 		String BumenAndBoss = request.getParameter("bumen");
 		String [] strs = BumenAndBoss.split("[;]");
 		String Bumen = strs[0];
@@ -98,7 +98,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			PageBean pageBean = dbutil.queryByPage(nowPage, sql);
 			request.setAttribute("pageBean", pageBean);
 			
-			request.getRequestDispatcher("User/selectBanBen.jsp").forward(request, response);
+			request.getRequestDispatcher("User/selectDanYuan.jsp").forward(request, response);
 		
 		}
 		else {
