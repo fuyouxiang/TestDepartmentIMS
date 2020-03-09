@@ -117,7 +117,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			int flag = dbutil.update(sql);
 			System.out.println(time+"修改完成后重新提交申请单："+sql);	
 			
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + d_id + "','" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"')";
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + d_id + "','" + kaifa + "','" + date + "','重新提交', '"+"【内容】:"+content+"【标准】:"+biaozhun+"')";
 			int flag2 = dbutil.update(sql2);
 			System.out.println(time+"添加日志："+sql2);
 			

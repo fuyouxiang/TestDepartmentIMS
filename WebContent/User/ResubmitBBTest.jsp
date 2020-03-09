@@ -28,7 +28,7 @@ if(errori=='yes'){
  alert("版本测试申请单重新提交成功！已邮件通知测试经理。");
  window.location.href="<%=path%>/TestApplicationServlet";
 }else if(errori=='no'){
- alert("单元测试申请单重新提交失败，请联系管理员！");
+ alert("版本测试申请单重新提交失败，请联系管理员！");
  window.location.href="<%=path%>/TestApplicationServlet";
 }
 </script>

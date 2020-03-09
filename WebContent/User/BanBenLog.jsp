@@ -73,7 +73,12 @@ function Return(){
     	buzhou="提交";
     	buzhouColor="check check-prime";
     	buzhouImg="kaifa.jpg";
-    }else if(buzhou.equals("开始测试")){
+    }else if(buzhou.equals("重新提交")){
+    	buzhou="提交";
+    	buzhouColor="check check-prime";
+    	buzhouImg="kaifa.jpg";
+    }
+    else if(buzhou.equals("开始测试")){
     	buzhou="测试";
     	buzhouColor="check check-warning";
     	buzhouImg="ceshi.jpg";
