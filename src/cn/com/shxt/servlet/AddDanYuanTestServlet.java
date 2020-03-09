@@ -74,8 +74,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 			String Msgtitle = kaifa+"申请单元测试！";
 			String Msg = "【单元名称】："+dyName+"；"+"【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
-			//SendEmail sendEmail = new SendEmail();
-			//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+			SendEmail sendEmail = new SendEmail();
+			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
 			request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=no").forward(request, response);
 		}
@@ -182,8 +182,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				System.out.println(time+"邮件标题："+Msgtitle);
 				String Msg = "【单元测试名称】："+banbenNo+"；"+"【驳回人】："+D_TUSER+"；"+"【驳回时间】："+TIME+"；"+"【驳回原因】："+REASON+"；"+"【重新提交地址】："+D_SUBURL+"；";
 				System.out.println(time+"邮件内容："+Msg);
-				//SendEmail sendEmail = new SendEmail();
-				//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
 				request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=no").forward(request, response);
 			}
@@ -250,8 +250,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				System.out.println(time+"邮件标题："+Msgtitle);
 				String Msg = "【单元测试名称】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；";
 				System.out.println(time+"邮件内容："+Msg);
-				//SendEmail sendEmail = new SendEmail();
-				//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
 				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 			}
@@ -314,8 +314,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 				String Msgtitle = kaifa+"第"+NGnumber+"轮单元测试申请！";
 				String Msg = "【单元测试名称】："+banbenNo+"；"+"【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
-				//SendEmail sendEmail = new SendEmail();
-				//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
 				request.getRequestDispatcher("User/ResubmitBBTest.jsp?StartAnswer=no").forward(request, response);
 			}
