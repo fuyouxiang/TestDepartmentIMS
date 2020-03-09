@@ -472,11 +472,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                           	<input type="checkbox" value="<%=stuMap.get("D_ID") %>" name="checkboxBtn"/><br />
                           	</td>
                           	<td  width=50 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:38px;"> <%=i+1 %> </td>
-                            <td  width=200 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
+                            <td  width=150 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
                             <td  width=100 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
                             <td  width=100 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
                             <td  width=150 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_WEINAME") %></td>
-                            <td  width=150 class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
+                            <td  width=200 class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
                             <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_TUSER") %></td>
                             <td  width=80 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
                             <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">第<%=lunci %>轮&nbsp;<font color="<%=Color %>"><%=state %></font></td>
