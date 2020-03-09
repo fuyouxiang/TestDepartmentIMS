@@ -312,7 +312,7 @@ background=images/menu_bg.jpg border=0>
           <TD align=center width=30><IMG height=9 
             src="images/menu_icon.gif" width=9></TD>
           <TD>
-         	 <A href="<%=path %>/TestApplicationServlet"  target="right">提交测试申请</A>
+         	 <A href="<%=path %>/TestApplicationServlet"   target="_blank">提交测试申请</A>
          </TD>
         </TR>
         <TR height=20>
