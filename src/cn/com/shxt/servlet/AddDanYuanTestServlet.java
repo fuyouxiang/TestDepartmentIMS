@@ -219,7 +219,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			DBUtils dbutil =new DBUtils();
 			
 			//修改版本测试主表
-			String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='3',D_SUBURL ='' where D_ID='"+ D_ID +"'";		
+			String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='3' where D_ID='"+ D_ID +"'";		
 			int flag = dbutil.update(sql);
 			System.out.println(time+"测试结束修改数据状态："+sql);	
 
