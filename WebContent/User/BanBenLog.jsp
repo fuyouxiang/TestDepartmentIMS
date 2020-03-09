@@ -34,9 +34,9 @@ button {
 <link rel="stylesheet" href="css/flowChart.css" />
 </head>
 <script type="text/javascript">
-//操作记录
+//操作记录 
 function Return(){
-   window.location.href="<%=path %>/selectBanBenServlet";
+   window.location.href="javascript:history.go(-1)";
  }
 </script>
 <body>
