@@ -283,8 +283,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			System.out.println("标准："+biaozhun);
 			String kaifa = request.getParameter("kaifa");
 			System.out.println("开发："+kaifa);
-			String banbenNo = request.getParameter("banbenNo");
-			System.out.println("单元测试名称："+banbenNo);
+			String dyName = request.getParameter("dyName");
+			System.out.println("单元测试名称："+dyName);
 			String k_email = request.getParameter("k_email");
 			System.out.println("开发邮箱："+k_email);
 			String BossEmail = request.getParameter("BossEmail");
@@ -313,7 +313,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 				String Msgtitle = kaifa+"第"+NGnumber+"轮单元测试申请！";
-				String Msg = "【单元测试名称】："+banbenNo+"；"+"【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
+				String Msg = "【单元测试名称】："+dyName+"；"+"【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
