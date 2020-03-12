@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,18 +35,8 @@ public class selectAllUrlServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//时间戳，直接调用DateTime.java中的方法
-		//String timelog= DateTime.showtime();
-		long time = System.currentTimeMillis();
-		   SQL sql1=new SQL(request,1);
-		   SQL sql2=new SQL(request,2);
-		   SQL sql3=new SQL(request,3);
-		   SQL sql4=new SQL(request,4);
-		   sql1.start();
-		   sql2.start();
-		   sql3.start();
-		   sql4.start();
-
-		/*
+		String timelog= DateTime.showtime();
+		long time2 = System.currentTimeMillis();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
 		String time=df.format(new Date());// new Date()为获取当前系统时间//时间戳，直接调用DateTime.java中的方法
 		System.out.println("**************************************");
@@ -78,7 +69,7 @@ public class selectAllUrlServlet extends HttpServlet {
 		
 		PageBean pageBean4 = dbutil.queryByPage(nowPage, sql4);
 		request.setAttribute("pageBean4", pageBean4);
-		*/
+		
 
 
 		/*ip测试
@@ -98,64 +89,6 @@ public class selectAllUrlServlet extends HttpServlet {
      
      
 		request.getRequestDispatcher("main_url.jsp").forward(request, response);
-		String timelog= DateTime.showtime();
-		System.out.println(System.currentTimeMillis()-time);
+		System.out.println("所耗时间"+(System.currentTimeMillis()-time2));
 	}
-
-	//sql
-	class SQL extends Thread
-	{
-		public SQL(HttpServletRequest request,int i)
-	    {
-			
-	        super();
-	        if (i==1) {
-	        	System.out.println("111");
-				String sql = "select (select count(*) from SYS_URL WHERE URL_STATE ='启用') as URL_COUNT,URL_ID,URL_NAME,URL_ADDRESS,URL_CREATER,URL_DATE,ATTACH_NAME,ATTACH_PATH,IS_OPEN from SYS_URL WHERE URL_STATE ='启用' order by URL_NAME,replace(URL_DATE,'-','') desc";
-				String nowPage = request.getParameter("currentPage");
-				DBUtils dbutil =new DBUtils();
-				PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
-				request.setAttribute("pageBean", pageBean);
-	        }else if (i==2) {
-		    	System.out.println("222");
-		    	String sql2 = "select (select count(*) from SYS_GONGGAO) as GON_COUNT,GON_ID,GON_TITLE,GON_DATE from SYS_GONGGAO order by GON_DATE desc";
-				String nowPage = request.getParameter("currentPage");
-				DBUtils dbutil =new DBUtils();
-				PageBean pageBean2 = dbutil.queryByPage2(nowPage, sql2);
-				request.setAttribute("pageBean2", pageBean2);
-		    
-	        }else if (i==3) {
-	        	System.out.println("333");
-		    	String sql3 = "select JI_TITLE,J1,J2,J3 from (select * from SYS_JITANG  ORDER BY to_number(JI_ID) desc) WHERE ROWNUM=1";
-				String nowPage = request.getParameter("currentPage");
-				DBUtils dbutil =new DBUtils();
-				PageBean pageBean3 = dbutil.queryByPage(nowPage, sql3);
-				request.setAttribute("pageBean3", pageBean3);
-		    
-	        }else if (i==4) {
-	         	System.out.println("444");
-		    	HttpSession session = request.getSession();
-				String username = (String)session.getAttribute("username");
-				System.out.println("当前用户是："+username);
-				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-				String time=df.format(new Date());// new Date()为获取当前系统时间//时间戳，直接调用DateTime.java中的方法
-				String sql4 = "SELECT (CASE WHEN EXISTS(SELECT 1 FROM SYS_VERSION C WHERE C.V_NAME = '"+username+"' AND V_DATE LIKE '%"+time+"%') THEN 1 ELSE 0 END)AS DAIBAN FROM DUAL";
-				String nowPage = request.getParameter("currentPage");
-				DBUtils dbutil =new DBUtils();
-				PageBean pageBean4 = dbutil.queryByPage(nowPage, sql4);
-				request.setAttribute("pageBean4", pageBean4);
-		    
-	        }else {
-	        	System.out.println("多线程错误！");
-	        }
-	    	
-	    }
-	    @Override
-	    public void run(){
-	        super.run();
-	    }
-	}
-
-
-
 }
