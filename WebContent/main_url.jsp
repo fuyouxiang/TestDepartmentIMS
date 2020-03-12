@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.io.*,cn.com.shxt.utils.Ping" pageEncoding="UTF-8"  %>
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.io.*,cn.com.shxt.utils.Ping,java.util.concurrent.Executor,java.util.concurrent.Executors" pageEncoding="UTF-8"  %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -214,12 +214,13 @@ interval = setInterval(shuaxinUrl,60000*5);
                           		//
                           		boolean STATE= false;
                           		Ping pi= new Ping();
-                          		
+                          		                          		
                                for(int i=0;i<resList.size();i++){
                             	   Map<String, String>  stuMap= resList.get(i);
                             	   
                             	   String URL_ADDRESS=stuMap.get("URL_ADDRESS");
                             	   String src = null;
+                            	   /*
                                    try {
                                 	System.out.println("——————————————————————");
                                 	System.out.println("ping路径："+URL_ADDRESS);
@@ -228,7 +229,7 @@ interval = setInterval(shuaxinUrl,60000*5);
                                 	} catch (Exception e) {
                            			// TODO Auto-generated catch block
                            			e.printStackTrace();
-                           		   }
+                           		   }*/
 
                                    if(STATE==true){
                                 	   src = "greencol";

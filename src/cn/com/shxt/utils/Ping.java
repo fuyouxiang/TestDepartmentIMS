@@ -1,16 +1,9 @@
 package cn.com.shxt.utils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import cn.com.shxt.utils.DBUtils;
-import cn.com.shxt.model.PageBean;
 
 
 
@@ -18,8 +11,7 @@ import cn.com.shxt.model.PageBean;
 
 public class Ping {
 
-		
-	public synchronized  boolean ping(String urlStr) throws SQLException {
+public synchronized  boolean ping(String urlStr) throws SQLException {
 		
 		
 		String ConfigName = "isPing";
