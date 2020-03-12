@@ -35,7 +35,7 @@ public class DYTestApplicationServlet extends HttpServlet {
 
 		System.out.println(timelog+"单元测试申请单接口——————————");
 		
-		String sql = "select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN";
+		String sql = "select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME != '产品测试部'";
 		System.out.println(timelog+"查询所有部门："+sql);
 	
 		String nowPage = request.getParameter("currentPage");
