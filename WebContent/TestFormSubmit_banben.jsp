@@ -42,6 +42,12 @@ if(errori=='yes'){
 	    	return true;
 	    }
 }
+
+	function submit(){
+		alert("111");
+		document.a.submit;
+		document.b.submit;
+		}
 </script>
 <body>
 		<%
@@ -126,15 +132,20 @@ if(errori=='yes'){
 				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>构造内容</a><textarea name="content" placeholder="版本构造内容" required="required"></textarea>
 				<div class="clear"></div>
 				<li class="second">
-				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>通过标准</a><textarea name="biaozhun" placeholder="测试通过标准" required="required"></textarea>
+				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>通过标准</a>
+					<select name="biaozhun">
+					<option value="符合测试用例测试通过要求">符合测试用例测试通过要求</option>
+					<option value="符合构造说明测试通过要求">符合构造说明测试通过要求</option>
+					<option value="主流程测试通过">主流程测试通过</option>
+					</select>
 				<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="wiki" type="text" class="text" placeholder="Wiki地址">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="wiki" type="file" class="text" placeholder="Wiki地址">
 					<div class="clear"></div>
 				</li>
 			</ul>
-			<input type="submit" value="提交" >
+			<input type="submit" value="提交" onclick="submit();">
 			<div class="clear"></div>
 		</form>
 </div>
