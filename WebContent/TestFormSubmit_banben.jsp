@@ -58,7 +58,7 @@ if(errori=='yes'){
 				
 
 				<li class="first">
-					<a href="#" class=" icon user"></a>
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>所属部门</a>
 					<select name="bumen">
 					<%
                       if(pageBean!=null){
@@ -80,23 +80,23 @@ if(errori=='yes'){
 				</li>
 				
 				<li class="first">
-					<a href="#" class=" icon user"></a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required">
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input name="k_email" type="text"  class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text"  class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
+					<a href="#" class=" icon email"  style="text-align: center;color:black;"><br/>提交日期</a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"></a><input name="weiServer" type="text" class="text" placeholder="微服务名称" required="required">
+					<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>微服务</a><input name="weiServer" type="text" class="text" placeholder="微服务名称" required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"></a><input name="banbenNo" type="text" class="text" placeholder="版本号" required="required">
+					<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>版本号</a><input name="banbenNo" type="text" class="text" placeholder="版本号" required="required">
 					<div class="clear"></div>
 				</li>
 				<!-- 
@@ -105,14 +105,14 @@ if(errori=='yes'){
 					<div class="clear"></div>
 				</li> -->
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="content" placeholder="版本构造内容" required="required"></textarea>
+				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>构造内容</a><textarea name="content" placeholder="版本构造内容" required="required"></textarea>
 				<div class="clear"></div>
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="biaozhun" placeholder="测试通过标准" required="required"></textarea>
+				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>通过标准</a><textarea name="biaozhun" placeholder="测试通过标准" required="required"></textarea>
 				<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"></a><input name="wiki" type="text" class="text" placeholder="Wiki地址">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="wiki" type="text" class="text" placeholder="Wiki地址">
 					<div class="clear"></div>
 				</li>
 			</ul>

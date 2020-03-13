@@ -82,7 +82,7 @@ form li.first,li.second{
 }
 .icon,.icon2  {
   height:55px;
-  width:55px;
+  width:82px;
   display: block;
   float: left;
   border-top-left-radius: 0.3em;
@@ -95,28 +95,28 @@ form li.first,li.second{
   -webkit-border-bottom-left-radius: 0.3em;
 }
 .user {
-    background: url(../images/icons2.png) no-repeat 14px 15px #f79d29;
+	background: url() no-repeat 14px 15px #f79d29;
 }
 .email{
-  background:url(../images/icons2.png) no-repeat 15px -39px #f79d29;
+  background:url() no-repeat 15px -39px #f79d29;
 }
 .phone{
-  background: url(../images/icons2.png) no-repeat 15px -93px #f79d29;
+  background: url() no-repeat 15px -93px #f79d29;
 }
 .msg{
-  background: url(../images/msg.png) no-repeat 16px 16px #f79d29;
+  background: url() no-repeat 16px 16px #f79d29;
 }
 li.first:hover .user{
-     background: url(../images/icons2.png) no-repeat 14px 15px #DB2048;
+     background: url() no-repeat 14px 15px #DB2048;
 }
 li.first:hover .email{
-  background:url(../images/icons2.png) no-repeat 15px -39px #DB2048;
+  background:url() no-repeat 15px -39px #DB2048;
 }
 li.first:hover .phone{
-  background: url(../images/icons2.png) no-repeat 15px -93px #DB2048;
+  background: url() no-repeat 15px -93px #DB2048;
 }
 li.second:hover .msg {
-  background: url(../images/msg.png) no-repeat 16px 16px #DB2048;
+  background: url() no-repeat 16px 16px #DB2048;
 }
 /*-----*/
 input[type="text"],form textarea{
@@ -272,35 +272,35 @@ li.lost {
   width: 48px;
   }
   .user {
-    background: url(../images/icons2.png) no-repeat 11px 12px #f79d29;
+    background: url() no-repeat 11px 12px #f79d29;
       background-size: 45%;
 }
 .email{
-  background:url(../images/icons2.png) no-repeat 12px -36px #f79d29;
+  background:url() no-repeat 12px -36px #f79d29;
     background-size: 45%;
 }
 .phone{
-  background:url(../images/icons2.png) no-repeat 12px -87px #f79d29;
+  background:url() no-repeat 12px -87px #f79d29;
     background-size: 45%;
 }
 .msg{
-  background: url(../images/msg.png) no-repeat 14px 11px #f79d29;
+  background: url() no-repeat 14px 11px #f79d29;
     background-size: 45%;
 }
 li.first:hover .user{
-     background: url(../images/icons2.png) no-repeat 11px 9px #DB2048;
+     background: url() no-repeat 11px 9px #DB2048;
       background-size: 45%;
 }
 li.first:hover .email{
-  background:url(../images/icons2.png) no-repeat 12px -36px #DB2048;
+  background:url() no-repeat 12px -36px #DB2048;
    background-size: 45%;
 }
 li.first:hover .phone{
-  background:url(../images/icons2.png) no-repeat 12px -87px #DB2048;
+  background:url() no-repeat 12px -87px #DB2048;
    background-size: 45%;
 }
 li.second:hover .msg {
-  background: url(../images/msg.png) no-repeat 14px 11px #DB2048;
+  background: url() no-repeat 14px 11px #DB2048;
    background-size: 45%;
 }
 body h1 {
@@ -326,35 +326,35 @@ form li.first, li.second {
   width: 45px;
   }
   .user {
-    background: url(../images/icons2.png) no-repeat 11px 13px #f79d29;
+    background: url() no-repeat 11px 13px #f79d29;
      background-size: 40%;
 }
 .email{
-  background:url(../images/icons2.png) no-repeat 12px -29px #f79d29;
+  background:url() no-repeat 12px -29px #f79d29;
    background-size: 40%;
 }
 .phone{
-  background:url(../images/icons2.png) no-repeat 12px -72px #f79d29;
+  background:url() no-repeat 12px -72px #f79d29;
    background-size: 40%;
 }
 .msg{
-  background: url(../images/msg.png) no-repeat 14px 13px #f79d29;
+  background: url() no-repeat 14px 13px #f79d29;
    background-size: 40%;
 }
 li.first:hover .user{
-     background: url(../images/icons2.png) no-repeat 11px 13px #DB2048;
+     background: url() no-repeat 11px 13px #DB2048;
       background-size: 40%;
 }
 li.first:hover .email{
-  background:url(../images/icons2.png) no-repeat 12px -29px #DB2048;
+  background:url() no-repeat 12px -29px #DB2048;
    background-size: 40%;
 }
 li.first:hover .phone{
-  background:url(../images/icons2.png) no-repeat 12px -72px #DB2048;
+  background:url() no-repeat 12px -72px #DB2048;
    background-size: 40%;
 }
 li.second:hover .msg {
-  background: url(../images/msg.png) no-repeat 14px 13px #DB2048;
+  background: url() no-repeat 14px 13px #DB2048;
    background-size: 40%;
 }
 .copy-right p {
