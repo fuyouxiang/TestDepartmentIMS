@@ -11,7 +11,7 @@ List<Map<String,String>> RInfoList= (List<Map<String , String>>) request.getAttr
   <head>
     <base href="<%=basePath%>">
     
-    <title>测试部绩效管理系统</title>
+    <title>测试部工作管理系统</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
