@@ -5,6 +5,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 //获取之前得到的分页对象
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
+PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -92,7 +93,24 @@ if(errori=='yes'){
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>微服务</a><input name="weiServer" type="text" class="text" placeholder="微服务名称" required="required">
+					<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>微服务</a>
+					<select name="weiServer">
+					<%
+                      if(pageBean!=null){
+                       //本页的结果集
+                       List<Map<String, String>>  resList=  pageBean2.getResList();
+                       //System.out.print(resList);
+                       if(resList!=null && resList.size()>0){                          		
+                          for(int i=0;i<resList.size();i++){
+                          Map<String, String>  stuMap= resList.get(i);	  
+                          %>    
+					<option  value="<%=stuMap.get("W_NAME") %>"><%=stuMap.get("W_NAME") %></option>
+					<%     
+                          }                        	  
+                       }
+                      }
+                        %>
+					</select>
 					<div class="clear"></div>
 				</li>
 				<li class="first">

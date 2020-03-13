@@ -38,11 +38,15 @@ public class TestApplicationServlet extends HttpServlet {
 		String sql = "select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME != '产品测试部'";
 		System.out.println(timelog+"查询所有部门："+sql);
 	
+		String sql2 = "select W_NAME from SYS_WEINAME order by w_name desc";
+		System.out.println(timelog+"查询所有微服务："+sql2);
 	
 		String nowPage = request.getParameter("currentPage");
 		DBUtils dbutil =new DBUtils();
 		PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
 		request.setAttribute("pageBean", pageBean);
+		PageBean pageBean2 = dbutil.queryByPage2(nowPage, sql2);
+		request.setAttribute("pageBean2", pageBean2);
 
 			
 
