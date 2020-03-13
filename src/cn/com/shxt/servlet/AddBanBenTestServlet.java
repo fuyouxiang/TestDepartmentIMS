@@ -1,6 +1,7 @@
 package cn.com.shxt.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			String kaifa = request.getParameter("kaifa");
 			System.out.println("开发："+kaifa);
 			String k_email = request.getParameter("k_email");
-			System.out.println("开发邮箱："+k_email);
+			System.out.println("开发邮箱："+k_email);	        
 			String date = request.getParameter("date");
 			System.out.println("日期："+date);
 			String weiServer = request.getParameter("weiServer");

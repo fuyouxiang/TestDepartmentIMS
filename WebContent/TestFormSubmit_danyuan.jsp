@@ -29,6 +29,17 @@ if(errori=='yes'){
  alert("单元测试申请单提交失败，请联系管理员！");
  window.location.href="<%=path%>/DYTestApplicationServlet";
 }
+
+//邮箱格式校验
+function  submitMyForm(){
+	var k_email=document.formname.k_email.value;
+	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+	if (!stop.test(k_email)) {
+		alert("邮箱格式不正确!");
+		return false;
+    }else{
+    	return true;
+    }
 </script>
 <body>
 		<%
@@ -39,7 +50,7 @@ if(errori=='yes'){
 		<a  href="<%=path%>/TestApplicationServlet">版本测试申请</a><a class="active" href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a>
 	</div>
 	<h1>单元测试申请单</h1>
-	<form action="<%=path%>/AddDanYuanTestServlet?type=1" name="formname" method="post" id =formId>
+	<form action="<%=path%>/AddDanYuanTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm()">
 	<div class="login-01">
 			<form>
 				<ul>
