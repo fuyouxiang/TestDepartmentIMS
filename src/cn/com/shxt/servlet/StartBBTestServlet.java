@@ -49,7 +49,7 @@ public class StartBBTestServlet extends HttpServlet {
 		int flag2 = dbutil.update(sql2);
 		System.out.println(time+"添加日志："+sql2);
 		
-		String sql3 = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL from SYS_TEST_SQ where D_TYPE='版本测试' order by D_DATE desc";
+		String sql3 = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_TYPE='版本测试' order by D_DATE desc";
 		String nowPage = request.getParameter("currentPage");
 		PageBean pageBean = dbutil.queryByPage(nowPage, sql3);
 

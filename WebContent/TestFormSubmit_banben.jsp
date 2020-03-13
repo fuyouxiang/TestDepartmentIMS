@@ -111,6 +111,10 @@ if(errori=='yes'){
 				<a href="#" class=" icon msg"></a><textarea name="biaozhun" placeholder="测试通过标准" required="required"></textarea>
 				<div class="clear"></div>
 				</li>
+				<li class="first">
+					<a href="#" class=" icon msg"></a><input name="wiki" type="text" class="text" placeholder="Wiki地址">
+					<div class="clear"></div>
+				</li>
 			</ul>
 			<input type="submit" value="提交" >
 			<div class="clear"></div>

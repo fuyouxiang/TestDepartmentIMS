@@ -66,6 +66,7 @@ public class EndBBTestServlet extends HttpServlet {
 			String weiServer = dbutil.queryString(emailSql,"D_WEINAME");
 			String banbenNo = dbutil.queryString(emailSql,"D_VERSION");
 			String D_KAIFA = dbutil.queryString(emailSql,"D_KAIFA");
+			String D_WIKI = dbutil.queryString(emailSql,"D_WIKI");
 			
 			String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 			String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
@@ -74,7 +75,7 @@ public class EndBBTestServlet extends HttpServlet {
 			System.out.println(time+"邮件地址："+EmailAddress);
 			String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试结束，测试通过！";
 			System.out.println(time+"邮件标题："+Msgtitle);
-			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；";
+			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；"+"【wiki地址】："+D_WIKI+"；";
 			System.out.println(time+"邮件内容："+Msg);
 			SendEmail sendEmail = new SendEmail();
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
@@ -82,7 +83,7 @@ public class EndBBTestServlet extends HttpServlet {
 			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 		}
 		
-		String sql4 = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL from SYS_TEST_SQ where D_TYPE='版本测试' order by D_DATE desc";
+		String sql4 = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_TYPE='版本测试' order by D_DATE desc";
 		String nowPage = request.getParameter("currentPage");
 		PageBean pageBean = dbutil.queryByPage(nowPage, sql4);
 		
