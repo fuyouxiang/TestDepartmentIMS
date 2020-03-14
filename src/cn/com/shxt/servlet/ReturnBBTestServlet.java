@@ -72,8 +72,8 @@ public class ReturnBBTestServlet extends HttpServlet {
 			System.out.println(time+"邮件标题："+Msgtitle);
 			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【驳回人】："+D_TUSER+"；"+"【驳回时间】："+TIME+"；"+"【驳回原因】："+REASON+"；"+"【重新提交地址】："+D_SUBURL+"；";
 			System.out.println(time+"邮件内容："+Msg);
-			SendEmail sendEmail = new SendEmail();
-			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+			//SendEmail sendEmail = new SendEmail();
+			//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
 			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 		}

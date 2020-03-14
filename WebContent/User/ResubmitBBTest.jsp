@@ -44,55 +44,62 @@ if(errori=='yes'){
         Map<String, String>  stuMap= resList.get(i);	
         int NG=Integer.parseInt(stuMap.get("D_NG"))+1; 
 	%>
-	<h1>版本测试第<%=NG %>次提交</h1>
-	<form action="<%=path%>/AddBanBenTestServlet?type=2" name="formname" method="post" id =formId>
+	<h1>版本测试重新提交</h1>
+	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId>
 	<div class="login-01">
 			<form>
 			
   
 				<ul>
 				<li class="first">
-				<a href="#" class=" icon user"></a>
-					<input type="hidden" name="BossEmail"  value="<%=stuMap.get("D_KBOSSEMAIL") %>">
-					<input name="bumen" type="text" class="text" readonly="readonly" required="required" value="<%=stuMap.get("D_BUMEN") %>">
+				<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>所属部门</a>   
+					<select name="bumen">
+					<option  value="<%=stuMap.get("D_BUMEN") %>;<%=stuMap.get("D_KBOSS") %>;<%=stuMap.get("D_KBOSSEMAIL") %>"><%=stuMap.get("D_BUMEN") %></option>
+					</select>
 					<div class="clear"></div>
 				</li>
 				
 				<li class="first">
 					<input type="hidden" name="d_id"  value="<%=stuMap.get("D_ID") %>">
 					<input type="hidden" name="NGnumber"  value="<%=NG %>">
-					<a href="#" class=" icon user"></a><input name="kaifa" type="text" class="text" readonly="readonly" placeholder="开发人员" required="required" value="<%=stuMap.get("D_KAIFA") %>">
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" readonly="readonly" placeholder="开发人员" required="required" value="<%=stuMap.get("D_KAIFA") %>">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input name="k_email" type="text"  readonly="readonly" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required" value="<%=stuMap.get("D_KEMAIL") %>">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text"  readonly="readonly" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required" value="<%=stuMap.get("D_KEMAIL") %>">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required" >
+					<a href="#" class=" icon email"  style="text-align: center;color:black;"><br/>提交日期</a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required" >
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"></a><input name="weiServer" type="text" readonly="readonly" class="text" placeholder="微服务名称" required="required" value="<%=stuMap.get("D_WEINAME") %>">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>微服务</a><input name="weiServer" type="text" readonly="readonly" class="text" placeholder="微服务名称" required="required" value="<%=stuMap.get("D_WEINAME") %>">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"></a><input name="banbenNo" type="text" readonly="readonly" class="text" placeholder="版本号" required="required" value="<%=stuMap.get("D_VERSION") %>">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>版本号</a><input name="banbenNo" type="text" class="text"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="content" placeholder="版本构造内容" required="required" ><%=stuMap.get("D_CONTENT") %></textarea>
+				<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>构造内容</a><textarea name="content" placeholder="版本构造内容" required="required" ><%=stuMap.get("D_CONTENT") %></textarea>
 				<div class="clear"></div>
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="biaozhun" placeholder="测试通过标准" required="required"><%=stuMap.get("D_BIAOZHUN") %></textarea>
+				<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>通过标准</a>
+					<select name="biaozhun">
+					<option value="<%=stuMap.get("D_BIAOZHUN") %>"><%=stuMap.get("D_BIAOZHUN") %></option>
+					<option value="符合测试用例测试通过要求">符合测试用例测试通过要求</option>
+					<option value="符合构造说明测试通过要求">符合构造说明测试通过要求</option>
+					<option value="主流程测试通过">主流程测试通过</option>
+					</select>
 				<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"></a><input name="wiki" type="text" class="text" placeholder="Wiki地址" value="<%=stuMap.get("D_WIKI") %>">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="wiki" type="text" class="text" placeholder="Wiki地址" value="<%=stuMap.get("D_WIKI") %>">
 					<div class="clear"></div>
 				</li>
 			</ul>
-			<input type="submit" value="第<%=NG %>次提交" >
+			<input type="submit" value="重新提交" >
 			<div class="clear"></div>
 
 		</form>
