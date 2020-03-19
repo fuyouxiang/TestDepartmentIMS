@@ -383,6 +383,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 
 			 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 			 String time=df.format(new Date());// new Date()为获取当前系统时间
+			 String ExcelName = "版本测试汇总"+time;
 			 %>
 			   <td width="1000" align="left" >
 			    <button onclick="BBLog()">操作日志</button>
@@ -417,7 +418,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         				</form>
 						<button onclick = "document.getElementById('endTest').style.display='none'">关闭</button>
 					</div>
-			   <button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','版本测试汇总');">导出</button>
+			   <button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
 			  
            
             </td>
@@ -545,8 +546,9 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
                             <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
                             <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
-        					<div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
+                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button></td>
+                        </tr>
+                        	<div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
         					【部门】：<%=stuMap.get("D_BUMEN") %><br/>
         					【开发】：<%=stuMap.get("D_KAIFA") %><br/>
         					【提交日期】：<%=stuMap.get("D_DATE") %><br/>
@@ -558,11 +560,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         				          【状态】：<%=state %><br/>    
         					【重新提交路径】：<a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a><br/>
         					<br/>
-							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button></div>
-							</td>                            
-				
-                        </tr>
-                        		
+							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button>
+							</div>
                           <%     
               
                                }
