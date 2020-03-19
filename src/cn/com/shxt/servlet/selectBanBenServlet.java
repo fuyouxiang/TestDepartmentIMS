@@ -34,7 +34,7 @@ public class selectBanBenServlet extends HttpServlet {
 		String nowPage = request.getParameter("currentPage");
 		DBUtils dbutil = new DBUtils();
 		
-		PageBean pageBean = dbutil.queryByPage(nowPage, sql);
+		PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
 		request.setAttribute("pageBean", pageBean);
 		
 		request.getRequestDispatcher("User/selectBanBen.jsp").forward(request, response);

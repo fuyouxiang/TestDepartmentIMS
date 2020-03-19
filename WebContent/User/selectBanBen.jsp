@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.text.SimpleDateFormat" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.text.SimpleDateFormat,java.util.Calendar,java.text.SimpleDateFormat" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -414,20 +414,24 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                 <td height="40" class="font42">
 				<table id = "testList" width="100%" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="11" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="15" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
                     <td  style="font-size:15px;font-weight:bold"></td>
                     <td  style="font-size:15px;font-weight:bold">编号</td>
                     <td  style="font-size:15px;font-weight:bold">部门</td>
-                    <td  style="font-size:15px;font-weight:bold">开发</td>
-                    <td  style="font-size:15px;font-weight:bold">提交日期</td>
                     <td  style="font-size:15px;font-weight:bold">微服务</td>
-                    <td  style="font-size:15px;font-weight:bold">版本号 </td>
-                    <td  style="font-size:15px;font-weight:bold">测试人</td>
-                    <td  style="font-size:15px;font-weight:bold">NG次数</td>
+                    <td  style="font-size:15px;font-weight:bold">版本号</td>
+                    <td  style="font-size:15px;font-weight:bold">研发人</td>
+                    <td  style="font-size:15px;font-weight:bold">月份</td>
+                    <td  style="font-size:15px;font-weight:bold">日期 </td>
                     <td  style="font-size:15px;font-weight:bold">状态</td>
+                    <td  style="font-size:15px;font-weight:bold">测试人</td>
+                    <td  style="font-size:15px;font-weight:bold">带脚本</td>
+                    <td  style="font-size:15px;font-weight:bold">发江西</td>
+                    <td  style="font-size:15px;font-weight:bold">压测环境</td>
+                    <td  style="font-size:15px;font-weight:bold">jxpre</td>
                     <td  style="font-size:15px;font-weight:bold">操作</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
@@ -465,22 +469,34 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             		  state ="未知";
                             	  }  
                             	  
+                            	  String Olddate = stuMap.get("D_DATE");
+                            	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            	  Date date = sdf.parse(Olddate);
+                                  Calendar calendar = Calendar.getInstance();
+                                  calendar.setTime(date);
+                                  int month=calendar.get(Calendar.MONTH)+1;
+                                  int day=calendar.get(Calendar.DAY_OF_MONTH);
+                            	  
                           %>
                           <tr align="center" style="">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
-                          	<td  width=50 class="bor_2">
+                          	<td  width=3% class="bor_2">
                           	<input type="checkbox" value="<%=stuMap.get("D_ID") %>" name="checkboxBtn"/><br />
                           	</td>
-                          	<td  width=50 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:38px;"> <%=i+1 %> </td>
-                            <td  width=150 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
-                            <td  width=150 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_WEINAME") %></td>
-                            <td  width=200 class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_TUSER") %></td>
-                            <td  width=80 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">第<%=lunci %>轮&nbsp;<font color="<%=Color %>"><%=state %></font></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
+                          	<td  width=3% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:38px;"> <%=i+1 %> </td>
+                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
+                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_WEINAME") %></td>
+                            <td  width=15% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_VERSION") %></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
+                            <td  width=5% class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
+                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_TUSER") %></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
+                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
         					<div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
         					【部门】：<%=stuMap.get("D_BUMEN") %><br/>
         					【开发】：<%=stuMap.get("D_KAIFA") %><br/>
@@ -502,22 +518,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
               
                                }
                         	  
-                           }
-                        %>
-                         
-                     <tr>
-					<th colspan="13">
-						<input type="button" value="首页" id="fp" onclick="goPage(this)" />
-						<input type="button" value="上一页" id="bp" onclick="goPage(this)" />
-						第<%=pageBean.getNowPage()%>页/共<%=pageBean.getPages()%>页
-						<input type="button" value="下一页" id="gp" onclick="goPage(this)" />
-						<input type="button" value="尾页" id="lp" onclick="goPage(this)" />
-					</th>
-				</tr>
-	      
-	      
-	      
-                        <%  
+                           } 
                           }
                    
                         

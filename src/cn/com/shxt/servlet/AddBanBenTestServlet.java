@@ -130,7 +130,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			
 			String sql3 = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_ID='"+d_id+"'";
 			String nowPage = request.getParameter("currentPage");
-			PageBean pageBean = dbutil.queryByPage(nowPage, sql3);
+			PageBean pageBean = dbutil.queryByPage2(nowPage, sql3);
 			
 			
 			try {
