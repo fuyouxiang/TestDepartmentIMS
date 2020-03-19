@@ -1,6 +1,7 @@
 package cn.com.shxt.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,13 +32,20 @@ public class AddBanBenTestServlet extends HttpServlet {
 		String type = request.getParameter("type");//申请类型：1是第一次新增；2是修改后重新提交
 		System.out.println("申请类型："+type);
 		
+		DBUtils dbutil =new DBUtils();
 		
 		if(type.equals("1")) {
-			String BumenAndBoss = request.getParameter("bumen");
-			String [] strs = BumenAndBoss.split("[;]");
-			String Bumen = strs[0];
-			String Boss = strs[1];
-			String BossEmail = strs[2];
+			String Bumen = request.getParameter("bumen");			
+			String KaifaBossSql="select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME='"+Bumen+"'";
+			String Boss = null;
+			String BossEmail = null;
+			try {
+				Boss = dbutil.queryString(KaifaBossSql,"B_USER");
+				BossEmail = dbutil.queryString(KaifaBossSql,"EMAIL");
+			} catch (SQLException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			}
 			System.out.println("部门："+Bumen);
 			System.out.println("开发总监："+Boss);
 			System.out.println("开发总监邮箱："+BossEmail);
@@ -60,7 +68,6 @@ public class AddBanBenTestServlet extends HttpServlet {
 			String D_TYPE = "版本测试";
 			System.out.println("测试类型："+D_TYPE);
 
-			DBUtils dbutil =new DBUtils();
 			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI) values " +
 					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "')";		
 			
@@ -117,7 +124,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			System.out.println("wiki地址："+wiki);
 			
 			
-			DBUtils dbutil =new DBUtils();
+
 			
 			String sql = "update SYS_TEST_SQ set D_CONTENT ='"+ content +"',D_BIAOZHUN ='"+ biaozhun +"',D_STATE='0',D_WIKI ='"+ wiki +"' where D_ID='"+ d_id +"'";		
 			int flag = dbutil.update(sql);
