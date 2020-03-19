@@ -338,7 +338,27 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     }else if(errori=='no'){
      alert("操作失败，请联系管理员！");
      window.location.href="<%=path%>/selectBanBenServlet";
-    }  
+    } 
+    
+    /*
+     *@tableId: table的Id
+     *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
+     */
+     function tableToExcel(tableID,fileName){
+         var table = document.getElementById(tableID);
+       var excelContent = table.innerHTML;
+       var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+       excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+       excelFile += "<body><table>";
+       excelFile += excelContent;
+       excelFile += "</table></body>";
+       excelFile += "</html>";
+       var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
+       var a = document.createElement("a");
+       a.download = fileName+".xls";
+       a.href = link;
+       a.click();
+     }
 </script>
 
 		
@@ -397,7 +417,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         				</form>
 						<button onclick = "document.getElementById('endTest').style.display='none'">关闭</button>
 					</div>
-
+			   <button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','版本测试汇总');">导出</button>
 			  
            
             </td>
@@ -405,7 +425,36 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		    </tr>
 		
           </table></td>
+          <td height="45" background="images/nav04.gif" style="width: 800px;">
+			  <form action="<%=path %>/selectVersionServlet2" name="MyPageForm" method="post"  id =formId id ="pageForm" onsubmit="return submitMyForm()">
+						<img src="images/ico07.gif" width="18" height="15" />
+						部门：<input style="width:100px" name="NAME" type="text" size="12"/>
+						微服务：<input style="width:100px" name="NAME" type="text" size="12"/>
+						版本号：<input style="width:100px" name="NAME" type="text" size="12"/>
+						月份：
+						<select style="high:150;font-weight:bold;" name="MONTH"  id="MONTH">
+					     <option style="font-size:13px;" value=""> &nbsp;&nbsp;&nbsp;&nbsp;</option>                                
+					     <option style="font-size:13px;" value="01"> &nbsp;&nbsp;一月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="02"> &nbsp;&nbsp;二月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="03"> &nbsp;&nbsp;三月&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="04"> &nbsp;&nbsp;四月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="05"> &nbsp;&nbsp;五月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="06"> &nbsp;&nbsp;六月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="07"> &nbsp;&nbsp;七月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="08"> &nbsp;&nbsp;八月&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="09"> &nbsp;&nbsp;九月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="10"> &nbsp;&nbsp;十月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="11"> &nbsp;&nbsp;十一月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="12"> &nbsp;&nbsp;十二月 &nbsp;&nbsp;</option>
+					     </select>
+					            状态：<input style="width:100px" name="NAME" type="text" size="12"/>
+						<input type="submit" value="查询" style="font-size:15px;font-weight:bold"/>
+						
+			  </form>
+			 
+		</td>
         </tr>
+        
     </table> 
 
           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
