@@ -225,7 +225,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         var table = document.getElementById(tableID);
       var excelContent = table.innerHTML;
       var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
-      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>版本测试详情</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
       excelFile += "<body><table>";
       excelFile += excelContent;
       excelFile += "</table></body>";
@@ -340,25 +340,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
      window.location.href="<%=path%>/selectBanBenServlet";
     } 
     
-    /*
-     *@tableId: table的Id
-     *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
-     */
-     function tableToExcel(tableID,fileName){
-         var table = document.getElementById(tableID);
-       var excelContent = table.innerHTML;
-       var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
-       excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
-       excelFile += "<body><table>";
-       excelFile += excelContent;
-       excelFile += "</table></body>";
-       excelFile += "</html>";
-       var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
-       var a = document.createElement("a");
-       a.download = fileName+".xls";
-       a.href = link;
-       a.click();
-     }
+
 </script>
 
 		
@@ -397,18 +379,18 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 						<button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
 					</div>
 
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'">驳回</button>
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'" style="color:#ffe000">不通过</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="returnTest" class="white_content">
 			    		<form  method="post"  id="returnBBTestForm">
         					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
-        					【驳回时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
-        					【驳回原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
+        					【NG时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
+        					【NG原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
         					<button style="display: block;" onclick='ReturnTest()'>提交</button>
         				</form>
 						<button onclick = "document.getElementById('returnTest').style.display='none'">关闭</button>
 					</div>
 					
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'">测试通过</button>
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'" style="color:#00ff5a">通过</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="endTest" class="white_content">
 			    		<form  method="post"  id="endBBTestForm">
         					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
@@ -427,13 +409,13 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
           </table></td>
           <td height="45" background="images/nav04.gif" style="width: 800px;">
-			  <form action="<%=path %>/selectVersionServlet2" name="MyPageForm" method="post"  id =formId id ="pageForm" onsubmit="return submitMyForm()">
+			  <form action="<%=path %>/selectBanBenServlet" name="MyPageForm" method="post"  id =formId id ="pageForm" onsubmit="return submitMyForm()">
 						<img src="images/ico07.gif" width="18" height="15" />
-						部门：<input style="width:100px" name="NAME" type="text" size="12"/>
-						微服务：<input style="width:100px" name="NAME" type="text" size="12"/>
-						版本号：<input style="width:100px" name="NAME" type="text" size="12"/>
+						部门：<input style="width:100px" name="selBumen" type="text" size="12"/>
+						微服务：<input style="width:100px" name="selWeifw" type="text" size="12"/>
+						版本号：<input style="width:100px" name="selVersion" type="text" size="12"/>
 						月份：
-						<select style="high:150;font-weight:bold;" name="MONTH"  id="MONTH">
+						<select style="high:150;font-weight:bold;" name="selMonth"  id="selMonth">
 					     <option style="font-size:13px;" value=""> &nbsp;&nbsp;&nbsp;&nbsp;</option>                                
 					     <option style="font-size:13px;" value="01"> &nbsp;&nbsp;一月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="02"> &nbsp;&nbsp;二月 &nbsp;&nbsp;</option>
@@ -448,7 +430,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					     <option style="font-size:13px;" value="11"> &nbsp;&nbsp;十一月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="12"> &nbsp;&nbsp;十二月 &nbsp;&nbsp;</option>
 					     </select>
-					            状态：<input style="width:100px" name="NAME" type="text" size="12"/>
+					            状态：<input style="width:100px" name="selState" type="text" size="12"/>
 						<input type="submit" value="查询" style="font-size:15px;font-weight:bold"/>
 						
 			  </form>
@@ -466,7 +448,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 				 <tr class="CTitle" >
                     	<td id="div_title" height="28" colspan="15" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
-                  <tr bgcolor="#EEEEEE" align="center">
+                  <tr bgcolor="#EEEEEE" align="center"  style="line-height: 40px;height: 40px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
                     <td  style="font-size:15px;font-weight:bold"></td>
                     <td  style="font-size:15px;font-weight:bold">编号</td>
@@ -479,9 +461,9 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">状态</td>
                     <td  style="font-size:15px;font-weight:bold">测试人</td>
                     <td  style="font-size:15px;font-weight:bold">带脚本</td>
-                    <td  style="font-size:15px;font-weight:bold">发江西</td>
-                    <td  style="font-size:15px;font-weight:bold">压测环境</td>
-                    <td  style="font-size:15px;font-weight:bold">jxpre</td>
+                    <td  style="font-size:15px;font-weight:bold">发送江西</td>
+                    <td  style="font-size:15px;font-weight:bold">是否压测</td>
+                    <td  style="font-size:15px;font-weight:bold">jxpre推送</td>
                     <td  style="font-size:15px;font-weight:bold">操作</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
@@ -505,15 +487,15 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             	   
                             	  if(state.equals("0")){
                             		  state ="待测试";
-                            		  Color ="red";
+                            		  Color ="black";
                             	  }else if(state.equals("1")){
                             		  state ="正在测试";
                             		  Color ="blue";
                             	  }else if(state.equals("2")){
-                            		  state ="已驳回";
-                            		  Color ="black";
+                            		  state ="NG";
+                            		  Color ="red";
                             	  }else if(state.equals("3")){
-                            		  state ="测试通过";
+                            		  state ="OK";
                             		  Color ="green";
                             	  }else{
                             		  state ="未知";
