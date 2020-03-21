@@ -188,7 +188,7 @@ if(errori=='yes'){
 					<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>微服务</a>
 					<select name="weiServer" >
 					<%
-                      if(pageBean!=null){
+                      if(pageBean2!=null){
                        //本页的结果集
                        List<Map<String, String>>  resList=  pageBean2.getResList();
                        //System.out.print(resList);
