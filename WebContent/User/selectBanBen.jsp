@@ -4,7 +4,8 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 //获取之前得到的分页对象
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
-//System.out.println(pageBean.toString()) ;
+PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
+PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -57,6 +58,11 @@ body {
 	color: #FF0000;
 	height:2px;
 	text-decoration: none;
+}
+form {
+    display: block;
+    margin-top: 0.5em;
+    margin-block-end: 0.5em;
 }
 button {
   background: #3498db;
@@ -340,7 +346,22 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
      window.location.href="<%=path%>/selectBanBenServlet";
     } 
     
+	//查询提交
+	function submitSelect(){
+        //等待提示
+        showWaiting();
+        window.location.href="<%=path%>/selectBanBenServlet";
+        $(document).ready(parent.closeWaiting());
+    }
 
+	//选择部门时触发查询提交
+	function submitSelBumen(){
+		var form = document.getElementById("submitSelectFrom");
+		//等待提示
+        showWaiting();
+		form.submit();//form表单提交
+		$(document).ready(parent.closeWaiting());
+    }
 </script>
 
 		
@@ -367,7 +388,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 String time=df.format(new Date());// new Date()为获取当前系统时间
 			 String ExcelName = "版本测试汇总"+time;
 			 %>
-			   <td width="1000" align="left" >
+			   <td width="40%" align="left" >
 			    <button onclick="BBLog()">操作日志</button>
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
@@ -408,15 +429,50 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		    </tr>
 		
           </table></td>
-          <td height="45" background="images/nav04.gif" style="width: 800px;">
-			  <form action="<%=path %>/selectBanBenServlet" name="MyPageForm" method="post"  id =formId id ="pageForm" onsubmit="return submitMyForm()">
-						<img src="images/ico07.gif" width="18" height="15" />
-						部门：<input style="width:100px" name="selBumen" type="text" size="12"/>
-						微服务：<input style="width:100px" name="selWeifw" type="text" size="12"/>
-						版本号：<input style="width:100px" name="selVersion" type="text" size="12"/>
+          
+          <!-- 高级查询区域 -->
+          <td height="45" background="images/nav04.gif" style="width:60%;" align="right">
+			 <form name="MyPageForm" method="post"  id="submitSelectFrom"  onsubmit="submitSelect()">
+						部门：
+					<select name="selBumen" style="width:200px" onchange="submitSelBumen()">
+					<option id="MRbumen"></option>
+					<option>全部</option>
+					<%
+                      if(pageBean2!=null){
+                       List<Map<String, String>>  resList=  pageBean2.getResList();
+                       if(resList!=null && resList.size()>0){                          		
+                          for(int i=0;i<resList.size();i++){
+                          Map<String, String>  stuMap= resList.get(i);	  
+                          %>    
+					<option  value="<%=stuMap.get("B_NAME") %>"><%=stuMap.get("B_NAME") %></option>
+					<%     
+                          }                        	  
+                       }
+                      }
+                        %>
+					</select>
+						微服务：
+					<select name="selWeifw" style="width:150px">
+					<option id="MRwei"></option>
+					<option>全部</option>
+					<%
+                      if(pageBean3!=null){
+                       List<Map<String, String>>  resList=  pageBean3.getResList();
+                       if(resList!=null && resList.size()>0){                          		
+                          for(int i=0;i<resList.size();i++){
+                          Map<String, String>  stuMap= resList.get(i);	  
+                          %>    
+					<option  value="<%=stuMap.get("W_NAME") %>"><%=stuMap.get("W_NAME") %></option>
+					<%     
+                          }                        	  
+                       }
+                      }
+                        %>
+					</select></br>
 						月份：
-						<select style="high:150;font-weight:bold;" name="selMonth"  id="selMonth">
-					     <option style="font-size:13px;" value=""> &nbsp;&nbsp;&nbsp;&nbsp;</option>                                
+						<select style="high:150;font-weight:bold;width:80px" name="selMonth"  id="selMonth">
+						 <option id="MRmonth"></option>
+						 <option style="font-size:13px;"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                          
 					     <option style="font-size:13px;" value="01"> &nbsp;&nbsp;一月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="02"> &nbsp;&nbsp;二月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="03"> &nbsp;&nbsp;三月&nbsp;&nbsp;</option>
@@ -430,11 +486,18 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					     <option style="font-size:13px;" value="11"> &nbsp;&nbsp;十一月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="12"> &nbsp;&nbsp;十二月 &nbsp;&nbsp;</option>
 					     </select>
-					            状态：<input style="width:100px" name="selState" type="text" size="12"/>
+					            版本号：<input style="width:100px" name="selVersion" id='MRversion' type="text" size="12"/>
+					            状态：
+					     <select style="high:150;font-weight:bold;width:80px" name="selState"  id="selState">
+						 <option id="MRstate"></option>
+						 <option style="font-size:13px;"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                              
+					     <option style="font-size:13px;" value="0"> &nbsp;&nbsp;待测试 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;测试中 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="2"> &nbsp;&nbsp;NG&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="3"> &nbsp;&nbsp;OK&nbsp;&nbsp;</option>
+					     </select>      
 						<input type="submit" value="查询" style="font-size:15px;font-weight:bold"/>
-						
-			  </form>
-			 
+			 </form>
 		</td>
         </tr>
         
@@ -455,14 +518,14 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">部门</td>
                     <td  style="font-size:15px;font-weight:bold">微服务</td>
                     <td  style="font-size:15px;font-weight:bold">版本号</td>
-                    <td  style="font-size:15px;font-weight:bold">研发人</td>
+                    <td  style="font-size:15px;font-weight:bold;display:none">研发人</td>
                     <td  style="font-size:15px;font-weight:bold">月份</td>
                     <td  style="font-size:15px;font-weight:bold">日期 </td>
                     <td  style="font-size:15px;font-weight:bold">状态</td>
-                    <td  style="font-size:15px;font-weight:bold">测试人</td>
+                    <td  style="font-size:15px;font-weight:bold;display:none">测试人</td>
                     <td  style="font-size:15px;font-weight:bold">带脚本</td>
-                    <td  style="font-size:15px;font-weight:bold">发送江西</td>
-                    <td  style="font-size:15px;font-weight:bold">是否压测</td>
+                    <td  style="font-size:15px;font-weight:bold">发江西</td>
+                    <td  style="font-size:15px;font-weight:bold">压测环境</td>
                     <td  style="font-size:15px;font-weight:bold">jxpre推送</td>
                     <td  style="font-size:15px;font-weight:bold">操作</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
@@ -519,15 +582,15 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=10% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
                             <td  width=10% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_WEINAME") %></td>
                             <td  width=15% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_VERSION") %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_KAIFA") %></td>
                             <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
                             <td  width=5% class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
-                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_TUSER") %></td>
+                            <td  width=7% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_TUSER") %></td>
                             <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
                             <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
+                            <td  width=6% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
+                            <td  width=7% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
                             <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button></td>
                         </tr>
                         	<div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
@@ -560,6 +623,94 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
   </tr>
 </table>
 </div>
-
   </body>
+<script language="javascript">
+var selBumen ='<%=request.getAttribute("selBumen")%>';
+document.getElementById('MRbumen').innerHTML = selBumen;
+var selWeifw ='<%=request.getAttribute("selWeifw")%>';
+document.getElementById('MRwei').innerHTML = selWeifw;
+var selMonth ='<%=request.getAttribute("selMonth")%>';
+document.getElementById('MRmonth').innerHTML = selMonth;
+var selVersion ='<%=request.getAttribute("selVersion")%>';
+document.getElementById('MRversion').innerHTML = selVersion;
+var selState ='<%=request.getAttribute("selState")%>';
+document.getElementById('MRstate').innerHTML = selState;
+
+//关闭等待窗口
+  function closeWaiting() {
+      var bgDiv = document.getElementById("bgDiv");
+      var msgDiv = document.getElementById("msgDiv");
+      //移除背景遮罩层div
+      if(bgDiv != null){
+          document.body.removeChild(bgDiv);
+      }
+      //移除中间信息提示层div    
+      if(msgDiv != null){
+          document.body.removeChild(msgDiv);
+      }
+  }
+  //显示等待窗口
+  function showWaiting() {
+      var msgw, msgh, bordercolor;
+      msgw = 300; //提示窗口的宽度 
+      msgh = 100; //提示窗口的高度 
+      bordercolor = "#336699"; //提示窗口的边框颜色 
+      titlecolor = "#99CCFF"; //提示窗口的标题颜色 
+
+      var sWidth, sHeight;
+      sWidth = document.body.clientWidth;
+      sHeight = document.body.clientHeight;
+
+      //背景遮罩层div
+      var bgObj = document.createElement("div");
+      bgObj.setAttribute('id', 'bgDiv');
+      bgObj.style.position = "absolute";
+      bgObj.style.top = "0px";
+      bgObj.style.background = "#888";
+      bgObj.style.filter = "progid:DXImageTransform.Microsoft.Alpha(style=3,opacity=25,finishOpacity=75";
+      bgObj.style.opacity = "0.6";
+      bgObj.style.left = "0px";
+      bgObj.style.width = sWidth + "px";
+      bgObj.style.height = sHeight + "px";
+      document.body.appendChild(bgObj);
+      
+      //信息提示层div
+      var msgObj = document.createElement("div");
+      msgObj.setAttribute("id", "msgDiv");
+      msgObj.setAttribute("align", "center");
+      msgObj.style.position = "absolute";
+      msgObj.style.background = "white";
+      msgObj.style.font = "12px/1.6em Verdana, Geneva, Arial, Helvetica, sans-serif";
+      msgObj.style.border = "1px solid " + bordercolor;
+      msgObj.style.width = msgw + "px";
+      msgObj.style.height = msgh + "px";
+      msgObj.style.top = (document.documentElement.scrollTop + (sHeight - msgh) / 2) + "px";
+      msgObj.style.left = (sWidth - msgw) / 2 + "px";
+      document.body.appendChild(msgObj);
+      
+      //标题栏
+      var title = document.createElement("h4");
+      title.setAttribute("id", "msgTitle");
+      title.setAttribute("align", "left");
+      title.style.margin = "0px";
+      title.style.padding = "3px";
+      title.style.background = bordercolor;
+      title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(startX=20, startY=20, finishX=100, finishY=100,style=1,opacity=75,finishOpacity=100);";
+      title.style.opacity = "0.75";
+      title.style.border = "1px solid " + bordercolor;
+      title.style.height = "14px";
+      title.style.font = "12px Verdana, Geneva, Arial, Helvetica, sans-serif";
+      title.style.color = "white";
+      title.innerHTML = "正在加载中，请稍候......";
+      document.getElementById("msgDiv").appendChild(title);
+      
+      //中间等待图标
+      var img = document.createElement("img");
+      img.style.margin = "10px 0px 10px 0px";
+      img.style.width = "48px";
+      img.style.height = "48px";
+      img.setAttribute("src", "./img/waiting.gif");
+      document.getElementById("msgDiv").appendChild(img);
+  }
+</script>
 </html>

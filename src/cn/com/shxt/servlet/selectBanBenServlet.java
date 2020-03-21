@@ -33,30 +33,44 @@ public class selectBanBenServlet extends HttpServlet {
 		//查询条件：部门
 		String selBumen = request.getParameter("selBumen");
 		String selBumenSQL;
-		if(selBumen== null || selBumen.length()==0) {
+		//专门给部门-微服务 查询条件过滤用
+		String selBumenSQL2;
+		if(selBumen== null || selBumen.length()==0 || selBumen.equals("全部")) {
 			selBumenSQL=" AND 1=1 ";
+			selBumenSQL2=" AND 1=1 ";
+			//发送查询条件默认值
+			request.setAttribute("selBumen", "");
 		}else {
 			selBumenSQL=" AND D_BUMEN='"+selBumen+"' ";
+			selBumenSQL2=" AND B_NAME='"+selBumen+"' ";
+			//发送查询条件默认值
+			request.setAttribute("selBumen", selBumen);
 		}
 		System.out.println(time+"查询条件：部门:"+selBumenSQL);
 		
 		//查询条件：微服务
 		String selWeifw = request.getParameter("selWeifw");
 		String selWeifwSQL;
-		if(selWeifw== null || selWeifw.length()==0) {
+		if(selWeifw== null || selWeifw.length()==0 || selWeifw.equals("全部")) {
 			selWeifwSQL=" AND 1=1 ";
+			//发送查询条件默认值
+			request.setAttribute("selWeifw", "");
 		}else {
 			selWeifwSQL=" AND D_WEINAME='"+selWeifw+"' ";
+			//发送查询条件默认值
+			request.setAttribute("selWeifw", selWeifw);
 		}
 		System.out.println(time+"查询条件：微服务:"+selWeifwSQL);
 		
 		//查询条件：版本号(模糊查询)
 		String selVersion = request.getParameter("selVersion");
 		String selVersionSQL;
-		if(selVersion== null || selVersion.length()==0) {
+		if(selVersion== null || selVersion.length()==0 || selVersion.equals("全部")) {
 			selVersionSQL=" AND 1=1 ";
+			request.setAttribute("selVersion", "");
 		}else {
 			selVersionSQL=" AND D_VERSION like '%"+selVersion+"%' ";
+			request.setAttribute("selVersion", selVersion);
 		}
 		System.out.println(time+"查询条件：版本号(模糊查询):"+selVersionSQL);
 		
@@ -65,20 +79,24 @@ public class selectBanBenServlet extends HttpServlet {
 		String selMonthSQL;
 		Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
-		if(selMonth== null || selMonth.length()==0) {
+		if(selMonth== null || selMonth.length()==0 || selMonth.equals("全部")) {
 			selMonthSQL=" AND 1=1 ";
+			request.setAttribute("selMonth", "");
 		}else {
 			selMonthSQL=" AND D_DATE like '"+year+"-"+selMonth+"-%' ";
+			request.setAttribute("selMonth", selMonth);
 		}
 		System.out.println(time+"查询条件：月份:"+selMonthSQL);
 		
 		//查询条件：状态
 		String selState = request.getParameter("selState");
 		String selStateSQL;
-		if(selState== null || selState.length()==0) {
+		if(selState== null || selState.length()==0 || selState.equals("全部")) {
 			selStateSQL=" AND 1=1 ";
+			request.setAttribute("selState", "");
 		}else {
 			selStateSQL=" AND D_STATE = '"+selState+"' ";
+			request.setAttribute("selState", selState);
 		}
 		System.out.println(time+"查询条件：状态:"+selStateSQL);
 		
@@ -91,9 +109,19 @@ public class selectBanBenServlet extends HttpServlet {
 		
 		String nowPage = request.getParameter("currentPage");
 		DBUtils dbutil = new DBUtils();
-		
 		PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
 		request.setAttribute("pageBean", pageBean);
+		
+		//部门查询条件
+		String sql2 = "select B_NAME from SYS_BUMEN where B_NAME != '产品测试部'";
+		PageBean pageBean2 = dbutil.queryByPage2(nowPage, sql2);
+		request.setAttribute("pageBean2", pageBean2);
+
+		//版本号查询条件
+		String sql3 = "select W_NAME from SYS_WEINAME where length(B_NAME)>1 " + selBumenSQL2 ;
+		PageBean pageBean3 = dbutil.queryByPage2(nowPage, sql3);
+		request.setAttribute("pageBean3", pageBean3);
+
 		
 		request.getRequestDispatcher("User/selectBanBen.jsp").forward(request, response);
 	}
