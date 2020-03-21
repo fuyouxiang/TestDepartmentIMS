@@ -103,7 +103,7 @@ public class selectBanBenServlet extends HttpServlet {
 		//排序条件
 		String OrderSQL=" order by D_DATE desc";
 		
-		String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_TYPE='版本测试'"
+		String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI,D_ISSQL,D_ISJXXC,D_ISYCHJ,D_ISJXPRE from SYS_TEST_SQ where D_TYPE='版本测试'"
 		+selBumenSQL+selWeifwSQL+selVersionSQL+selMonthSQL+selStateSQL+OrderSQL;
 		System.out.println(time+"总查询SQL:"+sql);
 		

@@ -362,6 +362,15 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		form.submit();//form表单提交
 		$(document).ready(parent.closeWaiting());
     }
+	
+	//重置查询条件后查询
+	function resetSelect(){
+		var form = document.getElementById("submitSelectFrom").reset();
+		//等待提示
+		submitSelect();
+    }
+	
+	
 </script>
 
 		
@@ -434,7 +443,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
           <td height="45" background="images/nav04.gif" style="width:60%;" align="right">
 			 <form name="MyPageForm" method="post"  id="submitSelectFrom"  onsubmit="submitSelect()">
 						部门：
-					<select name="selBumen" style="width:200px" onchange="submitSelBumen()">
+					<select name="selBumen" style="width:231px" onchange="submitSelBumen()">
 					<option id="MRbumen"></option>
 					<option>全部</option>
 					<%
@@ -452,7 +461,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                         %>
 					</select>
 						微服务：
-					<select name="selWeifw" style="width:150px">
+					<select name="selWeifw" style="width:170px">
 					<option id="MRwei"></option>
 					<option>全部</option>
 					<%
@@ -468,7 +477,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                        }
                       }
                         %>
-					</select></br>
+					</select><br>
 						月份：
 						<select style="high:150;font-weight:bold;width:80px" name="selMonth"  id="selMonth">
 						 <option id="MRmonth"></option>
@@ -497,8 +506,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					     <option style="font-size:13px;" value="3"> &nbsp;&nbsp;OK&nbsp;&nbsp;</option>
 					     </select>      
 						<input type="submit" value="查询" style="font-size:15px;font-weight:bold"/>
+						<input type="button" value="重置" style="font-size:15px;font-weight:bold" onclick="resetSelect()"/>
 			 </form>
 		</td>
+		<td height="45" background="images/nav04.gif" style="width:1%;"></td>
         </tr>
         
     </table> 
@@ -509,7 +520,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                 <td height="40" class="font42">
 				<table id = "testList" width="100%" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="15" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="19" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center"  style="line-height: 40px;height: 40px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
@@ -526,7 +537,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">带脚本</td>
                     <td  style="font-size:15px;font-weight:bold">发江西</td>
                     <td  style="font-size:15px;font-weight:bold">压测环境</td>
-                    <td  style="font-size:15px;font-weight:bold">jxpre推送</td>
+                    <td  style="font-size:15px;font-weight:bold">jxpre更新</td>
+                    <td  style="font-size:15px;font-weight:bold;display:none">提交日期</td>
+                    <td  style="font-size:15px;font-weight:bold;display:none">版本内容</td>
+                    <td  style="font-size:15px;font-weight:bold;display:none">测试通过标准</td>
+                    <td  style="font-size:15px;font-weight:bold;display:none">附件地址</td>
                     <td  style="font-size:15px;font-weight:bold">操作</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
@@ -562,7 +577,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             		  Color ="green";
                             	  }else{
                             		  state ="未知";
-                            	  }  
+                            	  }
                             	  
                             	  String Olddate = stuMap.get("D_DATE");
                             	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -571,7 +586,43 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                   calendar.setTime(date);
                                   int month=calendar.get(Calendar.MONTH)+1;
                                   int day=calendar.get(Calendar.DAY_OF_MONTH);
-                            	  
+                                  
+                                  //是否带脚本
+                                  String D_ISSQL = stuMap.get("D_ISSQL");
+                                  if(D_ISSQL.equals("0")){
+                                	  D_ISSQL="否";
+                                  }else if(D_ISSQL.equals("1")){
+                                	  D_ISSQL="是";
+                                  }else{
+                                	  D_ISSQL ="未知";
+                            	  }
+                                  //是否发江西
+                                  String D_ISJXXC = stuMap.get("D_ISJXXC");
+                                  if(D_ISJXXC.equals("0")){
+                                	  D_ISJXXC="";
+                                  }else if(D_ISJXXC.equals("1")){
+                                	  D_ISJXXC="已发";
+                                  }else{
+                                	  D_ISJXXC ="未知";
+                            	  }
+                                  //是否更新压测环境
+                                  String D_ISYCHJ = stuMap.get("D_ISYCHJ");
+                                  if(D_ISYCHJ.equals("0")){
+                                	  D_ISYCHJ="";
+                                  }else if(D_ISYCHJ.equals("1")){
+                                	  D_ISYCHJ="已更新";
+                                  }else{
+                                	  D_ISYCHJ ="未知";
+                            	  }
+                                  //是否更新jxpre环境
+                                  String D_ISJXPRE = stuMap.get("D_ISJXPRE");
+                                  if(D_ISJXPRE.equals("0")){
+                                	  D_ISJXPRE="";
+                                  }else if(D_ISJXPRE.equals("1")){
+                                	  D_ISJXPRE="已更新";
+                                  }else{
+                                	  D_ISJXPRE ="未知";
+                            	  }
                           %>
                           <tr align="center" style="">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
@@ -587,13 +638,16 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=5% class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
                             <td  width=7% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
                             <td  width=5% class="bor_2" style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_TUSER") %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=6% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=7% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button></td>
-                        </tr>
-                        	<div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_ISSQL %></td>
+                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_ISJXXC %></td>
+                            <td  width=6% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_ISYCHJ %></td>
+                            <td  width=7% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_ISJXPRE %></td>
+                            <td style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_DATE") %></td>
+   							<td style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_CONTENT") %></td>
+   							<td style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_BIAOZHUN") %></td>
+   							<td style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_WIKI") %></td>
+                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
+                            <div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
         					【部门】：<%=stuMap.get("D_BUMEN") %><br/>
         					【开发】：<%=stuMap.get("D_KAIFA") %><br/>
         					【提交日期】：<%=stuMap.get("D_DATE") %><br/>
@@ -604,9 +658,13 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         				          【wiki地址】：<a href="<%=stuMap.get("D_WIKI") %>" target="_blank"><%=stuMap.get("D_WIKI") %></a><br/>
         				          【状态】：<%=state %><br/>    
         					【重新提交路径】：<a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a><br/>
-        					<br/>
+        					<br/>  
 							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button>
 							</div>
+                            </td>
+
+                        </tr>
+
                           <%     
               
                                }
