@@ -377,7 +377,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
 <body onload="valiButt()">
 <!-- 右侧滚动条 -->
-<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">
+<div style="width:100%;height:100%;overflow: scroll;">
 
 <form action="<%=path %>/selectBanBenServlet"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
@@ -388,7 +388,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         <tr>
           <td height="45" background="images/nav04.gif">
             
-		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+		   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 		    <tr>
 		      
 			 <%
@@ -514,35 +514,34 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         
     </table> 
 
-          <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
+          <table width="2500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
-				<table id = "testList" width="100%" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				<table id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="19" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="18" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
-                  <tr bgcolor="#EEEEEE" align="center"  style="line-height: 40px;height: 40px;">
+                  <tr bgcolor="#EEEEEE" align="center"  style="line-height:22px;height:22px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
                     <td  style="font-size:15px;font-weight:bold"></td>
                     <td  style="font-size:15px;font-weight:bold">编号</td>
                     <td  style="font-size:15px;font-weight:bold">部门</td>
                     <td  style="font-size:15px;font-weight:bold">微服务</td>
-                    <td  style="font-size:15px;font-weight:bold">版本号</td>
-                    <td  style="font-size:15px;font-weight:bold;display:none">研发人</td>
+                    <td  style="font-size:15px;font-weight:bold">版本号</td>                   
                     <td  style="font-size:15px;font-weight:bold">月份</td>
                     <td  style="font-size:15px;font-weight:bold">日期 </td>
-                    <td  style="font-size:15px;font-weight:bold">状态</td>
-                    <td  style="font-size:15px;font-weight:bold;display:none">测试人</td>
+                    <td  style="font-size:15px;font-weight:bold">状态</td>                    
                     <td  style="font-size:15px;font-weight:bold">带脚本</td>
                     <td  style="font-size:15px;font-weight:bold">发江西</td>
                     <td  style="font-size:15px;font-weight:bold">压测环境</td>
                     <td  style="font-size:15px;font-weight:bold">jxpre更新</td>
-                    <td  style="font-size:15px;font-weight:bold;display:none">提交日期</td>
-                    <td  style="font-size:15px;font-weight:bold;display:none">版本内容</td>
-                    <td  style="font-size:15px;font-weight:bold;display:none">测试通过标准</td>
-                    <td  style="font-size:15px;font-weight:bold;display:none">附件地址</td>
-                    <td  style="font-size:15px;font-weight:bold">操作</td>
+                    <td  style="font-size:15px;font-weight:bold">研发人</td>
+                    <td  style="font-size:15px;font-weight:bold">测试人</td>
+                    <td  style="font-size:15px;font-weight:bold">提交日期</td>
+                    <td  style="font-size:15px;font-weight:bold">版本内容</td>
+                    <td  style="font-size:15px;font-weight:bold">测试通过标准</td>
+                    <td  style="font-size:15px;font-weight:bold">附件地址</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
                    <tbody>
@@ -624,29 +623,31 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                 	  D_ISJXPRE ="未知";
                             	  }
                           %>
-                          <tr align="center" style="">
+                          <tr align="center" style="line-height:20px;height:20px;">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
-                          	<td  width=3% class="bor_2">
+                          	<td  width=50px class="bor_2">
                           	<input type="checkbox" value="<%=stuMap.get("D_ID") %>" name="checkboxBtn"/><br />
                           	</td>
-                          	<td  width=3% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:38px;"> <%=i+1 %> </td>
-                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
-                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_WEINAME") %></td>
-                            <td  width=15% class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_VERSION") %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_KAIFA") %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
-                            <td  width=5% class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
-                            <td  width=7% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_TUSER") %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_ISSQL %></td>
-                            <td  width=5% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_ISJXXC %></td>
-                            <td  width=6% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_ISYCHJ %></td>
-                            <td  width=7% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_ISJXPRE %></td>
-                            <td style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_DATE") %></td>
-   							<td style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_CONTENT") %></td>
-   							<td style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_BIAOZHUN") %></td>
-   							<td style="font-size:13px;text-align:center;display:none"><%=stuMap.get("D_WIKI") %></td>
-                            <td  width=10% class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
+                          	<td  width=50px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:30px;"> <%=i+1 %> </td>
+                            <td  width=170px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
+                            <td  width=170px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_WEINAME") %></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_VERSION") %></td>
+                            <td  width=80px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
+                            <td  width=80px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISSQL %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXXC %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISYCHJ %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXPRE %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_TUSER") %></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
+   							<td  width=300px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_CONTENT") %></td>
+   							<td  width=300px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BIAOZHUN") %></td>
+   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_WIKI") %></td>
+   							<!-- 
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
+                            <button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
                             <div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
         					【部门】：<%=stuMap.get("D_BUMEN") %><br/>
         					【开发】：<%=stuMap.get("D_KAIFA") %><br/>
@@ -662,7 +663,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button>
 							</div>
                             </td>
-
+ 							-->
                         </tr>
 
                           <%     
