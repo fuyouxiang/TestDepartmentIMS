@@ -17,8 +17,6 @@ PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 <meta name="keywords" content="Pink Contact Form ,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-<!--webfonts-->
-<!--//webfonts-->
 </head>
 <script language="javascript">
 //取出传回来的参数error并与yes比较
@@ -32,13 +30,25 @@ if(errori=='yes'){
 }
 
 //邮箱格式校验
-	function  submitMyForm(){
+	function  submitMyForm(fm){
+		var bumen=document.formname.bumen.value;
+		var kaifa=document.formname.kaifa.value;
 		var k_email=document.formname.k_email.value;
+		var date=document.formname.date.value;
+		var weiServer=document.formname.weiServer.value;
+		var banbenNo=document.formname.banbenNo.value;
+		var content=document.formname.content.value;
+		var biaozhun=document.formname.biaozhun.value;
+		
 		var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
 		if (!stop.test(k_email)) {
 			alert("邮箱格式不正确!");
 			return false;
+	    }else if (bumen=="请选择部门") {
+			alert("邮箱格式不正确!");
+			return false;
 	    }else{
+	    	fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun;  
 	    	return true;
 	    }
 }
@@ -143,7 +153,7 @@ if(errori=='yes'){
 		<a class="active" href="<%=path%>/TestApplicationServlet">版本测试申请</a><a href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a>
 	</div>
 	<h1>版本测试申请单</h1>
-	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm()">
+	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
 	<div class="login-01">
 			<form>
 				<ul>
@@ -227,15 +237,16 @@ if(errori=='yes'){
 				<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="wiki" type="file" class="text" placeholder="Wiki地址">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="file" type="file" class="text">
 					<div class="clear"></div>
 				</li>
 			</ul>
-			<input type="submit" value="提交" onclick="submit();">
+			<input type="submit" value="提交" >
 			<div class="clear"></div>
 		</form>
 </div>
 </form>
+
 	<!--start-copyright-->
    		<div class="copy-right">
    			<div class="wrap">

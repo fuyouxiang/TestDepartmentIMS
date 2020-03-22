@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.io.*,java.net.*" pageEncoding="UTF-8"%> 
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.io.*,java.net.*,java.util.Properties,java.util.ResourceBundle;" pageEncoding="UTF-8"%> 
 <%  
   //关于文件下载时采用文件流输出的方式处理：  
   //加上response.reset()，并且所有的％>后面不要换行，包括最后一个；  
@@ -7,7 +7,19 @@
   response.setContentType("application/x-download");  
   
 //application.getRealPath("/main/mvplayer/CapSetup.msi");获取的物理路径  
-  
+
+Properties prop = new Properties();
+//装载Properties配置文件
+ResourceBundle resource = ResourceBundle.getBundle("uploadAddress");
+String path =resource.getString("uploadAddress");
+
+//文件名
+String filedisplay2 =new String((request.getParameter("ATTACH_NAME")).getBytes("iso8859-1"),"utf-8");
+
+//地址+文件名
+String filedownload=path+filedisplay2;
+/*
+* 旧的传值，太垃圾，只需要传文件名就行，地址直接从properties里拿
 String filedownload1 = request.getParameter("ATTACH_PATH"); 
 System.out.println("ATTACH_PATH："+filedownload1+"====================");
 
@@ -19,9 +31,11 @@ System.out.println("ATTACH_NAME"+test+"====================");
 
 String filedisplay = new String(request.getParameter("ATTACH_NAME").getBytes("iso-8859-1"), "utf-8");
 System.out.println("转码后ATTACH_NAME"+filedisplay+"====================");
- 
+
 
 String filedisplay2 = URLEncoder.encode(filedisplay,"utf-8");
+*/  
+
 response.addHeader("Content-Disposition","attachment;filename=" + filedisplay2); 
 
 FileInputStream input = new FileInputStream(filedownload);

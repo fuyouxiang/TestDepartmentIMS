@@ -108,7 +108,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
             background-color: white; 
             z-index:1002; 
             overflow: auto; 
-        } 
+        }
+
 </style>
 
 
@@ -220,6 +221,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		</script>
 
 <script type="text/javascript">
+
     function base64 (content) {
        return window.btoa(unescape(encodeURIComponent(content)));         
     }
@@ -377,7 +379,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
 <body onload="valiButt()">
 <!-- 右侧滚动条 -->
-<div style="width:100%;height:100%;overflow: scroll;">
+<div style="width:100%;height:96%;overflow: scroll;">
 
 <form action="<%=path %>/selectBanBenServlet"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
@@ -644,7 +646,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
    							<td  width=300px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_CONTENT") %></td>
    							<td  width=300px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BIAOZHUN") %></td>
-   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_WIKI") %></td>
+   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<a href="youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
+   							<%=stuMap.get("D_WIKI") %>
+   							</a>
+   							</td>
    							<!-- 
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
                             <button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
