@@ -29,6 +29,22 @@ if(errori=='yes'){
  alert("版本测试申请单重新提交失败，请联系管理员！");
  window.location.href="<%=path%>/TestApplicationServlet";
 }
+
+//邮箱格式校验
+function  submitMyForm(fm){
+	var bumen=document.formname.bumen.value;
+	var kaifa=document.formname.kaifa.value;
+	var k_email=document.formname.k_email.value;
+	var date=document.formname.date.value;
+	var weiServer=document.formname.weiServer.value;
+	var banbenNo=document.formname.banbenNo.value;
+	var content=document.formname.content.value;
+	var biaozhun=document.formname.biaozhun.value;
+	
+	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+    fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun;  
+    return true;
+    }
 </script>
 <body>
 		<%
@@ -45,7 +61,7 @@ if(errori=='yes'){
         int NG=Integer.parseInt(stuMap.get("D_NG"))+1; 
 	%>
 	<h1>版本测试重新提交</h1>
-	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId>
+	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
 	<div class="login-01">
 			<form>
 			
@@ -54,7 +70,7 @@ if(errori=='yes'){
 				<li class="first">
 				<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>所属部门</a>   
 					<select name="bumen">
-					<option  value="<%=stuMap.get("D_BUMEN") %>;<%=stuMap.get("D_KBOSS") %>;<%=stuMap.get("D_KBOSSEMAIL") %>"><%=stuMap.get("D_BUMEN") %></option>
+					<option  value="<%=stuMap.get("D_BUMEN") %>"><%=stuMap.get("D_BUMEN") %></option>
 					</select>
 					<div class="clear"></div>
 				</li>
@@ -95,7 +111,7 @@ if(errori=='yes'){
 				<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="wiki" type="text" class="text" placeholder="Wiki地址" value="<%=stuMap.get("D_WIKI") %>">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="file" type="file" class="text">
 					<div class="clear"></div>
 				</li>
 			</ul>

@@ -53,15 +53,8 @@ public class StartBBTestServlet extends HttpServlet {
 		String nowPage = request.getParameter("currentPage");
 		PageBean pageBean = dbutil.queryByPage(nowPage, sql3);
 
-		if(flag > 0){
-			request.setAttribute("pageBean", pageBean);
-			request.getRequestDispatcher("User/selectBanBen.jsp?StartAnswer=yes").forward(request, response);
-		}else{
-			request.setAttribute("pageBean", pageBean);
-			request.getRequestDispatcher("User/selectBanBen.jsp?StartAnswer=no").forward(request, response);
-		}
+		response.sendRedirect("selectBanBenServlet");
 
-		
 	}
 
 }

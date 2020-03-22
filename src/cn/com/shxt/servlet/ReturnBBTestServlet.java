@@ -78,19 +78,8 @@ public class ReturnBBTestServlet extends HttpServlet {
 			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 		}
 		
-		String sql3 = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_TYPE='版本测试' order by D_DATE desc";
-		String nowPage = request.getParameter("currentPage");
-		PageBean pageBean = dbutil.queryByPage2(nowPage, sql3);
-		
-		if(flag > 0){
-			request.setAttribute("pageBean", pageBean);
-			request.getRequestDispatcher("User/selectBanBen.jsp?ReturnAnswer=yes").forward(request, response);
-		}else{
-			request.setAttribute("pageBean", pageBean);
-			request.getRequestDispatcher("User/selectBanBen.jsp?ReturnAnswer=no").forward(request, response);
-		}
-		
-	
+		response.sendRedirect("selectBanBenServlet");
+
 	}
 
 }

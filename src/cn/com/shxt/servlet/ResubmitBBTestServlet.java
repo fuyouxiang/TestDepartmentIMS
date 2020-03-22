@@ -40,6 +40,4 @@ public class ResubmitBBTestServlet extends HttpServlet {
 		request.getRequestDispatcher("User/ResubmitBBTest.jsp").forward(request, response);
 	}
 
-
-
 }

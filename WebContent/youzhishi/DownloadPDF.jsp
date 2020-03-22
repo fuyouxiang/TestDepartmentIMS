@@ -14,10 +14,9 @@ ResourceBundle resource = ResourceBundle.getBundle("uploadAddress");
 String path =resource.getString("uploadAddress");
 
 //文件名
-String filedisplay2 =new String((request.getParameter("ATTACH_NAME")).getBytes("iso8859-1"),"utf-8");
+String filedisplay =new String((request.getParameter("ATTACH_NAME")).getBytes("iso8859-1"),"utf-8");
+System.out.println("ATTACH_NAME:"+filedisplay);
 
-//地址+文件名
-String filedownload=path+filedisplay2;
 /*
 * 旧的传值，太垃圾，只需要传文件名就行，地址直接从properties里拿
 String filedownload1 = request.getParameter("ATTACH_PATH"); 
@@ -33,11 +32,15 @@ String filedisplay = new String(request.getParameter("ATTACH_NAME").getBytes("is
 System.out.println("转码后ATTACH_NAME"+filedisplay+"====================");
 
 
-String filedisplay2 = URLEncoder.encode(filedisplay,"utf-8");
-*/  
 
+*/  
+//传给前端需要用utf-8编码
+String filedisplay2 = URLEncoder.encode(filedisplay,"utf-8");
+System.out.println("ATTACH_NAME2:"+filedisplay2);
 response.addHeader("Content-Disposition","attachment;filename=" + filedisplay2); 
 
+//地址+文件名 
+String filedownload=path+filedisplay;
 FileInputStream input = new FileInputStream(filedownload);
 //修正 Excel在“xxx.xlsx”中发现不可读取的内容。是否恢复此工作薄的内容？如果信任此工作簿的来源，请点击"是"
 response.setHeader("Content-Length", String.valueOf(input.getChannel().size()));

@@ -45,7 +45,7 @@ if(errori=='yes'){
 			alert("邮箱格式不正确!");
 			return false;
 	    }else if (bumen=="请选择部门") {
-			alert("邮箱格式不正确!");
+			alert("请选择部门!");
 			return false;
 	    }else{
 	    	fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun;  

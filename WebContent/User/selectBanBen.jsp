@@ -276,9 +276,14 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         	 alert("请勾选一条数据！"); 
          }else{
         	 //alert("该条数据的ID为"+ID); 
+        	 
         	 form.action="<%=path %>/StartBBTestServlet?D_ID="+ID;
         	 //alert(form.action);
+        	 document.getElementById("startTestButton").onclick();
+        	 //等待提示
+        	 showWaiting();
         	 form.submit();
+     		 $(document).ready(parent.closeWaiting());
          }
      }
 
@@ -306,7 +311,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         	 alert("请勾选一条数据！"); 
          }else{
         	 form.action="<%=path %>/ReturnBBTestServlet?D_ID="+ID;
+        	 document.getElementById("returnTestButton").onclick();
+        	 //等待提示
+        	 showWaiting();
         	 form.submit();
+     		 $(document).ready(parent.closeWaiting());
          }
      }
     
@@ -334,7 +343,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         	 alert("请勾选一条数据！"); 
          }else{
         	 form.action="<%=path %>/EndBBTestServlet?D_ID="+ID;
+        	 document.getElementById("endTestButton").onclick();
+        	 //等待提示
+        	 showWaiting();
         	 form.submit();
+     		 $(document).ready(parent.closeWaiting());
          }
      }
     
@@ -408,7 +421,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         					【开始测试时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
         					<button style="display: block;" onclick='StartTest()'>提交</button>
         				</form>
-						<button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
+						<button onclick = "document.getElementById('startTest').style.display='none'" id="startTestButton">关闭</button>
 					</div>
 
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'" style="color:#ffe000">不通过</button>
@@ -419,7 +432,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         					【NG原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
         					<button style="display: block;" onclick='ReturnTest()'>提交</button>
         				</form>
-						<button onclick = "document.getElementById('returnTest').style.display='none'">关闭</button>
+						<button onclick = "document.getElementById('returnTest').style.display='none'" id="returnTestButton">关闭</button>
 					</div>
 					
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'" style="color:#00ff5a">通过</button>
@@ -430,7 +443,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         					【备注/遗留】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
         					<button style="display: block;" onclick='EndTest()'>提交</button>
         				</form>
-						<button onclick = "document.getElementById('endTest').style.display='none'">关闭</button>
+						<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
 					</div>
 			   <button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
 			  
