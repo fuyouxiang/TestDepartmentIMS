@@ -138,7 +138,25 @@ input[type="text"],form textarea{
   -moz-border-bottom-right-radius: 0.3em;
   -webkit-border-bottom-right-radius: 0.3em;
 }
-
+input[type="file"]{
+  width: 77%;
+  padding: 0.60em 1em 1.13em 1em;
+  color: #000000;
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+  font-weight: 500;
+  border: none;
+  font-family: 'Microsoft YaHei', serif;
+  border-top-right-radius: 0.3em;
+  -o-border-top-right-radius: 0.3em;
+  -moz-border-top-right-radius: 0.3em;
+  -webkit-border-top-right-radius: 0.3em;
+  border-border-bottom-right-radius: 0.3em;
+  -o-border-bottom-right-radius: 0.3em;
+  -moz-border-bottom-right-radius: 0.3em;
+  -webkit-border-bottom-right-radius: 0.3em;
+}
 select {
   width: 81.5%;
   padding: 0.82em 1em 1.13em 1em;
