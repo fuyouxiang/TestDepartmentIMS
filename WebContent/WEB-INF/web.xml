@@ -560,6 +560,12 @@
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.servlet.ResubmitDYTestServlet</servlet-class>
 	</servlet>
+	<servlet>    
+    	<servlet-name>updateBBStateServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.updateBBStateServlet</servlet-class>
+	</servlet>
 
 
 
@@ -571,8 +577,10 @@
 
 
 
-
-
+	<servlet-mapping>
+    	<servlet-name>updateBBStateServlet</servlet-name>
+    	<url-pattern>/updateBBStateServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>ResubmitDYTestServlet</servlet-name>
     	<url-pattern>/ResubmitDYTestServlet</url-pattern>

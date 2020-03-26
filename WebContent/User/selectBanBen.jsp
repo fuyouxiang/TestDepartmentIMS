@@ -261,6 +261,22 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         	 window.location.href="<%=path %>/selectBBLogServlet?D_ID="+ID;
          }
      }    
+    
+    //状态修改
+    function BBState(){
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+        	 window.location.href="<%=path %>/updateBBStateServlet?type=1&D_ID="+ID;
+         }
+     }  
 
     //开始测试
     function StartTest(){
@@ -414,6 +430,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 %>
 			   <td width="40%" align="left" >
 			    <button onclick="BBLog()">操作日志</button>
+			    <button onclick="BBState()">状态修改</button>
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
 			    		<form  method="post"  id="StartBBTestForm">

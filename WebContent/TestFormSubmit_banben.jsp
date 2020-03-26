@@ -230,8 +230,8 @@ if(errori=='yes'){
 				<li class="second">
 				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>通过标准</a>
 					<select name="biaozhun">
-					<option value="符合测试用例测试通过要求">符合测试用例测试通过要求</option>
-					<option value="符合构造说明测试通过要求">符合构造说明测试通过要求</option>
+					<option value="符合测试用例中的测试通过标准">符合测试用例中的测试通过标准</option>
+					<option value="符合版本构造说明中的测试通过标准">符合版本构造说明中的测试通过标准</option>
 					<option value="主流程测试通过">主流程测试通过</option>
 					</select>
 				<div class="clear"></div>
