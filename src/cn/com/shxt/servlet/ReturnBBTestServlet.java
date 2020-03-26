@@ -68,17 +68,23 @@ public class ReturnBBTestServlet extends HttpServlet {
 			String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 			String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 			System.out.println(time+"邮件地址："+EmailAddress);
-			String Msgtitle = D_KAIFA+"申请的版本测试未通过！";
+			String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试未通过！";
 			System.out.println(time+"邮件标题："+Msgtitle);
-			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【驳回人】："+D_TUSER+"；"+"【驳回时间】："+TIME+"；"+"【驳回原因】："+REASON+"；"+"【重新提交地址】："+D_SUBURL+"；";
+			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【测试人】："+D_TUSER+"；"+"【驳回时间】："+TIME+"；"+"【NG原因】："+REASON+"；"+"【重新申请地址】："+D_SUBURL+"；";
 			System.out.println(time+"邮件内容："+Msg);
-			//SendEmail sendEmail = new SendEmail();
-			//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+			SendEmail sendEmail = new SendEmail();
+			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
 			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 		}
 		
-		response.sendRedirect("selectBanBenServlet");
+		//response.sendRedirect("selectBanBenServlet");
+		response.setContentType("text/html; charset=UTF-8");
+	    if(flag>0){
+	    response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet';</script>");
+	    }else{
+	    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet';</script>");
+	    }   
 
 	}
 

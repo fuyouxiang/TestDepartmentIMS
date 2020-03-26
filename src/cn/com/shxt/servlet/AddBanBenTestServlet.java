@@ -215,7 +215,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"添加版本测试申请："+sql);	
 			
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【wiki地址】:"+wiki+"')";
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【附件名称】:"+wiki+"')";
 			int flag2 = dbutil.update(sql2);
 			System.out.println(timelog+"添加日志："+sql2);	
 
@@ -223,10 +223,10 @@ public class AddBanBenTestServlet extends HttpServlet {
 				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
-				String Msgtitle = kaifa+"申请版本测试！";
-				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【wiki地址】："+wiki+"；";
-				//SendEmail sendEmail = new SendEmail();
-				//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+				String Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
+				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【附件名称】："+wiki+"；";
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
 				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 			}
@@ -286,9 +286,9 @@ public class AddBanBenTestServlet extends HttpServlet {
 				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 				String Msgtitle = kaifa+"第"+NGnumber+"轮版本测试申请！";
-				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【wiki地址】："+wiki+"；";
-				//SendEmail sendEmail = new SendEmail();
-				//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【附件名称】："+wiki+"；";
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
 				request.getRequestDispatcher("User/ResubmitBBTest.jsp?StartAnswer=no").forward(request, response);
 			}

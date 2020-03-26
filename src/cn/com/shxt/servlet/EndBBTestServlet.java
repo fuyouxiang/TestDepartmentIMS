@@ -75,7 +75,7 @@ public class EndBBTestServlet extends HttpServlet {
 			System.out.println(time+"邮件地址："+EmailAddress);
 			String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试结束，测试通过！";
 			System.out.println(time+"邮件标题："+Msgtitle);
-			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；"+"【wiki地址】："+D_WIKI+"；";
+			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；"+"【附件名称】："+D_WIKI+"；";
 			System.out.println(time+"邮件内容："+Msg);
 			SendEmail sendEmail = new SendEmail();
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
@@ -83,7 +83,13 @@ public class EndBBTestServlet extends HttpServlet {
 			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 		}
 		
-		response.sendRedirect("selectBanBenServlet");
+		//response.sendRedirect("selectBanBenServlet");
+		response.setContentType("text/html; charset=UTF-8");
+	    if(flag>0){
+	    response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet';</script>");
+	    }else{
+	    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet';</script>");
+	    }   
 		
 	}
 

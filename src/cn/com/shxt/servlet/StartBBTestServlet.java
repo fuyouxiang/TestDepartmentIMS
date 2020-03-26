@@ -48,12 +48,14 @@ public class StartBBTestServlet extends HttpServlet {
 		String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + D_ID + "','" + D_TUSER + "','" + TIME + "','开始测试', '无')";
 		int flag2 = dbutil.update(sql2);
 		System.out.println(time+"添加日志："+sql2);
-		
-		String sql3 = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_TYPE='版本测试' order by D_DATE desc";
-		String nowPage = request.getParameter("currentPage");
-		PageBean pageBean = dbutil.queryByPage(nowPage, sql3);
 
-		response.sendRedirect("selectBanBenServlet");
+		//response.sendRedirect("selectBanBenServlet");
+		response.setContentType("text/html; charset=UTF-8");
+	    if(flag>0){
+	    response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet';</script>");
+	    }else{
+	    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet';</script>");
+	    }   
 
 	}
 
