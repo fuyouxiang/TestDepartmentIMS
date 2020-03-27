@@ -31,7 +31,7 @@ public class ResubmitDYTestServlet extends HttpServlet {
 		String id = request.getParameter("D_ID");
 		System.out.println(time+"重新提交单ID:"+id);
 		
-		String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_VERSION,D_STATE,D_SUBURL from SYS_TEST_SQ where D_ID='"+id+"'";
+		String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_VERSION,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_ID='"+id+"'";
 		
 		String nowPage = request.getParameter("currentPage");
 		DBUtils dbutil = new DBUtils();

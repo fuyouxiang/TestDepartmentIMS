@@ -29,6 +29,33 @@ if(errori=='yes'){
  alert("单元测试申请单重新提交失败，请联系管理员！");
  window.location.href="<%=path%>/DYTestApplicationServlet";
 }
+
+//邮箱格式校验
+function  submitMyForm(fm){
+
+	var d_id=document.formname.d_id.value;
+	var bumen=document.formname.bumen.value;
+	var kaifa=document.formname.kaifa.value;
+	var k_email=document.formname.k_email.value;
+	var date=document.formname.date.value;
+	var dyName=document.formname.dyName.value;
+	var content=document.formname.content.value;
+	var biaozhun=document.formname.biaozhun.value;	
+	var BossEmail=document.formname.BossEmail.value;
+	var NGnumber=document.formname.NGnumber.value;
+	
+	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+	if (!stop.test(k_email)) {
+		alert("邮箱格式不正确!");
+		return false;
+    }else if (bumen=="请选择部门") {
+		alert("请选择部门!");
+		return false;
+    }else{
+    	fm.action = fm.action + "&d_id="+d_id+"&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&dyName="+dyName+"&content="+content+"&biaozhun="+biaozhun+"&BossEmail="+BossEmail+"&NGnumber="+NGnumber;  
+    	return true;
+    }
+}
 </script>
 <body>
 		<%
@@ -45,12 +72,12 @@ if(errori=='yes'){
         int NG=Integer.parseInt(stuMap.get("D_NG"))+1; 
 	%>
 	<h1>单元测试第<%=NG %>次提交</h1>
-	<form action="<%=path%>/AddDanYuanTestServlet?type=6" name="formname" method="post" id =formId>
+	<form action="<%=path%>/AddDanYuanTestServlet?type=6" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
 	<div class="login-01">
 			<form>
 				<ul>
 				<li class="first">
-					<a href="#" class=" icon user"></a>
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>所属部门</a>
 					<input type="hidden" name="BossEmail"  value="<%=stuMap.get("D_KBOSSEMAIL") %>">
 					<input name="bumen" type="text" class="text" readonly="readonly" required="required" value="<%=stuMap.get("D_BUMEN") %>">
 					<div class="clear"></div>
@@ -58,20 +85,20 @@ if(errori=='yes'){
 				
 				<li class="first">
 					<input type="hidden" name="d_id"  value="<%=stuMap.get("D_ID") %>">
-					<input type="hidden" name="NGnumber"  value="<%=NG %>">
-					<a href="#" class=" icon user"></a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required" value="<%=stuMap.get("D_KAIFA") %>" readonly="readonly">
+					<input type="hidden" name="NGnumber"  value="<%=stuMap.get("D_NG")%>">
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required" value="<%=stuMap.get("D_KAIFA") %>" readonly="readonly">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required" value="<%=stuMap.get("D_KEMAIL") %>" readonly="readonly">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required" value="<%=stuMap.get("D_KEMAIL") %>" readonly="readonly">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>提交日期</a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"></a><input name="dyName" type="text" class="text" placeholder="单元测试名称" required="required" value="<%=stuMap.get("D_VERSION") %>" readonly="readonly">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>单元名称</a><input name="dyName" type="text" class="text" placeholder="单元测试名称" required="required" value="<%=stuMap.get("D_VERSION") %>" readonly="readonly">
 					<div class="clear"></div>
 				</li>
 				<!-- 
@@ -80,11 +107,21 @@ if(errori=='yes'){
 					<div class="clear"></div>
 				</li> -->
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="content" placeholder="测试内容" required="required"><%=stuMap.get("D_CONTENT") %></textarea>
+				<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>测试内容</a><textarea name="content" placeholder="测试内容" required="required"><%=stuMap.get("D_CONTENT") %></textarea>
 				<div class="clear"></div>
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="biaozhun" placeholder="测试通过标准" required="required"><%=stuMap.get("D_BIAOZHUN") %></textarea>
+				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>通过标准</a>
+					<select name="biaozhun">
+					<option value="<%=stuMap.get("D_BIAOZHUN") %>"><%=stuMap.get("D_BIAOZHUN") %></option>
+					<option value="符合测试用例中的测试通过标准">符合测试用例中的测试通过标准</option>
+					<option value="符合版本构造说明中的测试通过标准">符合版本构造说明中的测试通过标准</option>
+					<option value="主流程测试通过">主流程测试通过</option>
+					</select>
 				<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="file" type="file" class="text">
+					<div class="clear"></div>
 				</li>
 			</ul>
 			<input type="submit" value="第<%=NG %>次提交" >

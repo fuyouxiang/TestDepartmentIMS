@@ -41,7 +41,7 @@ function Return(){
 </script>
 <body>
 <!-- 右侧滚动条 -->
-<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">
+<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:96%;">
 <br/>
 <button onclick="Return()">返回主菜单</button>
 <!--事件时间轴-->

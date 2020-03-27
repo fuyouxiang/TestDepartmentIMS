@@ -31,15 +31,27 @@ if(errori=='yes'){
 }
 
 //邮箱格式校验
-function  submitMyForm(){
+function  submitMyForm(fm){
+	var bumen=document.formname.bumen.value;
+	var kaifa=document.formname.kaifa.value;
 	var k_email=document.formname.k_email.value;
+	var date=document.formname.date.value;
+	var dyName=document.formname.dyName.value;
+	var content=document.formname.content.value;
+	var biaozhun=document.formname.biaozhun.value;
+	
 	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
 	if (!stop.test(k_email)) {
 		alert("邮箱格式不正确!");
 		return false;
+    }else if (bumen=="请选择部门") {
+		alert("请选择部门!");
+		return false;
     }else{
+    	fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&dyName="+dyName+"&content="+content+"&biaozhun="+biaozhun;  
     	return true;
     }
+}
 </script>
 <body>
 		<%
@@ -50,15 +62,16 @@ function  submitMyForm(){
 		<a  href="<%=path%>/TestApplicationServlet">版本测试申请</a><a class="active" href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a>
 	</div>
 	<h1>单元测试申请单</h1>
-	<form action="<%=path%>/AddDanYuanTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm()">
+	<form action="<%=path%>/AddDanYuanTestServlet?type=1" name="formname" method="post" id =formId  onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
 	<div class="login-01">
 			<form>
 				<ul>
 				
 
 				<li class="first">
-					<a href="#" class=" icon user"></a>
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>所属部门</a>
 					<select name="bumen">
+					<option  value="请选择部门">请选择部门</option>
 					<%
                       if(pageBean!=null){
                        //本页的结果集
@@ -68,7 +81,7 @@ function  submitMyForm(){
                           for(int i=0;i<resList.size();i++){
                           Map<String, String>  stuMap= resList.get(i);	  
                           %>    
-					<option  value="<%=stuMap.get("B_NAME") %>;<%=stuMap.get("B_USER") %>;<%=stuMap.get("EMAIL") %>"><%=stuMap.get("B_NAME") %></option>
+					<option  value="<%=stuMap.get("B_NAME") %>"><%=stuMap.get("B_NAME") %></option>
 					<%     
                           }                        	  
                        }
@@ -79,19 +92,19 @@ function  submitMyForm(){
 				</li>
 				
 				<li class="first">
-					<a href="#" class=" icon user"></a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required">
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email"></a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>提交日期</a><input name="date" type="text"  readonly="readonly" class="text" value="<%=date%>"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon msg"></a><input name="dyName" type="text" class="text" placeholder="单元测试名称" required="required">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>单元名称</a><input name="dyName" type="text" class="text" placeholder="单元测试名称" required="required">
 					<div class="clear"></div>
 				</li>
 				<!-- 
@@ -100,11 +113,20 @@ function  submitMyForm(){
 					<div class="clear"></div>
 				</li> -->
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="content" placeholder="测试内容" required="required"></textarea>
+				<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>测试内容</a><textarea name="content" placeholder="测试内容" required="required"></textarea>
 				<div class="clear"></div>
 				<li class="second">
-				<a href="#" class=" icon msg"></a><textarea name="biaozhun" placeholder="测试通过标准" required="required"></textarea>
+				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>通过标准</a>
+					<select name="biaozhun">
+					<option value="符合测试用例中的测试通过标准">符合测试用例中的测试通过标准</option>
+					<option value="符合版本构造说明中的测试通过标准">符合版本构造说明中的测试通过标准</option>
+					<option value="主流程测试通过">主流程测试通过</option>
+					</select>
 				<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="file" type="file" class="text">
+					<div class="clear"></div>
 				</li>
 			</ul>
 			<input type="submit" value="提交" >

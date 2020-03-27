@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 //获取之前得到的分页对象
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
+PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 //System.out.println(pageBean.toString()) ;
 %>
 
@@ -345,7 +346,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
 <body onload="valiButt()">
 <!-- 右侧滚动条 -->
-<div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:550px;">
+<div style="width:100%;height:96%;overflow: scroll;">
 
 <form action="<%=path %>/AddDanYuanTestServlet?type=2"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
@@ -405,16 +406,70 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		    </tr>
 		
           </table></td>
+          
+                    <!-- 高级查询区域 -->
+          <td height="45" background="images/nav04.gif" style="width:60%;" align="right">
+			 <form name="MyPageForm" method="post"  id="submitSelectFrom"  onsubmit="submitSelect()">
+						部门：
+					<select name="selBumen" style="width:231px" onchange="submitSelBumen()">
+					<option id="MRbumen"></option>
+					<option>全部</option>
+					<%
+                      if(pageBean2!=null){
+                       List<Map<String, String>>  resList=  pageBean2.getResList();
+                       if(resList!=null && resList.size()>0){                          		
+                          for(int i=0;i<resList.size();i++){
+                          Map<String, String>  stuMap= resList.get(i);	  
+                          %>    
+					<option  value="<%=stuMap.get("B_NAME") %>"><%=stuMap.get("B_NAME") %></option>
+					<%     
+                          }                        	  
+                       }
+                      }
+                        %>
+					</select><br>
+						月份：
+						<select style="high:150;font-weight:bold;width:80px" name="selMonth"  id="selMonth">
+						 <option id="MRmonth"></option>
+						 <option style="font-size:13px;"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                          
+					     <option style="font-size:13px;" value="01"> &nbsp;&nbsp;一月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="02"> &nbsp;&nbsp;二月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="03"> &nbsp;&nbsp;三月&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="04"> &nbsp;&nbsp;四月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="05"> &nbsp;&nbsp;五月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="06"> &nbsp;&nbsp;六月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="07"> &nbsp;&nbsp;七月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="08"> &nbsp;&nbsp;八月&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="09"> &nbsp;&nbsp;九月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="10"> &nbsp;&nbsp;十月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="11"> &nbsp;&nbsp;十一月 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="12"> &nbsp;&nbsp;十二月 &nbsp;&nbsp;</option>
+					     </select>
+					            版本号：<input style="width:100px" name="selVersion" id='MRversion' type="text" size="12"/>
+					            状态：
+					     <select style="high:150;font-weight:bold;width:80px" name="selState"  id="selState">
+						 <option id="MRstate"></option>
+						 <option style="font-size:13px;"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                              
+					     <option style="font-size:13px;" value="0"> &nbsp;&nbsp;待测试 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;测试中 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="2"> &nbsp;&nbsp;NG&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="3"> &nbsp;&nbsp;OK&nbsp;&nbsp;</option>
+					     </select>      
+						<input type="submit" value="查询" style="font-size:15px;font-weight:bold"/>
+						<input type="button" value="重置" style="font-size:15px;font-weight:bold" onclick="resetSelect()"/>
+			 </form>
+		</td>
+		<td height="45" background="images/nav04.gif" style="width:1%;"></td>
         </tr>
     </table> 
 
-          <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
+          <table width="2100px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
-				<table id = "testList" width="100%" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				<table id = "testList" width="2100px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="10" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="13" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
@@ -423,11 +478,14 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">部门</td>
                     <td  style="font-size:15px;font-weight:bold">开发</td>
                     <td  style="font-size:15px;font-weight:bold">提交日期</td>
-                    <td  style="font-size:15px;font-weight:bold">名称 </td>
+                    <td  style="font-size:15px;font-weight:bold">单元测试名称 </td>
                     <td  style="font-size:15px;font-weight:bold">测试人</td>
                     <td  style="font-size:15px;font-weight:bold">NG次数</td>
                     <td  style="font-size:15px;font-weight:bold">状态</td>
-                    <td  style="font-size:15px;font-weight:bold">操作</td>
+                    <td  style="font-size:15px;font-weight:bold">测试内容</td>
+                    <td  style="font-size:15px;font-weight:bold">通过标准</td>
+                    <td  style="font-size:15px;font-weight:bold">重新提交路径</td>
+                    <td  style="font-size:15px;font-weight:bold">附件</td>
                   </tr>
                    <tbody>
                     	
@@ -466,17 +524,26 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                           %>
                           <tr align="center" style="">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
-                          	<td  width=50 class="bor_2">
+                          	<td  width=50px class="bor_2">
                           	<input type="checkbox" value="<%=stuMap.get("D_ID") %>" name="checkboxBtn"/><br />
                           	</td>
-                          	<td  width=50 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:38px;"> <%=i+1 %> </td>
-                            <td  width=150 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
-                            <td  width=200 class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_TUSER") %></td>
-                            <td  width=80 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">第<%=lunci %>轮&nbsp;<font color="<%=Color %>"><%=state %></font></td>
+                          	<td  width=50px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:38px;"> <%=i+1 %> </td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
+                            <td  width=200px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_TUSER") %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">第<%=lunci %>轮&nbsp;<font color="<%=Color %>"><%=state %></font></td>
+                            <td  width=300px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_CONTENT") %></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_BIAOZHUN") %></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
+                            <a href="youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
+                            <%=stuMap.get("D_WIKI") %>
+                            </a>
+                            </td>
+                            <!-- 
                             <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
         					<div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
         					【部门】：<%=stuMap.get("D_BUMEN") %><br/>
@@ -490,7 +557,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         					<br/>
 							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button></div>
 							</td>                            
-				
+				 			-->
                         </tr>
                         		
                           <%     
@@ -498,21 +565,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                }
                         	  
                            }
-                        %>
-                         
-                     <tr>
-					<th colspan="13">
-						<input type="button" value="首页" id="fp" onclick="goPage(this)" />
-						<input type="button" value="上一页" id="bp" onclick="goPage(this)" />
-						第<%=pageBean.getNowPage()%>页/共<%=pageBean.getPages()%>页
-						<input type="button" value="下一页" id="gp" onclick="goPage(this)" />
-						<input type="button" value="尾页" id="lp" onclick="goPage(this)" />
-					</th>
-				</tr>
-	      
-	      
-	      
-                        <%  
+
                           }
                    
                         
