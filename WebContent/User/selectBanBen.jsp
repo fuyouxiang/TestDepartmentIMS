@@ -233,7 +233,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         var table = document.getElementById(tableID);
       var excelContent = table.innerHTML;
       var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
-      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>版本测试详情</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>版本测试汇总</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
       excelFile += "<body><table>";
       excelFile += excelContent;
       excelFile += "</table></body>";
@@ -513,7 +513,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 						月份：
 						<select style="high:150;font-weight:bold;width:80px" name="selMonth"  id="selMonth">
 						 <option id="MRmonth"></option>
-						 <option style="font-size:13px;"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                          
+						 <option style="font-size:13px;"value="全部"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                          
 					     <option style="font-size:13px;" value="01"> &nbsp;&nbsp;一月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="02"> &nbsp;&nbsp;二月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="03"> &nbsp;&nbsp;三月&nbsp;&nbsp;</option>
@@ -531,7 +531,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					            状态：
 					     <select style="high:150;font-weight:bold;width:80px" name="selState"  id="selState">
 						 <option id="MRstate"></option>
-						 <option style="font-size:13px;"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                              
+						 <option style="font-size:13px;"value="全部"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                              
 					     <option style="font-size:13px;" value="0"> &nbsp;&nbsp;待测试 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;测试中 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="2"> &nbsp;&nbsp;NG&nbsp;&nbsp;</option>
