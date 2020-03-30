@@ -42,7 +42,7 @@ function  submitMyForm(fm){
 	
 	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
 	if (!stop.test(k_email)) {
-		alert("邮箱格式不正确!");
+		alert("邮箱格式不正确!范例：***@yonyou.com");
 		return false;
     }else if (bumen=="请选择部门") {
 		alert("请选择部门!");
