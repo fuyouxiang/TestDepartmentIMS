@@ -299,6 +299,19 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			String sql2 = "select B_NAME from SYS_BUMEN where B_NAME != '产品测试部'";
 			PageBean pageBean2 = dbutil.queryByPage2(nowPage, sql2);
 			request.setAttribute("pageBean2", pageBean2);
+			System.out.println(timelog+"部门查询:"+sql2);
+			
+			
+			//查询通过率
+			String sql3 = "select \r\n" + 
+					"distinct (select count(1) from sys_test_sq where D_TYPE='单元测试' and d_state='3' "+selBumenSQL+selVersionSQL+selMonthSQL+") as NGALL,\r\n" + 
+					"(select count(1) from sys_test_sq where d_ng=0 and D_TYPE='单元测试' and d_state='3' "+selBumenSQL+selVersionSQL+selMonthSQL+") as NG1,\r\n" + 
+					"(select count(1) from sys_test_sq where d_ng=1 and D_TYPE='单元测试' and d_state='3' "+selBumenSQL+selVersionSQL+selMonthSQL+") as NG2,\r\n" + 
+					"(select count(1) from sys_test_sq where d_ng>=2 and D_TYPE='单元测试' and d_state='3' "+selBumenSQL+selVersionSQL+selMonthSQL+") as NG3\r\n" + 
+					"from sys_test_sq";
+			PageBean pageBean3 = dbutil.queryByPage2(nowPage, sql3);
+			request.setAttribute("pageBean3", pageBean3);
+			System.out.println(timelog+"查询通过率:"+sql3);
 			
 			request.getRequestDispatcher("User/selectDanYuan.jsp").forward(request, response);
 		

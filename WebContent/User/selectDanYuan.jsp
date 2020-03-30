@@ -1,10 +1,11 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.text.SimpleDateFormat" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.text.SimpleDateFormat,java.text.DecimalFormat" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 //获取之前得到的分页对象
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
+PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
 //System.out.println(pageBean.toString()) ;
 %>
 
@@ -497,7 +498,27 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     	<td id="div_title" height="28" colspan="15" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
                   </tr>
                   <tr>
-                  	<td id="div_title" height="28" colspan="15" align="left" style="font-size:14px;color:red">通过率：1轮（） 2轮（）3轮及以上（）</td>
+                 <%
+                      if(pageBean3!=null){
+                       List<Map<String, String>>  resList=  pageBean3.getResList();
+                       if(resList!=null && resList.size()>0){                          		
+                          for(int i=0;i<resList.size();i++){
+                          Map<String, String>  stuMap= resList.get(i);	  
+                          int NGALL= Integer.parseInt(stuMap.get("NGALL"));
+                          int NG1 = Integer.parseInt(stuMap.get("NG1"));
+                          int NG2 = Integer.parseInt(stuMap.get("NG2"));
+                          int NG3 = Integer.parseInt(stuMap.get("NG3"));
+                  		DecimalFormat dfnumber = new DecimalFormat("0");//格式化小数  
+                  		String iNG1 = dfnumber.format((float)NG1*100/NGALL);//返回的是String类型 
+                  		String iNG2 = dfnumber.format((float)NG2*100/NGALL);//返回的是String类型
+                  		String iNG3 = dfnumber.format((float)NG3*100/NGALL);//返回的是String类型 
+                   %>   
+                  	<td id="div_title" height="28" colspan="15" align="left" style="font-size:14px;"><i>&nbsp;通过率：<span style="color:green">1轮（<%=iNG1 %>%）&nbsp;</span><span style="color:blue"> 2轮（<%=iNG2 %>%）&nbsp;</span><span style="color:red">3轮及以上（<%=iNG3 %>%）&nbsp;</span></i></td>
+                  <%     
+                          }                        	  
+                       }
+                      }
+                  %>
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
