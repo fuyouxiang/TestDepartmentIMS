@@ -563,6 +563,9 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                   calendar.setTime(date);
                                   int month=calendar.get(Calendar.MONTH)+1;
                                   int day=calendar.get(Calendar.DAY_OF_MONTH);
+                                  
+                                  String serviceRoot= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; 
+                                  
                             	   
                             	  if(state.equals("0")){
                             		  state ="待测试";
@@ -600,7 +603,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_DATE") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
-                            <a href="youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
+                            <a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
                             <%=stuMap.get("D_WIKI") %>
                             </a>
                             </td>

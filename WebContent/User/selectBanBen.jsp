@@ -617,6 +617,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                   calendar.setTime(date);
                                   int month=calendar.get(Calendar.MONTH)+1;
                                   int day=calendar.get(Calendar.DAY_OF_MONTH);
+                                  String serviceRoot= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; 
                                   
                                   //是否带脚本
                                   String D_ISSQL = stuMap.get("D_ISSQL");
@@ -677,7 +678,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
    							<td  width=300px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_CONTENT") %></td>
    							<td  width=300px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BIAOZHUN") %></td>
    							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
-   							<a href="youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
+   							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
    							<%=stuMap.get("D_WIKI") %>
    							</a>
    							</td>
