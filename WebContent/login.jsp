@@ -9,7 +9,7 @@ String message = (String) request.getAttribute("message");
 
 <html>
 <head>
-<title>数字财政产品中心测试部</title>
+<title>财政云测试部</title>
 <link rel="icon" href="img/logo.ico"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,6 +27,7 @@ String message = (String) request.getAttribute("message");
 <!-- //web font -->
 </head>
 <body>
+<!-- 注掉了雪花效果
 <div class="snow-container">
 
 			  <div class="snow foreground"></div>
@@ -36,11 +37,11 @@ String message = (String) request.getAttribute("message");
 			  <div class="snow background"></div>
 			  <div class="snow background layered"></div>
 			</div>
-
+ -->
 <div class="top-buttons-agileinfo">
 <a href="login.jsp"  class="active">登录</a><a href="signup.jsp">注册</a>
 </div>
-<h1>数字财政产品中心测试部
+<h1>财政云产品测试部
 </h1>
 <div class="main-agileits">
 <!--form-stars-here-->
