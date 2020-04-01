@@ -167,6 +167,24 @@ public class AddBanBenTestServlet extends HttpServlet {
 		DBUtils dbutil =new DBUtils();
 		
 		if(type.equals("1")) {
+			/*
+			 * 
+			 * 原来 jsp页面是这样  
+				var grpname = "超级用户";
+				var url = "/xx.action?grpname="+grpname;
+				传到action去是这样处理
+				String grpname = getRequest().getParameter("grpname");
+	  			grpname = new String(grpname.getBytes("iso-8859-1"),"utf-8");
+				tomcat下完全可以，不过在weblogic下就是乱码了，
+				现在做了兼容的处理
+				jsp页面
+				var grpname = "超级用户";
+				var url =" xx.action?grpname="+encodeURI(encodeURI(grpname));
+				action
+				String grpname = getRequest().getParameter("grpname");
+				grpname = java.net.URLDecoder.decode(grpname,"UTF-8");
+			 * 
+			 * */
   
 			//因为是文号传值，所以中文需要转码
 			String Bumen =new String((request.getParameter("bumen")).getBytes("iso8859-1"),"utf-8");	
