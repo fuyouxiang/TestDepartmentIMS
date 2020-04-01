@@ -60,6 +60,11 @@ body {
 	height:2px;
 	text-decoration: none;
 }
+form {
+    display: block;
+    margin-top: 0.5em;
+    margin-block-end: 0.5em;
+}
 button {
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -370,8 +375,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
 		
 <body onload="valiButt()">
-<!-- 右侧滚动条 -->
-<div style="width:100%;height:96%;overflow: scroll;">
 
 <form action="<%=path %>/AddDanYuanTestServlet?type=2"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
@@ -488,7 +491,9 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		<td height="45" background="images/nav04.gif" style="width:1%;"></td>
         </tr>
     </table> 
-
+    
+<!-- 右侧滚动条 -->
+<div style="width:100%;height:85%;overflow: scroll;">
           <table width="2500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>

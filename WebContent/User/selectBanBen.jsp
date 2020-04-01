@@ -407,8 +407,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
 		
 <body onload="valiButt()">
-<!-- 右侧滚动条 -->
-<div style="width:100%;height:96%;overflow: scroll;">
+
 
 <form action="<%=path %>/selectBanBenServlet"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
@@ -545,12 +544,14 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         </tr>
         
     </table> 
-
+<!-- 右侧滚动条 -->
+<div style="width:100%;height:85%;overflow: scroll;">
           <table width="2500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
 				<table id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				 <tbody>
 				 <tr class="CTitle" >
                     	<td id="div_title" height="28" colspan="18" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
@@ -576,8 +577,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">附件地址</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
-                   <tbody>
-                    	
+                  </tbody>
+
+				  <tbody>
+
                         <%
                         	
                           if(pageBean!=null){
@@ -656,6 +659,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                 	  D_ISJXPRE ="未知";
                             	  }
                           %>
+
                           <tr align="center" style="line-height:20px;height:20px;">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
                           	<td  width=50px class="bor_2">
@@ -702,7 +706,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             </td>
  							-->
                         </tr>
-
                           <%     
               
                                }
