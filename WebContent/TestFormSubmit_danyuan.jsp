@@ -38,7 +38,12 @@ function  submitMyForm(fm){
 	var date=document.formname.date.value;
 	var dyName=document.formname.dyName.value;
 	var content=document.formname.content.value;
-	var biaozhun=document.formname.biaozhun.value;
+	var obj = document.getElementsByName("biaozhun");//选择所有name="interest"的对象，返回数组    
+	var biaozhun='';//如果这样定义var s;变量s中会默认被赋个null值
+	for(var i=0;i<obj.length;i++){
+	    if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+	    biaozhun+=obj[i].value;   //如果选中，将value添加到变量s中    
+	}
 	
 	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
 	if (!stop.test(k_email)) {
@@ -46,6 +51,9 @@ function  submitMyForm(fm){
 		return false;
     }else if (bumen=="请选择部门") {
 		alert("请选择部门!");
+		return false;
+    }else if (biaozhun.length<1) {
+		alert("请选择通过标准!");
 		return false;
     }else{
     	fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&dyName="+dyName+"&content="+content+"&biaozhun="+biaozhun;  
@@ -116,6 +124,14 @@ function  submitMyForm(fm){
 				<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>测试内容</a><textarea name="content" placeholder="测试内容" required="required"></textarea>
 				<div class="clear"></div>
 				<li class="second">
+					<a href="#" class=" icon email" style="text-align: center;color:black;height: 80px;"><br/>通过标准</a>
+					<input name="biaozhun" type="checkbox" class="text" value="主流程测试通过；" style="zoom:150%;"><a style="color: #000000;background: #fff;font-family: 'Microsoft YaHei', serif;">主流程测试通过</a><br/>
+					<input name="biaozhun" type="checkbox" class="text" value="符合测试用例中的测试通过标准；" style="zoom:150%;"><a style="color: #000000;background: #fff;font-family: 'Microsoft YaHei', serif;">符合测试用例中的测试通过标准</a><br/>
+					<input name="biaozhun" type="checkbox" class="text" value="符合版本构造说明中的测试通过标准；"style="zoom:150%;"><a style="color: #000000;background: #fff;font-family: 'Microsoft YaHei', serif;">符合版本构造说明中的测试通过标准</a><br/>
+					<div class="clear"></div>
+				</li>
+				<!-- 
+				<li class="second">
 				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>通过标准</a>
 					<select name="biaozhun">
 					<option value="符合测试用例中的测试通过标准">符合测试用例中的测试通过标准</option>
@@ -123,7 +139,7 @@ function  submitMyForm(fm){
 					<option value="主流程测试通过">主流程测试通过</option>
 					</select>
 				<div class="clear"></div>
-				</li>
+				</li> -->
 				<li class="first">
 					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="file" type="file" class="text">
 					<div class="clear"></div>
