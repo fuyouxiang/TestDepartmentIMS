@@ -546,14 +546,14 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     </table> 
 <!-- 右侧滚动条 -->
 <div style="width:100%;height:85%;overflow: scroll;">
-          <table width="2500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
+          <table width="2900px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
-				<table id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				<table id = "testList" width="2900px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tbody>
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="18" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="20" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center"  style="line-height:22px;height:22px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
@@ -574,7 +574,9 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">提交日期</td>
                     <td  style="font-size:15px;font-weight:bold">版本内容</td>
                     <td  style="font-size:15px;font-weight:bold">测试通过标准</td>
-                    <td  style="font-size:15px;font-weight:bold">附件地址</td>
+                    <td  style="font-size:15px;font-weight:bold">构造内容附件</td>
+                    <td  style="font-size:15px;font-weight:bold">SQL脚本附件</td>
+                    <td  style="font-size:15px;font-weight:bold">配置文件附件</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
                   </tbody>
@@ -684,6 +686,16 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
    							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
    							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
    							<%=stuMap.get("D_WIKI") %>
+   							</a>
+   							</td>
+   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_SQL") %>" target="_blank">
+   							<%=stuMap.get("D_SQL") %>
+   							</a>
+   							</td>
+   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_CONFIG") %>" target="_blank">
+   							<%=stuMap.get("D_CONFIG") %>
    							</a>
    							</td>
    							<!-- 
