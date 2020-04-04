@@ -32,6 +32,7 @@ if(errori=='yes'){
 
 //邮箱格式校验
 function  submitMyForm(fm){
+	var old_id=document.formname.old_id.value;
 	var bumen=document.formname.bumen.value;
 	var kaifa=document.formname.kaifa.value;
 	var k_email=document.formname.k_email.value;
@@ -50,7 +51,7 @@ function  submitMyForm(fm){
 		return false;
     }else{
     	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-        fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun;  
+        fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun+"&old_id="+old_id;  
         return true;
     }
 }
@@ -70,7 +71,7 @@ function  submitMyForm(fm){
         int NG=Integer.parseInt(stuMap.get("D_NG"))+1; 
 	%>
 	<h1>版本测试重新提交</h1>
-	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
+	<form action="<%=path%>/AddBanBenTestServlet?type=2" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
 	<div class="login-01">
 			<form>
 			
@@ -85,7 +86,7 @@ function  submitMyForm(fm){
 				</li>
 				
 				<li class="first">
-					<input type="hidden" name="d_id"  value="<%=stuMap.get("D_ID") %>">
+					<input type="hidden" name="old_id"  value="<%=stuMap.get("D_ID") %>">
 					<input type="hidden" name="NGnumber"  value="<%=NG %>">
 					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" readonly="readonly" placeholder="开发人员" required="required" value="<%=stuMap.get("D_KAIFA") %>">
 					<div class="clear"></div>
@@ -109,6 +110,11 @@ function  submitMyForm(fm){
 				<li class="second">
 				<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>构造内容</a><textarea name="content" placeholder="版本构造内容" required="required" ><%=stuMap.get("D_CONTENT") %></textarea>
 				<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>内容附件</a><input name="file" type="file" class="text">
+					<div class="clear"></div>
+				</li>
 				<li class="second">
 					<a href="#" class=" icon email" style="text-align: center;color:black;height: 80px;"><br/>通过标准</a>
 					<input name="biaozhun" type="checkbox" class="text" value="主流程测试通过；" style="zoom:150%;"><a style="color: #000000;background: #fff;font-family: 'Microsoft YaHei', serif;">主流程测试通过</a><br/>
@@ -128,7 +134,11 @@ function  submitMyForm(fm){
 				<div class="clear"></div>
 				</li> -->
 				<li class="first">
-					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="file" type="file" class="text">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>SQL脚本</a><input name="file2" type="file" class="text">
+					<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>配置文件</a><input name="file3" type="file" class="text">
 					<div class="clear"></div>
 				</li>
 			</ul>

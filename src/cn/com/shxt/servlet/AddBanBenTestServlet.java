@@ -50,9 +50,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			//时间戳，直接调用DateTime.java中的方法
 			String timelog= DateTime.showtime();
 		
-		
-		
-			System.out.println(timelog+"版本测试提交单申请————————");
+			System.out.println(timelog+"===============版本测试申请=============");
 			request.setCharacterEncoding("UTF-8");
 		
 /**********************************************************************************************************************/
@@ -176,6 +174,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 		DBUtils dbutil =new DBUtils();
 		
 		if(type.equals("1")) {
+			System.out.println(timelog+"新提交版本测试申请————————");
 			/*
 			 * 
 			 * 原来 jsp页面是这样  
@@ -276,64 +275,101 @@ public class AddBanBenTestServlet extends HttpServlet {
 		
 		
 		else if(type.equals("2")){
-			String d_id = request.getParameter("d_id");
-			System.out.println("d_id："+d_id);
-			String date = request.getParameter("date");
-			System.out.println("日期："+date);
-			String content = request.getParameter("content");
-			System.out.println("版本构造内容："+content);		
-			String biaozhun = request.getParameter("biaozhun");
-			System.out.println("标准："+biaozhun);
-			String kaifa = request.getParameter("kaifa");
-			System.out.println("开发："+kaifa);
-			String weiServer = request.getParameter("weiServer");
-			System.out.println("微服务："+weiServer);
-			String banbenNo = request.getParameter("banbenNo");
-			System.out.println("版本号："+banbenNo);
-			String k_email = request.getParameter("k_email");
-			System.out.println("开发邮箱："+k_email);
-			String BossEmail = request.getParameter("BossEmail");
+			System.out.println(timelog+"===============重新提交版本测试===============");
+			//因为是文号传值，所以中文需要转码
+			String old_id =new String((request.getParameter("old_id")).getBytes("iso8859-1"),"utf-8");
+			String Bumen =new String((request.getParameter("bumen")).getBytes("iso8859-1"),"utf-8");	
+			String KaifaBossSql="select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME='"+Bumen+"'";
+			String Boss = null;
+			String BossEmail = null;
+			try {
+				Boss = dbutil.queryString(KaifaBossSql,"B_USER");
+				BossEmail = dbutil.queryString(KaifaBossSql,"EMAIL");
+			} catch (SQLException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			}
+			System.out.println("部门："+Bumen);
+			System.out.println("开发总监："+Boss);
 			System.out.println("开发总监邮箱："+BossEmail);
-			String NGnumber = request.getParameter("NGnumber");
-			System.out.println("NG次数："+NGnumber);
-			String wiki = request.getParameter("wiki");
-			System.out.println("wiki地址："+wiki);
+			String kaifa =new String((request.getParameter("kaifa")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("开发："+kaifa);
+			String k_email = new String((request.getParameter("k_email")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("开发邮箱："+k_email);	        
+			String date = new String((request.getParameter("date")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("日期："+date);
+			String weiServer = new String((request.getParameter("weiServer")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("微服务："+weiServer);
+			String banbenNo = new String((request.getParameter("banbenNo")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("版本号："+banbenNo);
+			String content = new String((request.getParameter("content")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("版本构造内容："+content);		
+			String biaozhun = new String((request.getParameter("biaozhun")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("标准："+biaozhun);
+			//对三个附件名字进行截取
+			System.out.println("三个文件名："+filename);
+			String[] list=filename.split(":");
+			String wiki = list[0];
+			System.out.println("内容附件（新获取）："+wiki);
+			String D_SQL = list[1];
+			System.out.println("SQL附件（新获取）："+D_SQL);
+			String D_CONFIG = list[2];
+			System.out.println("配置文件附件（新获取）："+D_CONFIG);
 			
+			String D_ISSQL="1";
 			
+			//查询原数据
+			String OldIDSql="select D_WIKI,D_SQL,D_CONFIG from sys_test_sq where D_ID='"+old_id+"'";
+			try {
+			//如果没有上传新附件的话，用原来的附件
+			if(wiki.equals("无")){
+				wiki = dbutil.queryString(OldIDSql,"D_WIKI");
+				System.out.println("内容附件（使用原附件）："+wiki);
 
+			}
+			if(D_SQL.equals("无")){
+				D_SQL = dbutil.queryString(OldIDSql,"D_SQL");
+				System.out.println("SQL附件（使用原附件）："+D_SQL);
+
+			}
+			if(D_CONFIG.equals("无")){
+				D_CONFIG = dbutil.queryString(OldIDSql,"D_CONFIG");
+				System.out.println("配置文件附件（使用原附件）："+D_CONFIG);
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("是否有SQL附件："+D_ISSQL);
+			String D_TYPE = "版本测试";
+			System.out.println("测试类型："+D_TYPE);
+
+			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG) values " +
+					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "')";		
 			
-			String sql = "update SYS_TEST_SQ set D_CONTENT ='"+ content +"',D_BIAOZHUN ='"+ biaozhun +"',D_STATE='0',D_WIKI ='"+ wiki +"' where D_ID='"+ d_id +"'";		
 			int flag = dbutil.update(sql);
-			System.out.println(timelog+"修改完成后重新提交申请单："+sql);	
+			System.out.println(timelog+"添加版本测试申请："+sql);	
 			
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + d_id + "','" + kaifa + "','" + date + "','重新提交', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【wiki地址】:"+wiki+"')";
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【附件名称】:"+wiki+"')";
 			int flag2 = dbutil.update(sql2);
-			System.out.println(timelog+"添加日志："+sql2);
-			
-			
-			String sql3 = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_ID='"+d_id+"'";
-			String nowPage = request.getParameter("currentPage");
-			PageBean pageBean = dbutil.queryByPage2(nowPage, sql3);
-			
-			
+			System.out.println(timelog+"添加日志："+sql2);	
+
 			try {
 				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
-				String Msgtitle = kaifa+"第"+NGnumber+"轮版本测试申请！";
+				String Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
 				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【附件名称】："+wiki+"；";
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
-				request.getRequestDispatcher("User/ResubmitBBTest.jsp?StartAnswer=no").forward(request, response);
+				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 			}
-			
-			if(flag > 0){
-				request.setAttribute("pageBean", pageBean);
-				request.getRequestDispatcher("User/ResubmitBBTest.jsp?StartAnswer=yes").forward(request, response);
+		
+			if(flag > 0 ){
+				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=yes").forward(request, response);
 			}else{
-				request.setAttribute("pageBean", pageBean);
-				request.getRequestDispatcher("User/ResubmitBBTest.jsp?StartAnswer=no").forward(request, response);
+				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
 			}
 		}
 		
