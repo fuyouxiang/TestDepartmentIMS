@@ -57,8 +57,8 @@ public class AddBanBenTestServlet extends HttpServlet {
 		
 /**********************************************************************************************************************/
 	       System.out.println(timelog+"===============进入上传servlet，开始上传文件===============");
-	       //定义文件名
-	       String filename="无";
+	       //定义总文件名
+	       String filename="";
 	       SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
 			String time=df.format(new Date());// new Date()为获取当前系统时间
 	        //获得磁盘文件条目工厂  
@@ -110,41 +110,50 @@ public class AddBanBenTestServlet extends HttpServlet {
 		                     */  
 		                    //获取路径名  
 		                    String value = item.getName() ;
-		                    /*
-		                    //索引到最后一个反斜杠  
-		                    int start = value.lastIndexOf("\\");  
-		                    //截取 上传文件的 字符串名字，加1是 去掉反斜杠，  
-		                    String filename1 = value.substring(start+1);
-		                    */
-		                    
-		                    int dian=value.lastIndexOf(".");
-		                    String Type=value.substring(dian+1);
-		                	
-		                    int gang=value.lastIndexOf("\\");
-		                	String Name1=value.substring(gang+1);//斜杠后面的所有字符输出
-		                	String Name=Name1.substring(0,Name1.lastIndexOf("."));
-
-		                	filename=Name+"_"+time+"."+Type;
-		                	System.out.println("上传的文件名:"+filename);
-		                    
-		                    //真正写到磁盘上  
-		                    //它抛出的异常 用exception 捕捉  	                      
-		                    //item.write( new File(path,filename) );//第三方提供的  	                      
-		                    //手动写的  
-		                    OutputStream out = new FileOutputStream(new File(path,filename));  	                      
-		                    InputStream in = item.getInputStream() ;  	                      
-		                    int length = 0 ;  
-		                    byte [] buf = new byte[1024] ;  	                      
-		                    System.out.println("获取上传文件的总共的容量："+item.getSize());  	  
-		                    // in.read(buf) 每次读到的数据存放在   buf 数组中  
-		                    while( (length = in.read(buf) ) != -1)  
-		                    {  
-		                        //在   buf 数组中 取出数据 写到 （输出流）磁盘上  
-		                        out.write(buf, 0, length);
+		                    if(value.length()<1) {
+		                    	value="无";
+			         	       	//定义文件名
+	 		         	        String filenamePart=value;
+			                	System.out.println("上传的文件名:"+filenamePart);
+			                	filename+=filenamePart+":";
+		                    }else {
+			                    /*
+			                    //索引到最后一个反斜杠  
+			                    int start = value.lastIndexOf("\\");  
+			                    //截取 上传文件的 字符串名字，加1是 去掉反斜杠，  
+			                    String filename1 = value.substring(start+1);
+			                    */
+			                    
+			                    int dian=value.lastIndexOf(".");
+			                    String Type=value.substring(dian+1);
+			                	
+			                    int gang=value.lastIndexOf("\\");
+			                	String Name1=value.substring(gang+1);//斜杠后面的所有字符输出
+			                	String Name=Name1.substring(0,Name1.lastIndexOf("."));
+			         	       	//定义文件名
+	 		         	        String filenamePart=Name+"_"+time+"."+Type;
+			                	System.out.println("上传的文件名:"+filenamePart);
+			                	filename+=filenamePart+":";
+			                    
+			                    //真正写到磁盘上  
+			                    //它抛出的异常 用exception 捕捉  	                      
+			                    //item.write( new File(path,filename) );//第三方提供的  	                      
+			                    //手动写的  
+			                    OutputStream out = new FileOutputStream(new File(path,filenamePart));  	                      
+			                    InputStream in = item.getInputStream() ;  	                      
+			                    int length = 0 ;  
+			                    byte [] buf = new byte[1024] ;  	                      
+			                    System.out.println("获取上传文件的总共的容量："+item.getSize());  	  
+			                    // in.read(buf) 每次读到的数据存放在   buf 数组中    
+			                    while( (length = in.read(buf) ) != -1)  
+			                    {  
+			                        //在   buf 数组中 取出数据 写到 （输出流）磁盘上  
+			                        out.write(buf, 0, length);
+			                    }
+			                    System.out.println("文件上传成功！");
+			                    in.close();  
+			                    out.close();  
 		                    }
-		                    System.out.println("文件上传成功！");
-		                    in.close();  
-		                    out.close();  
 		                }  
 		            }  	              	              	              
 		        } catch (FileUploadException e) {  
@@ -215,20 +224,28 @@ public class AddBanBenTestServlet extends HttpServlet {
 			System.out.println("版本构造内容："+content);		
 			String biaozhun = new String((request.getParameter("biaozhun")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("标准："+biaozhun);
-			String wiki = filename;
-			System.out.println("附件名字："+wiki);
+			//对三个附件名字进行截取
+			System.out.println("三个文件名："+filename);
+			String[] list=filename.split(":");
+			String wiki = list[0];
+			System.out.println("内容附件："+wiki);
+			String D_SQL = list[1];
+			System.out.println("SQL附件："+D_SQL);
+			String D_CONFIG = list[2];
+			System.out.println("配置文件附件："+D_CONFIG);
+			
 			String D_ISSQL="0";
-			if(wiki.equals("无")) {
+			if(D_SQL.equals("无")) {
 				D_ISSQL="0";
 			}else {
 				D_ISSQL="1";
 			}
-			System.out.println("是否有附件："+D_ISSQL);
+			System.out.println("是否有SQL附件："+D_ISSQL);
 			String D_TYPE = "版本测试";
 			System.out.println("测试类型："+D_TYPE);
 
-			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL) values " +
-					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "')";		
+			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG) values " +
+					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "')";		
 			
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"添加版本测试申请："+sql);	

@@ -236,6 +236,11 @@ if(errori=='yes'){
 				<li class="second">
 				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>构造内容</a><textarea name="content" placeholder="版本构造内容" required="required"></textarea>
 				<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>内容附件</a><input name="file" type="file" class="text">
+					<div class="clear"></div>
+				</li>
 				<li class="second">
 					<a href="#" class=" icon email" style="text-align: center;color:black;height: 80px;"><br/>通过标准</a>
 					<input name="biaozhun" type="checkbox" class="text" value="主流程测试通过；" style="zoom:150%;"><a style="color: #000000;background: #fff;font-family: 'Microsoft YaHei', serif;">主流程测试通过</a><br/>
@@ -253,8 +258,13 @@ if(errori=='yes'){
 					</select>
 				<div class="clear"></div>
 				</li> -->
+
 				<li class="first">
-					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>附件上传</a><input name="file" type="file" class="text">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>SQL脚本</a><input name="file2" type="file" class="text">
+					<div class="clear"></div>
+				</li>
+				<li class="first">
+					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>配置文件</a><input name="file3" type="file" class="text">
 					<div class="clear"></div>
 				</li>
 			</ul>
