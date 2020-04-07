@@ -70,6 +70,8 @@ public class EndBBTestServlet extends HttpServlet {
 			String banbenNo = dbutil.queryString(emailSql,"D_VERSION");
 			String D_KAIFA = dbutil.queryString(emailSql,"D_KAIFA");
 			String D_WIKI = dbutil.queryString(emailSql,"D_WIKI");
+			String D_SQL = dbutil.queryString(emailSql,"D_SQL");
+			String D_CONFIG = dbutil.queryString(emailSql,"D_CONFIG");
 			
 			String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 			String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
@@ -78,7 +80,7 @@ public class EndBBTestServlet extends HttpServlet {
 			System.out.println(time+"邮件地址："+EmailAddress);
 			String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试结束，测试通过！";
 			System.out.println(time+"邮件标题："+Msgtitle);
-			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；"+"【附件名称】："+D_WIKI+"；";
+			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；"+"【构造内容附件】："+D_WIKI+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"；";
 			System.out.println(time+"邮件内容："+Msg);
 			SendEmail sendEmail = new SendEmail();
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);

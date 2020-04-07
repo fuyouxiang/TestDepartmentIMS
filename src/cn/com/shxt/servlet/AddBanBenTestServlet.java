@@ -256,7 +256,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"添加版本测试申请："+sql);	
 			
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【附件】:"+wiki+"')";
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【构造内容附件】："+wiki+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"')";
 			int flag2 = dbutil.update(sql2);
 			System.out.println(timelog+"添加日志："+sql2);	
 
@@ -369,7 +369,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"添加版本测试申请："+sql);	
 			
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【附件名称】:"+wiki+"')";
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【构造内容附件】："+wiki+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"')";
 			int flag2 = dbutil.update(sql2);
 			System.out.println(timelog+"添加日志："+sql2);	
 
