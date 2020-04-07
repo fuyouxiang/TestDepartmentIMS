@@ -14,7 +14,7 @@ PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 <link href="css/style5.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Pink Contact Form ,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
+<meta name="keywords" content="Pink Contact Form ,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"/>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 </head>
@@ -166,9 +166,8 @@ if(errori=='yes'){
 		<a class="active" href="<%=path%>/TestApplicationServlet">版本测试申请</a><a href="<%=path %>/selectBanBenServlet?type=2" target="_blank">版本测试查询</a><a href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a><a href="<%=path %>/AddDanYuanTestServlet?type=7" target="_blank">单元测试查询</a>
 	</div>
 	<h1>版本测试申请单</h1>
-	<form action="<%=path%>/1AddBanBenTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
+	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
 	<div class="login-01">
-			<form>
 				<ul>
 				
 
@@ -196,7 +195,7 @@ if(errori=='yes'){
 				</li>
 				
 				<li class="first">
-					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required">
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员，可填写多个" required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
@@ -282,9 +281,9 @@ if(errori=='yes'){
 			</ul>
 			<input type="submit" value="提交" >
 			<div class="clear"></div>
+			</div>
 		</form>
-</div>
-</form>
+
 
 	<!--start-copyright-->
    		<div class="copy-right">

@@ -45,9 +45,10 @@ function  submitMyForm(fm){
 	    biaozhun+=obj[i].value;   //如果选中，将value添加到变量s中    
 	}
 	
-	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+	//var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+	var stop=/^((([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6}\;))*(([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})))$/;
 	if (!stop.test(k_email)) {
-		alert("邮箱格式不正确!范例：***@yonyou.com");
+		alert("邮箱格式不正确!"+"\n"+"范例：***@yonyou.com"+"\n\n"+"多个收件人请用分号隔开，结尾不加分号！"+"\n"+"范例：***@yonyou.com;***@yonyou.com;***@yonyou.com");
 		return false;
     }else if (bumen=="请选择部门") {
 		alert("请选择部门!");
@@ -165,11 +166,11 @@ function showWaiting() {
 				</li>
 				
 				<li class="first">
-					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员" required="required">
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员，可填写多个" required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件，可填写多个，用;号隔开"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
