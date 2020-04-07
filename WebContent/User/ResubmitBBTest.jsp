@@ -184,7 +184,7 @@ function showWaiting() {
 					<select name="jinji">
 					<option value="<%=stuMap.get("D_JINJI") %>"><%=D_JINJI %></option>
 					<option value="0">非紧急</option>
-					<option value="1">紧急</option>
+					<option value="1">紧急（抄送江西现场）</option>
 					</select>
 				<div class="clear"></div>
 				</li>

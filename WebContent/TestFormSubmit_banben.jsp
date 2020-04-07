@@ -235,7 +235,7 @@ if(errori=='yes'){
 				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>是否紧急</a>
 					<select name="jinji">
 					<option value="0">非紧急</option>
-					<option value="1">紧急</option>
+					<option value="1">紧急（抄送江西现场）</option>
 					</select>
 				<div class="clear"></div>
 				</li>
