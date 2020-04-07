@@ -30,6 +30,9 @@ public class selectBanBenServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		String type = request.getParameter("type");//调用方法类型
+		System.out.println("调用方法类型："+type);
+		
 		//查询条件：部门
 		String selBumen = request.getParameter("selBumen");
 		String selBumenSQL;
@@ -123,7 +126,12 @@ public class selectBanBenServlet extends HttpServlet {
 		request.setAttribute("pageBean3", pageBean3);
 
 		
-		request.getRequestDispatcher("User/selectBanBen.jsp").forward(request, response);
+		if(type.equals("2")) {
+			request.getRequestDispatcher("User/selectBanBenForOut.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("User/selectBanBen.jsp").forward(request, response);
+		}
+		
 	}
 
 

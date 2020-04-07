@@ -261,97 +261,12 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
          }
      }    
 
-    //开始测试
-    function StartTest(){
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("StartDYTestForm");
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 //alert("该条数据的ID为"+ID); 
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=3&D_ID="+ID;
-        	 //alert(form.action);
-        	 form.submit();
-         }
-     }
-
-    //开始测试的返回结果
-    var errori ='<%=request.getParameter("StartAnswer")%>';
-    if(errori=='yes'){
-     alert("测试任务已开始！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("测试任务启动失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }
-    
-    //驳回操作
-    function ReturnTest(){
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("returnDYTestForm");
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=4&D_ID="+ID;
-        	 form.submit();
-         }
-     }
-    
-    //驳回操作的返回结果
-    var errori ='<%=request.getParameter("ReturnAnswer")%>';
-    if(errori=='yes'){
-     alert("驳回操作完成，已邮件通知开发人员！为保证沟通的及时性，建议同时通过其他方式通知开发。");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("驳回操作失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }    
-
-    //测试通过
-    function EndTest(){
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("endDYTestForm");
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=5&D_ID="+ID;
-        	 form.submit();
-         }
-     }
-    
-    //测试通过的返回结果
-    var errori ='<%=request.getParameter("EndAnswer")%>';
-    if(errori=='yes'){
-     alert("此单元测试已测试通过！测试结束。");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("操作失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }
     
 	//查询提交
 	function submitSelect(){
         //等待提示
         showWaiting();
-        window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
+        window.location.href="<%=path%>/AddDanYuanTestServlet?type=7";
         $(document).ready(parent.closeWaiting());
     }
 
@@ -376,7 +291,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
 <body onload="valiButt()">
 
-<form action="<%=path %>/AddDanYuanTestServlet?type=2"  name="MyPageForm" method="post"  id="pageForm" >
+<form action="<%=path %>/AddDanYuanTestServlet?type=7"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
 	    <input type="hidden" id="nextPageId"  name="nextPage" value="1" />
     </form>
@@ -396,37 +311,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 %>
 			   <td width="1000" align="left" >
 			    <button onclick="BBLog()">操作日志</button>
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
-			    		<form  method="post"  id="StartDYTestForm">
-        					【测试人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
-        					【开始测试时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
-        					<button style="display: block;" onclick='StartTest()'>提交</button>
-        				</form>
-						<button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
-					</div>
-
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'">驳回</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="returnTest" class="white_content">
-			    		<form  method="post"  id="returnDYTestForm">
-        					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
-        					【驳回时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
-        					【驳回原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
-        					<button style="display: block;" onclick='ReturnTest()'>提交</button>
-        				</form>
-						<button onclick = "document.getElementById('returnTest').style.display='none'">关闭</button>
-					</div>
-					
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'">测试通过</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="endTest" class="white_content">
-			    		<form  method="post"  id="endDYTestForm">
-        					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
-        					【通过时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
-        					【备注/遗留】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
-        					<button style="display: block;" onclick='EndTest()'>提交</button>
-        				</form>
-						<button onclick = "document.getElementById('endTest').style.display='none'">关闭</button>
-					</div>
 				<button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
 			  
            
@@ -526,7 +410,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                       		iNG2 = dfnumber.format((float)NG2*100/NGALL);//返回的是String类型
                       		iNG3 = dfnumber.format((float)NG3*100/NGALL);//返回的是String类型 
                         }
-
                    %>   
                   	<td id="div_title" height="28" colspan="15" align="left" style="font-size:14px;"><i>&nbsp;通过率：<span style="color:green">1轮（<%=iNG1 %>%）&nbsp;</span><span style="color:blue"> 2轮（<%=iNG2 %>%）&nbsp;</span><span style="color:red">3轮及以上（<%=iNG3 %>%）&nbsp;</span></i></td>
                   <%     

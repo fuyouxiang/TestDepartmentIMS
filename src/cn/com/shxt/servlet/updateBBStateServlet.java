@@ -69,9 +69,9 @@ public class updateBBStateServlet extends HttpServlet {
 			int flag = dbutil.update(sql);
 			response.setContentType("text/html; charset=UTF-8");
 		    if(flag>0){
-		    response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet';</script>");
+		    response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet?type=1';</script>");
 		    }else{
-		    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet';</script>");
+		    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet?type=1';</script>");
 		    }   
 			
 			

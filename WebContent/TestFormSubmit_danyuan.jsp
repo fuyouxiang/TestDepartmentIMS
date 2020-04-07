@@ -132,7 +132,7 @@ function showWaiting() {
 		String date= format.format(new Date());
 		%>
 	<div class="top-buttons-agileinfo">
-		<a  href="<%=path%>/TestApplicationServlet">版本测试申请</a><a class="active" href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a>
+		<a  href="<%=path%>/TestApplicationServlet">版本测试申请</a><a href="<%=path%>/selectBanBenServlet?type=2" target="_blank">版本测试查询</a><a class="active" href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a><a href="<%=path %>/AddDanYuanTestServlet?type=7" target="_blank">单元测试查询</a>
 	</div>
 	<h1>单元测试申请单</h1>
 	<form action="<%=path%>/AddDanYuanTestServlet?type=1" name="formname" method="post" id =formId  onsubmit="return submitMyForm(this)" enctype="multipart/form-data">

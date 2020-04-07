@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.text.SimpleDateFormat,java.text.DecimalFormat" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.text.SimpleDateFormat,java.util.Calendar,java.text.SimpleDateFormat" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -6,7 +6,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
-//System.out.println(pageBean.toString()) ;
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -14,7 +13,7 @@ PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
   <head>
     <base href="<%=basePath%>">
     
-    <title>单元测试汇总</title>
+    <title>版本测试汇总</title>
     <style type="text/css">
     
     
@@ -109,7 +108,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
             background-color: white; 
             z-index:1002; 
             overflow: auto; 
-        } 
+        }
+
 </style>
 
 
@@ -221,28 +221,29 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		</script>
 
 <script type="text/javascript">
+
     function base64 (content) {
        return window.btoa(unescape(encodeURIComponent(content)));         
     }
     /*
-     *@tableId: table的Id
-     *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
-     */
-     function tableToExcel(tableID,fileName){
-         var table = document.getElementById(tableID);
-       var excelContent = table.innerHTML;
-       var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
-       excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>单元测试汇总</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
-       excelFile += "<body><table>";
-       excelFile += excelContent;
-       excelFile += "</table></body>";
-       excelFile += "</html>";
-       var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
-       var a = document.createElement("a");
-       a.download = fileName+".xls";
-       a.href = link;
-       a.click();
-     }
+    *@tableId: table的Id
+    *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
+    */
+    function tableToExcel(tableID,fileName){
+        var table = document.getElementById(tableID);
+      var excelContent = table.innerHTML;
+      var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>版本测试汇总</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+      excelFile += "<body><table>";
+      excelFile += excelContent;
+      excelFile += "</table></body>";
+      excelFile += "</html>";
+      var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
+      var a = document.createElement("a");
+      a.download = fileName+".xls";
+      a.href = link;
+      a.click();
+    }
     
     
     //操作记录
@@ -261,97 +262,12 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
          }
      }    
 
-    //开始测试
-    function StartTest(){
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("StartDYTestForm");
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 //alert("该条数据的ID为"+ID); 
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=3&D_ID="+ID;
-        	 //alert(form.action);
-        	 form.submit();
-         }
-     }
-
-    //开始测试的返回结果
-    var errori ='<%=request.getParameter("StartAnswer")%>';
-    if(errori=='yes'){
-     alert("测试任务已开始！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("测试任务启动失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }
-    
-    //驳回操作
-    function ReturnTest(){
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("returnDYTestForm");
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=4&D_ID="+ID;
-        	 form.submit();
-         }
-     }
-    
-    //驳回操作的返回结果
-    var errori ='<%=request.getParameter("ReturnAnswer")%>';
-    if(errori=='yes'){
-     alert("驳回操作完成，已邮件通知开发人员！为保证沟通的及时性，建议同时通过其他方式通知开发。");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("驳回操作失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }    
-
-    //测试通过
-    function EndTest(){
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("endDYTestForm");
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=5&D_ID="+ID;
-        	 form.submit();
-         }
-     }
-    
-    //测试通过的返回结果
-    var errori ='<%=request.getParameter("EndAnswer")%>';
-    if(errori=='yes'){
-     alert("此单元测试已测试通过！测试结束。");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("操作失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }
     
 	//查询提交
 	function submitSelect(){
         //等待提示
         showWaiting();
-        window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
+        window.location.href="<%=path%>/selectBanBenServlet?type=2";
         $(document).ready(parent.closeWaiting());
     }
 
@@ -370,13 +286,16 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		//等待提示
 		submitSelect();
     }
+	
+	
 </script>
 
 		
 		
 <body onload="valiButt()">
 
-<form action="<%=path %>/AddDanYuanTestServlet?type=2"  name="MyPageForm" method="post"  id="pageForm" >
+
+<form action="<%=path %>/selectBanBenServlet?type=2"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
 	    <input type="hidden" id="nextPageId"  name="nextPage" value="1" />
     </form>
@@ -385,49 +304,18 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         <tr>
           <td height="45" background="images/nav04.gif">
             
-		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+		   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 		    <tr>
 		      
 			 <%
 			 
 			 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 			 String time=df.format(new Date());// new Date()为获取当前系统时间
-			 String ExcelName = "单元测试汇总"+time;
+			 String ExcelName = "版本测试汇总"+time;
 			 %>
-			   <td width="1000" align="left" >
-			    <button onclick="BBLog()">操作日志</button>
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
-			    		<form  method="post"  id="StartDYTestForm">
-        					【测试人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
-        					【开始测试时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
-        					<button style="display: block;" onclick='StartTest()'>提交</button>
-        				</form>
-						<button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
-					</div>
-
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'">驳回</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="returnTest" class="white_content">
-			    		<form  method="post"  id="returnDYTestForm">
-        					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
-        					【驳回时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
-        					【驳回原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
-        					<button style="display: block;" onclick='ReturnTest()'>提交</button>
-        				</form>
-						<button onclick = "document.getElementById('returnTest').style.display='none'">关闭</button>
-					</div>
-					
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'">测试通过</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="endTest" class="white_content">
-			    		<form  method="post"  id="endDYTestForm">
-        					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
-        					【通过时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
-        					【备注/遗留】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
-        					<button style="display: block;" onclick='EndTest()'>提交</button>
-        				</form>
-						<button onclick = "document.getElementById('endTest').style.display='none'">关闭</button>
-					</div>
-				<button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
+			   <td width="40%" align="left" >
+			   <button onclick="BBLog()">操作日志</button>
+			   <button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
 			  
            
             </td>
@@ -436,11 +324,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
           </table></td>
           
-                    <!-- 高级查询区域 -->
+          <!-- 高级查询区域 -->
           <td height="45" background="images/nav04.gif" style="width:60%;" align="right">
 			 <form name="MyPageForm" method="post"  id="submitSelectFrom"  onsubmit="submitSelect()">
 						部门：
-					<select name="selBumen" style="width:200px" onchange="submitSelBumen()">
+					<select name="selBumen" style="width:231px" onchange="submitSelBumen()">
 					<option id="MRbumen"></option>
 					<option>全部</option>
 					<%
@@ -457,10 +345,28 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                       }
                         %>
 					</select>
+						微服务：
+					<select name="selWeifw" style="width:170px">
+					<option id="MRwei"></option>
+					<option>全部</option>
+					<%
+                      if(pageBean3!=null){
+                       List<Map<String, String>>  resList=  pageBean3.getResList();
+                       if(resList!=null && resList.size()>0){                          		
+                          for(int i=0;i<resList.size();i++){
+                          Map<String, String>  stuMap= resList.get(i);	  
+                          %>    
+					<option  value="<%=stuMap.get("W_NAME") %>"><%=stuMap.get("W_NAME") %></option>
+					<%     
+                          }                        	  
+                       }
+                      }
+                        %>
+					</select><br>
 						月份：
-						<select style="high:150;font-weight:bold;width:111px" name="selMonth"  id="selMonth">
+						<select style="high:150;font-weight:bold;width:80px" name="selMonth"  id="selMonth">
 						 <option id="MRmonth"></option>
-						 <option style="font-size:13px;" value="全部">&nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                          
+						 <option style="font-size:13px;"value="全部"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                          
 					     <option style="font-size:13px;" value="01"> &nbsp;&nbsp;一月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="02"> &nbsp;&nbsp;二月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="03"> &nbsp;&nbsp;三月&nbsp;&nbsp;</option>
@@ -473,12 +379,12 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					     <option style="font-size:13px;" value="10"> &nbsp;&nbsp;十月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="11"> &nbsp;&nbsp;十一月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="12"> &nbsp;&nbsp;十二月 &nbsp;&nbsp;</option>
-					     </select><br>
-					            名称：<input style="width:130px" name="selVersion" id='MRversion' type="text" size="12"/>
+					     </select>
+					            版本号：<input style="width:100px" name="selVersion" id='MRversion' type="text" size="12"/>
 					            状态：
 					     <select style="high:150;font-weight:bold;width:80px" name="selState"  id="selState">
 						 <option id="MRstate"></option>
-						 <option style="font-size:13px;" value="全部">&nbsp;&nbsp;全部&nbsp;&nbsp;</option>                              
+						 <option style="font-size:13px;"value="全部"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                              
 					     <option style="font-size:13px;" value="0"> &nbsp;&nbsp;待测试 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;测试中 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="2"> &nbsp;&nbsp;NG&nbsp;&nbsp;</option>
@@ -490,71 +396,48 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		</td>
 		<td height="45" background="images/nav04.gif" style="width:1%;"></td>
         </tr>
+        
     </table> 
-    
 <!-- 右侧滚动条 -->
 <div style="width:100%;height:85%;overflow: scroll;">
-          <table width="2500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
+          <table width="3000px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
-				<table id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				<table id = "testList" width="3000px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				 <tbody>
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="15" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="21" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
-                  <tr>
-                 <%
-                      if(pageBean3!=null){
-                       List<Map<String, String>>  resList=  pageBean3.getResList();
-                       if(resList!=null && resList.size()>0){                          		
-                          for(int i=0;i<resList.size();i++){
-                          Map<String, String>  stuMap= resList.get(i);	  
-                          int NGALL= Integer.parseInt(stuMap.get("NGALL"));
-                          int NG1 = Integer.parseInt(stuMap.get("NG1"));
-                          int NG2 = Integer.parseInt(stuMap.get("NG2"));
-                          int NG3 = Integer.parseInt(stuMap.get("NG3"));
-                          String iNG1 = null;
-                          String iNG2 = null;
-                          String iNG3 = null;
-                  		DecimalFormat dfnumber = new DecimalFormat("0");//格式化小数  
-                        if(NGALL==0){
-                        	iNG1 = "0";
-                        	iNG2 = "0";
-                        	iNG3 = "0";
-                        }else{
-                      		iNG1 = dfnumber.format((float)NG1*100/NGALL);//返回的是String类型 
-                      		iNG2 = dfnumber.format((float)NG2*100/NGALL);//返回的是String类型
-                      		iNG3 = dfnumber.format((float)NG3*100/NGALL);//返回的是String类型 
-                        }
-
-                   %>   
-                  	<td id="div_title" height="28" colspan="15" align="left" style="font-size:14px;"><i>&nbsp;通过率：<span style="color:green">1轮（<%=iNG1 %>%）&nbsp;</span><span style="color:blue"> 2轮（<%=iNG2 %>%）&nbsp;</span><span style="color:red">3轮及以上（<%=iNG3 %>%）&nbsp;</span></i></td>
-                  <%     
-                          }                        	  
-                       }
-                      }
-                  %>
-                  </tr>
-                  <tr bgcolor="#EEEEEE" align="center">
+                  <tr bgcolor="#EEEEEE" align="center"  style="line-height:22px;height:22px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
                     <td  style="font-size:15px;font-weight:bold"></td>
                     <td  style="font-size:15px;font-weight:bold">编号</td>
                     <td  style="font-size:15px;font-weight:bold">部门</td>
-                    <td  style="font-size:15px;font-weight:bold">开发</td>
+                    <td  style="font-size:15px;font-weight:bold">微服务</td>
+                    <td  style="font-size:15px;font-weight:bold">版本号</td>                   
                     <td  style="font-size:15px;font-weight:bold">月份</td>
-                    <td  style="font-size:15px;font-weight:bold">日期</td>                    
-                    <td  style="font-size:15px;font-weight:bold">单元测试名称 </td>
-                    <td  style="font-size:15px;font-weight:bold">测试人</td>
-                    <td  style="font-size:15px;font-weight:bold">NG次数</td>
+                    <td  style="font-size:15px;font-weight:bold">日期 </td>
                     <td  style="font-size:15px;font-weight:bold">状态</td>
-                    <td  style="font-size:15px;font-weight:bold">测试内容</td>
-                    <td  style="font-size:15px;font-weight:bold">通过标准</td>
+                    <td  style="font-size:15px;font-weight:bold">紧急程度</td>                    
+                    <td  style="font-size:15px;font-weight:bold">带脚本</td>
+                    <td  style="font-size:15px;font-weight:bold">发江西</td>
+                    <td  style="font-size:15px;font-weight:bold">压测环境</td>
+                    <td  style="font-size:15px;font-weight:bold">jxpre更新</td>
+                    <td  style="font-size:15px;font-weight:bold">研发人</td>
+                    <td  style="font-size:15px;font-weight:bold">测试人</td>
                     <td  style="font-size:15px;font-weight:bold">提交日期</td>
-                    <td  style="font-size:15px;font-weight:bold">重新提交路径</td>
-                    <td  style="font-size:15px;font-weight:bold">附件</td>
+                    <td  style="font-size:15px;font-weight:bold">版本内容</td>
+                    <td  style="font-size:15px;font-weight:bold">测试通过标准</td>
+                    <td  style="font-size:15px;font-weight:bold">构造内容附件</td>
+                    <td  style="font-size:15px;font-weight:bold">SQL脚本附件</td>
+                    <td  style="font-size:15px;font-weight:bold">配置文件附件</td>
+                    <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
-                   <tbody>
-                    	
+                  </tbody>
+
+				  <tbody>
+
                         <%
                         	
                           if(pageBean!=null){
@@ -571,80 +454,138 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             	   int lunci = Integer.parseInt(stuMap.get("D_NG"))+1;
                             	   String Color= null;
                             	   
-                             	  String Olddate = stuMap.get("D_DATE");
-                             	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                             	  Date date = sdf.parse(Olddate);
-                                  Calendar calendar = Calendar.getInstance();
-                                  calendar.setTime(date);
-                                  int month=calendar.get(Calendar.MONTH)+1;
-                                  int day=calendar.get(Calendar.DAY_OF_MONTH);
-                                  
-                                  String serviceRoot= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; 
-                                  
-                            	   
                             	  if(state.equals("0")){
                             		  state ="待测试";
-                            		  Color ="red";
+                            		  Color ="black";
                             	  }else if(state.equals("1")){
                             		  state ="正在测试";
                             		  Color ="blue";
                             	  }else if(state.equals("2")){
-                            		  state ="已驳回";
-                            		  Color ="black";
+                            		  state ="NG";
+                            		  Color ="red";
                             	  }else if(state.equals("3")){
-                            		  state ="测试通过";
+                            		  state ="OK";
                             		  Color ="green";
                             	  }else{
                             		  state ="未知";
-                            	  }  
+                            	  }
                             	  
+                            	  String Olddate = stuMap.get("D_DATE");
+                            	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            	  Date date = sdf.parse(Olddate);
+                                  Calendar calendar = Calendar.getInstance();
+                                  calendar.setTime(date);
+                                  int month=calendar.get(Calendar.MONTH)+1;
+                                  int day=calendar.get(Calendar.DAY_OF_MONTH);
+                                  String serviceRoot= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; 
+                                  
+                                  //是否带脚本
+                                  String D_ISSQL = stuMap.get("D_ISSQL");
+                                  if(D_ISSQL.equals("0")){
+                                	  D_ISSQL="否";
+                                  }else if(D_ISSQL.equals("1")){
+                                	  D_ISSQL="是";
+                                  }else{
+                                	  D_ISSQL ="未知";
+                            	  }
+                                  //是否发江西
+                                  String D_ISJXXC = stuMap.get("D_ISJXXC");
+                                  if(D_ISJXXC.equals("0")){
+                                	  D_ISJXXC="";
+                                  }else if(D_ISJXXC.equals("1")){
+                                	  D_ISJXXC="已发";
+                                  }else{
+                                	  D_ISJXXC ="未知";
+                            	  }
+                                  //是否更新压测环境
+                                  String D_ISYCHJ = stuMap.get("D_ISYCHJ");
+                                  if(D_ISYCHJ.equals("0")){
+                                	  D_ISYCHJ="";
+                                  }else if(D_ISYCHJ.equals("1")){
+                                	  D_ISYCHJ="已更新";
+                                  }else{
+                                	  D_ISYCHJ ="未知";
+                            	  }
+                                  //是否更新jxpre环境
+                                  String D_ISJXPRE = stuMap.get("D_ISJXPRE");
+                                  if(D_ISJXPRE.equals("0")){
+                                	  D_ISJXPRE="";
+                                  }else if(D_ISJXPRE.equals("1")){
+                                	  D_ISJXPRE="已更新";
+                                  }else{
+                                	  D_ISJXPRE ="未知";
+                            	  }
+                                  //是否紧急
+                                  String D_JINJI = stuMap.get("D_JINJI");
+                                  if(D_JINJI.equals("1")){
+                                	  D_JINJI="紧急";
+                                  }else{
+                                	  D_JINJI ="非紧急";
+                            	  }
                           %>
-                          <tr align="center" style="">
+
+                          <tr align="center" style="line-height:20px;height:20px;">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
                           	<td  width=50px class="bor_2">
                           	<input type="checkbox" value="<%=stuMap.get("D_ID") %>" name="checkboxBtn"/><br />
                           	</td>
-                          	<td  width=50px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:38px;"> <%=i+1 %> </td>
-                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
+                          	<td  width=50px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:30px;"> <%=i+1 %> </td>
+                            <td  width=170px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
+                            <td  width=170px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_WEINAME") %></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_VERSION") %></td>
+                            <td  width=80px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
+                            <td  width=80px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_JINJI %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISSQL %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXXC %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISYCHJ %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXPRE %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
-                            <td  width=100px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
-                            <td  width=400px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_TUSER") %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
-                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">第<%=lunci %>轮&nbsp;<font color="<%=Color %>"><%=state %></font></td>
-                            <td  width=300px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_CONTENT") %></td>
-                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_BIAOZHUN") %></td>
-                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_DATE") %></td>
-                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a></td>
-                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
-                            <a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
-                            <%=stuMap.get("D_WIKI") %>
-                            </a>
-                            </td>
-                            <!-- 
-                            <td  width=100 class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
-        					<div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_TUSER") %></td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
+   							<td  width=300px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_CONTENT") %></td>
+   							<td  width=300px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BIAOZHUN") %></td>
+   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
+   							<%=stuMap.get("D_WIKI") %>
+   							</a>
+   							</td>
+   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_SQL") %>" target="_blank">
+   							<%=stuMap.get("D_SQL") %>
+   							</a>
+   							</td>
+   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_CONFIG") %>" target="_blank">
+   							<%=stuMap.get("D_CONFIG") %>
+   							</a>
+   							</td>
+   							<!-- 
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
+                            <button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
+                            <div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
         					【部门】：<%=stuMap.get("D_BUMEN") %><br/>
         					【开发】：<%=stuMap.get("D_KAIFA") %><br/>
         					【提交日期】：<%=stuMap.get("D_DATE") %><br/>
-        					【名称】：<%=stuMap.get("D_VERSION") %><br/>
-        					【测试内容】：<%=stuMap.get("D_CONTENT") %><br/>
+        					【微服务】：<%=stuMap.get("D_WEINAME") %><br/>
+        					【版本号】：<%=stuMap.get("D_VERSION") %><br/>
+        					【版本内容】：<%=stuMap.get("D_CONTENT") %><br/>
         				          【测试通过标准】：<%=stuMap.get("D_BIAOZHUN") %><br/>
-        				          【状态】：<%=state %><br/>
+        				          【wiki地址】：<a href="<%=stuMap.get("D_WIKI") %>" target="_blank"><%=stuMap.get("D_WIKI") %></a><br/>
+        				          【状态】：<%=state %><br/>    
         					【重新提交路径】：<a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a><br/>
-        					<br/>
-							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button></div>
-							</td>                            
-				 			-->
+        					<br/>  
+							<button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='none';document.getElementById('fade').style.display='none'">关闭</button>
+							</div>
+                            </td>
+ 							-->
                         </tr>
-                        		
                           <%     
               
                                }
                         	  
-                           }
-
+                           } 
                           }
                    
                         
@@ -656,20 +597,18 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
   </tr>
 </table>
 </div>
-
   </body>
-  
-  <script language="javascript">
-  var selBumen ='<%=request.getAttribute("selBumen")%>';
-  document.getElementById('MRbumen').innerHTML = selBumen;
-  var selMonth ='<%=request.getAttribute("selMonth")%>';
-  document.getElementById('MRmonth').innerHTML = selMonth;
-  var selVersion ='<%=request.getAttribute("selVersion")%>';
-  document.getElementById('MRversion').innerHTML = selVersion;
-  var selState ='<%=request.getAttribute("selState")%>';
-  document.getElementById('MRstate').innerHTML = selState;  
-  
-
+<script language="javascript">
+var selBumen ='<%=request.getAttribute("selBumen")%>';
+document.getElementById('MRbumen').innerHTML = selBumen;
+var selWeifw ='<%=request.getAttribute("selWeifw")%>';
+document.getElementById('MRwei').innerHTML = selWeifw;
+var selMonth ='<%=request.getAttribute("selMonth")%>';
+document.getElementById('MRmonth').innerHTML = selMonth;
+var selVersion ='<%=request.getAttribute("selVersion")%>';
+document.getElementById('MRversion').innerHTML = selVersion;
+var selState ='<%=request.getAttribute("selState")%>';
+document.getElementById('MRstate').innerHTML = selState;
 
 //关闭等待窗口
   function closeWaiting() {

@@ -307,10 +307,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     var errori ='<%=request.getParameter("StartAnswer")%>';
     if(errori=='yes'){
      alert("测试任务已开始！");
-     window.location.href="<%=path%>/selectBanBenServlet";
+     window.location.href="<%=path%>/selectBanBenServlet?type=1";
     }else if(errori=='no'){
      alert("测试任务启动失败，请联系管理员！");
-     window.location.href="<%=path%>/selectBanBenServlet";
+     window.location.href="<%=path%>/selectBanBenServlet?type=1";
     }
     
     //驳回操作
@@ -339,10 +339,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     var errori ='<%=request.getParameter("ReturnAnswer")%>';
     if(errori=='yes'){
      alert("驳回操作完成，已邮件通知开发人员！为保证沟通的及时性，建议同时通过其他方式通知开发。");
-     window.location.href="<%=path%>/selectBanBenServlet";
+     window.location.href="<%=path%>/selectBanBenServlet?type=1";
     }else if(errori=='no'){
      alert("驳回操作失败，请联系管理员！");
-     window.location.href="<%=path%>/selectBanBenServlet";
+     window.location.href="<%=path%>/selectBanBenServlet?type=1";
     }    
 
     //测试通过
@@ -371,17 +371,17 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     var errori ='<%=request.getParameter("EndAnswer")%>';
     if(errori=='yes'){
      alert("此版本已测试通过！测试结束。");
-     window.location.href="<%=path%>/selectBanBenServlet";
+     window.location.href="<%=path%>/selectBanBenServlet?type=1";
     }else if(errori=='no'){
      alert("操作失败，请联系管理员！");
-     window.location.href="<%=path%>/selectBanBenServlet";
+     window.location.href="<%=path%>/selectBanBenServlet?type=1";
     } 
     
 	//查询提交
 	function submitSelect(){
         //等待提示
         showWaiting();
-        window.location.href="<%=path%>/selectBanBenServlet";
+        window.location.href="<%=path%>/selectBanBenServlet?type=1";
         $(document).ready(parent.closeWaiting());
     }
 
@@ -409,7 +409,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 <body onload="valiButt()">
 
 
-<form action="<%=path %>/selectBanBenServlet"  name="MyPageForm" method="post"  id="pageForm" >
+<form action="<%=path %>/selectBanBenServlet?type=1"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
 	    <input type="hidden" id="nextPageId"  name="nextPage" value="1" />
     </form>

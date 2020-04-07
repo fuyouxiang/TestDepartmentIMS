@@ -202,7 +202,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		int flag = dbutil.update(sql);
 		System.out.println(timelog+"添加单元测试申请："+sql);	
 		
-		String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '【内容】:"+content+"【标准】:"+biaozhun+"+【附件名称】:"+wiki+"')";
+		String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '【内容】:"+content+"【标准】:"+biaozhun+"【附件名称】:"+wiki+"')";
 		int flag2 = dbutil.update(sql2);
 		System.out.println(timelog+"添加日志："+sql2);
 		
@@ -526,6 +526,97 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				request.getRequestDispatcher("User/ResubmitDYTest.jsp?StartAnswer=no").forward(request, response);
 			}
 		}
+		
+		//=================================7单元测试查询（对外）=================================
+				else if(type.equals("7")){
+					System.out.println(timelog+"单元测试菜单查询（对外）————————");
+					
+					//查询条件：部门
+					String selBumen = request.getParameter("selBumen");
+					String selBumenSQL;
+					if(selBumen== null || selBumen.length()==0 || selBumen.equals("全部")) {
+						selBumenSQL=" AND 1=1 ";
+						//发送查询条件默认值
+						request.setAttribute("selBumen", "");
+					}else {
+						selBumenSQL=" AND D_BUMEN='"+selBumen+"' ";
+						//发送查询条件默认值
+						request.setAttribute("selBumen", selBumen);
+					}
+					System.out.println(timelog+"查询条件：部门:"+selBumenSQL);
+					
+					
+					//查询条件：单元测试名称(模糊查询)
+					String selVersion = request.getParameter("selVersion");
+					String selVersionSQL;
+					if(selVersion== null || selVersion.length()==0 || selVersion.equals("全部")) {
+						selVersionSQL=" AND 1=1 ";
+						request.setAttribute("selVersion", "");
+					}else {
+						selVersionSQL=" AND D_VERSION like '%"+selVersion+"%' ";
+						request.setAttribute("selVersion", selVersion);
+					}
+					System.out.println(timelog+"查询条件：单元测试名称(模糊查询):"+selVersionSQL);
+					
+					//查询条件：月份
+					String selMonth = request.getParameter("selMonth");
+					String selMonthSQL;
+					Calendar cal = Calendar.getInstance();
+			        int year = cal.get(Calendar.YEAR);
+					if(selMonth== null || selMonth.length()==0 || selMonth.equals("全部")) {
+						selMonthSQL=" AND 1=1 ";
+						request.setAttribute("selMonth", "");
+					}else {
+						selMonthSQL=" AND D_DATE like '"+year+"-"+selMonth+"-%' ";
+						request.setAttribute("selMonth", selMonth);
+					}
+					System.out.println(timelog+"查询条件：月份:"+selMonthSQL);
+					
+					//查询条件：状态
+					String selState = request.getParameter("selState");
+					String selStateSQL;
+					if(selState== null || selState.length()==0 || selState.equals("全部")) {
+						selStateSQL=" AND 1=1 ";
+						request.setAttribute("selState", "");
+					}else {
+						selStateSQL=" AND D_STATE = '"+selState+"' ";
+						request.setAttribute("selState", selState);
+					}
+					System.out.println(timelog+"查询条件：状态:"+selStateSQL);
+					
+					//排序条件
+					String OrderSQL=" order by D_DATE desc";
+					
+					String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_VERSION,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_TYPE='单元测试'"
+							+selBumenSQL+selVersionSQL+selMonthSQL+selStateSQL+OrderSQL;
+							System.out.println(timelog+"总查询SQL:"+sql);
+					
+					String nowPage = request.getParameter("currentPage");		
+					PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
+					request.setAttribute("pageBean", pageBean);
+					
+					//部门查询条件
+					String sql2 = "select B_NAME from SYS_BUMEN where B_NAME != '产品测试部'";
+					PageBean pageBean2 = dbutil.queryByPage2(nowPage, sql2);
+					request.setAttribute("pageBean2", pageBean2);
+					System.out.println(timelog+"部门查询:"+sql2);
+					
+					
+					//查询通过率
+					String sql3 = "select \r\n" + 
+							"distinct (select count(1) from sys_test_sq where D_TYPE='单元测试' and d_state='3' "+selBumenSQL+selVersionSQL+selMonthSQL+") as NGALL,\r\n" + 
+							"(select count(1) from sys_test_sq where d_ng=0 and D_TYPE='单元测试' and d_state='3' "+selBumenSQL+selVersionSQL+selMonthSQL+") as NG1,\r\n" + 
+							"(select count(1) from sys_test_sq where d_ng=1 and D_TYPE='单元测试' and d_state='3' "+selBumenSQL+selVersionSQL+selMonthSQL+") as NG2,\r\n" + 
+							"(select count(1) from sys_test_sq where d_ng>=2 and D_TYPE='单元测试' and d_state='3' "+selBumenSQL+selVersionSQL+selMonthSQL+") as NG3\r\n" + 
+							"from sys_test_sq";
+					PageBean pageBean3 = dbutil.queryByPage2(nowPage, sql3);
+					request.setAttribute("pageBean3", pageBean3);
+					System.out.println(timelog+"查询通过率:"+sql3);
+					
+					request.getRequestDispatcher("User/selectDanYuanForOut.jsp").forward(request, response);
+				
+				}
+		//=================================2结束=================================	
 		else {
 			String info ="系统出现异常，请联系管理员！";
 			request.setAttribute("info", info);
