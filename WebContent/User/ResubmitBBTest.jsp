@@ -40,6 +40,7 @@ function  submitMyForm(fm){
 	var weiServer=document.formname.weiServer.value;
 	var banbenNo=document.formname.banbenNo.value;
 	var content=document.formname.content.value;
+	var jinji=document.formname.jinji.value;
 	var obj = document.getElementsByName("biaozhun");//选择所有name="interest"的对象，返回数组    
 	var biaozhun='';//如果这样定义var s;变量s中会默认被赋个null值
 	for(var i=0;i<obj.length;i++){
@@ -50,10 +51,75 @@ function  submitMyForm(fm){
 		alert("请选择通过标准!");
 		return false;
     }else{
-    	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-        fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun+"&old_id="+old_id;  
+        //等待提示
+        showWaiting();
+        fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun+"&old_id="+old_id+"&jinji="+jinji;  
         return true;
     }
+}
+
+//显示等待窗口
+function showWaiting() {
+    var msgw, msgh, bordercolor;
+    msgw = 300; //提示窗口的宽度 
+    msgh = 100; //提示窗口的高度 
+    bordercolor = "#336699"; //提示窗口的边框颜色 
+    titlecolor = "#99CCFF"; //提示窗口的标题颜色 
+
+    var sWidth, sHeight;
+    sWidth = document.body.clientWidth;
+    sHeight = document.body.clientHeight;
+
+    //背景遮罩层div
+    var bgObj = document.createElement("div");
+    bgObj.setAttribute('id', 'bgDiv');
+    bgObj.style.position = "absolute";
+    bgObj.style.top = "0px";
+    bgObj.style.background = "#888";
+    bgObj.style.filter = "progid:DXImageTransform.Microsoft.Alpha(style=3,opacity=25,finishOpacity=75";
+    bgObj.style.opacity = "0.6";
+    bgObj.style.left = "0px";
+    bgObj.style.width = sWidth + "px";
+    bgObj.style.height = sHeight + "px";
+    document.body.appendChild(bgObj);
+    
+    //信息提示层div
+    var msgObj = document.createElement("div");
+    msgObj.setAttribute("id", "msgDiv");
+    msgObj.setAttribute("align", "center");
+    msgObj.style.position = "absolute";
+    msgObj.style.background = "white";
+    msgObj.style.font = "12px/1.6em Verdana, Geneva, Arial, Helvetica, sans-serif";
+    msgObj.style.border = "1px solid " + bordercolor;
+    msgObj.style.width = msgw + "px";
+    msgObj.style.height = msgh + "px";
+    msgObj.style.top = (document.documentElement.scrollTop + (sHeight - msgh) / 2) + "px";
+    msgObj.style.left = (sWidth - msgw) / 2 + "px";
+    document.body.appendChild(msgObj);
+    
+    //标题栏
+    var title = document.createElement("h4");
+    title.setAttribute("id", "msgTitle");
+    title.setAttribute("align", "left");
+    title.style.margin = "0px";
+    title.style.padding = "3px";
+    title.style.background = bordercolor;
+    title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(startX=20, startY=20, finishX=100, finishY=100,style=1,opacity=75,finishOpacity=100);";
+    title.style.opacity = "0.75";
+    title.style.border = "1px solid " + bordercolor;
+    title.style.height = "14px";
+    title.style.font = "12px Verdana, Geneva, Arial, Helvetica, sans-serif";
+    title.style.color = "white";
+    title.innerHTML = "正在提交中，请稍候......";
+    document.getElementById("msgDiv").appendChild(title);
+    
+    //中间等待图标
+    var img = document.createElement("img");
+    img.style.margin = "10px 0px 10px 0px";
+    img.style.width = "48px";
+    img.style.height = "48px";
+    img.setAttribute("src", "./img/waiting.gif");
+    document.getElementById("msgDiv").appendChild(img);
 }
 </script>
 <body>
@@ -68,7 +134,13 @@ function  submitMyForm(fm){
         if(resList!=null && resList.size()>0){                          		
         for(int i=0;i<resList.size();i++){
         Map<String, String>  stuMap= resList.get(i);	
-        int NG=Integer.parseInt(stuMap.get("D_NG"))+1; 
+        int NG=Integer.parseInt(stuMap.get("D_NG"))+1;
+        String D_JINJI=stuMap.get("D_JINJI");
+        if(D_JINJI.equals("1")){
+        	D_JINJI="紧急";
+        }else{
+        	D_JINJI="非紧急";
+        }
 	%>
 	<h1>版本测试重新提交</h1>
 	<form action="<%=path%>/AddBanBenTestServlet?type=2" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
@@ -106,6 +178,15 @@ function  submitMyForm(fm){
 				<li class="first">
 					<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>版本号</a><input name="banbenNo" type="text" class="text"  required="required">
 					<div class="clear"></div>
+				</li>
+				<li class="second">
+				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>是否紧急</a>
+					<select name="jinji">
+					<option value="<%=stuMap.get("D_JINJI") %>"><%=D_JINJI %></option>
+					<option value="0">非紧急</option>
+					<option value="1">紧急</option>
+					</select>
+				<div class="clear"></div>
 				</li>
 				<li class="second">
 				<a href="#" class=" icon msg" style="text-align: center;color:black;"><br/>构造内容</a><textarea name="content" placeholder="版本构造内容" required="required" ><%=stuMap.get("D_CONTENT") %></textarea>

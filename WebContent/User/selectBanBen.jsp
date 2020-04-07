@@ -546,14 +546,14 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     </table> 
 <!-- 右侧滚动条 -->
 <div style="width:100%;height:85%;overflow: scroll;">
-          <table width="2900px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
+          <table width="3000px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
-				<table id = "testList" width="2900px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				<table id = "testList" width="3000px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tbody>
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="20" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="21" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center"  style="line-height:22px;height:22px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
@@ -564,7 +564,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">版本号</td>                   
                     <td  style="font-size:15px;font-weight:bold">月份</td>
                     <td  style="font-size:15px;font-weight:bold">日期 </td>
-                    <td  style="font-size:15px;font-weight:bold">状态</td>                    
+                    <td  style="font-size:15px;font-weight:bold">状态</td>
+                    <td  style="font-size:15px;font-weight:bold">紧急程度</td>                    
                     <td  style="font-size:15px;font-weight:bold">带脚本</td>
                     <td  style="font-size:15px;font-weight:bold">发江西</td>
                     <td  style="font-size:15px;font-weight:bold">压测环境</td>
@@ -660,6 +661,13 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                   }else{
                                 	  D_ISJXPRE ="未知";
                             	  }
+                                  //是否紧急
+                                  String D_JINJI = stuMap.get("D_JINJI");
+                                  if(D_JINJI.equals("1")){
+                                	  D_JINJI="紧急";
+                                  }else{
+                                	  D_JINJI ="非紧急";
+                            	  }
                           %>
 
                           <tr align="center" style="line-height:20px;height:20px;">
@@ -674,6 +682,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=80px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
                             <td  width=80px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_JINJI %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISSQL %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXXC %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISYCHJ %></td>

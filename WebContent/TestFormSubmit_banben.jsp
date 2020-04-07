@@ -38,6 +38,7 @@ if(errori=='yes'){
 		var weiServer=document.formname.weiServer.value;
 		var banbenNo=document.formname.banbenNo.value;
 		var content=document.formname.content.value;
+		var jinji=document.formname.jinji.value;
 		var obj = document.getElementsByName("biaozhun");//选择所有name="interest"的对象，返回数组    
 		var biaozhun='';//如果这样定义var s;变量s中会默认被赋个null值
 		for(var i=0;i<obj.length;i++){
@@ -57,7 +58,9 @@ if(errori=='yes'){
 			alert("请选择通过标准!");
 			return false;
 	    }else{
-	    	fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun;  
+	        //等待提示
+	        showWaiting();
+	    	fm.action = fm.action + "&bumen="+bumen+"&kaifa="+kaifa+"&k_email="+k_email+"&date="+date+"&weiServer="+weiServer+"&banbenNo="+banbenNo+"&content="+content+"&biaozhun="+biaozhun+"&jinji="+jinji;  
 	    	return true;
 	    }
 }
@@ -141,7 +144,7 @@ if(errori=='yes'){
 	      title.style.height = "14px";
 	      title.style.font = "12px Verdana, Geneva, Arial, Helvetica, sans-serif";
 	      title.style.color = "white";
-	      title.innerHTML = "正在加载中，请稍候......";
+	      title.innerHTML = "正在提交中，请稍候......";
 	      document.getElementById("msgDiv").appendChild(title);
 	      
 	      //中间等待图标
@@ -227,6 +230,14 @@ if(errori=='yes'){
 				<li class="first">
 					<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>版本号</a><input name="banbenNo" type="text" class="text" placeholder="版本号" required="required">
 					<div class="clear"></div>
+				</li>
+				<li class="second">
+				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>是否紧急</a>
+					<select name="jinji">
+					<option value="0">非紧急</option>
+					<option value="1">紧急</option>
+					</select>
+				<div class="clear"></div>
 				</li>
 				<!-- 
 				<li class="first">

@@ -54,7 +54,7 @@ public class SendEmail  extends HttpServlet {
 		System.out.println("邮件地址："+EmailAddressStirng);
 		
 		SendEmail s = new SendEmail();
-   	   s.SendEmailFromQQ(EmailAddressStirng, Msgtitle, Msg);
+   	    s.SendEmailFromQQ(EmailAddressStirng, Msgtitle, Msg);
 		
    	   
 		/*

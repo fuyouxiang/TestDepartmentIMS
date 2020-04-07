@@ -209,6 +209,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 			System.out.println("部门："+Bumen);
 			System.out.println("开发总监："+Boss);
 			System.out.println("开发总监邮箱："+BossEmail);
+		
 			String kaifa =new String((request.getParameter("kaifa")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("开发："+kaifa);
 			String k_email = new String((request.getParameter("k_email")).getBytes("iso8859-1"),"utf-8");
@@ -220,7 +221,9 @@ public class AddBanBenTestServlet extends HttpServlet {
 			String banbenNo = new String((request.getParameter("banbenNo")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("版本号："+banbenNo);
 			String content = new String((request.getParameter("content")).getBytes("iso8859-1"),"utf-8");
-			System.out.println("版本构造内容："+content);		
+			System.out.println("版本构造内容："+content);
+			String jinji = new String((request.getParameter("jinji")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("是否紧急："+jinji);		
 			String biaozhun = new String((request.getParameter("biaozhun")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("标准："+biaozhun);
 			//对三个附件名字进行截取
@@ -239,26 +242,37 @@ public class AddBanBenTestServlet extends HttpServlet {
 			}else {
 				D_ISSQL="1";
 			}
+			
 			System.out.println("是否有SQL附件："+D_ISSQL);
 			String D_TYPE = "版本测试";
 			System.out.println("测试类型："+D_TYPE);
 
-			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG) values " +
-					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "')";		
+			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI) values " +
+					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "')";		
 			
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"添加版本测试申请："+sql);	
 			
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【附件名称】:"+wiki+"')";
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【附件】:"+wiki+"')";
 			int flag2 = dbutil.update(sql2);
 			System.out.println(timelog+"添加日志："+sql2);	
 
 			try {
 				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
-				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
-				String Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
-				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【附件名称】："+wiki+"；";
+				String EmailAddress=null;
+				String Msgtitle=null;
+				if(jinji.equals("1")) {
+					String JinJiBossSql="select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME='江西现场'";
+					String JinjiBoss = dbutil.queryString(JinJiBossSql,"EMAIL");
+					System.out.println("紧急邮件发送人："+JinjiBoss);	
+					EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email+";"+JinjiBoss;
+					Msgtitle = kaifa+"申请"+banbenNo+"版本测试！(紧急)";
+				}else {
+					EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
+					Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
+				}
+				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【构造内容附件】："+wiki+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"；";
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
@@ -302,6 +316,8 @@ public class AddBanBenTestServlet extends HttpServlet {
 			System.out.println("微服务："+weiServer);
 			String banbenNo = new String((request.getParameter("banbenNo")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("版本号："+banbenNo);
+			String jinji = new String((request.getParameter("jinji")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("是否紧急："+jinji);	
 			String content = new String((request.getParameter("content")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("版本构造内容："+content);		
 			String biaozhun = new String((request.getParameter("biaozhun")).getBytes("iso8859-1"),"utf-8");
@@ -357,8 +373,18 @@ public class AddBanBenTestServlet extends HttpServlet {
 			try {
 				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
-				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
-				String Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
+				String EmailAddress=null;
+				String Msgtitle=null;
+				if(jinji.equals("1")) {
+					String JinJiBossSql="select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME='江西现场'";
+					String JinjiBoss = dbutil.queryString(JinJiBossSql,"EMAIL");
+					System.out.println("紧急邮件发送人："+JinjiBoss);	
+					EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email+";"+JinjiBoss;
+					Msgtitle = kaifa+"申请"+banbenNo+"版本测试！(紧急)";
+				}else {
+					EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
+					Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
+				}
 				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【附件名称】："+wiki+"；";
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
