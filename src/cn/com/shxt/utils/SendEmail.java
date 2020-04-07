@@ -96,6 +96,9 @@ public class SendEmail  extends HttpServlet {
 		    System.out.println("电子邮件服务端：" + SendEmailAddress);
 		    String ShouQuanMa = resource.getString("ShouQuanMa");
 		    System.out.println("授权码：" + ShouQuanMa );
+		    System.out.println("邮箱地址：" + EmailAddress );
+		    System.out.println("邮件标题：" + Msgtitle );
+		    System.out.println("邮件内容：" + Msg );
 
 		    Session session = Session.getDefaultInstance(properties);
 		    session.setDebug(true);
