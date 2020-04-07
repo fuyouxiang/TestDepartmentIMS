@@ -24,6 +24,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import cn.com.shxt.model.PageBean;
 import cn.com.shxt.utils.DBUtils;
+import cn.com.shxt.utils.OutPrintLogs;
 import cn.com.shxt.utils.SendEmail;
 
 public class AddBanBenTestServlet extends HttpServlet {
@@ -47,6 +48,8 @@ public class AddBanBenTestServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			//构造方法，所有System.out全部写入到logs
+			OutPrintLogs o = new OutPrintLogs();
 			//时间戳，直接调用DateTime.java中的方法
 			String timelog= DateTime.showtime();
 		

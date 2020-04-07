@@ -2,6 +2,7 @@
 测试用例评审表：SYS_ATTACH_FILE
 测试用例评审日志表：SYS_ATTACH_FILE_LOG
 产品中心部门表：SYS_BUMEN
+微服务表：sys_weiname
 系统配置表：SYS_CONFIG
 测试申请汇总总表：SYS_TEST_SQ
 测试申请日志表：SYS_TESTSQ_LOG
@@ -19,11 +20,8 @@ URL服务表：SYS_URL
 
 
 ————————发送邮件接口————————
-AddBanBenTestServlet
-AddDanYuanTestServlet
-ReturnBBTestServlet
-EndBBTestServlet
-AddDanYuanTestServlet
+cn.com.shxt.utils.SendEmail
+transport.sendMessage(message, message.getAllRecipients());
 
 
 ————————友空间导入日志后删除重复数据————————

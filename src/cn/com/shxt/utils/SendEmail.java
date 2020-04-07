@@ -35,6 +35,8 @@ public class SendEmail  extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//构造方法，所有System.out全部写入到logs
+		OutPrintLogs o = new OutPrintLogs();
 		
 		//时间戳，直接调用DateTime.java中的方法
 		String time= DateTime.showtime();
@@ -74,8 +76,11 @@ public class SendEmail  extends HttpServlet {
 	}
 	
 	public void SendEmailFromQQ( String EmailAddress,String Msgtitle,String Msg){
+			//构造方法，所有System.out全部写入到logs
+			OutPrintLogs o = new OutPrintLogs();
 		
 		   System.out.println("调用QQ邮箱发送接口：————————————————");
+		   
 		   
 		    Properties properties = new Properties();
 		    properties.setProperty("mail.transport.protocol", "smtp");
