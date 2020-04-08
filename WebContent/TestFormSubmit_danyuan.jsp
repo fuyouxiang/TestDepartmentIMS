@@ -45,10 +45,11 @@ function  submitMyForm(fm){
 	    biaozhun+=obj[i].value;   //如果选中，将value添加到变量s中    
 	}
 	
-	//var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-	var stop=/^((([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6}\;))*(([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})))$/;
+	var stop= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+	//var stop=/^((([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6}\;))*(([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})))$/;
 	if (!stop.test(k_email)) {
-		alert("邮箱格式不正确!"+"\n"+"范例：***@yonyou.com"+"\n\n"+"多个收件人请用分号隔开，结尾不加分号！"+"\n"+"范例：***@yonyou.com;***@yonyou.com;***@yonyou.com");
+		//alert("邮箱格式不正确!"+"\n"+"范例：***@yonyou.com"+"\n\n"+"多个收件人请用分号隔开，结尾不加分号！"+"\n"+"范例：***@yonyou.com;***@yonyou.com;***@yonyou.com");
+		alert("邮箱格式不正确!"+"\n"+"范例：***@yonyou.com");
 		return false;
     }else if (bumen=="请选择部门") {
 		alert("请选择部门!");
