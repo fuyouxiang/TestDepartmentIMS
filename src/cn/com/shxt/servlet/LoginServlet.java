@@ -70,8 +70,10 @@ public class LoginServlet extends HttpServlet {
 		
 		String selUserSql="SELECT * FROM SYS_USER WHERE U_NAME='"+name+"' and U_PASSWORD='"+password2+"' ";
 		String UserRole=null;
+		String UserCenter=null;
 		try {
 			UserRole = dbutil.queryString(selUserSql,"U_ROLE");
+			UserCenter = dbutil.queryString(selUserSql,"U_CENTER");
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -92,18 +94,19 @@ public class LoginServlet extends HttpServlet {
 		
 		//更简单的办法：UserServiceBean和updateOneUser，有获取其中一个字段的方法，直接拿来做判断，时间关系不改了，能用就行。
 	    
-	    String info ;
-	    String name1 ;
+
 	    if(UserRole.equals("普通")){
 	    	System.out.println("该用户为普通用户！");
 	    	
-	    	name1 = name;
+	    	String name1 = name;
 	    	request.setAttribute("name1",name1);
-	    	System.out.println(time+name1);
+	    	
 		    
 	    	//创建姓名的session
 		    HttpSession session = request.getSession();
 		    session.setAttribute("username",name);
+		    session.setAttribute("userrole",UserRole);
+		    session.setAttribute("UserCenter",UserCenter);
 		    
 
 		    
@@ -112,13 +115,15 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}else if(UserRole.equals("管理员")){
 			System.out.println("该用户为管理员用户！");
-	    	name1 = name;
+			
+	    	String name1 = name;
 	    	request.setAttribute("name1",name1);
-	    	System.out.println(time+name1);
 		    
 	    	//创建姓名的session
 		    HttpSession session = request.getSession();
 		    session.setAttribute("username",name);
+		    session.setAttribute("userrole",UserRole);
+		    session.setAttribute("UserCenter",UserCenter);
 
 		    
 			//response.sendRedirect("index.jsp");
@@ -127,13 +132,14 @@ public class LoginServlet extends HttpServlet {
 		}else if(UserRole.equals("文档")){	
 			System.out.println("该用户为文档用户！");
 			
-	    	name1 = name;
+	    	String name1 = name;
 	    	request.setAttribute("name1",name1);
-	    	System.out.println(time+name1);
 		    
 	    	//创建姓名的session
 		    HttpSession session = request.getSession();
 		    session.setAttribute("username",name);
+		    session.setAttribute("userrole",UserRole);
+		    session.setAttribute("UserCenter",UserCenter);
 
 		    
 			//response.sendRedirect("index.jsp");
@@ -142,21 +148,21 @@ public class LoginServlet extends HttpServlet {
 		}else if(UserRole.equals("绩效")){	
 			System.out.println("该用户为绩效用户！");
 			
-	    	name1 = name;
+	    	String name1 = name;
 	    	request.setAttribute("name1",name1);
-	    	System.out.println(time+name1);
 		    
 	    	//创建姓名的session
 		    HttpSession session = request.getSession();
-		    session.setAttribute("userame",name);
+		    session.setAttribute("username",name);
 		    session.setAttribute("userrole",UserRole);
+		    session.setAttribute("UserCenter",UserCenter);
 
 		    
 			//response.sendRedirect("index.jsp");
 			request.getRequestDispatcher("index_Jixiao.jsp").forward(request, response);
 			return;
 		}else{
-			info ="对不起,用户名或密码错误";
+			String info ="对不起,用户名或密码错误";
 			request.setAttribute("info", info);
 	    	response.setContentType("text/html; charset=UTF-8");
 	    	response.getWriter().println("<script>alert('对不起,用户名或密码错误!');window.location.href='login.jsp';</script>");

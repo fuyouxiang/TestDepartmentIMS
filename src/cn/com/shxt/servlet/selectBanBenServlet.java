@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cn.com.shxt.model.PageBean;
 import cn.com.shxt.utils.DBUtils;
@@ -25,6 +26,17 @@ public class selectBanBenServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		//获取用户名称和角色
+		HttpSession session = request.getSession();
+		String username = (String)session.getAttribute("username");
+		System.out.println("从session中获取用户名："+username);
+		String userrole = (String)session.getAttribute("userrole");
+		System.out.println("从session中获取用户角色："+userrole);
+		String UserCenter = (String)session.getAttribute("UserCenter");
+		System.out.println("从session中获取用户所属中心："+UserCenter);
+
+
 
 		//时间戳，直接调用DateTime.java中的方法
 		String time= DateTime.showtime();
@@ -116,8 +128,16 @@ public class selectBanBenServlet extends HttpServlet {
 		PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
 		request.setAttribute("pageBean", pageBean);
 		
+
+		
 		//部门查询条件
-		String sql2 = "select B_NAME from SYS_BUMEN where B_NAME != '产品测试部'";
+		String UserCenterSQL=null;
+		if(UserCenter==null) {
+			UserCenterSQL=" and 1=1";
+		}else {
+			UserCenterSQL=" and B_CENTER='"+UserCenter+"'";
+		}
+		String sql2 = "select B_NAME from SYS_BUMEN where B_NAME != '产品测试部' "+UserCenterSQL+" ";
 		PageBean pageBean2 = dbutil.queryByPage2(nowPage, sql2);
 		request.setAttribute("pageBean2", pageBean2);
 
@@ -128,8 +148,10 @@ public class selectBanBenServlet extends HttpServlet {
 
 		
 		if(type.equals("2")) {
+			//对外显示
 			request.getRequestDispatcher("User/selectBanBenForOut.jsp").forward(request, response);
 		}else {
+			//对内显示
 			request.getRequestDispatcher("User/selectBanBen.jsp").forward(request, response);
 		}
 		
