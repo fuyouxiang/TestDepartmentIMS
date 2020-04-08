@@ -1,6 +1,7 @@
 package cn.com.shxt.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -65,33 +66,38 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		
-		DBUtils dbutil = new DBUtils();		
+		DBUtils dbutil = new DBUtils();	
+		
+		String selUserSql="SELECT * FROM SYS_USER WHERE U_NAME='"+name+"' and U_PASSWORD='"+password2+"' ";
+		String UserRole=null;
+		try {
+			UserRole = dbutil.queryString(selUserSql,"U_ROLE");
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 
+		/*
 		//普通
 		String  sql=" SELECT u_id,u_name,u_password FROM sys_user WHERE u_name='"+name+"'  and u_password='"+password2+"' and u_role='普通'";	
 	    int flag = dbutil.update(sql);
-
-
 		//管理员
 		String  sql2=" SELECT u_id,u_name,u_password FROM sys_user WHERE u_name='"+name+"'  and u_password='"+password2+"' and u_role='管理员'";	
 	    int flag2 = dbutil.update(sql2);
-
-	    
 	    //文档
 		String  sql3=" SELECT u_id,u_name,u_password FROM sys_user WHERE u_name='"+name+"'  and u_password='"+password2+"' and u_role='文档'";	
 	    int flag3 = dbutil.update(sql3);
-
+		 */
 	    
 		
 		//更简单的办法：UserServiceBean和updateOneUser，有获取其中一个字段的方法，直接拿来做判断，时间关系不改了，能用就行。
 	    
 	    String info ;
 	    String name1 ;
-	    if(flag > 0 && flag2==0 && flag3==0){
+	    if(UserRole.equals("普通")){
 	    	System.out.println("该用户为普通用户！");
 	    	
 	    	name1 = name;
-	    	request.setAttribute("name1",name1);
 	    	request.setAttribute("name1",name1);
 	    	System.out.println(time+name1);
 		    
@@ -104,10 +110,9 @@ public class LoginServlet extends HttpServlet {
 			//response.sendRedirect("index.jsp");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
-		}else if(flag == 0 && flag2 > 0  && flag3==0){	 
+		}else if(UserRole.equals("管理员")){
 			System.out.println("该用户为管理员用户！");
 	    	name1 = name;
-	    	request.setAttribute("name1",name1);
 	    	request.setAttribute("name1",name1);
 	    	System.out.println(time+name1);
 		    
@@ -119,11 +124,10 @@ public class LoginServlet extends HttpServlet {
 			//response.sendRedirect("index.jsp");
 			request.getRequestDispatcher("index_boss.jsp").forward(request, response);
 			return;
-		}else if(flag == 0 && flag2 == 0  && flag3 > 0){	
+		}else if(UserRole.equals("文档")){	
 			System.out.println("该用户为文档用户！");
 			
 	    	name1 = name;
-	    	request.setAttribute("name1",name1);
 	    	request.setAttribute("name1",name1);
 	    	System.out.println(time+name1);
 		    
@@ -135,8 +139,23 @@ public class LoginServlet extends HttpServlet {
 			//response.sendRedirect("index.jsp");
 			request.getRequestDispatcher("index_youzhishi.jsp").forward(request, response);
 			return;
+		}else if(UserRole.equals("绩效")){	
+			System.out.println("该用户为绩效用户！");
+			
+	    	name1 = name;
+	    	request.setAttribute("name1",name1);
+	    	System.out.println(time+name1);
+		    
+	    	//创建姓名的session
+		    HttpSession session = request.getSession();
+		    session.setAttribute("userame",name);
+		    session.setAttribute("userrole",UserRole);
+
+		    
+			//response.sendRedirect("index.jsp");
+			request.getRequestDispatcher("index_Jixiao.jsp").forward(request, response);
+			return;
 		}else{
-			System.out.println(flag);
 			info ="对不起,用户名或密码错误";
 			request.setAttribute("info", info);
 	    	response.setContentType("text/html; charset=UTF-8");

@@ -80,5 +80,45 @@ end insert_danyuantest_id;
 insert into SYS_DANYUANTEST (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN) values ('1','2','3','4','5','6','7');
 commit;
 
+————————多个微服务要同时提交时后台插入：————————
+--生产数据库：TEST2020/1@134.175.240.134/orcl
+--带（）的是需要自己修改的，邮箱格式：***@yonyou.com
+--记得修改提交日期
+insert into SYS_TEST_SQ (
+D_BUMEN,
+D_KBOSS,
+D_KBOSSEMAIL,
+D_KAIFA,
+D_DATE,
+D_CONTENT,
+D_BIAOZHUN,
+D_KEMAIL,
+D_TYPE,
+D_WEINAME,
+D_VERSION,
+D_WIKI,
+D_ISSQL,
+D_SQL,
+D_CONFIG,
+D_JINJI) 
+values
+(
+'平台产品部',
+'崔立国',
+'cuilg@yonyou.com',
+'（开发负责人）',
+'2020-04-08 12:00:00',
+'（版本构造内容）',
+'主流程测试通过；符合测试用例中的测试通过标准；符合版本构造说明中的测试通过标准；',
+'（开发邮箱）',
+'版本测试',
+'（微服务名称）',
+'（版本号）',
+'无',
+'0',
+'无',
+'无',
+'0');    
+
 
 
