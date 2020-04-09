@@ -291,7 +291,23 @@ public class AddBanBenTestServlet extends HttpServlet {
 						EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 						Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
 					}
-					String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【构造内容附件】："+wiki+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"；";
+					String serviceRoot= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/youzhishi/DownloadPDF.jsp?ATTACH_NAME="; 
+					if(wiki.equals("无")) {
+						wiki="无";
+					}else {
+						wiki=serviceRoot+wiki;
+					}
+					if(D_SQL.equals("无")) {
+						D_SQL="无";
+					}else {
+						D_SQL=serviceRoot+D_SQL;
+					}
+					if(D_CONFIG.equals("无")) {
+						D_CONFIG="无";
+					}else {
+						D_CONFIG=serviceRoot+D_CONFIG;
+					}	
+					String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【构造内容附件】："+wiki+" "+"【SQL附件】："+D_SQL+" "+"【配置文件附件】："+D_CONFIG+" ";
 					SendEmail sendEmail = new SendEmail();
 					sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 				}catch(Exception e){

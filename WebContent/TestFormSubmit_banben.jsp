@@ -16,9 +16,11 @@ PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Pink Contact Form ,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"/>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
 </head>
+
+
 <script language="javascript">
+alert("请注意："+"\n"+"        即日起，新版本提交后需由开发人员进行构建（build），测试不再进行构建！");
 //取出传回来的参数error并与yes比较
 var errori ='<%=request.getParameter("answer")%>';
 if(errori=='yes'){
@@ -28,6 +30,7 @@ if(errori=='yes'){
  alert("单元测试申请单提交失败，请联系管理员！");
  window.location.href="<%=path%>/TestApplicationServlet";
 }
+
 
 //邮箱格式校验
 	function  submitMyForm(fm){
