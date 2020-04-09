@@ -557,7 +557,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 				<table id = "testList" width="3000px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tbody>
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="21" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="23" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center"  style="line-height:22px;height:22px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
@@ -571,8 +571,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">状态</td>
                     <td  style="font-size:15px;font-weight:bold">紧急程度</td>                    
                     <td  style="font-size:15px;font-weight:bold">带脚本</td>
+                    <td  style="font-size:15px;font-weight:bold">带配置</td>
                     <td  style="font-size:15px;font-weight:bold">发江西</td>
                     <td  style="font-size:15px;font-weight:bold">压测环境</td>
+                    <td  style="font-size:15px;font-weight:bold">yth2020</td>
                     <td  style="font-size:15px;font-weight:bold">jxpre更新</td>
                     <td  style="font-size:15px;font-weight:bold">研发人</td>
                     <td  style="font-size:15px;font-weight:bold">测试人</td>
@@ -638,6 +640,15 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                   }else{
                                 	  D_ISSQL ="未知";
                             	  }
+                                  //是否有配置文件
+                                  String D_ISCONFIG = stuMap.get("D_ISCONFIG");
+                                  if(D_ISCONFIG.equals("0")){
+                                	  D_ISCONFIG="否";
+                                  }else if(D_ISCONFIG.equals("1")){
+                                	  D_ISCONFIG="是";
+                                  }else{
+                                	  D_ISCONFIG ="未知";
+                            	  }
                                   //是否发江西
                                   String D_ISJXXC = stuMap.get("D_ISJXXC");
                                   if(D_ISJXXC.equals("0")){
@@ -655,6 +666,15 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                                 	  D_ISYCHJ="已更新";
                                   }else{
                                 	  D_ISYCHJ ="未知";
+                            	  }
+                                  //是否更新yth2020环境
+                                  String D_ISYTH2020 = stuMap.get("D_ISYTH2020");
+                                  if(D_ISYTH2020.equals("0")){
+                                	  D_ISYTH2020="";
+                                  }else if(D_ISYTH2020.equals("1")){
+                                	  D_ISYTH2020="已更新";
+                                  }else{
+                                	  D_ISYTH2020 ="未知";
                             	  }
                                   //是否更新jxpre环境
                                   String D_ISJXPRE = stuMap.get("D_ISJXPRE");
@@ -688,13 +708,15 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_JINJI %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISSQL %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISCONFIG %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXXC %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISYCHJ %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISYTH2020 %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXPRE %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_TUSER") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
-   							<td  width=500px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_CONTENT") %></td>
+   							<td  width=600px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_CONTENT") %></td>
    							<td  width=400px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BIAOZHUN") %></td>
    							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
    							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">

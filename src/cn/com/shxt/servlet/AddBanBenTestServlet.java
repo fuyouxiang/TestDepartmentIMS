@@ -236,19 +236,29 @@ public class AddBanBenTestServlet extends HttpServlet {
 			String D_CONFIG = list[2];
 			System.out.println("配置文件附件："+D_CONFIG);
 			
+			//是否有sql脚本字段
 			String D_ISSQL="0";
 			if(D_SQL.equals("无")) {
 				D_ISSQL="0";
 			}else {
 				D_ISSQL="1";
-			}
-			
+			}			
 			System.out.println("是否有SQL附件："+D_ISSQL);
+			
+			//是否有配置文件字段
+			String D_ISCONFIG="0";
+			if(D_CONFIG.equals("无")) {
+				D_ISCONFIG="0";
+			}else {
+				D_ISCONFIG="1";
+			}			
+			System.out.println("是否有配置文件附件："+D_ISCONFIG);
+			
 			String D_TYPE = "版本测试";
 			System.out.println("测试类型："+D_TYPE);
 
-			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI) values " +
-					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "')";		
+			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI,D_ISCONFIG) values " +
+					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "','" + D_ISCONFIG + "')";		
 			
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"添加版本测试申请："+sql);	
@@ -332,7 +342,10 @@ public class AddBanBenTestServlet extends HttpServlet {
 			String D_CONFIG = list[2];
 			System.out.println("配置文件附件（新获取）："+D_CONFIG);
 			
+			//是否有sql文件
 			String D_ISSQL="1";
+			//是否有配置文件
+			String D_ISCONFIG="1";
 			
 			//查询原数据
 			String OldIDSql="select D_WIKI,D_SQL,D_CONFIG from sys_test_sq where D_ID='"+old_id+"'";
@@ -360,8 +373,8 @@ public class AddBanBenTestServlet extends HttpServlet {
 			String D_TYPE = "版本测试";
 			System.out.println("测试类型："+D_TYPE);
 
-			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG) values " +
-					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "')";		
+			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_ISCONFIG) values " +
+					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + D_ISCONFIG + "')";		
 			
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"添加版本测试申请："+sql);	

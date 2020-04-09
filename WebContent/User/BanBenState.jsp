@@ -69,6 +69,16 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
   	  D_ISYCHJ ="未知";
 	  }
     
+    //是否更新yth2020环境
+    String D_ISYTH2020 = stuMap.get("D_ISYTH2020");
+    if(D_ISYTH2020.equals("0")){
+    	D_ISYTH2020="未更新";
+    }else if(D_ISYTH2020.equals("1")){
+    	D_ISYTH2020="已更新";
+    }else{
+    	D_ISYTH2020 ="未知";
+	  }
+    
     //是否更新jxpre环境
     String D_ISJXPRE = stuMap.get("D_ISJXPRE");
     if(D_ISJXPRE.equals("0")){
@@ -102,6 +112,12 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 	是否更新压测环境：
 	<select style="high:150;font-weight:bold;width:80px" name="D_ISYCHJ"  id="D_ISYCHJ">
 	<option style="font-size:13px;" value="<%=stuMap.get("D_ISYCHJ") %>"> &nbsp;&nbsp;<%=D_ISYCHJ %> &nbsp;&nbsp;</option>
+	<option style="font-size:13px;" value="1"> &nbsp;&nbsp;已更新&nbsp;&nbsp;</option>
+	<option style="font-size:13px;" value="0"> &nbsp;&nbsp;未更新&nbsp;&nbsp;</option>
+	</select><br/>
+	是否更新yth2020环境：
+	<select style="high:150;font-weight:bold;width:80px" name="D_ISYTH2020"  id="D_ISJXPRE">
+	<option style="font-size:13px;" value="<%=stuMap.get("D_ISYTH2020") %>"> &nbsp;&nbsp;<%=D_ISYTH2020 %> &nbsp;&nbsp;</option>
 	<option style="font-size:13px;" value="1"> &nbsp;&nbsp;已更新&nbsp;&nbsp;</option>
 	<option style="font-size:13px;" value="0"> &nbsp;&nbsp;未更新&nbsp;&nbsp;</option>
 	</select><br/>

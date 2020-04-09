@@ -40,7 +40,7 @@ public class updateBBStateServlet extends HttpServlet {
 			String D_ID = request.getParameter("D_ID");
 			System.out.println("申请单ID："+D_ID);
 			DBUtils dbutil =new DBUtils();
-			String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI,D_ISSQL,D_ISJXXC,D_ISYCHJ,D_ISJXPRE from SYS_TEST_SQ where  D_ID='"+ D_ID +"' ";		
+			String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI,D_ISSQL,D_ISJXXC,D_ISYCHJ,D_ISJXPRE,D_ISYTH2020 from SYS_TEST_SQ where  D_ID='"+ D_ID +"' ";		
 			System.out.println(time+"查询申请单ID："+sql);	
 			
 			String nowPage = request.getParameter("currentPage");
@@ -62,9 +62,11 @@ public class updateBBStateServlet extends HttpServlet {
 			System.out.println("是否更新压测环境："+D_ISYCHJ);
 			String D_ISJXPRE = request.getParameter("D_ISJXPRE");
 			System.out.println("是否更新jxpre环境：："+D_ISJXPRE);
+			String D_ISYTH2020 = request.getParameter("D_ISYTH2020");
+			System.out.println("是否更新yth2020环境：："+D_ISYTH2020);
 
 			DBUtils dbutil =new DBUtils();
-			String sql = "update SYS_TEST_SQ SET D_ISSQL='"+ D_ISSQL +"',D_ISJXXC='"+ D_ISJXXC +"',D_ISYCHJ='"+ D_ISYCHJ +"',D_ISJXPRE='"+ D_ISJXPRE +"' where D_ID='"+ D_ID +"' ";		
+			String sql = "update SYS_TEST_SQ SET D_ISSQL='"+ D_ISSQL +"',D_ISJXXC='"+ D_ISJXXC +"',D_ISYCHJ='"+ D_ISYCHJ +"',D_ISJXPRE='"+ D_ISJXPRE +"',D_ISYTH2020='"+ D_ISYTH2020 +"' where D_ID='"+ D_ID +"' ";		
 			System.out.println(time+"修改版本测试状态："+sql);	
 			
 			int flag = dbutil.update(sql);
