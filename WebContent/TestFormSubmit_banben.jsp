@@ -196,7 +196,7 @@ if(errori=='yes'){
 				</li>
 				
 				<li class="first">
-					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="只填写负责人" required="required">
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="只填写此版本的构建人" required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">

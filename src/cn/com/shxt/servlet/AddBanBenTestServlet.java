@@ -220,80 +220,92 @@ public class AddBanBenTestServlet extends HttpServlet {
 			System.out.println("微服务："+weiServer);
 			String banbenNo = new String((request.getParameter("banbenNo")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("版本号："+banbenNo);
-			String content = new String((request.getParameter("content")).getBytes("iso8859-1"),"utf-8");
-			System.out.println("版本构造内容："+content);
-			String jinji = new String((request.getParameter("jinji")).getBytes("iso8859-1"),"utf-8");
-			System.out.println("是否紧急："+jinji);		
-			String biaozhun = new String((request.getParameter("biaozhun")).getBytes("iso8859-1"),"utf-8");
-			System.out.println("标准："+biaozhun);
-			//对三个附件名字进行截取
-			System.out.println("三个文件名："+filename);
-			String[] list=filename.split(":");
-			String wiki = list[0];
-			System.out.println("内容附件："+wiki);
-			String D_SQL = list[1];
-			System.out.println("SQL附件："+D_SQL);
-			String D_CONFIG = list[2];
-			System.out.println("配置文件附件："+D_CONFIG);
-			
-			//是否有sql脚本字段
-			String D_ISSQL="0";
-			if(D_SQL.equals("无")) {
-				D_ISSQL="0";
-			}else {
-				D_ISSQL="1";
-			}			
-			System.out.println("是否有SQL附件："+D_ISSQL);
-			
-			//是否有配置文件字段
-			String D_ISCONFIG="0";
-			if(D_CONFIG.equals("无")) {
-				D_ISCONFIG="0";
-			}else {
-				D_ISCONFIG="1";
-			}			
-			System.out.println("是否有配置文件附件："+D_ISCONFIG);
-			
-			String D_TYPE = "版本测试";
-			System.out.println("测试类型："+D_TYPE);
-
-			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI,D_ISCONFIG) values " +
-					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "','" + D_ISCONFIG + "')";		
-			
-			int flag = dbutil.update(sql);
-			System.out.println(timelog+"添加版本测试申请："+sql);	
-			
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【构造内容附件】："+wiki+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"')";
-			int flag2 = dbutil.update(sql2);
-			System.out.println(timelog+"添加日志："+sql2);	
-
-			try {
-				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
-				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
-				String EmailAddress=null;
-				String Msgtitle=null;
-				if(jinji.equals("1")) {
-					String JinJiBossSql="select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME='江西现场'";
-					String JinjiBoss = dbutil.queryString(JinJiBossSql,"EMAIL");
-					System.out.println("紧急邮件发送人："+JinjiBoss);	
-					EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email+";"+JinjiBoss;
-					Msgtitle = kaifa+"申请"+banbenNo+"版本测试！(紧急)";
-				}else {
-					EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
-					Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
-				}
-				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【构造内容附件】："+wiki+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"；";
-				SendEmail sendEmail = new SendEmail();
-				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
-			}catch(Exception e){
-				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
-			}
-		
-			if(flag > 0 ){
-				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=yes").forward(request, response);
+			String IsChongfuSQL = "select D_ID,D_WEINAME,D_VERSION from sys_test_sq where D_WEINAME='"+weiServer+"' and D_VERSION='"+banbenNo+"'";
+			System.out.println("检查是否重复："+IsChongfuSQL);
+			int IsChongfuFlag = dbutil.update(IsChongfuSQL);
+			System.out.println("检查是否重复："+IsChongfuFlag);
+			if(IsChongfuFlag>0) {
+				response.setContentType("text/html; charset=UTF-8");
+				System.out.println("版本号重复！");
+				response.getWriter().println("<script>alert('当前微服务已经相同的版本号！请检查后重新提交。');window.location.href='javascript:history.back(-1)';</script>");
 			}else{
-				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
+				String content = new String((request.getParameter("content")).getBytes("iso8859-1"),"utf-8");
+				System.out.println("版本构造内容："+content);
+				String jinji = new String((request.getParameter("jinji")).getBytes("iso8859-1"),"utf-8");
+				System.out.println("是否紧急："+jinji);		
+				String biaozhun = new String((request.getParameter("biaozhun")).getBytes("iso8859-1"),"utf-8");
+				System.out.println("标准："+biaozhun);
+				//对三个附件名字进行截取
+				System.out.println("三个文件名："+filename);
+				String[] list=filename.split(":");
+				String wiki = list[0];
+				System.out.println("内容附件："+wiki);
+				String D_SQL = list[1];
+				System.out.println("SQL附件："+D_SQL);
+				String D_CONFIG = list[2];
+				System.out.println("配置文件附件："+D_CONFIG);
+				
+				//是否有sql脚本字段
+				String D_ISSQL="0";
+				if(D_SQL.equals("无")) {
+					D_ISSQL="0";
+				}else {
+					D_ISSQL="1";
+				}			
+				System.out.println("是否有SQL附件："+D_ISSQL);
+				
+				//是否有配置文件字段
+				String D_ISCONFIG="0";
+				if(D_CONFIG.equals("无")) {
+					D_ISCONFIG="0";
+				}else {
+					D_ISCONFIG="1";
+				}			
+				System.out.println("是否有配置文件附件："+D_ISCONFIG);
+				
+				String D_TYPE = "版本测试";
+				System.out.println("测试类型："+D_TYPE);
+
+				String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI,D_ISCONFIG) values " +
+						"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "','" + D_ISCONFIG + "')";		
+				
+				int flag = dbutil.update(sql);
+				System.out.println(timelog+"添加版本测试申请："+sql);	
+				
+				String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ((select d_id from SYS_TEST_SQ  where D_DATE='" + date + "'),'" + kaifa + "','" + date + "','提交申请', '"+"【内容】:"+content+"【标准】:"+biaozhun+"【构造内容附件】："+wiki+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"')";
+				int flag2 = dbutil.update(sql2);
+				System.out.println(timelog+"添加日志："+sql2);	
+
+				try {
+					String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
+					String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
+					String EmailAddress=null;
+					String Msgtitle=null;
+					if(jinji.equals("1")) {
+						String JinJiBossSql="select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME='江西现场'";
+						String JinjiBoss = dbutil.queryString(JinJiBossSql,"EMAIL");
+						System.out.println("紧急邮件发送人："+JinjiBoss);	
+						EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email+";"+JinjiBoss;
+						Msgtitle = kaifa+"申请"+banbenNo+"版本测试！(紧急)";
+					}else {
+						EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
+						Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
+					}
+					String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【构造内容附件】："+wiki+"；"+"【SQL附件】："+D_SQL+"；"+"【配置文件附件】："+D_CONFIG+"；";
+					SendEmail sendEmail = new SendEmail();
+					sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+				}catch(Exception e){
+					request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
+				}
+			
+				if(flag > 0 ){
+					request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=yes").forward(request, response);
+				}else{
+					request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
+				}
+				
 			}
+
 		}
 		
 		
