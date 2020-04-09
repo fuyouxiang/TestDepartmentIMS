@@ -566,6 +566,30 @@
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.servlet.updateBBStateServlet</servlet-class>
 	</servlet>
+	<servlet>    
+    <servlet-name>JXBBTestApplicationServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.Jixiao.JXBBTestApplicationServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>JXDYTestApplicationServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.Jixiao.JXDYTestApplicationServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>JXAddBanBenTestServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.Jixiao.JXAddBanBenTestServlet</servlet-class>
+	</servlet>
+	<servlet>    
+    	<servlet-name>JXAddDanYuanTestServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.Jixiao.JXAddDanYuanTestServlet</servlet-class>
+	</servlet>
 
 
 
@@ -577,6 +601,23 @@
 
 
 
+
+	<servlet-mapping>
+    	<servlet-name>JXAddDanYuanTestServlet</servlet-name>
+    	<url-pattern>/JXAddDanYuanTestServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+    	<servlet-name>JXAddBanBenTestServlet</servlet-name>
+    	<url-pattern>/JXAddBanBenTestServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+    	<servlet-name>JXBBTestApplicationServlet</servlet-name>
+    	<url-pattern>/JXBBTestApplicationServlet</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+    	<servlet-name>JXDYTestApplicationServlet</servlet-name>
+    	<url-pattern>/JXDYTestApplicationServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>updateBBStateServlet</servlet-name>
     	<url-pattern>/updateBBStateServlet</url-pattern>
