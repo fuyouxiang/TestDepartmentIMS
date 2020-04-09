@@ -20,6 +20,7 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 <!--//webfonts-->
 </head>
 <script language="javascript">
+alert("请注意："+"\n"+"        即日起，新版本提交后需由开发人员进行构建（build），测试人员不再进行构建！请知晓。");	
 //取出传回来的参数error并与yes比较
 var errori ='<%=request.getParameter("StartAnswer")%>';
 if(errori=='yes'){
