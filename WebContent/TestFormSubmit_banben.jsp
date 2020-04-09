@@ -20,7 +20,7 @@ PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 
 
 <script language="javascript">
-alert("请注意："+"\n"+"        即日起，新版本提交后需由开发人员进行构建（build），测试不再进行构建！");
+
 //取出传回来的参数error并与yes比较
 var errori ='<%=request.getParameter("answer")%>';
 if(errori=='yes'){
@@ -61,6 +61,9 @@ if(errori=='yes'){
 			return false;
 	    }else if (biaozhun.length<1) {
 			alert("请选择通过标准!");
+			return false;
+	    }else if (content.length>500) {
+			alert("内容较多时建议将内容写在附件中，然后构造内容填写  “详情请见内容附件。” 即可");
 			return false;
 	    }else{
 	        //等待提示
@@ -203,7 +206,7 @@ if(errori=='yes'){
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text"  class="text" placeholder="开发邮箱，用于接收邮件"  required="required">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text"  class="text" placeholder="版本构建人邮箱，用于接收邮件"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
@@ -249,7 +252,7 @@ if(errori=='yes'){
 					<div class="clear"></div>
 				</li> -->
 				<li class="second">
-				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>构造内容</a><textarea name="content" placeholder="版本构造内容" required="required"></textarea>
+				<a href="#" class=" icon msg"  style="text-align: center;color:black;"><br/>构造内容</a><textarea name="content" placeholder="版本构造内容，内容较多时建议写在内容附件中" required="required"></textarea>
 				<div class="clear"></div>
 				</li>
 				<li class="first">
@@ -303,5 +306,8 @@ if(errori=='yes'){
 <script language="javascript">
 var newbumen ='<%=request.getAttribute("newbumen")%>';
 document.getElementById('MRbumen').innerHTML = newbumen;
+if(newbumen=="请选择部门"){
+	alert("请注意："+"\n"+"        即日起，新版本提交后需由开发人员进行构建（build），测试人员不再进行构建！请知晓。");	
+}
 </script>
 </html>
