@@ -292,9 +292,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     }
     
     //驳回操作
-    function ReturnTest(){
+    function ReturnTest(fm){
+        var D_TUSER=document.returnDYTestForm.D_TUSER.value;
+        var TIME=document.returnDYTestForm.TIME.value;
+        var REASON=document.returnDYTestForm.REASON.value;
         var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("returnDYTestForm");
         var value = new Array();
         for(var i = 0; i < checkbox.length; i++){
         	if(checkbox[i].checked)
@@ -304,8 +306,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
          if(ID == "" || ID == null || ID == undefined){
         	 alert("请勾选一条数据！"); 
          }else{
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=4&D_ID="+ID;
-        	 form.submit();
+        	 document.getElementById("returnTestButton").click()
+        	 //等待提示
+        	 showWaiting();
+        	 fm.action = fm.action + "&D_ID="+ID+"&D_TUSER="+D_TUSER+"&TIME="+TIME+"&REASON="+REASON;
+        	 return true;
          }
      }
     
@@ -320,9 +325,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     }    
 
     //测试通过
-    function EndTest(){
+    function EndTest(fm){
+        var D_TUSER=document.endDYTestForm.D_TUSER.value;
+        var TIME=document.endDYTestForm.TIME.value;
+        var REASON=document.endDYTestForm.REASON.value;
         var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("endDYTestForm");
         var value = new Array();
         for(var i = 0; i < checkbox.length; i++){
         	if(checkbox[i].checked)
@@ -332,8 +339,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
          if(ID == "" || ID == null || ID == undefined){
         	 alert("请勾选一条数据！"); 
          }else{
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=5&D_ID="+ID;
-        	 form.submit();
+        	 document.getElementById("endTestButton").click()
+        	 //等待提示
+        	 showWaiting();
+        	 fm.action = fm.action + "&D_ID="+ID+"&D_TUSER="+D_TUSER+"&TIME="+TIME+"&REASON="+REASON;
+        	 return true;
          }
      }
     
@@ -408,24 +418,26 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'">驳回</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="returnTest" class="white_content">
-			    		<form  method="post"  id="returnDYTestForm">
+			    		<form action="<%=path %>/AddDanYuanTestServlet?type=4" onsubmit="return ReturnTest(this)" method="post" name="returnDYTestForm" id="returnDYTestForm"  enctype="multipart/form-data">
         					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
         					【驳回时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
         					【驳回原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
-        					<button style="display: block;" onclick='ReturnTest()'>提交</button>
+        					【测试结果附件】：<input name="file" type="file" class="text"><br/><br/>
+        					<input type="submit" value="提交" style="background:#3498db;background-image:linear-gradient(to bottom, #3498db, #2980b9);font-family:微软雅黑;color:#ffffff;padding:2px 8px 4px 11px;text-decoration:none;border-radius:28px;font-size:14px">
         				</form>
-						<button onclick = "document.getElementById('returnTest').style.display='none'">关闭</button>
+						<button onclick = "document.getElementById('returnTest').style.display='none'" id="returnTestButton">关闭</button>
 					</div>
 					
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'">测试通过</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="endTest" class="white_content">
-			    		<form  method="post"  id="endDYTestForm">
+			    		<form  action="<%=path %>/AddDanYuanTestServlet?type=5" onsubmit="return EndTest(this)" method="post"  name="endDYTestForm" id="endDYTestForm" enctype="multipart/form-data">
         					【 测 试 人】：<input  type="text" name="D_TUSER" required="required"><br/><br/>
         					【通过时间】：<input type="text" name="TIME" value="<%=time %>" readonly="readonly"><br/><br/>
         					【备注/遗留】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
-        					<button style="display: block;" onclick='EndTest()'>提交</button>
+        					【测试结果附件】：<input name="file" type="file" class="text"><br/><br/>
+        					<input type="submit" value="提交" style="background:#3498db;background-image:linear-gradient(to bottom, #3498db, #2980b9);font-family:微软雅黑;color:#ffffff;padding:2px 8px 4px 11px;text-decoration:none;border-radius:28px;font-size:14px">
         				</form>
-						<button onclick = "document.getElementById('endTest').style.display='none'">关闭</button>
+						<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
 					</div>
 				<button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
 			  

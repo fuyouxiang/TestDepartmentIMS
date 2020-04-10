@@ -212,7 +212,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 			String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 			String Msgtitle = kaifa+"申请单元测试！";
-			String Msg = "【单元名称】："+dyName+"；"+"【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
+			String Msg = "【单元名称】："+dyName+"；"+"【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【附件名称】:"+wiki+";";
 			SendEmail sendEmail = new SendEmail();
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
@@ -352,26 +352,28 @@ public class AddDanYuanTestServlet extends HttpServlet {
 //=================================4单元测试驳回=================================
 		else if(type.equals("4")) {
 			System.out.println(timelog+"测试人员驳回该单元测试————————");
-			String D_TUSER = request.getParameter("D_TUSER");
+			String D_TUSER = new String((request.getParameter("D_TUSER")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("测试人："+D_TUSER);
-			String TIME = request.getParameter("TIME");
+			String TIME = new String((request.getParameter("TIME")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("驳回时间："+TIME);
 			String D_ID = request.getParameter("D_ID");
 			System.out.println("单元ID："+D_ID);
-			String REASON = request.getParameter("REASON");
+			String REASON = new String((request.getParameter("REASON")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("驳回原因："+REASON);		
 			String serviceRoot= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";   
 			String D_SUBURL =serviceRoot+"ResubmitDYTestServlet?D_ID="+D_ID;
 			System.out.println("重新提交路径："+D_SUBURL);
+			
+			System.out.println("附件名："+filename);
 
 			
 			//修改单元测试主表
-			String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='2',D_SUBURL ='"+ D_SUBURL +"',D_NG=D_NG+1 where D_ID='"+ D_ID +"'";		
+			String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='2',D_SUBURL ='"+ D_SUBURL +"',D_NG=D_NG+1,D_REASON_FILE='"+ filename +"' where D_ID='"+ D_ID +"'";		
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"修改数据状态，填写重新提交地址："+sql);	
 
 			//添加日志
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + D_ID + "','" + D_TUSER + "','" + TIME + "','驳回', '" + REASON + "')";
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + D_ID + "','" + D_TUSER + "','" + TIME + "','驳回', '【结果：】"+REASON+"【附件：】"+filename+"')";
 			int flag2 = dbutil.update(sql2);
 			System.out.println(timelog+"添加日志："+sql2);	
 
@@ -388,7 +390,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				System.out.println(timelog+"邮件地址："+EmailAddress);
 				String Msgtitle = D_KAIFA+"申请的单元测试未通过！";
 				System.out.println(timelog+"邮件标题："+Msgtitle);
-				String Msg = "【单元测试名称】："+banbenNo+"；"+"【驳回人】："+D_TUSER+"；"+"【驳回时间】："+TIME+"；"+"【驳回原因】："+REASON+"；"+"【重新提交地址】："+D_SUBURL+"；";
+				String Msg = "【单元测试名称】："+banbenNo+"；"+"【驳回人】："+D_TUSER+"；"+"【驳回时间】："+TIME+"；"+"【驳回原因】："+REASON+"；"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+" "+"【重新提交地址】："+D_SUBURL+"；";
 				System.out.println(timelog+"邮件内容："+Msg);
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
@@ -410,23 +412,25 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		else if(type.equals("5")) {
 			System.out.println(timelog+"单元测试通过————————");
 			request.setCharacterEncoding("UTF-8");
-			String D_TUSER = request.getParameter("D_TUSER");
+			String D_TUSER = new String((request.getParameter("D_TUSER")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("测试人："+D_TUSER);
-			String TIME = request.getParameter("TIME");
+			String TIME = new String((request.getParameter("TIME")).getBytes("iso8859-1"),"utf-8");
 			System.out.println("通过时间："+TIME);
 			String D_ID = request.getParameter("D_ID");
 			System.out.println("单元ID："+D_ID);
-			String REASON = request.getParameter("REASON");
-			System.out.println("备注："+REASON);		
+			String REASON = new String((request.getParameter("REASON")).getBytes("iso8859-1"),"utf-8");
+			System.out.println("备注："+REASON);	
+			
+			System.out.println("附件名："+filename);
 
 			
 			//修改版本测试主表
-			String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='3' where D_ID='"+ D_ID +"'";		
+			String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='3',D_REASON_FILE='"+ filename +"' where D_ID='"+ D_ID +"'";		
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"测试结束修改数据状态："+sql);	
 
 			//添加日志
-			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + D_ID + "','" + D_TUSER + "','" + TIME + "','测试通过', '" + REASON + "')";
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + D_ID + "','" + D_TUSER + "','" + TIME + "','测试通过', '【结果：】"+REASON+"【附件：】"+filename+"')";
 			String sql3 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + D_ID + "','" + D_TUSER + "','" + TIME + "','测试结束', '" + REASON + "')";
 			int flag2 = dbutil.update(sql2);
 			if(flag2>0) {
@@ -434,6 +438,8 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			}
 			System.out.println(timelog+"添加日志："+sql2);
 			System.out.println(timelog+"添加日志："+sql3);	
+			
+			String serviceRoot= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; 
 
 			//发送邮件
 			try {
@@ -450,7 +456,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				System.out.println(timelog+"邮件地址："+EmailAddress);
 				String Msgtitle = D_KAIFA+"申请的"+banbenNo+"单元测试结束，测试通过！";
 				System.out.println(timelog+"邮件标题："+Msgtitle);
-				String Msg = "【单元测试名称】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【备注/遗留】："+REASON+"；";
+				String Msg = "【单元测试名称】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+" "+"【备注/遗留】："+REASON+"；";
 				System.out.println(timelog+"邮件内容："+Msg);
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
