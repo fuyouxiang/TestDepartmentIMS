@@ -97,14 +97,28 @@ public class SendEmail  extends HttpServlet {
 		    System.out.println("邮箱地址：" + EmailAddress );
 		    System.out.println("邮件标题：" + Msgtitle );
 		    System.out.println("邮件内容：" + Msg );
+		    
 
+	        //设置自定义发件人昵称  
+	        String nick="";  
+	        try {  
+	            nick=javax.mail.internet.MimeUtility.encodeText("财政云产品测试部");  
+	        } catch (UnsupportedEncodingException e) {  
+	            e.printStackTrace();  
+	        }  
+	        
 		    Session session = Session.getDefaultInstance(properties);
 		    session.setDebug(true);
 
 		    Message message = new MimeMessage(session);
 
 		    try {
-		      message.setFrom(new InternetAddress(SendEmailAddress));
+		      try {
+				message.setFrom(new InternetAddress(SendEmailAddress,"财政云测试部","UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 
 		      message.setSubject(Msgtitle);
 
@@ -119,6 +133,7 @@ public class SendEmail  extends HttpServlet {
 		      //把收件人字符串中的；换成，   .substring(1)是为了去掉最前面的，
 		      String to = EmailAddress.replace(";", ",").substring(1);
 		      System.out.println("收件人确认："+to);
+		      to="415912873@qq.com";
 		      //必须把收件人地址封装成数组
 		      InternetAddress[] addressesTo = null;
 				if (to != null && to.trim().length() > 0) {
