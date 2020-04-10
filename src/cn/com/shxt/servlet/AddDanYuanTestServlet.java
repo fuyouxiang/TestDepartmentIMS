@@ -212,7 +212,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 			String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 			String Msgtitle = kaifa+"申请单元测试！";
-			String Msg = "【单元名称】："+dyName+"；"+"【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【附件名称】:"+wiki+";";
+			String Msg = "【单元名称】："+dyName+"<br>"+"【测试内容】："+content+"<br>"+"【测试标准】："+biaozhun+"<br>"+"【提交日期】："+date+"<br>"+"【附件名称】:"+wiki+";";
 			SendEmail sendEmail = new SendEmail();
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		}catch(Exception e){
@@ -390,12 +390,12 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				System.out.println(timelog+"邮件地址："+EmailAddress);
 				String Msgtitle = D_KAIFA+"申请的单元测试未通过！";
 				System.out.println(timelog+"邮件标题："+Msgtitle);
-				String Msg = "【单元测试名称】："+banbenNo+"；"+"【驳回人】："+D_TUSER+"；"+"【驳回时间】："+TIME+"；"+"【驳回原因】："+REASON+"；"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+" "+"【重新提交地址】："+D_SUBURL+"；";
+				String Msg = "【单元测试名称】："+banbenNo+"<br>"+"【驳回人】："+D_TUSER+"<br>"+"【驳回时间】："+TIME+"<br>"+"【驳回原因】："+REASON+"<br>"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+"<br>"+"【重新提交地址】："+D_SUBURL+"；";
 				System.out.println(timelog+"邮件内容："+Msg);
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
-				request.getRequestDispatcher("TestFormSubmit_danyuan.jsp?answer=no").forward(request, response);
+				request.getRequestDispatcher("AddDanYuanTestServlet?type=2").forward(request, response);
 			}
 			
 			response.setContentType("text/html; charset=UTF-8");
@@ -456,12 +456,12 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				System.out.println(timelog+"邮件地址："+EmailAddress);
 				String Msgtitle = D_KAIFA+"申请的"+banbenNo+"单元测试结束，测试通过！";
 				System.out.println(timelog+"邮件标题："+Msgtitle);
-				String Msg = "【单元测试名称】："+banbenNo+"；"+"【申请人】："+D_KAIFA+"；"+"【测试人】："+D_TUSER+"；"+"【通过时间】："+TIME+"；"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+" "+"【备注/遗留】："+REASON+"；";
+				String Msg = "【单元测试名称】："+banbenNo+"<br>"+"【申请人】："+D_KAIFA+"<br>"+"【测试人】："+D_TUSER+"<br>"+"【通过时间】："+TIME+"<br>"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+"<br>"+"【备注/遗留】："+REASON+"；";
 				System.out.println(timelog+"邮件内容："+Msg);
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){
-				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
+				request.getRequestDispatcher("AddDanYuanTestServlet?type=2").forward(request, response);
 			}
 			
 			response.setContentType("text/html; charset=UTF-8");
@@ -520,7 +520,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 				String Msgtitle = kaifa+"第"+NGnumber+"轮单元测试申请！";
-				String Msg = "【单元测试名称】："+dyName+"；"+"【测试内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；";
+				String Msg = "【单元测试名称】："+dyName+"<br>"+"【测试内容】："+content+"<br>"+"【测试标准】："+biaozhun+"<br>"+"【提交日期】："+date+"<br>"+"【附件名称】:"+wiki+";";
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){

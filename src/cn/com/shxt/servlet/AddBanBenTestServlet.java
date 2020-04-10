@@ -307,7 +307,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 					}else {
 						D_CONFIG=serviceRoot+D_CONFIG;
 					}	
-					String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【构造内容附件】："+wiki+" "+"【SQL附件】："+D_SQL+" "+"【配置文件附件】："+D_CONFIG+" ";
+					String Msg = "【微服务名】："+weiServer+"<br>"+"【版本号】："+banbenNo+"<br>"+"【版本构造内容】："+content+"<br>"+"【测试标准】："+biaozhun+"<br>"+"【提交日期】："+date+"<br>"+"【构造内容附件】："+wiki+"<br>"+"【SQL附件】："+D_SQL+"<br>"+"【配置文件附件】："+D_CONFIG+" ";
 					SendEmail sendEmail = new SendEmail();
 					sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 				}catch(Exception e){
@@ -426,7 +426,7 @@ public class AddBanBenTestServlet extends HttpServlet {
 					EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
 					Msgtitle = kaifa+"申请"+banbenNo+"版本测试！";
 				}
-				String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【版本构造内容】："+content+"；"+"【测试标准】："+biaozhun+"；"+"【提交日期】："+date+"；"+"【附件名称】："+wiki+"；";
+				String Msg = "【微服务名】："+weiServer+"<br>"+"【版本号】："+banbenNo+"<br>"+"【版本构造内容】："+content+"<br>"+"【测试标准】："+biaozhun+"<br>"+"【提交日期】："+date+"<br>"+"【附件名称】："+wiki+"；";
 				SendEmail sendEmail = new SendEmail();
 				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 			}catch(Exception e){

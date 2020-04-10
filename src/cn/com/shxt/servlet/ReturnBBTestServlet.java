@@ -209,7 +209,7 @@ public class ReturnBBTestServlet extends HttpServlet {
 			System.out.println(timelog+"邮件地址："+EmailAddress);
 			String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试未通过！";
 			System.out.println(timelog+"邮件标题："+Msgtitle);
-			String Msg = "【微服务名】："+weiServer+"；"+"【版本号】："+banbenNo+"；"+"【测试人】："+D_TUSER+"；"+"【驳回时间】："+TIME+"；"+"【NG原因】："+REASON+"；"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+" "+"【重新申请地址】："+D_SUBURL+"；";
+			String Msg = "【微服务名】："+weiServer+"<br>"+"【版本号】："+banbenNo+"<br>"+"【测试人】："+D_TUSER+"<br>"+"【驳回时间】："+TIME+"<br>"+"【NG原因】："+REASON+"<br>"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+"<br>"+"【重新申请地址】："+D_SUBURL+"；";
 			System.out.println(timelog+"邮件内容："+Msg);
 			SendEmail sendEmail = new SendEmail();
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
