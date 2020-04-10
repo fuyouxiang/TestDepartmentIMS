@@ -42,7 +42,7 @@ public class TestApplicationServlet extends HttpServlet {
 		String OldBumenAndBoss = request.getParameter("bumen");
 		System.out.println("部门(未转码)："+OldBumenAndBoss);
 
-		String sql= "select B_NAME from SYS_BUMEN where B_NAME != '产品测试部'";
+		String sql= "select B_NAME from SYS_BUMEN where B_CENTER='政府财政云产品部' and B_NAME != '产品测试部' and  B_NAME != '江西现场'";
 		System.out.println(timelog+"查询所有部门："+sql);
 	
 		String sql2;
