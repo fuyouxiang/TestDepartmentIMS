@@ -10,6 +10,7 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 <html>
 <head>
 <title>财政云测试申请</title>
+<link href="bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="css/style5.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,8 +20,12 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 <!--webfonts-->
 <!--//webfonts-->
 </head>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+
 <script language="javascript">
-alert("请注意："+"\n"+"        即日起，新版本提交后需由开发人员进行构建（build），测试人员不再进行构建！请知晓。");	
+
 //取出传回来的参数error并与yes比较
 var errori ='<%=request.getParameter("StartAnswer")%>';
 if(errori=='yes'){
@@ -50,6 +55,9 @@ function  submitMyForm(fm){
 	}
 	if (biaozhun.length<1) {
 		alert("请选择通过标准!");
+		return false;
+    }else if (content.length>600) {
+		alert("内容较多时建议将内容写在附件中，然后构造内容填写  “详情请见内容附件。” 即可");
 		return false;
     }else{
         //等待提示
@@ -143,6 +151,10 @@ function showWaiting() {
         	D_JINJI="非紧急";
         }
 	%>
+	<div class="alert alert-danger alert-dismissible" role="alert"  style="width:60%;height:50px;text-align:center;margin:0 auto;">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  		<strong>请注意！</strong>从即日起，新版本提交后需由开发人员进行构建（build），测试人员不再进行构建！
+	</div>
 	<h1>版本测试重新提交</h1>
 	<form action="<%=path%>/AddBanBenTestServlet?type=2" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
 	<div class="login-01">

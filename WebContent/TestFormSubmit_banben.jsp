@@ -11,13 +11,18 @@ PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 <html>
 <head>
 <title>财政云测试申请</title>
+
+<link href="bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="css/style5.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Pink Contact Form ,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"/>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
 </head>
 
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
 
 <script language="javascript">
 
@@ -62,7 +67,7 @@ if(errori=='yes'){
 	    }else if (biaozhun.length<1) {
 			alert("请选择通过标准!");
 			return false;
-	    }else if (content.length>500) {
+	    }else if (content.length>600) {
 			alert("内容较多时建议将内容写在附件中，然后构造内容填写  “详情请见内容附件。” 即可");
 			return false;
 	    }else{
@@ -169,10 +174,15 @@ if(errori=='yes'){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date= format.format(new Date());
 		%>
+		<div class="alert alert-danger alert-dismissible" role="alert"  style="width:60%;height:50px;text-align:center;margin:0 auto;">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  		<strong>请注意！</strong>从即日起，新版本提交后需由开发人员进行构建（build），测试人员不再进行构建！
+		</div>
 	<div class="top-buttons-agileinfo">
 		<a class="active" href="<%=path%>/TestApplicationServlet">版本测试申请</a><a href="<%=path %>/selectBanBenServlet?type=2" target="_blank">版本测试查询</a><a href="<%=path%>/DYTestApplicationServlet" >单元测试申请</a><a href="<%=path %>/AddDanYuanTestServlet?type=7" target="_blank">单元测试查询</a>
 	</div>
 	<h1>版本测试申请单</h1>
+	
 	<form action="<%=path%>/AddBanBenTestServlet?type=1" name="formname" method="post" id =formId onsubmit="return submitMyForm(this)" enctype="multipart/form-data">
 	<div class="login-01">
 				<ul>
@@ -306,8 +316,10 @@ if(errori=='yes'){
 <script language="javascript">
 var newbumen ='<%=request.getAttribute("newbumen")%>';
 document.getElementById('MRbumen').innerHTML = newbumen;
+/*
 if(newbumen=="请选择部门"){
 	alert("请注意："+"\n"+"        即日起，新版本提交后需由开发人员进行构建（build），测试人员不再进行构建！请知晓。");	
 }
+*/
 </script>
 </html>
