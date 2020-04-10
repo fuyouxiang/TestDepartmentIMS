@@ -133,7 +133,6 @@ public class SendEmail  extends HttpServlet {
 		      //把收件人字符串中的；换成，   .substring(1)是为了去掉最前面的，
 		      String to = EmailAddress.replace(";", ",").substring(1);
 		      System.out.println("收件人确认："+to);
-		      to="415912873@qq.com";
 		      //必须把收件人地址封装成数组
 		      InternetAddress[] addressesTo = null;
 				if (to != null && to.trim().length() > 0) {
