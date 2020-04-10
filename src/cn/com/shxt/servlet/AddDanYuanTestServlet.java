@@ -287,7 +287,7 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			//排序条件
 			String OrderSQL=" order by D_DATE desc";
 			
-			String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_VERSION,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_TYPE='单元测试'"
+			String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_VERSION,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_STATE,D_SUBURL,D_WIKI,D_REASON_FILE from SYS_TEST_SQ where D_TYPE='单元测试'"
 					+selBumenSQL+selVersionSQL+selMonthSQL+selStateSQL+OrderSQL;
 					System.out.println(timelog+"总查询SQL:"+sql);
 			

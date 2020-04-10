@@ -384,7 +384,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                 <td height="40" class="font42">
 				<table id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="15" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="16" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
                   </tr>
                   <tr>
                  <%
@@ -411,7 +411,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                       		iNG3 = dfnumber.format((float)NG3*100/NGALL);//返回的是String类型 
                         }
                    %>   
-                  	<td id="div_title" height="28" colspan="15" align="left" style="font-size:14px;"><i>&nbsp;通过率：<span style="color:green">1轮（<%=iNG1 %>%）&nbsp;</span><span style="color:blue"> 2轮（<%=iNG2 %>%）&nbsp;</span><span style="color:red">3轮及以上（<%=iNG3 %>%）&nbsp;</span></i></td>
+                  	<td id="div_title" height="28" colspan="16" align="left" style="font-size:14px;"><i>&nbsp;通过率：<span style="color:green">1轮（<%=iNG1 %>%）&nbsp;</span><span style="color:blue"> 2轮（<%=iNG2 %>%）&nbsp;</span><span style="color:red">3轮及以上（<%=iNG3 %>%）&nbsp;</span></i></td>
                   <%     
                           }                        	  
                        }
@@ -434,7 +434,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">通过标准</td>
                     <td  style="font-size:15px;font-weight:bold">提交日期</td>
                     <td  style="font-size:15px;font-weight:bold">重新提交路径</td>
-                    <td  style="font-size:15px;font-weight:bold">附件</td>
+                    <td  style="font-size:15px;font-weight:bold">内容附件</td>
+                    <td  style="font-size:15px;font-weight:bold">测试结果附件</td>
                   </tr>
                    <tbody>
                     	
@@ -503,6 +504,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
                             <a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
                             <%=stuMap.get("D_WIKI") %>
+                            </a>
+                            </td>
+                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
+                            <a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_REASON_FILE") %>" target="_blank">
+                            <%=stuMap.get("D_REASON_FILE") %>
                             </a>
                             </td>
                             <!-- 
