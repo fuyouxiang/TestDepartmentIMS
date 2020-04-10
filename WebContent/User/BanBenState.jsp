@@ -39,15 +39,7 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
     for(int i=0;i<resList.size();i++){
     Map<String, String>  stuMap= resList.get(i);
      
-    //是否带脚本
-    String D_ISSQL= stuMap.get("D_ISSQL");
-    if(D_ISSQL.equals("0")){
-  	  D_ISSQL="否";
-    }else if(D_ISSQL.equals("1")){
-  	  D_ISSQL="是";
-    }else{
-  	  D_ISSQL ="未知";
-	  }
+
     
     //是否发江西
     String D_ISJXXC = stuMap.get("D_ISJXXC");
@@ -97,12 +89,6 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 	部门：<input style="width:100px" name="D_BUMEN" id='D_BUMEN' type="text" size="12" value="<%=stuMap.get("D_BUMEN") %>" readonly="readonly"/><br/>
 	微服务：<input style="width:100px" name="D_WEINAME" id='D_WEINAME' type="text" size="12" value="<%=stuMap.get("D_WEINAME") %>" readonly="readonly"/><br/>
 	版本号：<input style="width:100px" name="D_VERSION" id='D_VERSION' type="text" size="12" value="<%=stuMap.get("D_VERSION") %>" readonly="readonly"/><br/>
-	是否带脚本：
-	<select style="high:150;font-weight:bold;width:80px" name="D_ISSQL"  id="D_ISSQL">
-	<option style="font-size:13px;" value="<%=stuMap.get("D_ISSQL") %>"> &nbsp;&nbsp;<%=D_ISSQL %> &nbsp;&nbsp;</option>
-	<option style="font-size:13px;" value="1"> &nbsp;&nbsp;是&nbsp;&nbsp;</option>
-	<option style="font-size:13px;" value="0"> &nbsp;&nbsp;否&nbsp;&nbsp;</option>
-	</select><br/>
 	是否发江西：
 	<select style="high:150;font-weight:bold;width:80px" name="D_ISJXXC"  id="D_ISJXXC">
 	<option style="font-size:13px;" value="<%=stuMap.get("D_ISJXXC") %>"> &nbsp;&nbsp;<%=D_ISJXXC %> &nbsp;&nbsp;</option>

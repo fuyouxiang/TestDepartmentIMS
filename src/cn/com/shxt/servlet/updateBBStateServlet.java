@@ -54,8 +54,6 @@ public class updateBBStateServlet extends HttpServlet {
 			System.out.println(time+"修改版本测试————————");
 			String D_ID = request.getParameter("D_ID");
 			System.out.println("申请单ID："+D_ID);
-			String D_ISSQL = request.getParameter("D_ISSQL");
-			System.out.println("是否带脚本：："+D_ISSQL);
 			String D_ISJXXC = request.getParameter("D_ISJXXC");
 			System.out.println("是否发江西：："+D_ISJXXC);
 			String D_ISYCHJ = request.getParameter("D_ISYCHJ");
@@ -66,7 +64,7 @@ public class updateBBStateServlet extends HttpServlet {
 			System.out.println("是否更新yth2020环境：："+D_ISYTH2020);
 
 			DBUtils dbutil =new DBUtils();
-			String sql = "update SYS_TEST_SQ SET D_ISSQL='"+ D_ISSQL +"',D_ISJXXC='"+ D_ISJXXC +"',D_ISYCHJ='"+ D_ISYCHJ +"',D_ISJXPRE='"+ D_ISJXPRE +"',D_ISYTH2020='"+ D_ISYTH2020 +"' where D_ID='"+ D_ID +"' ";		
+			String sql = "update SYS_TEST_SQ SET D_ISJXXC='"+ D_ISJXXC +"',D_ISYCHJ='"+ D_ISYCHJ +"',D_ISJXPRE='"+ D_ISJXPRE +"',D_ISYTH2020='"+ D_ISYTH2020 +"' where D_ID='"+ D_ID +"' ";		
 			System.out.println(time+"修改版本测试状态："+sql);	
 			
 			int flag = dbutil.update(sql);
