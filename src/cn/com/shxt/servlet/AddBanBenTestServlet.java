@@ -244,6 +244,9 @@ public class AddBanBenTestServlet extends HttpServlet {
 				System.out.println("SQL附件："+D_SQL);
 				String D_CONFIG = list[2];
 				System.out.println("配置文件附件："+D_CONFIG);
+				//测试结果附件默认值
+				String D_REASON_FILE="无";
+				System.out.println("测试结果附件："+D_REASON_FILE);
 				
 				//是否有sql脚本字段
 				String D_ISSQL="0";
@@ -266,8 +269,8 @@ public class AddBanBenTestServlet extends HttpServlet {
 				String D_TYPE = "版本测试";
 				System.out.println("测试类型："+D_TYPE);
 
-				String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI,D_ISCONFIG) values " +
-						"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "','" + D_ISCONFIG + "')";		
+				String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI,D_ISCONFIG,D_REASON_FILE) values " +
+						"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "','" + D_ISCONFIG + "','" + D_REASON_FILE + "')";		
 				
 				int flag = dbutil.update(sql);
 				System.out.println(timelog+"添加版本测试申请："+sql);	
@@ -369,6 +372,9 @@ public class AddBanBenTestServlet extends HttpServlet {
 			System.out.println("SQL附件（新获取）："+D_SQL);
 			String D_CONFIG = list[2];
 			System.out.println("配置文件附件（新获取）："+D_CONFIG);
+			//测试结果附件默认值
+			String D_REASON_FILE="无";
+			System.out.println("测试结果附件："+D_REASON_FILE);
 			
 			//是否有sql文件
 			String D_ISSQL="1";
@@ -396,13 +402,19 @@ public class AddBanBenTestServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			if(D_SQL.equals("无")) {
+				D_ISSQL="0";
+			}
+			if(D_CONFIG.equals("无")) {
+				D_ISCONFIG="0";
+			}
 
 			System.out.println("是否有SQL附件："+D_ISSQL);
 			String D_TYPE = "版本测试";
 			System.out.println("测试类型："+D_TYPE);
 
-			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_ISCONFIG) values " +
-					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + D_ISCONFIG + "')";		
+			String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_ISCONFIG,D_REASON_FILE) values " +
+					"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + D_ISCONFIG + "','" + D_REASON_FILE + "')";		
 			
 			int flag = dbutil.update(sql);
 			System.out.println(timelog+"添加版本测试申请："+sql);	

@@ -431,7 +431,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 %>
 			   <td width="40%" align="left" >
 			    <button onclick="BBLog()">操作日志</button>
-			    <button onclick="BBState()">状态修改</button>
+			    <button onclick="BBState()">修改</button>
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
 			    		<form  method="post"  id="StartBBTestForm">
@@ -536,7 +536,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 						 <option id="MRstate"></option>
 						 <option style="font-size:13px;"value="全部"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                              
 					     <option style="font-size:13px;" value="0"> &nbsp;&nbsp;待测试 &nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;测试中 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;正在测试 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="2"> &nbsp;&nbsp;NG&nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="3"> &nbsp;&nbsp;OK&nbsp;&nbsp;</option>
 					     </select>      
@@ -550,11 +550,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     </table> 
 <!-- 右侧滚动条 -->
 <div style="width:100%;height:85%;overflow: scroll;">
-          <table width="3000px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
+          <table width="3500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
-				<table id = "testList" width="3000px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				<table id = "testList" width="3500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tbody>
 				 <tr class="CTitle" >
                     	<td id="div_title" height="28" colspan="24" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
