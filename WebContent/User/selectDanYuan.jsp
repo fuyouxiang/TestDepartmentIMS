@@ -360,6 +360,25 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
      window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
     }
     
+    //删除
+    function BBDelete(){
+         var checkbox = document.getElementsByName('checkboxBtn');
+         var value = new Array();
+         for(var i = 0; i < checkbox.length; i++){
+         	if(checkbox[i].checked)
+         		value.push(checkbox[i].value);
+         } 
+          var ID =value.toString();
+          if(ID == "" || ID == null || ID == undefined){
+         	 alert("请勾选一条数据！"); 
+          }else{
+         	 //等待提示
+         	 showWaiting();
+          	 window.location.href="<%=path %>/DeleteBBTestServlet?D_ID="+ID;
+      		 $(document).ready(parent.closeWaiting());
+          }
+      }
+    
 	//查询提交
 	function submitSelect(){
         //等待提示
@@ -443,6 +462,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 						<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
 					</div>
 				<button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
+				<button onclick="BBDelete()" style="background-image:linear-gradient(to bottom, #f72c2c, #ffa2a2)">删除</button>
 			  
            
             </td>

@@ -370,7 +370,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
         	 fm.action = fm.action + "D_ID="+ID+"&D_TUSER="+D_TUSER+"&TIME="+TIME+"&REASON="+REASON;
         	 return true;
          }
-     }
+     } 
     
     //测试通过的返回结果
     var errori ='<%=request.getParameter("EndAnswer")%>';
@@ -381,6 +381,25 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
      alert("操作失败，请联系管理员！");
      window.location.href="<%=path%>/selectBanBenServlet?type=1";
     } 
+    
+    //删除
+    function BBDelete(){
+         var checkbox = document.getElementsByName('checkboxBtn');
+         var value = new Array();
+         for(var i = 0; i < checkbox.length; i++){
+         	if(checkbox[i].checked)
+         		value.push(checkbox[i].value);
+         } 
+          var ID =value.toString();
+          if(ID == "" || ID == null || ID == undefined){
+         	 alert("请勾选一条数据！"); 
+          }else{
+         	 //等待提示
+         	 showWaiting();
+          	 window.location.href="<%=path %>/DeleteBBTestServlet?D_ID="+ID;
+      		 $(document).ready(parent.closeWaiting());
+          }
+      }   
     
 	//查询提交
 	function submitSelect(){
@@ -469,6 +488,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 						<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
 					</div>
 			   <button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
+			   <button onclick="BBDelete()" style="background-image:linear-gradient(to bottom, #f72c2c, #ffa2a2)">删除</button>
 			  
            
             </td>

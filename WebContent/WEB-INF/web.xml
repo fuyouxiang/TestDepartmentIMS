@@ -590,6 +590,12 @@
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.Jixiao.JXAddDanYuanTestServlet</servlet-class>
 	</servlet>
+	<servlet>    
+    	<servlet-name>DeleteBBTestServlet</servlet-name>
+    	<display-name>This is the display name of my J2EE component</display-name>
+    	<description>This is the description of my J2EE component</description>
+    	<servlet-class>cn.com.shxt.servlet.DeleteBBTestServlet</servlet-class>
+	</servlet>
 
 
 
@@ -599,9 +605,10 @@
 
 
 
-
-
-
+	<servlet-mapping>
+    	<servlet-name>DeleteBBTestServlet</servlet-name>
+    	<url-pattern>/DeleteBBTestServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>JXAddDanYuanTestServlet</servlet-name>
     	<url-pattern>/JXAddDanYuanTestServlet</url-pattern>
