@@ -362,22 +362,27 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     
     //删除
     function BBDelete(){
-         var checkbox = document.getElementsByName('checkboxBtn');
-         var value = new Array();
-         for(var i = 0; i < checkbox.length; i++){
-         	if(checkbox[i].checked)
-         		value.push(checkbox[i].value);
-         } 
-          var ID =value.toString();
-          if(ID == "" || ID == null || ID == undefined){
-         	 alert("请勾选一条数据！"); 
-          }else{
-         	 //等待提示
-         	 showWaiting();
-          	 window.location.href="<%=path %>/DeleteBBTestServlet?D_ID="+ID;
-      		 $(document).ready(parent.closeWaiting());
-          }
-      }
+
+    	var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+           if(checkbox[i].checked)
+            	value.push(checkbox[i].value);
+        } 
+        var ID =value.toString();
+        if(ID == "" || ID == null || ID == undefined){
+            alert("请勾选一条数据！"); 
+        }else{
+            if(confirm("您确定要删除这条数据吗？")){
+            	//等待提示
+            	showWaiting();
+             	 window.location.href="<%=path %>/DeleteBBTestServlet?D_ID="+ID;
+         		 $(document).ready(parent.closeWaiting());
+             }else {
+        			return false;
+        	}
+       }   
+    }
     
 	//查询提交
 	function submitSelect(){
