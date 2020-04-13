@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -185,45 +186,62 @@ public class ReturnBBTestServlet extends HttpServlet {
 
 		DBUtils dbutil =new DBUtils();
 		
-		//修改版本测试主表
-		String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='2',D_SUBURL ='"+ D_SUBURL +"',D_NG=D_NG+1,D_REASON_FILE='"+ filename +"' where D_ID='"+ D_ID +"'";		
-		int flag = dbutil.update(sql);
-		System.out.println(timelog+"修改数据状态，填写重新提交地址："+sql);	
-
-		//添加日志
-		String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + D_ID + "','" + D_TUSER + "','" + TIME + "','驳回', '【结果：】"+REASON+"【附件：】"+filename+"')";
-		int flag2 = dbutil.update(sql2);
-		System.out.println(timelog+"添加日志："+sql2);	
-
-		//发送邮件
+		//获取原测试版本的负责人
+		String TesterSql="select * from SYS_TEST_SQ where D_ID='" + D_ID + "'";
+		String OldTester = null;
 		try {
-			String emailSql="select * from SYS_TEST_SQ where D_ID='" + D_ID + "'";
-			String BossEmail = dbutil.queryString(emailSql,"D_KBOSSEMAIL");
-			String k_email = dbutil.queryString(emailSql,"D_KEMAIL");
-			String weiServer = dbutil.queryString(emailSql,"D_WEINAME");
-			String banbenNo = dbutil.queryString(emailSql,"D_VERSION");
-			String D_KAIFA = dbutil.queryString(emailSql,"D_KAIFA");
-			String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
-			String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
-			String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
-			System.out.println(timelog+"邮件地址："+EmailAddress);
-			String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试未通过！";
-			System.out.println(timelog+"邮件标题："+Msgtitle);
-			String Msg = "【微服务名】："+weiServer+"<br>"+"【版本号】："+banbenNo+"<br>"+"【测试人】："+D_TUSER+"<br>"+"【驳回时间】："+TIME+"<br>"+"【NG原因】："+REASON+"<br>"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+"<br>"+"【重新申请地址】："+D_SUBURL+"；";
-			System.out.println(timelog+"邮件内容："+Msg);
-			SendEmail sendEmail = new SendEmail();
-			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
-		}catch(Exception e){
-			request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
+			OldTester = dbutil.queryString(TesterSql,"D_TUSER");
+		} catch (SQLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
 		}
-		
-		//response.sendRedirect("selectBanBenServlet");
-		response.setContentType("text/html; charset=UTF-8");
-	    if(flag>0){
-	    response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet?type=1';</script>");
-	    }else{
-	    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet?type=1';</script>");
-	    }   
+		//状态修改人与原测试负责人做对比判断
+		if(!OldTester.equals(D_TUSER)) {
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().println("<script>alert('抱歉，您不是该版本的测试负责人！不允许进行该操作。');window.location.href='selectBanBenServlet?type=1';</script>");
+		}else {
+			
+			//修改版本测试主表
+			String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='2',D_SUBURL ='"+ D_SUBURL +"',D_NG=D_NG+1,D_REASON_FILE='"+ filename +"' where D_ID='"+ D_ID +"'";		
+			int flag = dbutil.update(sql);
+			System.out.println(timelog+"修改数据状态，填写重新提交地址："+sql);	
+
+			//添加日志
+			String sql2 = "insert into SYS_TESTSQ_LOG (D_ID,T_PEOPLE,T_TIME,T_CAOZUO,T_BEIZHU) values ('" + D_ID + "','" + D_TUSER + "','" + TIME + "','驳回', '【结果：】"+REASON+"【附件：】"+filename+"')";
+			int flag2 = dbutil.update(sql2);
+			System.out.println(timelog+"添加日志："+sql2);	
+
+			//发送邮件
+			try {
+				String emailSql="select * from SYS_TEST_SQ where D_ID='" + D_ID + "'";
+				String BossEmail = dbutil.queryString(emailSql,"D_KBOSSEMAIL");
+				String k_email = dbutil.queryString(emailSql,"D_KEMAIL");
+				String weiServer = dbutil.queryString(emailSql,"D_WEINAME");
+				String banbenNo = dbutil.queryString(emailSql,"D_VERSION");
+				String D_KAIFA = dbutil.queryString(emailSql,"D_KAIFA");
+				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
+				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
+				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
+				System.out.println(timelog+"邮件地址："+EmailAddress);
+				String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试未通过！";
+				System.out.println(timelog+"邮件标题："+Msgtitle);
+				String Msg = "【微服务名】："+weiServer+"<br>"+"【版本号】："+banbenNo+"<br>"+"【测试人】："+D_TUSER+"<br>"+"【驳回时间】："+TIME+"<br>"+"【NG原因】："+REASON+"<br>"+"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+filename+"<br>"+"【重新申请地址】："+D_SUBURL+"；";
+				System.out.println(timelog+"邮件内容："+Msg);
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+			}catch(Exception e){
+				request.getRequestDispatcher("TestFormSubmit_banben.jsp?answer=no").forward(request, response);
+			}
+			
+			//response.sendRedirect("selectBanBenServlet");
+			response.setContentType("text/html; charset=UTF-8");
+		    if(flag>0){
+		    response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet?type=1';</script>");
+		    }else{
+		    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet?type=1';</script>");
+		    }   
+
+		}
 
 	}
 
