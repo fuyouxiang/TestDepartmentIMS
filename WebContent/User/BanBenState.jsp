@@ -50,6 +50,8 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 </script>
 
 <body style="margin-left:30px;">
+
+<div style="width:100%;height:95%;overflow: scroll;">
 <%
                         	
     if(pageBean!=null){
@@ -228,5 +230,6 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 	}
 }
  %>
+ </div>
 </body>
 </html>
