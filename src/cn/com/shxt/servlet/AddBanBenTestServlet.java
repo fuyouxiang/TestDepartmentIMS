@@ -266,11 +266,20 @@ public class AddBanBenTestServlet extends HttpServlet {
 				}			
 				System.out.println("是否有配置文件附件："+D_ISCONFIG);
 				
+				//是否发江西字段
+				String D_ISJXXC="0";
+				if(jinji.equals("1")) {
+					D_ISJXXC="1";
+				}else {
+					D_ISJXXC="0";
+				}			
+				System.out.println("是否发江西字段："+D_ISJXXC);
+				
 				String D_TYPE = "版本测试";
 				System.out.println("测试类型："+D_TYPE);
 
-				String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI,D_ISCONFIG,D_REASON_FILE) values " +
-						"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "','" + D_ISCONFIG + "','" + D_REASON_FILE + "')";		
+				String sql = "insert into SYS_TEST_SQ (D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_TYPE,D_WEINAME,D_VERSION,D_WIKI,D_ISSQL,D_SQL,D_CONFIG,D_JINJI,D_ISCONFIG,D_REASON_FILE,D_ISJXXC) values " +
+						"('" + Bumen + "','" + Boss + "','" + BossEmail + "','" + kaifa + "','" + date + "','" + content + "','" + biaozhun + "','" + k_email + "','" + D_TYPE + "','" + weiServer + "','" + banbenNo + "','" + wiki + "','" + D_ISSQL + "','" + D_SQL + "','" + D_CONFIG + "','" + jinji + "','" + D_ISCONFIG + "','" + D_REASON_FILE + "','" + D_ISJXXC + "')";		
 				
 				int flag = dbutil.update(sql);
 				System.out.println(timelog+"添加版本测试申请："+sql);	
