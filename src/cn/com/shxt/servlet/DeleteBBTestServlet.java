@@ -106,28 +106,23 @@ public class DeleteBBTestServlet extends HttpServlet {
 			String sql2 = "delete sys_testsq_log where D_ID='"+ D_ID +"'";	
 			int flag = dbutil.update(sql);
 			int flag2 = dbutil.update(sql2);
-			System.out.println(timelog+"删除版本测试主表："+sql);	
-			System.out.println(timelog+"删除版本测试日志表"+sql2);
+			System.out.println(timelog+"删除版本测试主表："+sql+"  结果："+flag);	
+			System.out.println(timelog+"删除版本测试日志表"+sql2+"  结果："+flag);
 			
 			//response.sendRedirect("selectBanBenServlet");
 			response.setContentType("text/html; charset=UTF-8");
-		    if(flag>0&&flag2>0){
+		    if(flag>0){
 			SendEmail sendEmail = new SendEmail();
 			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
-		    response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet?type=1';</script>");
+		    	response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet?type=1';</script>");
 		    }else{
-		    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet?type=1';</script>");
+		    	response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet?type=1';</script>");
 		    }   
-		    
-
-			
 			} catch (SQLException e1) {
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().println("<script>alert('邮件发送异常，请联系管理员！');window.location.href='selectBanBenServlet?type=1';</script>");
 			}
-			
-
-			
+	
 		}
 
 	}
