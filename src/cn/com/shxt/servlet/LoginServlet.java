@@ -94,7 +94,9 @@ public class LoginServlet extends HttpServlet {
 		
 		//更简单的办法：UserServiceBean和updateOneUser，有获取其中一个字段的方法，直接拿来做判断，时间关系不改了，能用就行。
 	    
-
+    	//创建姓名的session
+	    HttpSession session = request.getSession();
+	    
 	    if(UserRole.equals("普通")){
 	    	System.out.println("该用户为普通用户！");
 	    	
@@ -102,8 +104,7 @@ public class LoginServlet extends HttpServlet {
 	    	request.setAttribute("name1",name1);
 	    	
 		    
-	    	//创建姓名的session
-		    HttpSession session = request.getSession();
+
 		    session.setAttribute("username",name);
 		    session.setAttribute("userrole",UserRole);
 		    session.setAttribute("UserCenter",UserCenter);
@@ -119,8 +120,6 @@ public class LoginServlet extends HttpServlet {
 	    	String name1 = name;
 	    	request.setAttribute("name1",name1);
 		    
-	    	//创建姓名的session
-		    HttpSession session = request.getSession();
 		    session.setAttribute("username",name);
 		    session.setAttribute("userrole",UserRole);
 		    session.setAttribute("UserCenter",UserCenter);
@@ -135,8 +134,6 @@ public class LoginServlet extends HttpServlet {
 	    	String name1 = name;
 	    	request.setAttribute("name1",name1);
 		    
-	    	//创建姓名的session
-		    HttpSession session = request.getSession();
 		    session.setAttribute("username",name);
 		    session.setAttribute("userrole",UserRole);
 		    session.setAttribute("UserCenter",UserCenter);
@@ -151,8 +148,6 @@ public class LoginServlet extends HttpServlet {
 	    	String name1 = name;
 	    	request.setAttribute("name1",name1);
 		    
-	    	//创建姓名的session
-		    HttpSession session = request.getSession();
 		    session.setAttribute("username",name);
 		    session.setAttribute("userrole",UserRole);
 		    session.setAttribute("UserCenter",UserCenter);

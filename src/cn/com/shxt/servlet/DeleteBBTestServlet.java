@@ -68,7 +68,7 @@ public class DeleteBBTestServlet extends HttpServlet {
 		//状态修改人与原测试负责人做对比判断
 		if(userrole==null) {
 			response.setContentType("text/html; charset=UTF-8");
-			response.getWriter().println("<script>alert('抱歉，session已失效！请重新登录');window.location.href='login.jsp';</script>");
+			response.getWriter().println("<script>alert('抱歉，用户信息已失效！请重新登录');window.top.location='login.jsp';</script>");
 		}else if(!userrole.equals("管理员")) {
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().println("<script>alert('抱歉，您不是系统管理员角色！不允许进行该操作。');window.location.href='selectBanBenServlet?type=1';</script>");

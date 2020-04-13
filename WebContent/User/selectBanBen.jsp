@@ -9,6 +9,9 @@ PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
 
 //获取用户名称和角色
 String username = (String)session.getAttribute("username");
+if(username==null){
+	response.getWriter().println("<script>alert('抱歉，用户信息已失效！请重新登录！');window.top.location='login.jsp';</script>");
+}
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
