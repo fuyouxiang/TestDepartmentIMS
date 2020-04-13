@@ -114,19 +114,19 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 	<form action="<%=path%>/updateBBStateServlet?type=2" onsubmit="return UpdateState(this)" name="formname" method="post" id=formname  enctype="multipart/form-data">
 	<div class="input-group">
       <div class="input-group-addon">原ID：</div>
-      <input type="text" name="D_ID" id='D_ID' class="form-control" id="uploadFile1_temp" value="<%=stuMap.get("D_ID") %>" readonly="readonly" style="width:214px">   
+      <input type="text" name="D_ID" id='D_ID' class="form-control"  value="<%=stuMap.get("D_ID") %>" readonly="readonly" style="width:214px">   
     </div>
     <div class="input-group">
       <div class="input-group-addon">部门：</div>
-      <input type="text" name="D_BUMEN" id='D_BUMEN' class="form-control" id="uploadFile1_temp" value="<%=stuMap.get("D_BUMEN") %>" readonly="readonly" style="width:214px">   
+      <input type="text" name="D_BUMEN" id='D_BUMEN' class="form-control"  value="<%=stuMap.get("D_BUMEN") %>" readonly="readonly" style="width:214px">   
     </div>
     <div class="input-group">
       <div class="input-group-addon">服务：</div>
-      <input type="text" name="D_WEINAME" id='D_WEINAME' class="form-control" id="uploadFile1_temp" value="<%=stuMap.get("D_WEINAME") %>" readonly="readonly" style="width:214px">   
+      <input type="text" name="D_WEINAME" id='D_WEINAME' class="form-control"  value="<%=stuMap.get("D_WEINAME") %>" readonly="readonly" style="width:214px">   
     </div>
     <div class="input-group">
       <div class="input-group-addon">版本号：</div>
-      <input type="text" name="D_VERSION" id='D_VERSION' class="form-control" id="uploadFile1_temp" value="<%=stuMap.get("D_VERSION") %>" readonly="readonly" style="width:200px">   
+      <input type="text" name="D_VERSION" id='D_VERSION' class="form-control"  value="<%=stuMap.get("D_VERSION") %>" readonly="readonly" style="width:200px">   
     </div>
 	<br/>
 	
