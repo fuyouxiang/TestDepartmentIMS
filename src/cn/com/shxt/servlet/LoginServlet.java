@@ -96,7 +96,33 @@ public class LoginServlet extends HttpServlet {
 	    
     	//创建姓名的session
 	    HttpSession session = request.getSession();
+	    System.out.println("该用户的角色为："+UserRole);
+
+		
+		
+		if(UserRole.equals("普通")||UserRole.equals("管理员")||UserRole.equals("绩效")) {
+		    session.setAttribute("username",name);
+		    session.setAttribute("userrole",UserRole);
+		    session.setAttribute("UserCenter",UserCenter);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		else if(UserRole.equals("文档")) {
+		    session.setAttribute("username",name);
+		    session.setAttribute("userrole",UserRole);
+		    session.setAttribute("UserCenter",UserCenter);
+			request.getRequestDispatcher("index_youzhishi.jsp").forward(request, response);
+			return;
+		}else {
+			String info ="对不起,用户名或密码错误";
+			request.setAttribute("info", info);
+	    	response.setContentType("text/html; charset=UTF-8");
+	    	response.getWriter().println("<script>alert('对不起,用户名或密码错误!');window.location.href='login.jsp';</script>");
+	    	
+			//request.getRequestDispatcher("LoginError.jsp").forward(request, response);
+		}
 	    
+	    
+	    /*
 	    if(UserRole.equals("普通")){
 	    	System.out.println("该用户为普通用户！");
 	    	
@@ -112,7 +138,7 @@ public class LoginServlet extends HttpServlet {
 
 		    
 			//response.sendRedirect("index.jsp");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("index_boss.jsp").forward(request, response);
 			return;
 		}else if(UserRole.equals("管理员")){
 			System.out.println("该用户为管理员用户！");
@@ -164,7 +190,7 @@ public class LoginServlet extends HttpServlet {
 	    	
 			//request.getRequestDispatcher("LoginError.jsp").forward(request, response);
 		}
-	    
+	    */
 	 }  
 	
 
