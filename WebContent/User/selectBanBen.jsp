@@ -591,30 +591,30 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                   </tr>
                   <tr bgcolor="#EEEEEE" align="center"  style="line-height:22px;height:22px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
-                    <td  style="font-size:15px;font-weight:bold"></td>
-                    <td  style="font-size:15px;font-weight:bold">编号</td>
-                    <td  style="font-size:15px;font-weight:bold">部门</td>
-                    <td  style="font-size:15px;font-weight:bold">微服务</td>
-                    <td  style="font-size:15px;font-weight:bold">版本号</td>                   
-                    <td  style="font-size:15px;font-weight:bold">月份</td>
-                    <td  style="font-size:15px;font-weight:bold">日期 </td>
-                    <td  style="font-size:15px;font-weight:bold">状态</td>
-                    <td  style="font-size:15px;font-weight:bold">紧急程度</td>                    
-                    <td  style="font-size:15px;font-weight:bold">带脚本</td>
-                    <td  style="font-size:15px;font-weight:bold">带配置</td>
-                    <td  style="font-size:15px;font-weight:bold">发江西</td>
-                    <td  style="font-size:15px;font-weight:bold">压测环境</td>
+                    <td  style="font-size:13px;font-weight:bold"></td>
+                    <td  style="font-size:13px;font-weight:bold">编号</td>
+                    <td  style="font-size:13px;font-weight:bold">部门</td>
+                    <td  style="font-size:13px;font-weight:bold">微服务</td>
+                    <td  style="font-size:13px;font-weight:bold">版本号</td>                   
+                    <td  style="font-size:13px;font-weight:bold">月份</td>
+                    <td  style="font-size:13px;font-weight:bold">日期 </td>
+                    <td  style="font-size:13px;font-weight:bold">状态</td>
+                    <td  style="font-size:13px;font-weight:bold">紧急程度</td>                    
+                    <td  style="font-size:13px;font-weight:bold">带脚本</td>
+                    <td  style="font-size:13px;font-weight:bold">带配置</td>
+                    <td  style="font-size:13px;font-weight:bold">发江西</td>
+                    <td  style="font-size:13px;font-weight:bold">压测环境</td>
                     <td  style="font-size:15px;font-weight:bold">yth2020</td>
-                    <td  style="font-size:15px;font-weight:bold">jxpre更新</td>
-                    <td  style="font-size:15px;font-weight:bold">研发人</td>
-                    <td  style="font-size:15px;font-weight:bold">测试人</td>
-                    <td  style="font-size:15px;font-weight:bold">提交日期</td>
-                    <td  style="font-size:15px;font-weight:bold">版本内容</td>
-                    <td  style="font-size:15px;font-weight:bold">测试通过标准</td>
-                    <td  style="font-size:15px;font-weight:bold">构造内容附件</td>
-                    <td  style="font-size:15px;font-weight:bold">SQL脚本附件</td>
-                    <td  style="font-size:15px;font-weight:bold">配置文件附件</td>
-                    <td  style="font-size:15px;font-weight:bold">测试结果附件</td>
+                    <td  style="font-size:13px;font-weight:bold">jxpre更新</td>
+                    <td  style="font-size:13px;font-weight:bold">研发人</td>
+                    <td  style="font-size:13px;font-weight:bold">测试人</td>
+                    <td  style="font-size:13px;font-weight:bold">提交日期</td>
+                    <td  style="font-size:13px;font-weight:bold">版本内容</td>
+                    <td  style="font-size:13px;font-weight:bold">测试通过标准</td>
+                    <td  style="font-size:13px;font-weight:bold">构造内容附件</td>
+                    <td  style="font-size:13px;font-weight:bold">SQL脚本附件</td>
+                    <td  style="font-size:13px;font-weight:bold">配置文件附件</td>
+                    <td  style="font-size:13px;font-weight:bold">测试结果附件</td>
                     <!--  <td style="font-size:15px;font-weight:bold">费用支出部门</td>-->
                   </tr>
                   </tbody>
@@ -725,52 +725,52 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             	  }
                           %>
 
-                          <tr align="center" style="line-height:20px;height:20px;">
+                          <tr align="center" style="line-height:15px;height:20px;">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
                           	<td  width=50px class="bor_2">
                           	<input type="checkbox" value="<%=stuMap.get("D_ID") %>" name="checkboxBtn"/><br />
                           	</td>
-                          	<td  width=50px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold;height:2px;line-height:30px;"> <%=i+1 %> </td>
-                            <td  width=170px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
-                            <td  width=170px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_WEINAME") %></td>
-                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_VERSION") %></td>
-                            <td  width=80px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
+                          	<td  width=50px class="bor_2" style="font-size:12px;text-align:center;font-weight:bold;height:2px;line-height:30px;"> <%=i+1 %> </td>
+                            <td  width=170px class="bor_2" style="font-size:12px;text-align:center;"><%=stuMap.get("D_BUMEN") %></td>
+                            <td  width=170px class="bor_2" style="font-size:12px;text-align:center;"><%=stuMap.get("D_WEINAME") %></td>
+                            <td  width=200px class="bor_2" style="font-size:12px;text-align:center;"><%=stuMap.get("D_VERSION") %></td>
+                            <td  width=80px class="bor_2" style="font-size:12px;text-align:center;font-weight:bold"><%=month %></td>
                             <td  width=80px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_JINJI %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISSQL %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISCONFIG %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXXC %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISYCHJ %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISYTH2020 %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=D_ISJXPRE %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_TUSER") %></td>
-                            <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
-   							<td  width=600px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_CONTENT") %></td>
-   							<td  width=400px class="bor_2" style="font-size:13px;text-align:center;"><%=stuMap.get("D_BIAOZHUN") %></td>
-   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;font-weight:bold"><font color="<%=Color %>"><%=state %></font></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=D_JINJI %></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=D_ISSQL %></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=D_ISCONFIG %></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=D_ISJXXC %></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=D_ISYCHJ %></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=D_ISYTH2020 %></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=D_ISJXPRE %></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=stuMap.get("D_KAIFA") %></td>
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;"><%=stuMap.get("D_TUSER") %></td>
+                            <td  width=200px class="bor_2" style="font-size:12px;text-align:center;"><%=stuMap.get("D_DATE") %></td>
+   							<td  width=600px class="bor_2" style="font-size:12px;text-align:center;"><%=stuMap.get("D_CONTENT") %></td>
+   							<td  width=400px class="bor_2" style="font-size:12px;text-align:center;"><%=stuMap.get("D_BIAOZHUN") %></td>
+   							<td  width=200px class="bor_2" style="font-size:12px;text-align:center;">
    							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_WIKI") %>" target="_blank">
    							<%=stuMap.get("D_WIKI") %>
    							</a>
    							</td>
-   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<td  width=200px class="bor_2" style="font-size:12px;text-align:center;">
    							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_SQL") %>" target="_blank">
    							<%=stuMap.get("D_SQL") %>
    							</a>
    							</td>
-   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<td  width=200px class="bor_2" style="font-size:12px;text-align:center;">
    							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_CONFIG") %>" target="_blank">
    							<%=stuMap.get("D_CONFIG") %>
    							</a>
    							</td>
-   							<td  width=200px class="bor_2" style="font-size:13px;text-align:center;">
+   							<td  width=200px class="bor_2" style="font-size:12px;text-align:center;">
    							<a href="<%=serviceRoot %>youzhishi/DownloadPDF.jsp?ATTACH_NAME=<%=stuMap.get("D_REASON_FILE") %>" target="_blank">
    							<%=stuMap.get("D_REASON_FILE") %>
    							</a>
    							</td>
    							<!-- 
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">
+                            <td  width=100px class="bor_2" style="font-size:12px;text-align:center;font-weight:bold">
                             <button href = "javascript:void(0)" onclick = "document.getElementById('light<%=i+1 %>').style.display='block';document.getElementById('fade').style.display='block'">详情</button>
                             <div id="light<%=i+1 %>" style="font-size:14px;text-align:left;" class="white_content">
         					【部门】：<%=stuMap.get("D_BUMEN") %><br/>
