@@ -31,9 +31,9 @@ List<Map<String,String>> RInfoList= (List<Map<String , String>>) request.getAttr
 <%String name1=(String)request.getAttribute( "name1");%>
 
 <FRAMESET border=0 frameSpacing=0 rows="40,*" >
-<FRAME name=header src="header.jsp?name1=<%=name1%>" height=""frameBorder=0 noResize scrolling=no>
-<FRAMESET cols="170, *">
-<FRAME src="menu.jsp" name="left" scrolling=no frameBorder=0 marginwidth=1px marginheight=1px>
+<FRAME name=header src="header.jsp?name1=<%=name1%>" frameBorder=0 noResize scrolling=no>
+<FRAMESET cols="202, *">
+<FRAME src="frame.jsp" name="left" scrolling=no frameBorder=0 marginwidth=1px marginheight=1px>
 <FRAME src="<%=path %>/selectAllUrlServlet" name=right frameBorder=0 noResize scrolling=no marginwidth=1px marginheight=1px>
 </FRAMESET>
 </FRAMESET>
