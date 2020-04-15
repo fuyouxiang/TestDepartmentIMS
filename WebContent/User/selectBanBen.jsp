@@ -171,6 +171,8 @@ $(document).ready(function () {
 		
 	
 		function goPage(butt) {
+       	 	//等待提示
+       	 	showWaiting();
 			var currentPage = document.getElementById("currentPage");
 			var pageForm = document.getElementById("pageForm");
 			
@@ -826,10 +828,7 @@ $(document).ready(function () {
                                }
                         	  
                            } 
-                          }
-                   
-                        
-                        %>
+                          %>
                          
                     </tbody>
 
@@ -837,6 +836,19 @@ $(document).ready(function () {
   </tr>
 </table>
 </div>
+<div style="font-size:14px;width:100%" align="center">
+						<button type="button" class="btn btn-default btn-primary btn-sm" id="fp" onclick="goPage(this)">首页</button>
+  						<button type="button" class="btn btn-default btn-info btn-sm" id="bp" onclick="goPage(this)">上一页</button>
+  						第<%=pageBean.getNowPage()%>页/共<%=pageBean.getPages()%>页
+  						<button type="button" class="btn btn-default btn-info btn-sm" id="gp" onclick="goPage(this)">下一页</button>
+  						<button type="button" class="btn btn-default btn-primary btn-sm" id="lp" onclick="goPage(this)">尾页</button>
+</div>
+
+  						                          <%
+                          }
+                   
+                        
+                        %>
   </body>
 <script language="javascript">
 var selBumen ='<%=request.getAttribute("selBumen")%>';
@@ -912,7 +924,7 @@ document.getElementById('MRstate').innerHTML = selState;
       title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(startX=20, startY=20, finishX=100, finishY=100,style=1,opacity=75,finishOpacity=100);";
       title.style.opacity = "0.75";
       title.style.border = "1px solid " + bordercolor;
-      title.style.height = "14px";
+      title.style.height = "20px";
       title.style.font = "12px Verdana, Geneva, Arial, Helvetica, sans-serif";
       title.style.color = "white";
       title.innerHTML = "正在加载中，请稍候......";

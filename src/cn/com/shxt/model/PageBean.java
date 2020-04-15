@@ -9,6 +9,7 @@ public class PageBean {
 	// 每页显示记录条数
 	private int iRows = 10;
 	private int iRows2 = 4000;
+	private int iRows3 = 20;
 	// 总记录条数
 	private int totalRows;
 	// 总页数 计算得到
@@ -74,4 +75,9 @@ public class PageBean {
 				+ ((nowPage - 1) * iRows2 + 1) + "";
 	}
 
+	public void setSql3(String sql) {
+		this.sql = "select * from (select rownum r,t.* from(" + sql
+				+ ")t where rownum <=" + nowPage * iRows3 + ")t1 where t1.r >="
+				+ ((nowPage - 1) * iRows3 + 1) + "";
+	}
 }

@@ -767,6 +767,23 @@ public class DBUtils {
 		return pageBean;
 	}
 	
+	//专门为签到表准备的一页50条数据
+	public  PageBean  queryByPage3(String nowPage,String sql){
+	
+	PageBean pageBean = new PageBean();
+	//String sql = "select * from "+tableName+"";
+	
+	if(nowPage!=null){
+		pageBean.setNowPage(Integer.parseInt(nowPage));
+	}
+	
+	pageBean.setSql3(sql);
+	pageBean.setPages(this.getCount(sql));
+	pageBean.setResList(this.queryByList(pageBean.getSql()));
+	
+	return pageBean;
+}
+	
 	//配置开关
 	public  String  queryString(String sql,String ZiDuanName) throws SQLException{
 		

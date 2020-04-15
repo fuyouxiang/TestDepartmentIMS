@@ -125,7 +125,7 @@ public class selectBanBenServlet extends HttpServlet {
 		
 		String nowPage = request.getParameter("currentPage");
 		DBUtils dbutil = new DBUtils();
-		PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
+		PageBean pageBean = dbutil.queryByPage3(nowPage, sql);
 		request.setAttribute("pageBean", pageBean);
 		
 
