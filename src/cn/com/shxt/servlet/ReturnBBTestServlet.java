@@ -196,7 +196,7 @@ public class ReturnBBTestServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		//状态修改人与原测试负责人做对比判断
-		if(!OldTester.equals(D_TUSER)) {
+		if(!OldTester.equals(D_TUSER)||OldTester==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().println("<script>alert('抱歉，您不是该版本的测试负责人！不允许进行该操作。');window.location.href='selectBanBenServlet?type=1';</script>");
 		}else {
