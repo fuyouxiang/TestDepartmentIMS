@@ -596,6 +596,12 @@
     	<description>This is the description of my J2EE component</description>
     	<servlet-class>cn.com.shxt.servlet.DeleteBBTestServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>UpdateWeiFuWuServlet</servlet-name>
+		<display-name>UpdateWeiFuWuServlet</display-name>
+		<description></description>
+		<servlet-class>cn.com.shxt.servlet.UpdateWeiFuWuServlet</servlet-class>
+	</servlet>
 
 
 
@@ -604,7 +610,10 @@
 
 
 
-
+	<servlet-mapping>
+    	<servlet-name>UpdateWeiFuWuServlet</servlet-name>
+    	<url-pattern>/UpdateWeiFuWuServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>DeleteBBTestServlet</servlet-name>
     	<url-pattern>/DeleteBBTestServlet</url-pattern>
@@ -1002,6 +1011,10 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>UpdateWeiFuWuServlet</servlet-name>
+   	<url-pattern>/UpdateWeiFuWuServlet</url-pattern>
+   </servlet-mapping>
  
    
 	<welcome-file-list>
