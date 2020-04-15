@@ -42,7 +42,7 @@ if(interval!=null){//判断计时器是否为空
 interval=null;
 }
 //重复执行某个方法 60秒*5
-interval = setInterval(shuaxinUrl,60000*5);
+//interval = setInterval(shuaxinUrl,60000*5);
 
 		
 </script>  
