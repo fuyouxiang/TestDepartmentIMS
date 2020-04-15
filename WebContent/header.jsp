@@ -4,6 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String userName = (String)session.getAttribute("userName");
+String userrole = (String)session.getAttribute("userrole");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -83,7 +84,7 @@ String userName = (String)session.getAttribute("userName");
       		<A style="COLOR: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="login.jsp" target=_top><font size="2">退出系统</font></A> 
    	 	</TD>
     	<td style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 0px"></td>
-    	<TD align=right width=268></TD>   
+    	<TD align=right width=268 style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 13px;padding-bottom: 15px;font-size: 14px;">角色：<%=userrole %>&nbsp;&nbsp;</TD>   
     </TR>
    </TABLE>
    <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
