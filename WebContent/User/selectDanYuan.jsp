@@ -21,9 +21,12 @@ if(username==null){
     <base href="<%=basePath%>">
     
     <title>单元测试汇总</title>
+     <link href="bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="css/css.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />  
+
+
     <style type="text/css">
-    
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -37,7 +40,9 @@ if(username==null){
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 	-->
-
+tr.focus{
+    background-color:#eee;
+}
 <!--
 body {
 	margin-left: 0px;
@@ -119,12 +124,37 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 </style>
 
 
-<link href="css/css.css" rel="stylesheet" type="text/css" />
-
-<link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="./js/jquery-1.11.3.js"></script>
 <script type="text/javascript">
+$(document).ready(function () {
+    $("#testList>tbody>tr").on("click", function () {
+    	var trcolor = $(this).css("background-color");
+    	if(trcolor!="rgb(179, 208, 253)"){
+			$(this).find('input').prop("checked",true);
+		    //获取所有复选框的个数
+		    var len = $(":checkbox[name=checkboxBtn]").length;
+		    //alert("复选框个数："+len);
+		    //获取所有被选中的复选框的个数
+		    var checked_len = $(":checkbox[name=checkboxBtn]:checked").length;
+		    if(checked_len>1){
+		    	$(this).find('input').prop("checked",false);
+		    	alert("只能选中一条数据进行处理！");
+		    	return false;
+		    }else{
+	    		$(this).css("background-color","#b3d0fd");
+		    }
+    	}else{
+    		$(this).css("background-color","");
+    		$(this).find('input').prop("checked",false);
+    	}
+        //$(this).parent().find("tr.focus").toggleClass("focus");//取消原先选中行
+        //$(this).toggleClass("focus");//设定当前行为选中行
+    });
+});
+
 		function valiButt() {
 					if(<%=pageBean.getNowPage()%> == 1) {
 						document.getElementById("fp").disabled = true;
@@ -541,7 +571,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 
               <tr>
                 <td height="40" class="font42">
-				<table id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				<table class="table-hover"  id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				 <tbody id="tbody1">
 				 <tr class="CTitle" >
                     	<td id="div_title" height="28" colspan="16" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
                   </tr>
@@ -578,6 +609,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                       }
                   %>
                   </tr>
+                  </tbody>
                   <tr bgcolor="#EEEEEE" align="center">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
                     <td  style="font-size:15px;font-weight:bold"></td>
@@ -597,7 +629,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">内容附件</td>
                     <td  style="font-size:15px;font-weight:bold">测试结果附件</td>
                   </tr>
-                   <tbody>
+                   <tbody id="tbody2">
                     	
                         <%
                         	

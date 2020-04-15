@@ -348,6 +348,11 @@
      * 创建悬浮菜单项
      */
     function createFloatMenuItem (obj) {
+    	if(window.parent.pgFrame.cols=="50, *"){
+    		window.parent.pgFrame.cols="202, *";
+    	}else{
+    		window.parent.pgFrame.cols="201, *";
+    	}
         var arrCls = obj.children.length > 0 ? "icon-sk027":"icon-sk027 hide";
         return "<li menu-id='"+obj.id+"'><a>"+obj.title+"</a><i class='"+arrCls+"'></i></li>";
     }
@@ -362,6 +367,11 @@
             excuteMenuEvent(e);
             $(".float-menu").remove();
         }
+    	if(window.parent.pgFrame.cols=="202, *"){
+    		window.parent.pgFrame.cols="50, *";
+    	}else{
+    		window.parent.pgFrame.cols="50, *";
+    	}
     }
 
     $(".tab-pre").click(onPrePage);
