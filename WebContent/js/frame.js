@@ -246,12 +246,12 @@
      * 展开/收缩左侧菜单
      */
     function toggleLeftMenu () {
-    	if(window.parent.pgFrame.cols=="202, *"){
+    	if(window.parent.pgFrame.cols=="172, *"){
     		window.parent.pgFrame.cols="50, *";
     	}else if(window.parent.pgFrame.cols=="50, *"){
-    		window.parent.pgFrame.cols="202, *";
+    		window.parent.pgFrame.cols="172, *";
     	}else{
-    		window.parent.pgFrame.cols="202, *";
+    		window.parent.pgFrame.cols="172, *";
     	}
         expendMenu = !expendMenu ;
         $(".left").toggleClass('slide-left-out' , '');
@@ -349,9 +349,9 @@
      */
     function createFloatMenuItem (obj) {
     	if(window.parent.pgFrame.cols=="50, *"){
-    		window.parent.pgFrame.cols="202, *";
+    		window.parent.pgFrame.cols="172, *";
     	}else{
-    		window.parent.pgFrame.cols="201, *";
+    		window.parent.pgFrame.cols="173, *";
     	}
         var arrCls = obj.children.length > 0 ? "icon-sk027":"icon-sk027 hide";
         return "<li menu-id='"+obj.id+"'><a>"+obj.title+"</a><i class='"+arrCls+"'></i></li>";

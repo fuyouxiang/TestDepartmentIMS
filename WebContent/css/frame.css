@@ -9,7 +9,7 @@
 }
 
 .left {
-    width: 200px;
+    width: 170px;
     position: absolute;
     top: 0;
     left: 0;
@@ -53,7 +53,7 @@
 }
 
 .slide-left-out {
-    left:-152px;
+    left:-122px;
 }
 .slide-left-out ul.first li i.menu-arrow {
     float: left;
@@ -100,15 +100,15 @@
     color: #fff;
     width: 100%;
     display: block;
-    line-height: 50px;
-    background:#187d4b;
+    line-height: 40px;
+    background:#046507;
     text-align: center;
     font-size: 16px;
 }
 
 .left .logo .toggle-menu-icon {
     width: 48px;
-    line-height: 50px;
+    line-height: 40px;
     font-size: 20px;
     color: #fff;
     position: absolute;
@@ -139,7 +139,7 @@
 }
 .left ul.first {
 	position: absolute;
-    top: 50px;
+    top: 40px;
     bottom: 0;
     max-height: 100%;
 	overflow:hidden;
@@ -151,7 +151,7 @@
     background-color: #434343;
 }
 .left ul.first li a{
-	font-size:16px;
+	font-size:15px;
 	color:#fff;
 }
 
