@@ -67,7 +67,10 @@ if(errori=='yes'){
 	    }else if (biaozhun.length<1) {
 			alert("请选择通过标准!");
 			return false;
-	    }else if (content.length>600) {
+	    }else if (kaifa.length>4) {
+			alert("只填写主开发人即可，不允许填写多个!");
+			return false;
+	    }else if (content.length>500) {
 			alert("内容较多时建议将内容写在附件中，然后构造内容填写  “详情请见内容附件。” 即可");
 			return false;
 	    }else{

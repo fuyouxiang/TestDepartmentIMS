@@ -54,8 +54,14 @@ function  submitMyForm(fm){
     }else if (bumen=="请选择部门") {
 		alert("请选择部门!");
 		return false;
+    }else if (kaifa.length>4) {
+		alert("只填写主开发人即可，不允许填写多个!");
+		return false;
     }else if (biaozhun.length<1) {
 		alert("请选择通过标准!");
+		return false;
+    }else if (content.length>500) {
+		alert("内容较多时建议将内容写在附件中，然后内容填写  “详情请见附件” 即可");
 		return false;
     }else{
         //等待提示
@@ -167,11 +173,11 @@ function showWaiting() {
 				</li>
 				
 				<li class="first">
-					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员，可填写多个" required="required">
+					<a href="#" class=" icon user" style="text-align: center;color:black;"><br/>开发人员</a><input name="kaifa" type="text" class="text" placeholder="开发人员，只填写负责人" required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
-					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件，可填写多个，用;号隔开"  required="required">
+					<a href="#" class=" icon email" style="text-align: center;color:black;"><br/>开发邮箱</a><input name="k_email" type="text" class="text" placeholder="开发人员邮箱，用于接收通知邮件"  required="required">
 					<div class="clear"></div>
 				</li>
 				<li class="first">
