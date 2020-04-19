@@ -19,7 +19,7 @@ html , body {
     font-weight: normal;
     font-style: normal;
 }
-[class^="icon-sk"] {color: #2dd07e; vertical-align: middle;}
+[class^="icon-sk"] {color: #005aff; vertical-align: middle;}
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'SK' !important;

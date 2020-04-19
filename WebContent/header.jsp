@@ -75,16 +75,16 @@ String userrole = (String)session.getAttribute("userrole");
   </head>
   	<%String name1=new String(request.getParameter("name1").getBytes("ISO-8859-1"),"GB2312");%>
 <body>
-   <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 style="background-color:#1ea52f;">
+   <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 style="background-color:#0066ff;">
   	<TR height=40>
-    	<TD width=260 style="font-size:20px;text-align:left;font-weight:bold;color:#fff; PADDING-BOTTOM: 6px;">&nbsp;&nbsp;&nbsp;政府财政云产品测试部</TD>
-    	<TD style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 13px;padding-bottom: 15px;" align="center">
+    	<TD width=260 style="font-size:17px;text-align:left;color:#fff; PADDING-BOTTOM: 7px;">&nbsp;&nbsp;&nbsp;政府财政云产品测试部</TD>
+    	<TD style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 10px;padding-bottom: 13px;" align="center">
             <A style="COLOR: #fff" href="guanliyuan/UpdatePassword.jsp" target="right" ><font size="2" >密码修改</font></A> &nbsp;&nbsp;
             <span class="fr_1" id = "showDateTimeId" ></span>&nbsp;&nbsp;
       		<A style="COLOR: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" href="login.jsp" target=_top><font size="2">退出系统</font></A> 
    	 	</TD>
     	<td style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 0px"></td>
-    	<TD align=right width=268 style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 13px;padding-bottom: 15px;font-size: 14px;">角色：<%=userrole %>&nbsp;&nbsp;</TD>   
+    	<TD align=right width=268 style="FONT-WEIGHT: bold; COLOR: #fff; PADDING-TOP: 10px;padding-bottom: 13px;font-size: 14px;">角色：<%=userrole %>&nbsp;&nbsp;</TD>   
     </TR>
    </TABLE>
    <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>

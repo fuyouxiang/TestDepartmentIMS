@@ -184,7 +184,7 @@ if('<%=userrole%>'=='管理员'){
     <div class="main">
 		<!--左侧菜单-->
         <div class="left">
-            <div class="logo">
+            <div class="logo" >
                 <span> <%=username%>&nbsp;&nbsp;&nbsp; </span>
                 <i class="toggle-menu-icon icon-sk054" onclick="leftMenuToggleEvent(event)"></i>
             </div>
