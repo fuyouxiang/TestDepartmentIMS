@@ -64,7 +64,62 @@ public class UpdateWeiFuWuServlet extends HttpServlet {
 			request.setAttribute("pageBean2", pageBean2);
 
 			request.getRequestDispatcher("guanliyuan/WeiFuWu.jsp").forward(request, response);
-			}
+		}
+		
+		else if (type.equals("add")){
+			
+			System.out.println(timelog+"微服务添加————————");
+			
+			String W_NAME = request.getParameter("W_NAME");//微服务名称
+			System.out.println(timelog+"微服务名称:"+W_NAME);
+			String B_NAME = request.getParameter("B_NAME");//部门名称
+			System.out.println(timelog+"部门名称:"+B_NAME);
+			
+			String sql = "insert into sys_weiname (W_NAME,B_NAME) values "+"('" + W_NAME + "','" + B_NAME + "')";
+			System.out.println(timelog+"新增SQL:"+sql);
+			
+			int flag = dbutil.update(sql);
+			System.out.println(timelog+"新增SQL结果:"+flag);
+			
+			response.setContentType("text/html; charset=UTF-8");
+		    if(flag>0){
+		    response.getWriter().println("<script>alert('操作成功！');window.location.href='UpdateWeiFuWuServlet?type=select';</script>");
+		    }else{
+		    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='UpdateWeiFuWuServlet?type=select';</script>");
+		    }
+			
+		}
+		
+		else if (type.equals("delete")){
+			
+			System.out.println(timelog+"微服务删除————————");
+			
+			String W_NAME = new String((request.getParameter("W_NAME")).getBytes("ISO8859-1"),"UTF-8");//微服务名称
+			System.out.println(timelog+"微服务名称:"+W_NAME);
+			String B_NAME = new String((request.getParameter("B_NAME")).getBytes("ISO8859-1"),"UTF-8");//部门名称
+			System.out.println(timelog+"部门名称:"+B_NAME);
+			
+			String sql = "delete from sys_weiname where W_NAME='"+W_NAME+"' and B_NAME='"+B_NAME+"'";
+			System.out.println(timelog+"删除SQL:"+sql);
+			
+			int flag = dbutil.update(sql);
+			System.out.println(timelog+"删除SQL结果:"+flag);
+			
+			response.setContentType("text/html; charset=UTF-8");
+		    if(flag>0){
+		    response.getWriter().println("<script>alert('操作成功！');window.location.href='UpdateWeiFuWuServlet?type=select';</script>");
+		    }else{
+		    response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='UpdateWeiFuWuServlet?type=select';</script>");
+		    }
+
+		}
+		else if (type.equals("update")){
+
+			
+		}
+		else {
+			
+		}
 	}
 
 }
