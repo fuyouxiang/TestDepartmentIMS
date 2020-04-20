@@ -2,6 +2,7 @@ package cn.com.shxt.utils;
 
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
@@ -20,7 +21,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import cn.com.shxt.servlet.DateTime;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 
 public class SendEmail  extends HttpServlet {
@@ -38,11 +43,47 @@ public class SendEmail  extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		System.out.println("调用发送QQ邮件接口：——————————————————————");	
+		
 		//时间戳，直接调用DateTime.java中的方法
 		String time= DateTime.showtime();
-		//request.setCharacterEncoding("UTF-8");
-		System.out.println("开始发送邮件：——————————————————————");	
+
+		request.setCharacterEncoding("UTF-8");
 		
+		//接收json字符串
+		InputStreamReader reader=new InputStreamReader(request.getInputStream(),"UTF-8");
+		char [] buff=new char[1024];
+		int length=0;
+		String str = null;
+		while((length=reader.read(buff))!=-1){
+		     str=new String(buff,0,length);
+		     System.out.println("接收到的json串为："+str);
+		}
+		/*
+		 * 示例：
+		 * 
+	{
+    "Msgtitle": "中文1",
+    "Msg": "中文2",
+	"EmailAddress": "中文3"
+	}
+		 * */
+
+		
+		//json里有key和数组
+		JSONObject jsonobj=JSONObject.fromObject(str);//将字符串转化成json对象 
+		
+		String Msgtitle=(String) jsonobj.get("Msgtitle");
+		System.out.println("邮件标题："+Msgtitle);
+		String Msg=(String) jsonobj.get("Msg");
+		System.out.println("邮件内容："+Msg);
+		String EmailAddress=(String) jsonobj.get("EmailAddress");
+		System.out.println("邮件地址："+EmailAddress);
+		
+		
+		/*使用key的方式问号传值
+		 * 
+		 * 		
 		String Msgtitle= request.getParameter("Msgtitle");//信息标题
 		Msgtitle = new String(Msgtitle.getBytes("ISO8859-1"),"UTF-8");
 		System.out.println("邮件标题："+Msgtitle);
@@ -55,8 +96,12 @@ public class SendEmail  extends HttpServlet {
 		EmailAddressStirng = new String(EmailAddressStirng.getBytes("ISO8859-1"),"UTF-8");
 		System.out.println("邮件地址："+EmailAddressStirng);
 		
+		 * 
+		 * */
+
+		
 		SendEmail s = new SendEmail();
-   	    s.SendEmailFromQQ(EmailAddressStirng, Msgtitle, Msg);
+   	    //s.SendEmailFromQQ(EmailAddressStirng, Msgtitle, Msg);
 		
    	   
 		/*
@@ -75,7 +120,7 @@ public class SendEmail  extends HttpServlet {
 
 	}
 	
-	public void SendEmailFromQQ( String EmailAddress,String Msgtitle,String Msg){
+	public void SendEmailFromQQ(String EmailAddress,String Msgtitle,String Msg){
 		
 		   System.out.println("调用QQ邮箱发送接口：————————————————");
 		   
