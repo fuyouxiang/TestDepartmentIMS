@@ -96,7 +96,10 @@ public class LoginServlet extends HttpServlet {
 	    
     	//创建姓名的session
 	    HttpSession session = request.getSession();
+	    session.setMaxInactiveInterval(600*60);
 	    System.out.println("该用户的角色为："+UserRole);
+	    int sessionMaxTime=session.getMaxInactiveInterval();
+	    System.out.println("session过期时间为："+sessionMaxTime);
 
 		
 		
