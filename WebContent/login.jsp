@@ -63,8 +63,7 @@ String message = (String) request.getAttribute("message");
 				<div class="submit-w3l">
 					<input type="submit" value="登 录">
 				</div>
-				<p class="p-bottom-w3ls"><a href="signup.jsp">点击注册</a>如果你没有一个文档帐户。
-.</p>
+				<p class="p-bottom-w3ls"><a href="signup.jsp">点击注册</a>如果你没有一个文档帐户。</p>
 			</form>
 		</div>
 		</div>
