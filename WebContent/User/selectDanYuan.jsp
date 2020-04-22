@@ -467,37 +467,39 @@ $(document).ready(function () {
 			   <td width="1000" align="left" >
 			    <button onclick="BBLog()">操作日志</button>
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="startTest" class="white_content">
+			    	<div style="font-size:14px;font-weight:bold;" id="startTest" class="white_content">
 			    		<form  method="post"  id="StartDYTestForm">
         					【测试人】：<input  type="text" name="D_TUSER" style="background-color:#e8e8e8" readonly value="<%=username%>"><br/><br/>
         					【开始测试时间】：<input type="text" name="TIME" style="background-color:#e8e8e8" value="<%=time %>" readonly="readonly"><br/><br/>
         					<button style="display: block;" onclick='StartTest()'>提交</button>
+        				    <button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
         				</form>
-						<button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
 					</div>
 
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'">驳回</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="returnTest" class="white_content">
+			    	<div style="font-size:14px;font-weight:bold;" id="returnTest" class="white_content">
 			    		<form action="<%=path %>/AddDanYuanTestServlet?type=4" onsubmit="return ReturnTest(this)" method="post" name="returnDYTestForm" id="returnDYTestForm"  enctype="multipart/form-data">
         					【 测 试 人】：<input  type="text" name="D_TUSER" style="background-color:#e8e8e8" readonly value="<%=username%>"><br/><br/>
         					【驳回时间】：<input type="text" name="TIME" style="background-color:#e8e8e8" value="<%=time %>" readonly="readonly"><br/><br/>
-        					【驳回原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
+        					【驳回原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 60px;"></textarea><br/><br/>
         					【测试结果附件】：<input name="file" type="file" class="text"><br/><br/>
         					<input type="submit" value="提交" style="background:#3498db;background-image:linear-gradient(to bottom, #3498db, #2980b9);font-family:微软雅黑;color:#ffffff;padding:2px 8px 4px 11px;text-decoration:none;border-radius:28px;font-size:14px">
+        					<button onclick = "document.getElementById('returnTest').style.display='none'" id="returnTestButton">关闭</button>
         				</form>
-						<button onclick = "document.getElementById('returnTest').style.display='none'" id="returnTestButton">关闭</button>
+						
 					</div>
 					
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'">测试通过</button>
-			    	<div style="font-size:18px;font-weight:bold;" id="endTest" class="white_content">
+			    	<div style="font-size:14px;font-weight:bold;" id="endTest" class="white_content">
 			    		<form  action="<%=path %>/AddDanYuanTestServlet?type=5" onsubmit="return EndTest(this)" method="post"  name="endDYTestForm" id="endDYTestForm" enctype="multipart/form-data">
         					【 测 试 人】：<input  type="text" name="D_TUSER" style="background-color:#e8e8e8" readonly value="<%=username%>"><br/><br/>
         					【通过时间】：<input type="text" name="TIME" style="background-color:#e8e8e8" value="<%=time %>" readonly="readonly"><br/><br/>
-        					【备注/遗留】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 131px;"></textarea><br/><br/>
+        					【备注/遗留】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 60px;"></textarea><br/><br/>
         					【测试结果附件】：<input name="file" type="file" class="text"><br/><br/>
         					<input type="submit" value="提交" style="background:#3498db;background-image:linear-gradient(to bottom, #3498db, #2980b9);font-family:微软雅黑;color:#ffffff;padding:2px 8px 4px 11px;text-decoration:none;border-radius:28px;font-size:14px">
+        					<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
         				</form>
-						<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
+						
 					</div>
 				<button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
 				<button onclick="BBDelete()" style="background-image:linear-gradient(to bottom, #f72c2c, #ffa2a2)">删除</button>
@@ -551,11 +553,11 @@ $(document).ready(function () {
 					            状态：
 					     <select style="high:150;font-weight:bold;width:80px" name="selState"  id="selState">
 						 <option id="MRstate"></option>
-						 <option style="font-size:13px;" value="全部">&nbsp;&nbsp;全部&nbsp;&nbsp;</option>                              
-					     <option style="font-size:13px;" value="0"> &nbsp;&nbsp;待测试 &nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;测试中 &nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="2"> &nbsp;&nbsp;NG&nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="3"> &nbsp;&nbsp;OK&nbsp;&nbsp;</option>
+						 <option style="font-size:13px;" value="全部">全部&nbsp;&nbsp;</option>                              
+					     <option style="font-size:13px;" value="0">待测试 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="1">测试中 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="2">NG&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="3">OK&nbsp;&nbsp;</option>
 					     </select>      
 						<input type="submit" value="查询" style="font-size:15px;font-weight:bold"/>
 						<input type="button" value="重置" style="font-size:15px;font-weight:bold" onclick="resetSelect()"/>
@@ -567,11 +569,11 @@ $(document).ready(function () {
     
 <!-- 右侧滚动条 -->
 <div style="width:100%;height:85%;overflow: scroll;">
-          <table width="2500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
+          <table width="2700px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
-				<table class="table-hover"  id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				<table class="table-hover"  id = "testList" width="2700px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tbody id="tbody1">
 				 <tr class="CTitle" >
                     	<td id="div_title" height="28" colspan="16" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
@@ -674,6 +676,12 @@ $(document).ready(function () {
                             		  state ="未知";
                             	  }  
                             	  
+                                  //测试人为空
+                                  String D_TUSER = stuMap.get("D_TUSER");
+                                  if(D_TUSER==null){
+                                	  D_TUSER="";
+                                  }
+                            	  
                           %>
                           <tr align="center" style="">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
@@ -686,10 +694,10 @@ $(document).ready(function () {
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
                             <td  width=100px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
                             <td  width=400px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_TUSER") %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_TUSER %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">第<%=lunci %>轮&nbsp;<font color="<%=Color %>"><%=state %></font></td>
-                            <td  width=300px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_CONTENT") %></td>
+                            <td  width=500px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_CONTENT") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_BIAOZHUN") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_DATE") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a></td>
