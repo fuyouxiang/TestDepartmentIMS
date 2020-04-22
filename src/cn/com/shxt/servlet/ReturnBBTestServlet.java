@@ -196,10 +196,15 @@ public class ReturnBBTestServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		//状态修改人与原测试负责人做对比判断
-		if(!OldTester.equals(D_TUSER)||OldTester==null) {
+		if(OldTester==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().println("<script>alert('抱歉，您不是该版本的测试负责人！不允许进行该操作。');window.location.href='selectBanBenServlet?type=1';</script>");
-		}else {
+		}else if(!OldTester.equals(D_TUSER)) {
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().println("<script>alert('抱歉，您不是该版本的测试负责人！不允许进行该操作。');window.location.href='selectBanBenServlet?type=1';</script>");			
+		}
+		
+		else {
 			
 			//修改版本测试主表
 			String sql = "update SYS_TEST_SQ set D_TUSER ='"+ D_TUSER +"',D_STATE='2',D_SUBURL ='"+ D_SUBURL +"',D_NG=D_NG+1,D_REASON_FILE='"+ filename +"' where D_ID='"+ D_ID +"'";		
