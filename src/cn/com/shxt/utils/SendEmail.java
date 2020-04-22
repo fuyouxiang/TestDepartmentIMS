@@ -11,20 +11,14 @@ import java.util.ResourceBundle;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.Store;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
-
 import cn.com.shxt.servlet.DateTime;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
@@ -46,7 +40,7 @@ public class SendEmail  extends HttpServlet {
 		System.out.println("调用发送QQ邮件接口：——————————————————————");	
 		
 		//时间戳，直接调用DateTime.java中的方法
-		String time= DateTime.showtime();
+		String timelog= DateTime.showtime();
 
 		request.setCharacterEncoding("UTF-8");
 		
@@ -57,7 +51,7 @@ public class SendEmail  extends HttpServlet {
 		String str = null;
 		while((length=reader.read(buff))!=-1){
 		     str=new String(buff,0,length);
-		     System.out.println("接收到的json串为："+str);
+		     System.out.println(timelog+"接收到的json串为："+str);
 		}
 		/*
 		 * 示例：
