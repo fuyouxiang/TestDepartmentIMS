@@ -142,7 +142,7 @@ public class selectBanBenServlet extends HttpServlet {
 		request.setAttribute("pageBean2", pageBean2);
 
 		//版本号查询条件
-		String sql3 = "select W_NAME from SYS_WEINAME where length(B_NAME)>1 " + selBumenSQL2 ;
+		String sql3 = "select W_NAME from SYS_WEINAME where length(B_NAME)>1 " + selBumenSQL2 + " order by W_NAME";
 		PageBean pageBean3 = dbutil.queryByPage2(nowPage, sql3);
 		request.setAttribute("pageBean3", pageBean3);
 
