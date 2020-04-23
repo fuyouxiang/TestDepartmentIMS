@@ -145,6 +145,17 @@ public class selectBanBenServlet extends HttpServlet {
 		String sql3 = "select W_NAME from SYS_WEINAME where length(B_NAME)>1 " + selBumenSQL2 + " order by W_NAME";
 		PageBean pageBean3 = dbutil.queryByPage2(nowPage, sql3);
 		request.setAttribute("pageBean3", pageBean3);
+		
+		//通过率查询
+		String sql4 = "select \r\n" + 
+				"distinct (select count(1) from sys_test_sq where D_TYPE='版本测试' and d_state in ('3','2') "+selBumenSQL+selWeifwSQL+selMonthSQL+") as DALL,\r\n" + 
+				"(select count(1) from sys_test_sq where D_TYPE='版本测试' and d_state='3' "+selBumenSQL+selWeifwSQL+selMonthSQL+") as OK,\r\n" + 
+				"(select count(1) from sys_test_sq where D_TYPE='版本测试' and d_state='2' "+selBumenSQL+selWeifwSQL+selMonthSQL+") as NG \r\n" + 
+				"from sys_test_sq";
+		
+		PageBean pageBean4 = dbutil.queryByPage2(nowPage, sql4);
+		request.setAttribute("pageBean4", pageBean4);
+		System.out.println(time+"查询通过率:"+sql4);
 
 		
 		if(type.equals("2")) {

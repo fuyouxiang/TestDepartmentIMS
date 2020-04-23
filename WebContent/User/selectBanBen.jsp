@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.text.SimpleDateFormat,java.util.Calendar,java.text.SimpleDateFormat" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,cn.com.shxt.model.PageBean,java.text.SimpleDateFormat,java.util.Calendar,java.text.SimpleDateFormat,java.text.DecimalFormat" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -6,6 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
+PageBean pageBean4=(PageBean)request.getAttribute("pageBean4");
 
 //获取用户名称和角色
 String username = (String)session.getAttribute("username");
@@ -71,8 +72,8 @@ body {
 }
 form {
     display: block;
-    margin-top: 0.5em;
-    margin-block-end: 0.5em;
+    margin-top: 0.2em;
+    margin-block-end: 0.1em;
 }
 button {
   background: #3498db;
@@ -93,6 +94,18 @@ button {
 html { overflow-x: auto; overflow-y: auto; border:0;} 
 -->
 
+input::-webkit-input-placeholder { /* WebKit browsers 适配谷歌 */
+    color: #BDCADA;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 适配火狐 */
+    color: #BDCADA;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ 适配火狐 */
+    color: #BDCADA;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+  适配ie*/
+    color: #BDCADA;
+}
  .black_overlay{ 
             display: none; 
             position: absolute; 
@@ -542,7 +555,7 @@ $(document).ready(function () {
           <td height="45" background="images/nav04.gif" style="width:60%;" align="right">
 			 <form name="MyPageForm" method="post"  id="submitSelectFrom"  onsubmit="submitSelect()">
 						部门：
-					<select name="selBumen" style="width:231px" onchange="submitSelBumen()">
+					<select name="selBumen" style="width:231px;" onchange="submitSelBumen()">
 					<option id="MRbumen"></option>
 					<option>全部</option>
 					<%
@@ -560,7 +573,7 @@ $(document).ready(function () {
                         %>
 					</select>
 						微服务：
-					<select name="selWeifw" style="width:170px">
+					<select name="selWeifw" style="width:170px;">
 					<option id="MRwei"></option>
 					<option>全部</option>
 					<%
@@ -578,7 +591,7 @@ $(document).ready(function () {
                         %>
 					</select><br>
 						月份：
-						<select style="high:150;font-weight:bold;width:80px" name="selMonth"  id="selMonth">
+						<select style="high:150;font-weight:bold;width:80px;" name="selMonth"  id="selMonth">
 						 <option id="MRmonth"></option>
 						 <option style="font-size:13px;"value="全部"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                          
 					     <option style="font-size:13px;" value="01"> &nbsp;&nbsp;一月 &nbsp;&nbsp;</option>
@@ -594,18 +607,18 @@ $(document).ready(function () {
 					     <option style="font-size:13px;" value="11"> &nbsp;&nbsp;十一月 &nbsp;&nbsp;</option>
 					     <option style="font-size:13px;" value="12"> &nbsp;&nbsp;十二月 &nbsp;&nbsp;</option>
 					     </select>
-					            版本号：<input style="width:100px" name="selVersion" id='MRversion' type="text" size="12"/>
+					            版本号：<input style="width:110px" name="selVersion" id='MRversion' type="text" size="12" placeholder="模糊查询"/>
 					            状态：
-					     <select style="high:150;font-weight:bold;width:80px" name="selState"  id="selState">
+					     <select style="high:150;font-weight:bold;width:80px;font-size: 13px;" name="selState"  id="selState">
 						 <option id="MRstate"></option>
-						 <option style="font-size:13px;"value="全部"> &nbsp;&nbsp;全部 &nbsp;&nbsp;</option>                              
-					     <option style="font-size:13px;" value="0"> &nbsp;&nbsp;待测试 &nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;正在测试 &nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="2"> &nbsp;&nbsp;NG&nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="3"> &nbsp;&nbsp;OK&nbsp;&nbsp;</option>
+						 <option style="font-size:13px;"value="全部">全部 &nbsp;&nbsp;</option>                              
+					     <option style="font-size:13px;" value="0">待测试 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="1">正在测试 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="2">NG&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="3">OK&nbsp;&nbsp;</option>
 					     </select>      
-						<input type="submit" value="查询" style="font-size:15px;font-weight:bold"/>
-						<input type="button" value="重置" style="font-size:15px;font-weight:bold" onclick="resetSelect()"/>
+						<input type="submit" value="查询" style="font-size:13px;font-weight:bold"/>
+						<input type="button" value="重置" style="font-size:13px;font-weight:bold" onclick="resetSelect()"/>
 			 </form>
 		</td>
 		<td height="45" background="images/nav04.gif" style="width:1%;"></td>
@@ -613,7 +626,7 @@ $(document).ready(function () {
         
     </table> 
 <!-- 右侧滚动条 -->
-<div style="width:100%;height:85%;overflow: scroll;">
+<div style="width:100%;height:87%;overflow: scroll;">
           <table width="3500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
@@ -621,8 +634,43 @@ $(document).ready(function () {
 				<table class="table-hover" id = "testList" width="3500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tbody id="tbody1">
 				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="24" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
+				 <td id="div_title" height="25" colspan="12" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
+				 <td id="div_title" height="25" colspan="12" align="left" style="font-size:16px"></td>
+				 </tr>
+				 <tr>
+				 <%
+                      if(pageBean4!=null){
+                       List<Map<String, String>>  resList=  pageBean4.getResList();
+                       if(resList!=null && resList.size()>0){                          		
+                          for(int i=0;i<resList.size();i++){
+                          Map<String, String>  stuMap= resList.get(i);	  
+                          int DALL= Integer.parseInt(stuMap.get("DALL"));
+                          int OK = Integer.parseInt(stuMap.get("OK"));
+                          int NG = Integer.parseInt(stuMap.get("NG"));
+                          String iOK = null;
+                          String iNG = null;
+                  		DecimalFormat dfnumber = new DecimalFormat("0");//格式化小数  
+                        if(DALL==0){
+                        	iOK = "0";
+                        	iNG = "0";
+                        }else{
+                        	iOK = dfnumber.format((float)OK*100/DALL);//返回的是String类型 
+                        	iNG = dfnumber.format((float)NG*100/DALL);//返回的是String类型
+                        }
+
+                   %>   
+                  	
+
+                    	<td id="div_title" height="23" colspan="24" align="left" style="font-size:13px;"><i>&nbsp;已测试完成：<strong><%=stuMap.get("DALL") %></strong>个，&nbsp;<span style="color:green">通过率：<strong><%=iOK %></strong>%（<%=stuMap.get("OK") %>个），&nbsp;</span><span style="color:red">驳回率：<strong><%=iNG %></strong>%（<%=stuMap.get("NG") %>个）&nbsp;</span></i></td>
+                    	
+                                    <%     
+                          }                        	  
+                       }
+                      }
+                  %>
                   </tr>
+
+
                   <tr bgcolor="#EEEEEE" align="center"  style="line-height:22px;height:22px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
                     <td  style="font-size:13px;font-weight:bold"></td>
@@ -844,12 +892,12 @@ $(document).ready(function () {
   </tr>
 </table>
 </div>
-<div style="font-size:14px;width:100%" align="center">
-						<button type="button" class="btn btn-default btn-primary btn-sm" id="fp" onclick="goPage(this)">首页</button>
-  						<button type="button" class="btn btn-default btn-info btn-sm" id="bp" onclick="goPage(this)">上一页</button>
+<div style="font-size:13px;width:100%" align="center">
+						<button type="button" class="btn btn-default btn-primary btn-sm" id="fp" onclick="goPage(this)" style="padding: 2px 8px;">首页</button>
+  						<button type="button" class="btn btn-default btn-info btn-sm" id="bp" onclick="goPage(this)" style="padding: 2px 8px;">上一页</button>
   						第<%=pageBean.getNowPage()%>页/共<%=pageBean.getPages()%>页
-  						<button type="button" class="btn btn-default btn-info btn-sm" id="gp" onclick="goPage(this)">下一页</button>
-  						<button type="button" class="btn btn-default btn-primary btn-sm" id="lp" onclick="goPage(this)">尾页</button>
+  						<button type="button" class="btn btn-default btn-info btn-sm" id="gp" onclick="goPage(this)" style="padding: 2px 8px;">下一页</button>
+  						<button type="button" class="btn btn-default btn-primary btn-sm" id="lp" onclick="goPage(this)" style="padding: 2px 8px;">尾页</button>
 </div>
 
   						                          <%
