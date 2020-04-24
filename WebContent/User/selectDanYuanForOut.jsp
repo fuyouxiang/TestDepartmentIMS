@@ -7,6 +7,12 @@ PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
 //System.out.println(pageBean.toString()) ;
+
+//获取用户名称和角色
+String username = (String)session.getAttribute("username");
+if(username==null){
+	response.getWriter().println("<script>alert('抱歉，用户信息已失效！请重新登录！');window.top.location='login.jsp';</script>");
+}
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -15,9 +21,12 @@ PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
     <base href="<%=basePath%>">
     
     <title>单元测试汇总</title>
+     <link href="bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="css/css.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />  
+
+
     <style type="text/css">
-    
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -31,7 +40,9 @@ PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 	-->
-
+tr.focus{
+    background-color:#eee;
+}
 <!--
 body {
 	margin-left: 0px;
@@ -113,12 +124,37 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 </style>
 
 
-<link href="css/css.css" rel="stylesheet" type="text/css" />
-
-<link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="./js/jquery-1.11.3.js"></script>
 <script type="text/javascript">
+$(document).ready(function () {
+    $("#testList>tbody>tr[id=contenttr]").on("click", function () {
+    	var trcolor = $(this).css("background-color");
+    	if(trcolor!="rgb(179, 208, 253)"){
+			$(this).find('input').prop("checked",true);
+		    //获取所有复选框的个数
+		    var len = $(":checkbox[name=checkboxBtn]").length;
+		    //alert("复选框个数："+len);
+		    //获取所有被选中的复选框的个数
+		    var checked_len = $(":checkbox[name=checkboxBtn]:checked").length;
+		    if(checked_len>1){
+		    	$(this).find('input').prop("checked",false);
+		    	alert("只能选中一条数据进行处理！");
+		    	return false;
+		    }else{
+	    		$(this).css("background-color","#b3d0fd");
+		    }
+    	}else{
+    		$(this).css("background-color","");
+    		$(this).find('input').prop("checked",false);
+    	}
+        //$(this).parent().find("tr.focus").toggleClass("focus");//取消原先选中行
+        //$(this).toggleClass("focus");//设定当前行为选中行
+    });
+});
+
 		function valiButt() {
 					if(<%=pageBean.getNowPage()%> == 1) {
 						document.getElementById("fp").disabled = true;
@@ -261,12 +297,131 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
          }
      }    
 
+    //开始测试
+    function StartTest(){
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var form= document.getElementById("StartDYTestForm");
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+        	 //alert("该条数据的ID为"+ID); 
+        	 form.action="<%=path %>/AddDanYuanTestServlet?type=3&D_ID="+ID;
+        	 //alert(form.action);
+        	 form.submit();
+         }
+     }
+
+    //开始测试的返回结果
+    var errori ='<%=request.getParameter("StartAnswer")%>';
+    if(errori=='yes'){
+     alert("测试任务已开始！");
+     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
+    }else if(errori=='no'){
+     alert("测试任务启动失败，请联系管理员！");
+     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
+    }
+    
+    //驳回操作
+    function ReturnTest(fm){
+        var D_TUSER=document.returnDYTestForm.D_TUSER.value;
+        var TIME=document.returnDYTestForm.TIME.value;
+        var REASON=document.returnDYTestForm.REASON.value;
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+        	 document.getElementById("returnTestButton").click()
+        	 //等待提示
+        	 showWaiting();
+        	 fm.action = fm.action + "&D_ID="+ID+"&D_TUSER="+D_TUSER+"&TIME="+TIME+"&REASON="+REASON;
+        	 return true;
+         }
+     }
+    
+    //驳回操作的返回结果
+    var errori ='<%=request.getParameter("ReturnAnswer")%>';
+    if(errori=='yes'){
+     alert("驳回操作完成，已邮件通知开发人员！为保证沟通的及时性，建议同时通过其他方式通知开发。");
+     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
+    }else if(errori=='no'){
+     alert("驳回操作失败，请联系管理员！");
+     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
+    }    
+
+    //测试通过
+    function EndTest(fm){
+        var D_TUSER=document.endDYTestForm.D_TUSER.value;
+        var TIME=document.endDYTestForm.TIME.value;
+        var REASON=document.endDYTestForm.REASON.value;
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+        	 document.getElementById("endTestButton").click()
+        	 //等待提示
+        	 showWaiting();
+        	 fm.action = fm.action + "&D_ID="+ID+"&D_TUSER="+D_TUSER+"&TIME="+TIME+"&REASON="+REASON;
+        	 return true;
+         }
+     }
+    
+    //测试通过的返回结果
+    var errori ='<%=request.getParameter("EndAnswer")%>';
+    if(errori=='yes'){
+     alert("此单元测试已测试通过！测试结束。");
+     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
+    }else if(errori=='no'){
+     alert("操作失败，请联系管理员！");
+     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
+    }
+    
+    //删除
+    function BBDelete(){
+
+    	var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+           if(checkbox[i].checked)
+            	value.push(checkbox[i].value);
+        } 
+        var ID =value.toString();
+        if(ID == "" || ID == null || ID == undefined){
+            alert("请勾选一条数据！"); 
+        }else{
+            if(confirm("您确定要删除这条数据吗？")){
+            	//等待提示
+            	showWaiting();
+             	 window.location.href="<%=path %>/DeleteBBTestServlet?D_ID="+ID;
+         		 $(document).ready(parent.closeWaiting());
+             }else {
+        			return false;
+        	}
+       }   
+    }
     
 	//查询提交
 	function submitSelect(){
         //等待提示
         showWaiting();
-        window.location.href="<%=path%>/AddDanYuanTestServlet?type=7";
+        window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
         $(document).ready(parent.closeWaiting());
     }
 
@@ -291,7 +446,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 		
 <body onload="valiButt()">
 
-<form action="<%=path %>/AddDanYuanTestServlet?type=7"  name="MyPageForm" method="post"  id="pageForm" >
+<form action="<%=path %>/AddDanYuanTestServlet?type=2"  name="MyPageForm" method="post"  id="pageForm" >
 	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
 	    <input type="hidden" id="nextPageId"  name="nextPage" value="1" />
     </form>
@@ -311,9 +466,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			 %>
 			   <td width="1000" align="left" >
 			    <button onclick="BBLog()">操作日志</button>
-				<button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
-			  
-           
+				<button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>          
             </td>
 			  <!-- <td align="right"><input style="font-size:15px;font-weight:bold;width:80px" size="12" type="button" value="显示全部" onclick="window.location.href='<%=path %>/'"></td>  -->
 		    </tr>
@@ -362,11 +515,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 					            状态：
 					     <select style="high:150;font-weight:bold;width:80px" name="selState"  id="selState">
 						 <option id="MRstate"></option>
-						 <option style="font-size:13px;" value="全部">&nbsp;&nbsp;全部&nbsp;&nbsp;</option>                              
-					     <option style="font-size:13px;" value="0"> &nbsp;&nbsp;待测试 &nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="1"> &nbsp;&nbsp;测试中 &nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="2"> &nbsp;&nbsp;NG&nbsp;&nbsp;</option>
-					     <option style="font-size:13px;" value="3"> &nbsp;&nbsp;OK&nbsp;&nbsp;</option>
+						 <option style="font-size:13px;" value="全部">全部&nbsp;&nbsp;</option>                              
+					     <option style="font-size:13px;" value="0">待测试 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="1">测试中 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="2">NG&nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="3">OK&nbsp;&nbsp;</option>
 					     </select>      
 						<input type="submit" value="查询" style="font-size:15px;font-weight:bold"/>
 						<input type="button" value="重置" style="font-size:15px;font-weight:bold" onclick="resetSelect()"/>
@@ -377,14 +530,16 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     </table> 
     
 <!-- 右侧滚动条 -->
-<div style="width:100%;height:85%;overflow: scroll;">
-          <table width="2500px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
+<div style="width:100%;height:90%;overflow: scroll;">
+          <table width="2700px" border="0" align="left" cellpadding="0" cellspacing="0" id="tableAll">
 
               <tr>
                 <td height="40" class="font42">
-				<table id = "testList" width="2500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
-				 <tr class="CTitle" >
-                    	<td id="div_title" height="28" colspan="16" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
+				<table class="table-hover"  id = "testList" width="2700px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
+				 <tbody id="tbody1">
+				 <tr style="background:#6795B4;color:#FFFFFF">
+                    	<td id="div_title" height="28" colspan="10" align="center" style="font-size:16px">单 元 测 试 汇 总</td>
+                    	<td id="div_title" height="28" colspan="6" align="center" style="font-size:16px"></td>
                   </tr>
                   <tr>
                  <%
@@ -410,6 +565,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                       		iNG2 = dfnumber.format((float)NG2*100/NGALL);//返回的是String类型
                       		iNG3 = dfnumber.format((float)NG3*100/NGALL);//返回的是String类型 
                         }
+
                    %>   
                   	<td id="div_title" height="28" colspan="16" align="left" style="font-size:14px;"><i>&nbsp;通过率：<span style="color:green">1轮（<%=iNG1 %>%）&nbsp;</span><span style="color:blue"> 2轮（<%=iNG2 %>%）&nbsp;</span><span style="color:red">3轮及以上（<%=iNG3 %>%）&nbsp;</span></i></td>
                   <%     
@@ -418,7 +574,8 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                       }
                   %>
                   </tr>
-                  <tr bgcolor="#EEEEEE" align="center">
+                  </tbody>
+                  <tr bgcolor="#EEEEEE" align="center" >
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
                     <td  style="font-size:15px;font-weight:bold"></td>
                     <td  style="font-size:15px;font-weight:bold">编号</td>
@@ -437,7 +594,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                     <td  style="font-size:15px;font-weight:bold">内容附件</td>
                     <td  style="font-size:15px;font-weight:bold">测试结果附件</td>
                   </tr>
-                   <tbody>
+                   <tbody id="tbody2">
                     	
                         <%
                         	
@@ -468,13 +625,13 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             	   
                             	  if(state.equals("0")){
                             		  state ="待测试";
-                            		  Color ="red";
+                            		  Color ="black";
                             	  }else if(state.equals("1")){
                             		  state ="正在测试";
                             		  Color ="blue";
                             	  }else if(state.equals("2")){
                             		  state ="已驳回";
-                            		  Color ="black";
+                            		  Color ="red";
                             	  }else if(state.equals("3")){
                             		  state ="测试通过";
                             		  Color ="green";
@@ -482,8 +639,14 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             		  state ="未知";
                             	  }  
                             	  
+                                  //测试人为空
+                                  String D_TUSER = stuMap.get("D_TUSER");
+                                  if(D_TUSER==null){
+                                	  D_TUSER="";
+                                  }
+                            	  
                           %>
-                          <tr align="center" style="">
+                          <tr align="center" style="" id="contenttr">
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
                           	<td  width=50px class="bor_2">
                           	<input type="checkbox" value="<%=stuMap.get("D_ID") %>" name="checkboxBtn"/><br />
@@ -494,10 +657,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=month %></td>
                             <td  width=100px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"><%=day %></td>
                             <td  width=400px class="bor_2" style="font-size:11px;text-align:center;font-weight:bold"> <%=stuMap.get("D_VERSION") %></td>
-                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_TUSER") %></td>
+                            <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=D_TUSER %></td>
                             <td  width=100px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_NG") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold">第<%=lunci %>轮&nbsp;<font color="<%=Color %>"><%=state %></font></td>
-                            <td  width=300px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_CONTENT") %></td>
+                            <td  width=500px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_CONTENT") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_BIAOZHUN") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;font-weight:bold"><%=stuMap.get("D_DATE") %></td>
                             <td  width=200px class="bor_2" style="font-size:13px;text-align:center;"><a href="<%=stuMap.get("D_SUBURL") %>" target="_blank"><%=stuMap.get("D_SUBURL") %></a></td>
