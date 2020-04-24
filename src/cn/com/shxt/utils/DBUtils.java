@@ -767,7 +767,7 @@ public class DBUtils {
 		return pageBean;
 	}
 	
-	//专门为签到表准备的一页50条数据
+	//专门为签到表准备的一页20条数据
 	public  PageBean  queryByPage3(String nowPage,String sql){
 	
 	PageBean pageBean = new PageBean();
@@ -807,6 +807,7 @@ public class DBUtils {
 		String sql1 = "select count(*) as num from ("+sql+")";
 		return Integer.parseInt(this.queryByList(sql1).get(0).get("NUM").toString());
 	}
+	
 	
 	
 }

@@ -124,9 +124,11 @@ public class selectBanBenServlet extends HttpServlet {
 		System.out.println(time+"总查询SQL:"+sql);
 		
 		String nowPage = request.getParameter("currentPage");
+		System.out.println(time+"当前页数:"+nowPage);
 		DBUtils dbutil = new DBUtils();
 		PageBean pageBean = dbutil.queryByPage3(nowPage, sql);
 		request.setAttribute("pageBean", pageBean);
+		System.out.println(time+"总页数:"+pageBean);
 		
 
 		

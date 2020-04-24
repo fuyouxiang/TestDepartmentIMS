@@ -4,6 +4,8 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 //获取之前得到的分页对象
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
+int pagesNum=(pageBean.getPages())/2;
+
 PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
 PageBean pageBean4=(PageBean)request.getAttribute("pageBean4");
@@ -144,9 +146,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10+  适配ie*/
 <script type="text/javascript">
 
 $(document).ready(function () {
-    $("#testList>tbody>tr").on("click", function () {
+    $("#testList>tbody>tr[id=contenttr]").on("click", function () {
     	var trcolor = $(this).css("background-color");
-    	if(trcolor!="rgb(179, 208, 253)"){
+    	if(trcolor!="rgb(173, 216, 247)"){
 			$(this).find('input').prop("checked",true);
 		    //获取所有复选框的个数
 		    var len = $(":checkbox[name=checkboxBtn]").length;
@@ -158,7 +160,7 @@ $(document).ready(function () {
 		    	alert("只能选中一条数据进行处理！");
 		    	return false;
 		    }else{
-	    		$(this).css("background-color","#b3d0fd");
+	    		$(this).css("background-color","#add8f7");
 		    }
     	}else{
     		$(this).css("background-color","");
@@ -175,7 +177,7 @@ $(document).ready(function () {
 						document.getElementById("bp").disabled = true;
 					} 
 				
-					 if(<%=pageBean.getNowPage()%> == <%=pageBean.getPages()%>) {
+					 if(<%=pageBean.getNowPage()%> == <%=pagesNum%>) {
 						document.getElementById("lp").disabled = true;
 						document.getElementById("gp").disabled = true;
 					
@@ -187,7 +189,7 @@ $(document).ready(function () {
        	 	//等待提示
        	 	showWaiting();
 			var currentPage = document.getElementById("currentPage");
-			var pageForm = document.getElementById("pageForm");
+			var pageForm = document.getElementById("submitSelectFrom");
 			
 			switch(butt.id) {
 				case "fp":
@@ -201,7 +203,7 @@ $(document).ready(function () {
 					//alert(currentPage.value);
 					break;
 				case "lp":
-					currentPage.value = <%=pageBean.getPages()%>;
+					currentPage.value = <%=pagesNum%>;
 					break;
 			}
 			pageForm.submit();
@@ -484,12 +486,6 @@ $(document).ready(function () {
 		
 		
 <body onload="valiButt()">
-
-
-<form action="<%=path %>/selectBanBenServlet?type=1"  name="MyPageForm" method="post"  id="pageForm" >
-	    <input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
-	    <input type="hidden" id="nextPageId"  name="nextPage" value="1" />
-    </form>
      
      <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -554,6 +550,8 @@ $(document).ready(function () {
           <!-- 高级查询区域 -->
           <td height="45" background="images/nav04.gif" style="width:60%;" align="right">
 			 <form name="MyPageForm" method="post"  id="submitSelectFrom"  onsubmit="submitSelect()">
+					<input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
+	    			<input type="hidden" id="nextPageId"  name="nextPage" value="1" />
 						部门：
 					<select name="selBumen" style="width:231px;" onchange="submitSelBumen()">
 					<option id="MRbumen"></option>
@@ -633,9 +631,11 @@ $(document).ready(function () {
                 <td height="40" class="font42">
 				<table class="table-hover" id = "testList" width="3500px" height="100px" border="2" cellpadding="0" cellspacing="1" bgcolor="#EEEEEE" class="newfont03">
 				 <tbody id="tbody1">
-				 <tr class="CTitle" >
-				 <td id="div_title" height="25" colspan="12" align="center" style="font-size:16px">版 本 测 试 汇 总</td>
-				 <td id="div_title" height="25" colspan="12" align="left" style="font-size:16px"></td>
+				 
+				 <!-- class="CTitle" -->
+				 <tr style="background:#6795B4;color:#FFFFFF">
+				 <td id="div_title" height="25" colspan="12" align="center" style="font-size:15px;height: 19px;">版 本 测 试 汇 总</td>
+				 <td id="div_title" height="25" colspan="12" align="left" style="font-size:15px;height: 19px;"></td>
 				 </tr>
 				 <tr>
 				 <%
@@ -661,7 +661,7 @@ $(document).ready(function () {
                    %>   
                   	
 
-                    	<td id="div_title" height="23" colspan="24" align="left" style="font-size:13px;"><i>&nbsp;已测试完成：<strong><%=stuMap.get("DALL") %></strong>个，&nbsp;<span style="color:green">通过率：<strong><%=iOK %></strong>%（<%=stuMap.get("OK") %>个），&nbsp;</span><span style="color:red">驳回率：<strong><%=iNG %></strong>%（<%=stuMap.get("NG") %>个）&nbsp;</span></i></td>
+                    	<td id="div_title" height="23" colspan="24" align="left" style="font-size: 12px;height: 20px;"><i>&nbsp;已测试完成：<strong><%=stuMap.get("DALL") %></strong>个，&nbsp;<span style="color:green">通过率：<strong><%=iOK %></strong>%（<%=stuMap.get("OK") %>个），&nbsp;</span><span style="color:red">驳回率：<strong><%=iNG %></strong>%（<%=stuMap.get("NG") %>个）&nbsp;</span></i></td>
                     	
                                     <%     
                           }                        	  
@@ -671,7 +671,7 @@ $(document).ready(function () {
                   </tr>
 
 
-                  <tr bgcolor="#EEEEEE" align="center"  style="line-height:22px;height:22px;">
+                  <tr bgcolor="#dadada" align="center"  style="line-height:22px;height:22px;">
                   <!--  <td height="40" class="bor_1"><input name='isBuy'  type="checkbox"  id="all"  onclick="checkAll(this.checked)"/></td>-->
                     <td  style="font-size:13px;font-weight:bold"></td>
                     <td  style="font-size:13px;font-weight:bold">编号</td>
@@ -815,7 +815,7 @@ $(document).ready(function () {
                                   
                           %>
 
-                          <tr align="center" style="line-height:15px;height:20px;">
+                          <tr align="center" style="line-height:15px;height:20px;" id='contenttr'>
                           	<!--  <td style="font-size:15px" height="28" class="bor_2"><input name='isBuy' type='checkbox' value='<%=i+1 %>'  /></td>-->
                           	<td width=50px class="bor_2">
                           	<input type="checkbox" value="<%=stuMap.get("D_ID") %>" name="checkboxBtn"/><br />
@@ -895,7 +895,7 @@ $(document).ready(function () {
 <div style="font-size:13px;width:100%" align="center">
 						<button type="button" class="btn btn-default btn-primary btn-sm" id="fp" onclick="goPage(this)" style="padding: 2px 8px;">首页</button>
   						<button type="button" class="btn btn-default btn-info btn-sm" id="bp" onclick="goPage(this)" style="padding: 2px 8px;">上一页</button>
-  						第<%=pageBean.getNowPage()%>页/共<%=pageBean.getPages()%>页
+  						第<%=pageBean.getNowPage()%>页/共<%=pagesNum%>页
   						<button type="button" class="btn btn-default btn-info btn-sm" id="gp" onclick="goPage(this)" style="padding: 2px 8px;">下一页</button>
   						<button type="button" class="btn btn-default btn-primary btn-sm" id="lp" onclick="goPage(this)" style="padding: 2px 8px;">尾页</button>
 </div>
