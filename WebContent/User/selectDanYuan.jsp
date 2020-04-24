@@ -662,13 +662,13 @@ $(document).ready(function () {
                             	   
                             	  if(state.equals("0")){
                             		  state ="待测试";
-                            		  Color ="red";
+                            		  Color ="black";
                             	  }else if(state.equals("1")){
                             		  state ="正在测试";
                             		  Color ="blue";
                             	  }else if(state.equals("2")){
                             		  state ="已驳回";
-                            		  Color ="black";
+                            		  Color ="red";
                             	  }else if(state.equals("3")){
                             		  state ="测试通过";
                             		  Color ="green";
