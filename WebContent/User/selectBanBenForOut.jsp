@@ -461,7 +461,7 @@ $(document).ready(function () {
         //等待提示
         showWaiting();
         window.location.href="<%=path%>/selectBanBenServlet?type=2";
-        $(document).ready(parent.closeWaiting());
+
     }
 
 	//选择部门时触发查询提交
@@ -470,7 +470,7 @@ $(document).ready(function () {
 		//等待提示
         showWaiting();
 		form.submit();//form表单提交
-		$(document).ready(parent.closeWaiting());
+
     }
 	
 	//重置查询条件后查询
