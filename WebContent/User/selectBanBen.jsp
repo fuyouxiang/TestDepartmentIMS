@@ -314,7 +314,34 @@ $(document).ready(function () {
          }else{
         	 window.location.href="<%=path %>/selectBBLogServlet?D_ID="+ID;
          }
-     }    
+     }  
+    
+    //发送江西
+    function SendJX(){
+    	 alert("改功能暂不开放！"); 
+    }
+    //发送江西
+    function SendJX1(){
+
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+             if(confirm("请注意：\n该功能只会发送当前版本附件！\n如果附件或脚本不完整，请自行整理后在“修改”功能中替换原附件！")){
+             	//等待提示
+             	showWaiting();
+        	    window.location.href="<%=path %>/updateBBStateServlet?type=3&D_ID="+ID;
+             }else {
+     			return false;
+         	}
+         }
+     }   
     
     //状态修改
     function BBState(){
@@ -450,7 +477,7 @@ $(document).ready(function () {
             	//等待提示
             	showWaiting();
              	 window.location.href="<%=path %>/DeleteBBTestServlet?D_ID="+ID;
-         		 $(document).ready(parent.closeWaiting());
+         		 //$(document).ready(parent.closeWaiting());
              }else {
         			return false;
         	}
@@ -489,7 +516,7 @@ $(document).ready(function () {
      
      <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td height="45" background="images/nav04.gif">
+          <td height="45" background="images/nav04.gif" style="width:50%;">
             
 		   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 		    <tr>
@@ -500,8 +527,8 @@ $(document).ready(function () {
 			 String time=df.format(new Date());// new Date()为获取当前系统时间
 			 String ExcelName = "版本测试汇总"+time;
 			 %>
-			   <td width="40%" align="left" >
-			    <button onclick="BBLog()">操作日志</button>
+			   <td align="left" >
+			    <button onclick="BBLog()">日志</button>
 			    <button onclick="BBState()">修改</button>
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:14px;font-weight:bold;" id="startTest" class="white_content">
@@ -537,6 +564,7 @@ $(document).ready(function () {
 						<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
         				</form>
 					</div>
+			   <button onclick="SendJX()">发江西</button>
 			   <button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
 			   <button onclick="BBDelete()" style="background-image:linear-gradient(to bottom, #f72c2c, #ffa2a2)">删除</button>
 			  
@@ -548,7 +576,7 @@ $(document).ready(function () {
           </table></td>
           
           <!-- 高级查询区域 -->
-          <td height="45" background="images/nav04.gif" style="width:60%;" align="right">
+          <td height="45" background="images/nav04.gif" style="width:50%;" align="right">
 			 <form name="MyPageForm" method="post"  id="submitSelectFrom"  onsubmit="submitSelect()">
 					<input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
 	    			<input type="hidden" id="nextPageId"  name="nextPage" value="1" />

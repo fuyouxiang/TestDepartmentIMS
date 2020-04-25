@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -56,6 +57,15 @@ public class updateBBStateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String type = request.getParameter("type");//调用方法类型
 		System.out.println("调用方法类型："+type);
+		
+		//获取用户名称和角色
+		HttpSession session = request.getSession();
+		String username = (String)session.getAttribute("username");
+		System.out.println("从session中获取用户名："+username);
+		String userrole = (String)session.getAttribute("userrole");
+		System.out.println("从session中获取用户角色："+userrole);
+		String UserCenter = (String)session.getAttribute("UserCenter");
+		System.out.println("从session中获取用户所属中心："+UserCenter);
 		
 		if(type.equals("1")) {
 			
@@ -266,7 +276,74 @@ public class updateBBStateServlet extends HttpServlet {
 		    }   
 			
 			
-		}else {
+		}else if(type.equals("3")) {
+			
+			System.out.println(timelog+"测试通过发送江西————————");
+			String D_ID = request.getParameter("D_ID");
+			System.out.println("申请单ID："+D_ID);
+			DBUtils dbutil =new DBUtils();
+			
+			//发送邮件
+			try {
+				String selectBBSql = "select * from SYS_TEST_SQ where  D_ID='"+ D_ID +"' ";
+				System.out.println(timelog+"查询申请单ID："+selectBBSql);	
+				String BossEmail = dbutil.queryString(selectBBSql,"D_KBOSSEMAIL");//开发总监邮箱
+				String k_email = dbutil.queryString(selectBBSql,"D_KEMAIL");//开发邮箱
+				String weiServer = dbutil.queryString(selectBBSql,"D_WEINAME");//微服务名
+				String banbenNo = dbutil.queryString(selectBBSql,"D_VERSION");//版本号
+				String D_KAIFA = dbutil.queryString(selectBBSql,"D_KAIFA");//开发
+				String D_TUSER = dbutil.queryString(selectBBSql,"D_TUSER");//测试
+				String D_REASON_FILE= dbutil.queryString(selectBBSql,"D_REASON_FILE");//结果附件
+				String D_CONFIG= dbutil.queryString(selectBBSql,"D_CONFIG");//配置文件附件
+				String D_SQL= dbutil.queryString(selectBBSql,"D_SQL");//SQL脚本附件
+				String D_WIKI= dbutil.queryString(selectBBSql,"D_WIKI");//构造内容附件
+				String D_CONTENT= dbutil.queryString(selectBBSql,"D_CONTENT");//构造内容附件
+				
+				
+				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
+				System.out.println(timelog+"查询测试部经理："+TestBossSql);	
+				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");//测试部经理
+				System.out.println(timelog+"测试部经理邮箱："+TestBossSql);	
+				
+				String JinJiBossSql="select B_NAME,B_USER,PHONE,EMAIL from SYS_BUMEN where B_NAME='江西现场'";
+				String JinjiBoss = dbutil.queryString(JinJiBossSql,"EMAIL");
+				System.out.println("江西收件人："+JinjiBoss);	
+				
+				String UserSql="select * from sys_user where U_NAME='"+ username +"' ";
+				String userEMAIL = dbutil.queryString(UserSql,"EMAIL");
+				if(userEMAIL==null) {
+					userEMAIL= "fuyx1@yonyou.com";
+				}
+				System.out.println("操作人邮箱："+userEMAIL);	
+				
+				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email+";"+JinjiBoss+";"+userEMAIL;
+				
+				System.out.println(timelog+"邮件地址："+EmailAddress);
+				String Msgtitle = weiServer+"微服务"+banbenNo+"版本已测试通过！（请现场查收并下载附件）";
+				System.out.println(timelog+"邮件标题："+Msgtitle);
+				String serviceRoot= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; 
+				String Msg = "【微服务名】："+weiServer+"<br>"+"【版本号】："+banbenNo+"<br>"+"【开发人】："+D_KAIFA+"<br>"+"【测试人】："+D_TUSER+"<br>"+
+				"【更新内容】："+D_CONTENT+"<br>"+
+				"【测试结果附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+D_REASON_FILE+"<br>"+
+				"【构造内容附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+D_WIKI+"<br>"+
+				"【SQL附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+D_SQL+"<br>"+
+				"【配置文件附件】："+serviceRoot+"youzhishi/DownloadPDF.jsp?ATTACH_NAME="+D_CONFIG+"<br>";
+				System.out.println(timelog+"邮件内容："+Msg);
+				SendEmail sendEmail = new SendEmail();
+				sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+			}catch(Exception e){
+				response.setContentType("text/html; charset=UTF-8");
+				response.getWriter().println("<script>alert('发送失败！请联系管理员。');window.location.href='selectBanBenServlet?type=1';</script>");
+			}
+			
+			String UpdateSql = "update SYS_TEST_SQ SET D_ISJXXC='1' where D_ID='"+ D_ID +"' ";		
+			System.out.println(timelog+"修改版本测试状态："+UpdateSql);
+			int flag = dbutil.update(UpdateSql);
+			
+			response.setContentType("text/html; charset=UTF-8");
+		    response.getWriter().println("<script>alert('发送成功！');window.location.href='selectBanBenServlet?type=1';</script>");
+		}
+		else {
 			String info ="系统出现异常，请联系管理员！";
 			request.setAttribute("info", info);
 			request.getRequestDispatcher("Sys.jsp").forward(request, response);		
