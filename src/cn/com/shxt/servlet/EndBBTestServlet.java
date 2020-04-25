@@ -233,7 +233,18 @@ public class EndBBTestServlet extends HttpServlet {
 				String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 				String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 				
-				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
+				//获取用户名称和角色
+				HttpSession session = request.getSession();
+				String username = (String)session.getAttribute("username");
+				System.out.println("从session中获取用户名："+username);
+				String UserSql="select * from sys_user where U_NAME='"+ username +"' ";
+				String userEMAIL = dbutil.queryString(UserSql,"EMAIL");
+				if(userEMAIL==null) {
+					userEMAIL= "fuyx1@yonyou.com";
+				}
+				System.out.println("操作人邮箱："+userEMAIL);	
+				
+				String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email+";"+userEMAIL;
 				System.out.println(timelog+"邮件地址："+EmailAddress);
 				String Msgtitle = D_KAIFA+"申请的"+banbenNo+"版本测试结束，测试通过！";
 				System.out.println(timelog+"邮件标题："+Msgtitle);

@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -51,6 +52,12 @@ public class AddDanYuanTestServlet extends HttpServlet {
 		//时间戳，直接调用DateTime.java中的方法
 		String timelog= DateTime.showtime();
 		request.setCharacterEncoding("UTF-8");
+		
+		//获取用户名称和角色
+		HttpSession session = request.getSession();
+		String username = (String)session.getAttribute("username");
+		System.out.println("从session中获取用户名："+username);
+
 		
 /**********************************************************************************************************************/
 	       System.out.println(timelog+"===============进入上传servlet，开始上传文件===============");
@@ -399,9 +406,18 @@ public class AddDanYuanTestServlet extends HttpServlet {
 					String k_email = dbutil.queryString(emailSql,"D_KEMAIL");
 					String banbenNo = dbutil.queryString(emailSql,"D_VERSION");
 					String D_KAIFA = dbutil.queryString(emailSql,"D_KAIFA");
+					
 					String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 					String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
-					String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
+					
+					String UserSql="select * from sys_user where U_NAME='"+ username +"' ";
+					String userEMAIL = dbutil.queryString(UserSql,"EMAIL");
+					if(userEMAIL==null) {
+						userEMAIL= "fuyx1@yonyou.com";
+					}
+					System.out.println("操作人邮箱："+userEMAIL);	
+					
+					String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email+";"+userEMAIL;
 					System.out.println(timelog+"邮件地址："+EmailAddress);
 					String Msgtitle = D_KAIFA+"申请的单元测试未通过！";
 					System.out.println(timelog+"邮件标题："+Msgtitle);
@@ -482,7 +498,14 @@ public class AddDanYuanTestServlet extends HttpServlet {
 					String TestBossSql="select * from  SYS_BUMEN where B_NAME='产品测试部'";
 					String TestBossEmail = dbutil.queryString(TestBossSql,"EMAIL");
 					
-					String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email;
+					String UserSql="select * from sys_user where U_NAME='"+ username +"' ";
+					String userEMAIL = dbutil.queryString(UserSql,"EMAIL");
+					if(userEMAIL==null) {
+						userEMAIL= "fuyx1@yonyou.com";
+					}
+					System.out.println("操作人邮箱："+userEMAIL);	
+					
+					String EmailAddress =";"+TestBossEmail+";"+BossEmail+";"+k_email+";"+userEMAIL;
 					System.out.println(timelog+"邮件地址："+EmailAddress);
 					String Msgtitle = D_KAIFA+"申请的"+banbenNo+"单元测试结束，测试通过！";
 					System.out.println(timelog+"邮件标题："+Msgtitle);
