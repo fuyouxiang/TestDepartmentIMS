@@ -8,11 +8,6 @@ PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
 //System.out.println(pageBean.toString()) ;
 
-//获取用户名称和角色
-String username = (String)session.getAttribute("username");
-if(username==null){
-	response.getWriter().println("<script>alert('抱歉，用户信息已失效！请重新登录！');window.top.location='login.jsp';</script>");
-}
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -297,125 +292,7 @@ $(document).ready(function () {
          }
      }    
 
-    //开始测试
-    function StartTest(){
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var form= document.getElementById("StartDYTestForm");
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 //alert("该条数据的ID为"+ID); 
-        	 form.action="<%=path %>/AddDanYuanTestServlet?type=3&D_ID="+ID;
-        	 //alert(form.action);
-        	 form.submit();
-         }
-     }
 
-    //开始测试的返回结果
-    var errori ='<%=request.getParameter("StartAnswer")%>';
-    if(errori=='yes'){
-     alert("测试任务已开始！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("测试任务启动失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }
-    
-    //驳回操作
-    function ReturnTest(fm){
-        var D_TUSER=document.returnDYTestForm.D_TUSER.value;
-        var TIME=document.returnDYTestForm.TIME.value;
-        var REASON=document.returnDYTestForm.REASON.value;
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 document.getElementById("returnTestButton").click()
-        	 //等待提示
-        	 showWaiting();
-        	 fm.action = fm.action + "&D_ID="+ID+"&D_TUSER="+D_TUSER+"&TIME="+TIME+"&REASON="+REASON;
-        	 return true;
-         }
-     }
-    
-    //驳回操作的返回结果
-    var errori ='<%=request.getParameter("ReturnAnswer")%>';
-    if(errori=='yes'){
-     alert("驳回操作完成，已邮件通知开发人员！为保证沟通的及时性，建议同时通过其他方式通知开发。");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("驳回操作失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }    
-
-    //测试通过
-    function EndTest(fm){
-        var D_TUSER=document.endDYTestForm.D_TUSER.value;
-        var TIME=document.endDYTestForm.TIME.value;
-        var REASON=document.endDYTestForm.REASON.value;
-        var checkbox = document.getElementsByName('checkboxBtn');
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-        	if(checkbox[i].checked)
-        		value.push(checkbox[i].value);
-        } 
-         var ID =value.toString();
-         if(ID == "" || ID == null || ID == undefined){
-        	 alert("请勾选一条数据！"); 
-         }else{
-        	 document.getElementById("endTestButton").click()
-        	 //等待提示
-        	 showWaiting();
-        	 fm.action = fm.action + "&D_ID="+ID+"&D_TUSER="+D_TUSER+"&TIME="+TIME+"&REASON="+REASON;
-        	 return true;
-         }
-     }
-    
-    //测试通过的返回结果
-    var errori ='<%=request.getParameter("EndAnswer")%>';
-    if(errori=='yes'){
-     alert("此单元测试已测试通过！测试结束。");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }else if(errori=='no'){
-     alert("操作失败，请联系管理员！");
-     window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
-    }
-    
-    //删除
-    function BBDelete(){
-
-    	var checkbox = document.getElementsByName('checkboxBtn');
-        var value = new Array();
-        for(var i = 0; i < checkbox.length; i++){
-           if(checkbox[i].checked)
-            	value.push(checkbox[i].value);
-        } 
-        var ID =value.toString();
-        if(ID == "" || ID == null || ID == undefined){
-            alert("请勾选一条数据！"); 
-        }else{
-            if(confirm("您确定要删除这条数据吗？")){
-            	//等待提示
-            	showWaiting();
-             	 window.location.href="<%=path %>/DeleteBBTestServlet?D_ID="+ID;
-         		 $(document).ready(parent.closeWaiting());
-             }else {
-        			return false;
-        	}
-       }   
-    }
     
 	//查询提交
 	function submitSelect(){
