@@ -33,6 +33,7 @@ $(function(){
   });
 });
 
+
 //通过js提交表单
 	function  submitMyForm(){
 	var W_NAME=document.formname.W_NAME.value;
@@ -128,6 +129,8 @@ $(function(){
                             	   Map<String, String>  stuMap= resList.get(i);	  
                           %>
 	<tr>
+	
+<form  action="<%=path %>/UpdateWeiFuWuServlet?type=update&oldB_NAME=<%=stuMap.get("B_NAME") %>&oldW_NAME=<%=stuMap.get("W_NAME") %>" method="post"  name="UpdateWFWForm" id="UpdateWFWForm">
 	     <td style="font-size:12px;text-align:center;font-weight:bold"> <%=i+1 %> </td>
          <td style="font-size:12px;text-align:center;font-weight:bold">
          <select style="high:150;font-weight:bold;width:230px;" name="B_NAME"  id="B_NAME" class="selectpicker show-tick form-control">
@@ -145,13 +148,14 @@ $(function(){
                        }
                       }
                         %>
-		</select>
+         </select>
          </td>
          <td style="font-size:12px;text-align:center;font-weight:bold"><input type="text" name="W_NAME" id='W_NAME' class="form-control" value="<%=stuMap.get("W_NAME") %>"></td>
          <td style="font-size:12px;text-align:center;font-weight:bold">
          <button type="button" class="btn btn-danger" onclick="if(window.confirm('您确定要删除吗？')){window.location.href='UpdateWeiFuWuServlet?type=delete&B_NAME=<%=stuMap.get("B_NAME") %>&W_NAME=<%=stuMap.get("W_NAME")%>'}">删除</button>
-         <button type="button" class="btn btn-warning" onclick="if(window.confirm('您确定要保存吗？')){window.location.href='UpdateWeiFuWuServlet?type=update'}">修改</button>
+         <button type="submit" value="提交" class="btn btn-warning">保存</button>
          </td>
+	</form>
 	</tr>
 	                          <%     
                                }  
