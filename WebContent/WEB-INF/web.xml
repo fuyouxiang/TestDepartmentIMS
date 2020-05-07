@@ -602,14 +602,22 @@
 		<description></description>
 		<servlet-class>cn.com.shxt.servlet.UpdateWeiFuWuServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>UpdateBuMenServlet</servlet-name>
+		<display-name>UpdateBuMenServlet</display-name>
+		<description></description>
+		<servlet-class>cn.com.shxt.servlet.UpdateBuMenServlet</servlet-class>
+	</servlet>
 
 
 
 
 
 
-
-
+	<servlet-mapping>
+    	<servlet-name>UpdateBuMenServlet</servlet-name>
+    	<url-pattern>/UpdateBuMenServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>UpdateWeiFuWuServlet</servlet-name>
     	<url-pattern>/UpdateWeiFuWuServlet</url-pattern>

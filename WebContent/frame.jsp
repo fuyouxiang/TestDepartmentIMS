@@ -134,7 +134,8 @@ var testshenqing=
             {id:'091',level:2,icon:'',title:'测试申请',path:'TestApplicationServlet',target:'_blank',children:[]},
             {id:'092',level:2,icon:'',title:'版本测试汇总',path:'selectBanBenServlet?type=1',target:'right',children:[]},
             {id:'093',level:2,icon:'',title:'单元测试汇总',path:'AddDanYuanTestServlet?type=2',target:'right',children:[]},
-            {id:'094',level:2,icon:'',title:'微服务管理(beta)',path:'UpdateWeiFuWuServlet?type=select',target:'right',children:[]}
+            {id:'094',level:2,icon:'',title:'微服务管理(beta)',path:'UpdateWeiFuWuServlet?type=select',target:'right',children:[]},
+            {id:'095',level:2,icon:'',title:'部门管理(beta)',path:'UpdateBuMenServlet?type=select',target:'right',children:[]}
             ]
 };
 
