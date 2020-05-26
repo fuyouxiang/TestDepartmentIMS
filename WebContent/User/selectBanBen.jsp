@@ -316,13 +316,9 @@ $(document).ready(function () {
          }
      }  
     
+
     //发送江西
     function SendJX(){
-    	 alert("改功能暂不开放！"); 
-    }
-    //发送江西
-    function SendJX1(){
-
         var checkbox = document.getElementsByName('checkboxBtn');
         var value = new Array();
         for(var i = 0; i < checkbox.length; i++){
@@ -564,7 +560,7 @@ $(document).ready(function () {
 						<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
         				</form>
 					</div>
-			   <button onclick="SendJX()">发江西</button>
+			   <!-- <button onclick="SendJX()">发江西</button> -->
 			   <button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
 			   <button onclick="BBDelete()" style="background-image:linear-gradient(to bottom, #f72c2c, #ffa2a2)">删除</button>
 			  
