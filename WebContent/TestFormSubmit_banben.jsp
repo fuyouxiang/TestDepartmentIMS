@@ -45,7 +45,9 @@ if(errori=='yes'){
 		var date=document.formname.date.value;
 		var weiServer=document.formname.weiServer.value;
 		var banbenNo=document.formname.banbenNo.value;
+		banbenNo = banbenNo.replace(/\%/g,"%25").replace(/\&/g,"%26").replace(/\=/g,"%3D").replace(/\#/g,"%23");
 		var content=document.formname.content.value;
+		content = content.replace(/\%/g,"%25").replace(/\&/g,"%26").replace(/\=/g,"%3D").replace(/\#/g,"%23");
 		var jinji=document.formname.jinji.value;
 		var obj = document.getElementsByName("biaozhun");//选择所有name="interest"的对象，返回数组    
 		var biaozhun='';//如果这样定义var s;变量s中会默认被赋个null值

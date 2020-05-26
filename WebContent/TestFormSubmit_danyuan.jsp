@@ -37,7 +37,9 @@ function  submitMyForm(fm){
 	var k_email=document.formname.k_email.value;
 	var date=document.formname.date.value;
 	var dyName=document.formname.dyName.value;
+	dyName = dyName.replace(/\%/g,"%25").replace(/\&/g,"%26").replace(/\=/g,"%3D").replace(/\#/g,"%23");
 	var content=document.formname.content.value;
+	content = content.replace(/\%/g,"%25").replace(/\&/g,"%26").replace(/\=/g,"%3D").replace(/\#/g,"%23");
 	var obj = document.getElementsByName("biaozhun");//选择所有name="interest"的对象，返回数组    
 	var biaozhun='';//如果这样定义var s;变量s中会默认被赋个null值
 	for(var i=0;i<obj.length;i++){
