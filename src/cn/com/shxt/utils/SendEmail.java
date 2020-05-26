@@ -4,6 +4,7 @@ package cn.com.shxt.utils;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -18,6 +19,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sun.mail.util.MailSSLSocketFactory;
+
 import cn.com.shxt.servlet.DateTime;
 import net.sf.json.JSONObject;
 
@@ -116,26 +120,50 @@ public class SendEmail  extends HttpServlet {
 	
 	public void SendEmailFromQQ(String EmailAddress,String Msgtitle,String Msg){
 		
-		   System.out.println("调用QQ邮箱发送接口：————————————————");
-		   
-		   
-		    Properties properties = new Properties();
-		    properties.setProperty("mail.transport.protocol", "smtp");
+	    ResourceBundle resource = ResourceBundle.getBundle("email");
+	    System.out.println("读取电子邮件配置文件：email.properties");
+	    String EmailType = resource.getString("EmailType");
+	    System.out.println("邮箱类型：" + EmailType );
+	    String SendEmailAddress = resource.getString("SendEmailAddress");
+	    System.out.println("电子邮件服务端：" + SendEmailAddress);
+	    String ShouQuanMa = resource.getString("ShouQuanMa");
+	    System.out.println("授权码：" + ShouQuanMa );
 
-		    properties.put("mail.smtp.host", "smtp.qq.com");
-		    properties.put("mail.smtp.port", Integer.valueOf(465));
+	    System.out.println("邮箱地址：" + EmailAddress );
+	    System.out.println("邮件标题：" + Msgtitle );
+	    System.out.println("邮件内容：" + Msg );
+	    
+	    Properties properties = new Properties();
+	    properties.setProperty("mail.transport.protocol", "smtp");
+	    
+	    
+	    if(EmailType.equals("163")) {
+			 System.out.println("调用163邮箱发送接口：————————————————");
+			 
+			 properties.put("mail.smtp.host", "smtp.163.com");
+
+	    }else {
+			 System.out.println("调用QQ邮箱发送接口：————————————————");
+			 
+			 properties.put("mail.smtp.host", "smtp.qq.com");
+			   
+	    }
+
 		    properties.put("mail.smtp.auth", "true");
 		    properties.put("mail.smtp.ssl.enable", "true");
+			 // SSL加密
+			 MailSSLSocketFactory sf = null;
+			    try {
+					sf = new MailSSLSocketFactory();
+			} catch (GeneralSecurityException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+			}
+			  // 设置信任所有的主机
+			  sf.setTrustAllHosts(true);
+			  properties.put("mail.smtp.ssl.socketFactory", sf);
 
-		    ResourceBundle resource = ResourceBundle.getBundle("email");
-		    System.out.println("读取电子邮件配置文件：email.properties");
-		    String SendEmailAddress = resource.getString("SendEmailAddress");
-		    System.out.println("电子邮件服务端：" + SendEmailAddress);
-		    String ShouQuanMa = resource.getString("ShouQuanMa");
-		    System.out.println("授权码：" + ShouQuanMa );
-		    System.out.println("邮箱地址：" + EmailAddress );
-		    System.out.println("邮件标题：" + Msgtitle );
-		    System.out.println("邮件内容：" + Msg );
+
 		    
 
 	        //设置自定义发件人昵称  
@@ -171,6 +199,7 @@ public class SendEmail  extends HttpServlet {
 
 		      //把收件人字符串中的；换成，   .substring(1)是为了去掉最前面的，
 		      String to = EmailAddress.replace(";", ",").substring(1);
+		      //to="fuyouxiang1994@163.com";
 		      System.out.println("收件人确认："+to);
 		      //必须把收件人地址封装成数组
 		      InternetAddress[] addressesTo = null;
@@ -181,6 +210,7 @@ public class SendEmail  extends HttpServlet {
 						addressesTo = new InternetAddress[receiveCount];
 						for (int i = 0; i < receiveCount; i++) {
 							addressesTo[i] = new InternetAddress(receiveList[i]);
+							System.out.println("收件人遍历："+addressesTo[i]);
 						}
 
 		      //message.setRecipient(Message.RecipientType.TO, new InternetAddress(addressesCc));
@@ -291,6 +321,105 @@ public class SendEmail  extends HttpServlet {
 
 	        // 7. 关闭连接
 	        transport.close();
+	}
+	
+	public void SendEmailFrom163(String EmailAddress,String Msgtitle,String Msg){
+		
+		   System.out.println("调用163邮箱发送接口：————————————————");
+		   
+		   
+		    Properties properties = new Properties();
+		    properties.setProperty("mail.transport.protocol", "smtp");
+
+		    properties.put("mail.smtp.host", "smtp.163.com");
+		    properties.put("mail.smtp.auth", "true");
+		    properties.put("mail.smtp.ssl.enable", "true");
+		    // SSL加密
+		    MailSSLSocketFactory sf = null;
+		    try {
+				sf = new MailSSLSocketFactory();
+			} catch (GeneralSecurityException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			}
+		    // 设置信任所有的主机
+		    sf.setTrustAllHosts(true);
+		    properties.put("mail.smtp.ssl.socketFactory", sf);
+
+
+		    ResourceBundle resource = ResourceBundle.getBundle("email");
+		    System.out.println("读取电子邮件配置文件：email.properties");
+		    String SendEmailAddress = resource.getString("SendEmailAddress");
+		    System.out.println("电子邮件服务端：" + SendEmailAddress);
+		    String ShouQuanMa = resource.getString("ShouQuanMa");
+		    System.out.println("授权码：" + ShouQuanMa );
+		    System.out.println("邮箱地址：" + EmailAddress );
+		    System.out.println("邮件标题：" + Msgtitle );
+		    System.out.println("邮件内容：" + Msg );
+		    
+
+	        //设置自定义发件人昵称  
+	        String nick="";  
+	        try {  
+	            nick=javax.mail.internet.MimeUtility.encodeText("财政云产品测试部");  
+	        } catch (UnsupportedEncodingException e) {  
+	            e.printStackTrace();  
+	        }  
+	        
+		    Session session = Session.getDefaultInstance(properties);
+		    session.setDebug(true);
+
+		    Message message = new MimeMessage(session);
+
+		    try {
+		      try {
+				message.setFrom(new InternetAddress(SendEmailAddress,"财政云测试部","UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+
+		      message.setSubject(Msgtitle);
+
+		      
+				//message.setText(Msg);
+				message.setContent(Msg, "text/html;charset=UTF-8");
+
+		      Transport transport = session.getTransport();
+
+		      transport.connect(SendEmailAddress, ShouQuanMa);
+
+		      //把收件人字符串中的；换成，   .substring(1)是为了去掉最前面的，
+		      String to = EmailAddress.replace(";", ",").substring(1);
+		      System.out.println("收件人确认："+to);
+		      to="fuyx1@yonyou.com,fuyouxiang1994@163.com";
+		      //必须把收件人地址封装成数组
+		      InternetAddress[] addressesTo = null;
+				if (to != null && to.trim().length() > 0) {
+					String[] receiveList = to.split(",");
+					int receiveCount = receiveList.length;
+					if (receiveCount > 0) {
+						addressesTo = new InternetAddress[receiveCount];
+						for (int i = 0; i < receiveCount; i++) {
+							addressesTo[i] = new InternetAddress(receiveList[i]);
+						}
+
+		      //message.setRecipient(Message.RecipientType.TO, new InternetAddress(addressesCc));
+			  //封装邮件
+		      message.setRecipients(Message.RecipientType.TO,addressesTo);
+
+		      System.out.println("开始发送邮件：" + addressesTo);
+		      //邮件群发
+		      transport.sendMessage(message, message.getAllRecipients());
+		      System.out.println("发送完成！");
+		      transport.close();
+		    
+		  }
+		}
+		      } catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}		
 	}
 	
 
