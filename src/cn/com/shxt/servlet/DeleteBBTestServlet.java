@@ -113,7 +113,8 @@ public class DeleteBBTestServlet extends HttpServlet {
 			response.setContentType("text/html; charset=UTF-8");
 		    if(flag>0){
 			SendEmail sendEmail = new SendEmail();
-			sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
+			//暂时注释掉删除的发送邮件
+			//sendEmail.SendEmailFromQQ(EmailAddress, Msgtitle, Msg);
 		    	response.getWriter().println("<script>alert('操作成功！');window.location.href='selectBanBenServlet?type=1';</script>");
 		    }else{
 		    	response.getWriter().println("<script>alert('操作异常，请联系管理员！');window.location.href='selectBanBenServlet?type=1';</script>");
