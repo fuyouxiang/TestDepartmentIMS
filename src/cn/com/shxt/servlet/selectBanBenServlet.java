@@ -1,6 +1,7 @@
 package cn.com.shxt.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -255,9 +256,27 @@ public class selectBanBenServlet extends HttpServlet {
 			String nowPage = request.getParameter("currentPage");
 			System.out.println(time+"当前页数:"+nowPage);
 			DBUtils dbutil = new DBUtils();
-			PageBean pageBean = dbutil.queryByPage3(nowPage, sql);
-			request.setAttribute("pageBean", pageBean);
-			System.out.println(time+"总页数:"+pageBean);
+			String configSql="select * from sys_config where name='SelectAll'";
+			String SelectAll = null;
+			try {
+				SelectAll = dbutil.queryString(configSql,"VALUE");
+				System.out.println(time+"查询全部开关:"+SelectAll);
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			if(SelectAll.equals("1")) {
+				PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
+				request.setAttribute("pageBean", pageBean);
+				System.out.println(time+"总页数:"+pageBean);
+			}else {
+				PageBean pageBean = dbutil.queryByPage3(nowPage, sql);
+				request.setAttribute("pageBean", pageBean);
+				System.out.println(time+"总页数:"+pageBean);
+				
+			}
+			
+
 			
 
 			

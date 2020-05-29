@@ -300,9 +300,25 @@ public class AddDanYuanTestServlet extends HttpServlet {
 			
 			String nowPage = request.getParameter("currentPage");
 			System.out.println(time+"当前页数:"+nowPage);
-			PageBean pageBean = dbutil.queryByPage3(nowPage, sql);
-			request.setAttribute("pageBean", pageBean);
-			System.out.println(time+"总页数:"+pageBean);
+			String configSql="select * from sys_config where name='SelectAll'";
+			String SelectAll = null;
+			try {
+				SelectAll = dbutil.queryString(configSql,"VALUE");
+				System.out.println(time+"查询全部开关:"+SelectAll);
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			if(SelectAll.equals("1")) {
+				PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
+				request.setAttribute("pageBean", pageBean);
+				System.out.println(time+"总页数:"+pageBean);
+			}else {
+				PageBean pageBean = dbutil.queryByPage3(nowPage, sql);
+				request.setAttribute("pageBean", pageBean);
+				System.out.println(time+"总页数:"+pageBean);
+				
+			}
 			
 			//部门查询条件
 			String sql2 = "select B_NAME from SYS_BUMEN where B_NAME != '产品测试部'";
