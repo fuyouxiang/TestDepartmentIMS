@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 //获取之前得到的分页对象
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
+int pagesNum=(pageBean.getPages())/2;
 PageBean pageBean2=(PageBean)request.getAttribute("pageBean2");
 PageBean pageBean3=(PageBean)request.getAttribute("pageBean3");
 //System.out.println(pageBean.toString()) ;
@@ -185,7 +186,7 @@ $(document).ready(function () {
 					//alert(currentPage.value);
 					break;
 				case "lp":
-					currentPage.value = <%=pageBean.getPages()%>;
+					currentPage.value = <%=pagesNum%>;
 					break;
 			}
 			pageForm.submit();
@@ -733,11 +734,8 @@ $(document).ready(function () {
                                }
                         	  
                            }
+                          %>
 
-                          }
-                   
-                        
-                        %>
                          
                     </tbody>
 
@@ -745,7 +743,18 @@ $(document).ready(function () {
   </tr>
 </table>
 </div>
-
+<div style="font-size:13px;width:100%" align="center">
+						<button type="button" class="btn btn-default btn-primary btn-sm" id="fp" onclick="goPage(this)" style="padding: 2px 8px;">首页</button>
+  						<button type="button" class="btn btn-default btn-info btn-sm" id="bp" onclick="goPage(this)" style="padding: 2px 8px;">上一页</button>
+  						第<%=pageBean.getNowPage()%>页/共<%=pagesNum%>页
+  						<button type="button" class="btn btn-default btn-info btn-sm" id="gp" onclick="goPage(this)" style="padding: 2px 8px;">下一页</button>
+  						<button type="button" class="btn btn-default btn-primary btn-sm" id="lp" onclick="goPage(this)" style="padding: 2px 8px;">尾页</button>
+</div>
+                           <%  
+                          }
+                   
+                        
+                        %>
   </body>
   
   <script language="javascript">

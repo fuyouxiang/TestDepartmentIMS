@@ -298,9 +298,11 @@ public class AddDanYuanTestServlet extends HttpServlet {
 					+selBumenSQL+selVersionSQL+selMonthSQL+selStateSQL+OrderSQL;
 					System.out.println(timelog+"总查询SQL:"+sql);
 			
-			String nowPage = request.getParameter("currentPage");		
-			PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
+			String nowPage = request.getParameter("currentPage");
+			System.out.println(time+"当前页数:"+nowPage);
+			PageBean pageBean = dbutil.queryByPage3(nowPage, sql);
 			request.setAttribute("pageBean", pageBean);
+			System.out.println(time+"总页数:"+pageBean);
 			
 			//部门查询条件
 			String sql2 = "select B_NAME from SYS_BUMEN where B_NAME != '产品测试部'";
@@ -648,8 +650,11 @@ public class AddDanYuanTestServlet extends HttpServlet {
 					//排序条件
 					String OrderSQL=" order by D_DATE desc";
 					
+					//只查询前100
+					String rownumSQL=" and rownum<=100";
+					
 					String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_VERSION,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_STATE,D_SUBURL,D_WIKI from SYS_TEST_SQ where D_TYPE='单元测试'"
-							+selBumenSQL+selVersionSQL+selMonthSQL+selStateSQL+OrderSQL;
+							+selBumenSQL+selVersionSQL+selMonthSQL+selStateSQL+rownumSQL+OrderSQL;
 							System.out.println(timelog+"总查询SQL:"+sql);
 					
 					String nowPage = request.getParameter("currentPage");		
