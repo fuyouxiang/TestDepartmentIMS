@@ -115,7 +115,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
             top: 25%; 
             left: 25%; 
             width: 55%; 
-            height: 55%; 
+            height: 65%; 
             padding: 20px; 
             border: 10px solid orange; 
             background-color: white; 
@@ -469,37 +469,37 @@ $(document).ready(function () {
 			    <button onclick="BBLog()">操作日志</button>
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:14px;font-weight:bold;" id="startTest" class="white_content">
-			    		<form  method="post"  id="StartDYTestForm">
+			    		<form  style="display: inline;" method="post"  id="StartDYTestForm">
         					【测试人】：<input  type="text" name="D_TUSER" style="background-color:#e8e8e8" readonly value="<%=username%>"><br/><br/>
         					【开始测试时间】：<input type="text" name="TIME" style="background-color:#e8e8e8" value="<%=time %>" readonly="readonly"><br/><br/>
-        					<button style="display: block;" onclick='StartTest()'>提交</button>
-        				    <button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
+        					<button style="background:#3498db;background-image:linear-gradient(to bottom, #3498db, #2980b9);font-family:微软雅黑;color:#ffffff;padding:2px 8px 4px 11px;text-decoration:none;border-radius:28px;font-size:14px" onclick='StartTest()'>提交</button>
         				</form>
+        					<button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
 					</div>
 
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'">驳回</button>
 			    	<div style="font-size:14px;font-weight:bold;" id="returnTest" class="white_content">
-			    		<form action="<%=path %>/AddDanYuanTestServlet?type=4" onsubmit="return ReturnTest(this)" method="post" name="returnDYTestForm" id="returnDYTestForm"  enctype="multipart/form-data">
+			    		<form style="display: inline;" action="<%=path %>/AddDanYuanTestServlet?type=4" onsubmit="return ReturnTest(this)" method="post" name="returnDYTestForm" id="returnDYTestForm"  enctype="multipart/form-data">
         					【 测 试 人】：<input  type="text" name="D_TUSER" style="background-color:#e8e8e8" readonly value="<%=username%>"><br/><br/>
         					【驳回时间】：<input type="text" name="TIME" style="background-color:#e8e8e8" value="<%=time %>" readonly="readonly"><br/><br/>
         					【驳回原因】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 60px;"></textarea><br/><br/>
         					【测试结果附件】：<input name="file" type="file" class="text"><br/><br/>
         					<input type="submit" value="提交" style="background:#3498db;background-image:linear-gradient(to bottom, #3498db, #2980b9);font-family:微软雅黑;color:#ffffff;padding:2px 8px 4px 11px;text-decoration:none;border-radius:28px;font-size:14px">
-        					<button onclick = "document.getElementById('returnTest').style.display='none'" id="returnTestButton">关闭</button>
         				</form>
+        					<button onclick = "document.getElementById('returnTest').style.display='none'" id="returnTestButton">关闭</button>
 						
 					</div>
 					
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'">测试通过</button>
 			    	<div style="font-size:14px;font-weight:bold;" id="endTest" class="white_content">
-			    		<form  action="<%=path %>/AddDanYuanTestServlet?type=5" onsubmit="return EndTest(this)" method="post"  name="endDYTestForm" id="endDYTestForm" enctype="multipart/form-data">
+			    		<form  style="display: inline;" action="<%=path %>/AddDanYuanTestServlet?type=5" onsubmit="return EndTest(this)" method="post"  name="endDYTestForm" id="endDYTestForm" enctype="multipart/form-data">
         					【 测 试 人】：<input  type="text" name="D_TUSER" style="background-color:#e8e8e8" readonly value="<%=username%>"><br/><br/>
         					【通过时间】：<input type="text" name="TIME" style="background-color:#e8e8e8" value="<%=time %>" readonly="readonly"><br/><br/>
         					【备注/遗留】：<textarea type="text" name="REASON" required="required" style="margin: 0px; width: 356px; height: 60px;"></textarea><br/><br/>
         					【测试结果附件】：<input name="file" type="file" class="text"><br/><br/>
         					<input type="submit" value="提交" style="background:#3498db;background-image:linear-gradient(to bottom, #3498db, #2980b9);font-family:微软雅黑;color:#ffffff;padding:2px 8px 4px 11px;text-decoration:none;border-radius:28px;font-size:14px">
-        					<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
         				</form>
+        					<button onclick = "document.getElementById('endTest').style.display='none'" id="endTestButton">关闭</button>
 						
 					</div>
 				<button href = "javascript:void(0)"  onclick="tableToExcel('tableAll','<%=ExcelName %>');">导出</button>
