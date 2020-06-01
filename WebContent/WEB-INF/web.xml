@@ -608,12 +608,24 @@
 		<description></description>
 		<servlet-class>cn.com.shxt.servlet.UpdateBuMenServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>updateDYStateServlet</servlet-name>
+		<display-name>updateDYStateServlet</display-name>
+		<description></description>
+		<servlet-class>cn.com.shxt.servlet.updateDYStateServlet</servlet-class>
+	</servlet>
 
 
 
 
 
 
+
+
+	<servlet-mapping>
+    	<servlet-name>updateDYStateServlet</servlet-name>
+    	<url-pattern>/updateDYStateServlet</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>UpdateBuMenServlet</servlet-name>
     	<url-pattern>/UpdateBuMenServlet</url-pattern>

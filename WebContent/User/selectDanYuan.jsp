@@ -327,6 +327,22 @@ $(document).ready(function () {
      alert("测试任务启动失败，请联系管理员！");
      window.location.href="<%=path%>/AddDanYuanTestServlet?type=2";
     }
+
+    //状态修改
+    function BBState(){
+        var checkbox = document.getElementsByName('checkboxBtn');
+        var value = new Array();
+        for(var i = 0; i < checkbox.length; i++){
+        	if(checkbox[i].checked)
+        		value.push(checkbox[i].value);
+        } 
+         var ID =value.toString();
+         if(ID == "" || ID == null || ID == undefined){
+        	 alert("请勾选一条数据！"); 
+         }else{
+        	 window.location.href="<%=path %>/updateDYStateServlet?type=1&D_ID="+ID;
+         }
+     }  
     
     //驳回操作
     function ReturnTest(fm){
@@ -466,7 +482,8 @@ $(document).ready(function () {
 			 String ExcelName = "单元测试汇总"+time;
 			 %>
 			   <td width="1000" align="left" >
-			    <button onclick="BBLog()">操作日志</button>
+			    <button onclick="BBLog()">日志</button>
+			    <button onclick="BBState()">修改</button>
 			    <button href = "javascript:void(0)" onclick = "document.getElementById('startTest').style.display='block'">开始测试</button>
 			    	<div style="font-size:14px;font-weight:bold;" id="startTest" class="white_content">
 			    		<form  style="display: inline;" method="post"  id="StartDYTestForm">
@@ -477,7 +494,7 @@ $(document).ready(function () {
         					<button onclick = "document.getElementById('startTest').style.display='none'">关闭</button>
 					</div>
 
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'">驳回</button>
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('returnTest').style.display='block'" style="color:#ffe000">驳回</button>
 			    	<div style="font-size:14px;font-weight:bold;" id="returnTest" class="white_content">
 			    		<form style="display: inline;" action="<%=path %>/AddDanYuanTestServlet?type=4" onsubmit="return ReturnTest(this)" method="post" name="returnDYTestForm" id="returnDYTestForm"  enctype="multipart/form-data">
         					【 测 试 人】：<input  type="text" name="D_TUSER" style="background-color:#e8e8e8" readonly value="<%=username%>"><br/><br/>
@@ -490,7 +507,7 @@ $(document).ready(function () {
 						
 					</div>
 					
-			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'">测试通过</button>
+			    <button href = "javascript:void(0)" onclick = "document.getElementById('endTest').style.display='block'" style="color:#00ff5a">通过</button>
 			    	<div style="font-size:14px;font-weight:bold;" id="endTest" class="white_content">
 			    		<form  style="display: inline;" action="<%=path %>/AddDanYuanTestServlet?type=5" onsubmit="return EndTest(this)" method="post"  name="endDYTestForm" id="endDYTestForm" enctype="multipart/form-data">
         					【 测 试 人】：<input  type="text" name="D_TUSER" style="background-color:#e8e8e8" readonly value="<%=username%>"><br/><br/>
