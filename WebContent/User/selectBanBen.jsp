@@ -512,7 +512,7 @@ $(document).ready(function () {
      
      <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td height="45" background="images/nav04.gif" style="width:50%;">
+          <td height="45" background="images/nav04.gif" style="width:40%;">
             
 		   <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 		    <tr>
@@ -573,7 +573,7 @@ $(document).ready(function () {
           </table></td>
           
           <!-- 高级查询区域 -->
-          <td height="45" background="images/nav04.gif" style="width:50%;" align="right">
+          <td height="45" background="images/nav04.gif" style="width:60%;" align="right">
 			 <form name="MyPageForm" method="post"  id="submitSelectFrom"  onsubmit="submitSelect()">
 					<input  type="hidden" name="currentPage" id="currentPage" value="<%=pageBean.getNowPage()%>"/>
 	    			<input type="hidden" id="nextPageId"  name="nextPage" value="1" />
@@ -631,6 +631,13 @@ $(document).ready(function () {
 					     <option style="font-size:13px;" value="12"> &nbsp;&nbsp;十二月 &nbsp;&nbsp;</option>
 					     </select>
 					            版本号：<input style="width:110px" name="selVersion" id='MRversion' type="text" size="12" placeholder="模糊查询"/>
+					            发江西：
+					     <select style="high:100;font-weight:bold;width:80px;font-size: 13px;" name="selJiangxi"  id="selJiangxi">
+						 <option id="MRjiangxi"></option>
+						 <option style="font-size:13px;"value="全部">全部 &nbsp;&nbsp;</option>                              
+					     <option style="font-size:13px;" value="0">未发 &nbsp;&nbsp;</option>
+					     <option style="font-size:13px;" value="1">已发&nbsp;&nbsp;</option>
+					     </select>       
 					            状态：
 					     <select style="high:150;font-weight:bold;width:80px;font-size: 13px;" name="selState"  id="selState">
 						 <option id="MRstate"></option>
@@ -942,6 +949,8 @@ var selVersion ='<%=request.getAttribute("selVersion")%>';
 document.getElementById('MRversion').innerHTML = selVersion;
 var selState ='<%=request.getAttribute("selState")%>';
 document.getElementById('MRstate').innerHTML = selState;
+var selJiangxi ='<%=request.getAttribute("selJiangxi")%>';
+document.getElementById('MRjiangxi').innerHTML = selJiangxi;
 
 //关闭等待窗口
   function closeWaiting() {

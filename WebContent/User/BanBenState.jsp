@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 PageBean pageBean=(PageBean)request.getAttribute("pageBean");
 //System.out.println(pageBean.toString()) ;
 %>
-<!DOCTYPE">
+<!DOCTYPE>
 <html>
 <head>
 <link href="bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>

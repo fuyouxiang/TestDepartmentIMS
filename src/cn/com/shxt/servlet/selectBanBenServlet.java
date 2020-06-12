@@ -175,6 +175,7 @@ public class selectBanBenServlet extends HttpServlet {
 		else {
 			//对内显示
 			
+			String SelectAll = "0";//查询全部开关
 			
 			//查询条件：部门
 			String selBumen = request.getParameter("selBumen");
@@ -187,6 +188,7 @@ public class selectBanBenServlet extends HttpServlet {
 				//发送查询条件默认值
 				request.setAttribute("selBumen", "");
 			}else {
+				SelectAll="1";
 				selBumenSQL=" AND D_BUMEN='"+selBumen+"' ";
 				selBumenSQL2=" AND B_NAME='"+selBumen+"' ";
 				//发送查询条件默认值
@@ -202,6 +204,7 @@ public class selectBanBenServlet extends HttpServlet {
 				//发送查询条件默认值
 				request.setAttribute("selWeifw", "");
 			}else {
+				SelectAll="1";
 				selWeifwSQL=" AND D_WEINAME='"+selWeifw+"' ";
 				//发送查询条件默认值
 				request.setAttribute("selWeifw", selWeifw);
@@ -215,6 +218,7 @@ public class selectBanBenServlet extends HttpServlet {
 				selVersionSQL=" AND 1=1 ";
 				request.setAttribute("selVersion", "");
 			}else {
+				SelectAll="1";
 				selVersionSQL=" AND D_VERSION like '%"+selVersion+"%' ";
 				request.setAttribute("selVersion", selVersion);
 			}
@@ -229,6 +233,7 @@ public class selectBanBenServlet extends HttpServlet {
 				selMonthSQL=" AND 1=1 ";
 				request.setAttribute("selMonth", "");
 			}else {
+				SelectAll="1";
 				selMonthSQL=" AND D_DATE like '"+year+"-"+selMonth+"-%' ";
 				request.setAttribute("selMonth", selMonth);
 			}
@@ -241,30 +246,45 @@ public class selectBanBenServlet extends HttpServlet {
 				selStateSQL=" AND 1=1 ";
 				request.setAttribute("selState", "");
 			}else {
+				SelectAll="1";
 				selStateSQL=" AND D_STATE = '"+selState+"' ";
 				request.setAttribute("selState", selState);
 			}
 			System.out.println(time+"查询条件：状态:"+selStateSQL);
 			
+			//查询条件：发江西
+			String selJiangxi = request.getParameter("selJiangxi");
+			String selJiangxiSQL;
+			if(selJiangxi== null || selJiangxi.length()==0 || selJiangxi.equals("全部")) {
+				selJiangxiSQL=" AND 1=1 ";
+				request.setAttribute("selJiangxi", "");
+			}else {
+				SelectAll="1";
+				selJiangxiSQL=" AND D_ISJXXC = '"+selJiangxi+"' ";
+				request.setAttribute("selJiangxi", selState);
+			}
+			System.out.println(time+"查询条件：发江西:"+selJiangxiSQL);
+			
 			//排序条件
 			String OrderSQL=" order by D_DATE desc";
 			
 			String sql = "select D_ID,D_BUMEN,D_KBOSS,D_KBOSSEMAIL,D_KAIFA,D_DATE,D_CONTENT,D_BIAOZHUN,D_KEMAIL,D_NG,D_TUSER,D_WEINAME,D_VERSION,D_STATE,D_SUBURL,D_WIKI,D_ISSQL,D_ISJXXC,D_ISYCHJ,D_ISJXPRE,D_SQL,D_CONFIG,D_JINJI,D_ISCONFIG,D_ISYTH2020,D_REASON_FILE from SYS_TEST_SQ where D_TYPE='版本测试'"
-			+selBumenSQL+selWeifwSQL+selVersionSQL+selMonthSQL+selStateSQL+OrderSQL;
+			+selBumenSQL+selWeifwSQL+selVersionSQL+selMonthSQL+selStateSQL+selJiangxiSQL+OrderSQL;
 			System.out.println(time+"总查询SQL:"+sql);
 			
 			String nowPage = request.getParameter("currentPage");
 			System.out.println(time+"当前页数:"+nowPage);
 			DBUtils dbutil = new DBUtils();
 			String configSql="select * from sys_config where name='SelectAll'";
-			String SelectAll = null;
+
+			/*
 			try {
 				SelectAll = dbutil.queryString(configSql,"VALUE");
 				System.out.println(time+"查询全部开关:"+SelectAll);
 			} catch (SQLException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
-			}
+			}*/
 			if(SelectAll.equals("1")) {
 				PageBean pageBean = dbutil.queryByPage2(nowPage, sql);
 				request.setAttribute("pageBean", pageBean);
