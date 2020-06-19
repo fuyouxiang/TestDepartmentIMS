@@ -614,14 +614,22 @@
 		<description></description>
 		<servlet-class>cn.com.shxt.servlet.updateDYStateServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>WebService</servlet-name>
+		<display-name>WebService</display-name>
+		<description></description>
+		<servlet-class>cn.com.shxt.utils.WebService</servlet-class>
+	</servlet>
 
 
 
 
 
 
-
-
+	<servlet-mapping>
+    	<servlet-name>WebService</servlet-name>
+    	<url-pattern>/WebService</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
     	<servlet-name>updateDYStateServlet</servlet-name>
     	<url-pattern>/updateDYStateServlet</url-pattern>

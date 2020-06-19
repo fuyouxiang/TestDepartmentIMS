@@ -54,13 +54,14 @@ var zaohui=
 {
         id:'004',
         icon:'icon-sk005',
-        title:'站立会',
+        title:'工具',
         path:'',
         target:'right',
         level:1,
         children:[            
         	{id:'0041',level:2,icon:'',title:'站立会签到',path:'AddSignServlet',target:'right',children:[]},
-            {id:'0042',level:2,icon:'',title:'签到列表查询',path:'selectSignServlet',target:'right',children:[]}
+            {id:'0042',level:2,icon:'',title:'签到列表查询',path:'selectSignServlet',target:'right',children:[]},
+        	{id:'0043',level:2,icon:'',title:'电子凭证库接口',path:'User/AsspPBankService.jsp',target:'right',children:[]}
         ]
     }; 
 
