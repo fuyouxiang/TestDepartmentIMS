@@ -21,6 +21,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="container">
       <%
       String info=(String)  request.getAttribute("info");
+      if(info.length()<1){
+    	  info="未查到可读取的凭证！";
+      }
       %>
 
       <div class="jumbotron">
