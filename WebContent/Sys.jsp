@@ -45,7 +45,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	//onclick="javascrtpt:window.location.href='http://blog.sina.com.cn/mleavs'">
 	
 	</script>
-	
+
+
 
   </head>
   <%String name1=(String)request.getAttribute( "name1");%>
